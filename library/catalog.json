@@ -3,9 +3,9 @@
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 3,
-  "assets": 9,
-  "variants": 89
+  "categories": 4,
+  "assets": 11,
+  "variants": 127
  },
  "categories": [
   {
@@ -21,6 +21,16 @@
     "nature/mushroom",
     "nature/rock",
     "nature/tree"
+   ]
+  },
+  {
+   "id": "landscape",
+   "title": "Paysage",
+   "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
+   "icon": "landscape/mountain/peak_snow_16",
+   "assets": [
+    "landscape/hill",
+    "landscape/mountain"
    ]
   },
   {
@@ -1120,14 +1130,16 @@
    "slug": "rock",
    "category": "nature",
    "title": "Rocher",
-   "description": "Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.",
+   "description": "Pierres et rochers pour décors, vus de face : petit caillou, tas de galets, gros rocher à facettes, cairn de pierres empilées (16, 32 px), aiguille rocheuse, escarpement de blocs (48 px) et arche naturelle (48 px), en versions nue, moussue, enneigée, grès du désert. Lumière en haut à gauche, contour sombre.",
    "tags": [
     "rock",
     "stone",
     "boulder",
     "nature",
     "decoration",
-    "obstacle"
+    "obstacle",
+    "cliff",
+    "terrain"
    ],
    "order": 0,
    "source": "assets/nature/rock.px.js",
@@ -1140,7 +1152,11 @@
     "form": [
      "stone",
      "pebbles",
-     "boulder"
+     "boulder",
+     "cairn",
+     "spire",
+     "crag",
+     "arch"
     ],
     "surface": [
      "bare",
@@ -1154,9 +1170,10 @@
    },
    "sizes": [
     16,
-    32
+    32,
+    48
    ],
-   "variantCount": 7,
+   "variantCount": 16,
    "variants": {
     "small_16": {
      "key": "small_16",
@@ -1281,6 +1298,200 @@
       "desert"
      ],
      "png": "library/png/nature/rock/boulder_sand_32.png"
+    },
+    "cairn_16": {
+     "key": "cairn_16",
+     "name": "rock_cairn_16",
+     "id": "nature/rock/cairn_16",
+     "label": "Cairn (16 px)",
+     "kind": "sprite",
+     "w": 14,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "form": "cairn",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "cairn",
+      "stack",
+      "landmark",
+      "trail"
+     ],
+     "png": "library/png/nature/rock/cairn_16.png"
+    },
+    "cairn_32": {
+     "key": "cairn_32",
+     "name": "rock_cairn_32",
+     "id": "nature/rock/cairn_32",
+     "label": "Grand cairn moussu à la base",
+     "kind": "sprite",
+     "w": 22,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "form": "cairn",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "cairn",
+      "stack",
+      "landmark",
+      "trail"
+     ],
+     "png": "library/png/nature/rock/cairn_32.png"
+    },
+    "spire_32": {
+     "key": "spire_32",
+     "name": "rock_spire_32",
+     "id": "nature/rock/spire_32",
+     "label": "Aiguille rocheuse",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "spire",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "spire",
+      "pillar",
+      "needle"
+     ],
+     "png": "library/png/nature/rock/spire_32.png"
+    },
+    "spire_sand_32": {
+     "key": "spire_sand_32",
+     "name": "rock_spire_sand_32",
+     "id": "nature/rock/spire_sand_32",
+     "label": "Aiguille de grès (désert)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "spire",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "spire",
+      "pillar",
+      "desert",
+      "hoodoo"
+     ],
+     "png": "library/png/nature/rock/spire_sand_32.png"
+    },
+    "crag_48": {
+     "key": "crag_48",
+     "name": "rock_crag_48",
+     "id": "nature/rock/crag_48",
+     "label": "Escarpement de blocs (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "outcrop"
+     ],
+     "png": "library/png/nature/rock/crag_48.png"
+    },
+    "crag_mossy_48": {
+     "key": "crag_mossy_48",
+     "name": "rock_crag_mossy_48",
+     "id": "nature/rock/crag_mossy_48",
+     "label": "Escarpement moussu (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "outcrop",
+      "moss"
+     ],
+     "png": "library/png/nature/rock/crag_mossy_48.png"
+    },
+    "crag_snow_48": {
+     "key": "crag_snow_48",
+     "name": "rock_crag_snow_48",
+     "id": "nature/rock/crag_snow_48",
+     "label": "Escarpement enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "snow",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/nature/rock/crag_snow_48.png"
+    },
+    "arch_48": {
+     "key": "arch_48",
+     "name": "rock_arch_48",
+     "id": "nature/rock/arch_48",
+     "label": "Arche naturelle (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "arch",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "arch",
+      "landmark"
+     ],
+     "png": "library/png/nature/rock/arch_48.png"
+    },
+    "arch_sand_48": {
+     "key": "arch_sand_48",
+     "name": "rock_arch_sand_48",
+     "id": "nature/rock/arch_sand_48",
+     "label": "Arche de grès du désert (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "arch",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "arch",
+      "landmark",
+      "desert",
+      "canyon"
+     ],
+     "png": "library/png/nature/rock/arch_sand_48.png"
     }
    }
   },
@@ -1659,6 +1870,727 @@
       "snow"
      ],
      "png": "library/png/nature/tree/pine_snow_48.png"
+    }
+   }
+  },
+  "landscape/hill": {
+   "id": "landscape/hill",
+   "slug": "hill",
+   "category": "landscape",
+   "title": "Colline",
+   "description": "Collines vues de face pour décors 2D, posées au sol : colline ronde (16, 32 px) en herbe d'été, fleurie, parsemée de pierres, dorée d'automne ou enneigée ; vallonnement de trois collines qui se recouvrent (64 × 24) en été, fleuri, automne et hiver ; dune de sable et champ de dunes du désert. Ombrage en croissants (lumière en haut à gauche), contour sombre.",
+   "tags": [
+    "hill",
+    "landscape",
+    "terrain",
+    "background",
+    "scenery",
+    "relief",
+    "meadow",
+    "ground"
+   ],
+   "order": 0,
+   "source": "assets/landscape/hill.px.js",
+   "module": "library/js/landscape/hill.js",
+   "sheet": {
+    "png": "library/sheets/landscape/hill.png",
+    "json": "library/sheets/landscape/hill.json"
+   },
+   "axes": {
+    "shape": [
+     "round",
+     "rolling",
+     "dune"
+    ],
+    "season": [
+     "summer",
+     "spring",
+     "autumn",
+     "winter"
+    ],
+    "cover": [
+     "grass",
+     "flowers",
+     "rocks",
+     "snow",
+     "sand"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    64
+   ],
+   "variantCount": 12,
+   "variants": {
+    "round_32": {
+     "key": "round_32",
+     "name": "hill_round_32",
+     "id": "landscape/hill/round_32",
+     "label": "Colline ronde – été",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/round_32.png"
+    },
+    "flowers_32": {
+     "key": "flowers_32",
+     "name": "hill_flowers_32",
+     "id": "landscape/hill/flowers_32",
+     "label": "Colline fleurie – printemps",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "spring",
+      "cover": "flowers"
+     },
+     "tags": [
+      "flower",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/flowers_32.png"
+    },
+    "rocky_32": {
+     "key": "rocky_32",
+     "name": "hill_rocky_32",
+     "id": "landscape/hill/rocky_32",
+     "label": "Colline semée de pierres",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "rocks"
+     },
+     "tags": [
+      "rock",
+      "stone",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/rocky_32.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "hill_autumn_32",
+     "id": "landscape/hill/autumn_32",
+     "label": "Colline dorée – automne",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "autumn",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "golden"
+     ],
+     "png": "library/png/landscape/hill/autumn_32.png"
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "hill_snow_32",
+     "id": "landscape/hill/snow_32",
+     "label": "Colline enneigée – hiver",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "winter",
+      "cover": "snow"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/hill/snow_32.png"
+    },
+    "round_16": {
+     "key": "round_16",
+     "name": "hill_round_16",
+     "id": "landscape/hill/round_16",
+     "label": "Petite colline (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 10,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "icon",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/round_16.png"
+    },
+    "rolling_64": {
+     "key": "rolling_64",
+     "name": "hill_rolling_64",
+     "id": "landscape/hill/rolling_64",
+     "label": "Vallonnement – été (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_64.png"
+    },
+    "rolling_flowers_64": {
+     "key": "rolling_flowers_64",
+     "name": "hill_rolling_flowers_64",
+     "id": "landscape/hill/rolling_flowers_64",
+     "label": "Vallonnement fleuri – printemps (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "spring",
+      "cover": "flowers"
+     },
+     "tags": [
+      "flower",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_flowers_64.png"
+    },
+    "rolling_autumn_64": {
+     "key": "rolling_autumn_64",
+     "name": "hill_rolling_autumn_64",
+     "id": "landscape/hill/rolling_autumn_64",
+     "label": "Vallonnement doré – automne (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "autumn",
+      "cover": "grass"
+     },
+     "tags": [
+      "golden",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_autumn_64.png"
+    },
+    "rolling_snow_64": {
+     "key": "rolling_snow_64",
+     "name": "hill_rolling_snow_64",
+     "id": "landscape/hill/rolling_snow_64",
+     "label": "Vallonnement enneigé – hiver (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "winter",
+      "cover": "snow"
+     },
+     "tags": [
+      "snow",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_snow_64.png"
+    },
+    "dune_32": {
+     "key": "dune_32",
+     "name": "hill_dune_32",
+     "id": "landscape/hill/dune_32",
+     "label": "Dune de sable",
+     "kind": "sprite",
+     "w": 32,
+     "h": 14,
+     "size": 32,
+     "props": {
+      "shape": "dune",
+      "season": "summer",
+      "cover": "sand"
+     },
+     "tags": [
+      "desert",
+      "sand"
+     ],
+     "png": "library/png/landscape/hill/dune_32.png"
+    },
+    "dunes_64": {
+     "key": "dunes_64",
+     "name": "hill_dunes_64",
+     "id": "landscape/hill/dunes_64",
+     "label": "Champ de dunes (64 × 22)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 22,
+     "size": 64,
+     "props": {
+      "shape": "dune",
+      "season": "summer",
+      "cover": "sand"
+     },
+     "tags": [
+      "desert",
+      "sand"
+     ],
+     "png": "library/png/landscape/hill/dunes_64.png"
+    }
+   }
+  },
+  "landscape/mountain": {
+   "id": "landscape/mountain",
+   "slug": "mountain",
+   "category": "landscape",
+   "title": "Montagne",
+   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+   "tags": [
+    "mountain",
+    "peak",
+    "landscape",
+    "background",
+    "scenery",
+    "terrain",
+    "parallax",
+    "relief"
+   ],
+   "order": 0,
+   "source": "assets/landscape/mountain.px.js",
+   "module": "library/js/landscape/mountain.js",
+   "sheet": {
+    "png": "library/sheets/landscape/mountain.png",
+    "json": "library/sheets/landscape/mountain.json"
+   },
+   "axes": {
+    "shape": [
+     "peak",
+     "range",
+     "volcano",
+     "mesa"
+    ],
+    "cover": [
+     "snowcap",
+     "forest",
+     "snow",
+     "lava",
+     "bare"
+    ],
+    "tone": [
+     "day",
+     "haze",
+     "dusk"
+    ],
+    "material": [
+     "granite",
+     "basalt",
+     "sandstone",
+     "redstone"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48,
+    64
+   ],
+   "variantCount": 17,
+   "variants": {
+    "peak_snow_64": {
+     "key": "peak_snow_64",
+     "name": "mountain_peak_snow_64",
+     "id": "landscape/mountain/peak_snow_64",
+     "label": "Grand pic enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_64.png"
+    },
+    "peak_alpine_64": {
+     "key": "peak_alpine_64",
+     "name": "mountain_peak_alpine_64",
+     "id": "landscape/mountain/peak_alpine_64",
+     "label": "Grand pic alpin, alpage et sapins (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine",
+      "meadow"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_64.png"
+    },
+    "peak_winter_64": {
+     "key": "peak_winter_64",
+     "name": "mountain_peak_winter_64",
+     "id": "landscape/mountain/peak_winter_64",
+     "label": "Grand pic tout enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_64.png"
+    },
+    "peak_snow_32": {
+     "key": "peak_snow_32",
+     "name": "mountain_peak_snow_32",
+     "id": "landscape/mountain/peak_snow_32",
+     "label": "Pic enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_32.png"
+    },
+    "peak_alpine_32": {
+     "key": "peak_alpine_32",
+     "name": "mountain_peak_alpine_32",
+     "id": "landscape/mountain/peak_alpine_32",
+     "label": "Pic alpin, forêt au pied (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_32.png"
+    },
+    "peak_winter_32": {
+     "key": "peak_winter_32",
+     "name": "mountain_peak_winter_32",
+     "id": "landscape/mountain/peak_winter_32",
+     "label": "Pic tout enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_32.png"
+    },
+    "peak_snow_16": {
+     "key": "peak_snow_16",
+     "name": "mountain_peak_snow_16",
+     "id": "landscape/mountain/peak_snow_16",
+     "label": "Pic enneigé (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_16.png"
+    },
+    "peak_alpine_16": {
+     "key": "peak_alpine_16",
+     "name": "mountain_peak_alpine_16",
+     "id": "landscape/mountain/peak_alpine_16",
+     "label": "Pic alpin (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "forest"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_16.png"
+    },
+    "peak_winter_16": {
+     "key": "peak_winter_16",
+     "name": "mountain_peak_winter_16",
+     "id": "landscape/mountain/peak_winter_16",
+     "label": "Pic en hiver (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_16.png"
+    },
+    "range_snow_64": {
+     "key": "range_snow_64",
+     "name": "mountain_range_snow_64",
+     "id": "landscape/mountain/range_snow_64",
+     "label": "Chaîne de sommets enneigés (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_snow_64.png"
+    },
+    "range_alpine_64": {
+     "key": "range_alpine_64",
+     "name": "mountain_range_alpine_64",
+     "id": "landscape/mountain/range_alpine_64",
+     "label": "Chaîne alpine, forêt au pied (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_alpine_64.png"
+    },
+    "range_far_64": {
+     "key": "range_far_64",
+     "name": "mountain_range_far_64",
+     "id": "landscape/mountain/range_far_64",
+     "label": "Chaîne lointaine bleutée (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "haze",
+      "material": "granite"
+     },
+     "tags": [
+      "distant",
+      "haze",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_far_64.png"
+    },
+    "range_dusk_64": {
+     "key": "range_dusk_64",
+     "name": "mountain_range_dusk_64",
+     "id": "landscape/mountain/range_dusk_64",
+     "label": "Chaîne au crépuscule (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "dusk",
+      "material": "granite"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_dusk_64.png"
+    },
+    "volcano_snow_48": {
+     "key": "volcano_snow_48",
+     "name": "mountain_volcano_snow_48",
+     "id": "landscape/mountain/volcano_snow_48",
+     "label": "Volcan endormi enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "volcano",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "volcano",
+      "snow",
+      "dormant"
+     ],
+     "png": "library/png/landscape/mountain/volcano_snow_48.png"
+    },
+    "volcano_active_48": {
+     "key": "volcano_active_48",
+     "name": "mountain_volcano_active_48",
+     "id": "landscape/mountain/volcano_active_48",
+     "label": "Volcan en éruption, animé (48 px)",
+     "kind": "anim",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "volcano",
+      "cover": "lava",
+      "tone": "day",
+      "material": "basalt"
+     },
+     "tags": [
+      "volcano",
+      "lava",
+      "smoke",
+      "eruption",
+      "animated",
+      "fire"
+     ],
+     "png": "library/png/landscape/mountain/volcano_active_48.png",
+     "gif": "library/png/landscape/mountain/volcano_active_48.gif",
+     "frameCount": 6,
+     "loopMs": 1002
+    },
+    "mesa_48": {
+     "key": "mesa_48",
+     "name": "mountain_mesa_48",
+     "id": "landscape/mountain/mesa_48",
+     "label": "Mesa de grès (48 × 32)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "cliff"
+     ],
+     "png": "library/png/landscape/mountain/mesa_48.png"
+    },
+    "mesa_red_48": {
+     "key": "mesa_red_48",
+     "name": "mountain_mesa_red_48",
+     "id": "landscape/mountain/mesa_red_48",
+     "label": "Mesa de roche rouge (48 × 32)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "redstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "cliff",
+      "canyon"
+     ],
+     "png": "library/png/landscape/mountain/mesa_red_48.png"
     }
    }
   },

@@ -7,7 +7,8 @@ pour être réutilisée par des humains comme par d'autres agents IA.
 
 | Catégorie | Familles | Variantes |
 |---|---|---|
-| Nature | Arbre (chêne, sapin, bouleau, pommier × saisons × 16/32/48 px), Rocher | 26 |
+| Nature | Arbre (chêne, sapin, bouleau, pommier × saisons × 16/32/48 px), Rocher (caillou, rocher, cairn, aiguille, escarpement, arche), Buisson, Herbe, Fleur, Fougère, Champignon | 80 |
+| Paysage | Montagne (pics 16/32/64 px, chaîne pour parallaxe, volcan animé, mesa), Colline (ronde, vallonnement, dunes × saisons) | 29 |
 | Objets | Potion (5 couleurs, 3 formes) | 12 |
 | Personnages | Slime (animé, 4 couleurs, roi couronné) | 6 |
 
