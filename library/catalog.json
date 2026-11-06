@@ -1,0 +1,999 @@
+{
+ "name": "pixel-assets",
+ "format": 1,
+ "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
+ "stats": {
+  "categories": 3,
+  "assets": 4,
+  "variants": 44
+ },
+ "categories": [
+  {
+   "id": "nature",
+   "title": "Nature",
+   "description": "Arbres, rochers, plantes et éléments du décor naturel.",
+   "icon": "nature/tree/oak_summer_16",
+   "assets": [
+    "nature/rock",
+    "nature/tree"
+   ]
+  },
+  {
+   "id": "items",
+   "title": "Objets",
+   "description": "Potions, armes, butin et objets d'inventaire.",
+   "icon": "items/potion/red_small",
+   "assets": [
+    "items/potion"
+   ]
+  },
+  {
+   "id": "characters",
+   "title": "Personnages",
+   "description": "Héros, monstres et créatures (souvent animés).",
+   "icon": "characters/slime/green_idle",
+   "assets": [
+    "characters/slime"
+   ]
+  }
+ ],
+ "assets": {
+  "nature/rock": {
+   "id": "nature/rock",
+   "slug": "rock",
+   "category": "nature",
+   "title": "Rocher",
+   "description": "Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.",
+   "tags": [
+    "rock",
+    "stone",
+    "boulder",
+    "nature",
+    "decoration",
+    "obstacle"
+   ],
+   "order": 0,
+   "source": "assets/nature/rock.px.js",
+   "module": "library/js/nature/rock.js",
+   "sheet": {
+    "png": "library/sheets/nature/rock.png",
+    "json": "library/sheets/nature/rock.json"
+   },
+   "axes": {
+    "form": [
+     "stone",
+     "pebbles",
+     "boulder"
+    ],
+    "surface": [
+     "bare",
+     "mossy",
+     "snow"
+    ],
+    "material": [
+     "granite",
+     "sandstone"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 7,
+   "variants": {
+    "small_16": {
+     "key": "small_16",
+     "name": "rock_small_16",
+     "id": "nature/rock/small_16",
+     "label": "Caillou",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "form": "stone",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/rock/small_16.png"
+    },
+    "small_mossy_16": {
+     "key": "small_mossy_16",
+     "name": "rock_small_mossy_16",
+     "id": "nature/rock/small_mossy_16",
+     "label": "Caillou moussu",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "form": "stone",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/rock/small_mossy_16.png"
+    },
+    "pebbles_16": {
+     "key": "pebbles_16",
+     "name": "rock_pebbles_16",
+     "id": "nature/rock/pebbles_16",
+     "label": "Tas de galets",
+     "kind": "sprite",
+     "w": 16,
+     "h": 11,
+     "size": 16,
+     "props": {
+      "form": "pebbles",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/rock/pebbles_16.png"
+    },
+    "boulder_32": {
+     "key": "boulder_32",
+     "name": "rock_boulder_32",
+     "id": "nature/rock/boulder_32",
+     "label": "Gros rocher",
+     "kind": "sprite",
+     "w": 32,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/rock/boulder_32.png"
+    },
+    "boulder_mossy_32": {
+     "key": "boulder_mossy_32",
+     "name": "rock_boulder_mossy_32",
+     "id": "nature/rock/boulder_mossy_32",
+     "label": "Gros rocher moussu",
+     "kind": "sprite",
+     "w": 32,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/rock/boulder_mossy_32.png"
+    },
+    "boulder_snow_32": {
+     "key": "boulder_snow_32",
+     "name": "rock_boulder_snow_32",
+     "id": "nature/rock/boulder_snow_32",
+     "label": "Gros rocher enneigé",
+     "kind": "sprite",
+     "w": 32,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "snow",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/nature/rock/boulder_snow_32.png"
+    },
+    "boulder_sand_32": {
+     "key": "boulder_sand_32",
+     "name": "rock_boulder_sand_32",
+     "id": "nature/rock/boulder_sand_32",
+     "label": "Rocher de grès (désert)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert"
+     ],
+     "png": "library/png/nature/rock/boulder_sand_32.png"
+    }
+   }
+  },
+  "nature/tree": {
+   "id": "nature/tree",
+   "slug": "tree",
+   "category": "nature",
+   "title": "Arbre",
+   "description": "Arbres vus de face pour décors 2D : chêne, sapin, bouleau, pommier. Plusieurs saisons, densités de feuillage et tailles (16, 32, 48 px). Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "tree",
+    "plant",
+    "forest",
+    "nature",
+    "decoration",
+    "scenery"
+   ],
+   "order": 0,
+   "source": "assets/nature/tree.px.js",
+   "module": "library/js/nature/tree.js",
+   "sheet": {
+    "png": "library/sheets/nature/tree.png",
+    "json": "library/sheets/nature/tree.json"
+   },
+   "axes": {
+    "species": [
+     "oak",
+     "pine",
+     "apple",
+     "birch"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "winter",
+     "spring"
+    ],
+    "foliage": [
+     "full",
+     "sparse",
+     "bare"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 19,
+   "variants": {
+    "oak_summer_16": {
+     "key": "oak_summer_16",
+     "name": "tree_oak_summer_16",
+     "id": "nature/tree/oak_summer_16",
+     "label": "Chêne – été (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_summer_16.png"
+    },
+    "oak_autumn_16": {
+     "key": "oak_autumn_16",
+     "name": "tree_oak_autumn_16",
+     "id": "nature/tree/oak_autumn_16",
+     "label": "Chêne – automne (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_autumn_16.png"
+    },
+    "pine_16": {
+     "key": "pine_16",
+     "name": "tree_pine_16",
+     "id": "nature/tree/pine_16",
+     "label": "Sapin (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/pine_16.png"
+    },
+    "pine_snow_16": {
+     "key": "pine_snow_16",
+     "name": "tree_pine_snow_16",
+     "id": "nature/tree/pine_snow_16",
+     "label": "Sapin enneigé (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "pine",
+      "season": "winter",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/pine_snow_16.png"
+    },
+    "oak_summer_full_32": {
+     "key": "oak_summer_full_32",
+     "name": "tree_oak_summer_full_32",
+     "id": "nature/tree/oak_summer_full_32",
+     "label": "Chêne – été, feuillage dense",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_summer_full_32.png"
+    },
+    "oak_summer_sparse_32": {
+     "key": "oak_summer_sparse_32",
+     "name": "tree_oak_summer_sparse_32",
+     "id": "nature/tree/oak_summer_sparse_32",
+     "label": "Chêne – été, peu de feuilles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "foliage": "sparse"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_summer_sparse_32.png"
+    },
+    "oak_winter_32": {
+     "key": "oak_winter_32",
+     "name": "tree_oak_winter_32",
+     "id": "nature/tree/oak_winter_32",
+     "label": "Chêne – hiver, branches nues enneigées",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "winter",
+      "foliage": "bare"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_winter_32.png"
+    },
+    "oak_autumn_32": {
+     "key": "oak_autumn_32",
+     "name": "tree_oak_autumn_32",
+     "id": "nature/tree/oak_autumn_32",
+     "label": "Chêne – automne (rouge-orangé)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_autumn_32.png"
+    },
+    "oak_autumn_sparse_32": {
+     "key": "oak_autumn_sparse_32",
+     "name": "tree_oak_autumn_sparse_32",
+     "id": "nature/tree/oak_autumn_sparse_32",
+     "label": "Chêne – fin d'automne, peu de feuilles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "foliage": "sparse"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_autumn_sparse_32.png"
+    },
+    "oak_spring_32": {
+     "key": "oak_spring_32",
+     "name": "tree_oak_spring_32",
+     "id": "nature/tree/oak_spring_32",
+     "label": "Chêne – printemps en fleurs",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "spring",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_spring_32.png"
+    },
+    "apple_32": {
+     "key": "apple_32",
+     "name": "tree_apple_32",
+     "id": "nature/tree/apple_32",
+     "label": "Pommier avec pommes",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "apple",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [
+      "fruit"
+     ],
+     "png": "library/png/nature/tree/apple_32.png"
+    },
+    "pine_32": {
+     "key": "pine_32",
+     "name": "tree_pine_32",
+     "id": "nature/tree/pine_32",
+     "label": "Sapin",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/pine_32.png"
+    },
+    "pine_snow_32": {
+     "key": "pine_snow_32",
+     "name": "tree_pine_snow_32",
+     "id": "nature/tree/pine_snow_32",
+     "label": "Sapin enneigé",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "pine",
+      "season": "winter",
+      "foliage": "full"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/nature/tree/pine_snow_32.png"
+    },
+    "birch_32": {
+     "key": "birch_32",
+     "name": "tree_birch_32",
+     "id": "nature/tree/birch_32",
+     "label": "Bouleau – été",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "birch",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/birch_32.png"
+    },
+    "birch_autumn_32": {
+     "key": "birch_autumn_32",
+     "name": "tree_birch_autumn_32",
+     "id": "nature/tree/birch_autumn_32",
+     "label": "Bouleau – automne doré",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "birch",
+      "season": "autumn",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/birch_autumn_32.png"
+    },
+    "oak_summer_48": {
+     "key": "oak_summer_48",
+     "name": "tree_oak_summer_48",
+     "id": "nature/tree/oak_summer_48",
+     "label": "Grand chêne – été (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_summer_48.png"
+    },
+    "oak_autumn_48": {
+     "key": "oak_autumn_48",
+     "name": "tree_oak_autumn_48",
+     "id": "nature/tree/oak_autumn_48",
+     "label": "Grand chêne – automne (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/oak_autumn_48.png"
+    },
+    "pine_48": {
+     "key": "pine_48",
+     "name": "tree_pine_48",
+     "id": "nature/tree/pine_48",
+     "label": "Grand sapin (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "foliage": "full"
+     },
+     "tags": [],
+     "png": "library/png/nature/tree/pine_48.png"
+    },
+    "pine_snow_48": {
+     "key": "pine_snow_48",
+     "name": "tree_pine_snow_48",
+     "id": "nature/tree/pine_snow_48",
+     "label": "Grand sapin enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "pine",
+      "season": "winter",
+      "foliage": "full"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/nature/tree/pine_snow_48.png"
+    }
+   }
+  },
+  "items/potion": {
+   "id": "items/potion",
+   "slug": "potion",
+   "category": "items",
+   "title": "Potion",
+   "description": "Fioles de potion pour inventaire ou butin : petite fiole ronde, bouteille haute et grand flacon à bulles, en plusieurs couleurs de liquide (soin, mana, poison, magie, énergie).",
+   "tags": [
+    "potion",
+    "item",
+    "loot",
+    "consumable",
+    "rpg",
+    "inventory",
+    "icon"
+   ],
+   "order": 0,
+   "source": "assets/items/potion.px.js",
+   "module": "library/js/items/potion.js",
+   "sheet": {
+    "png": "library/sheets/items/potion.png",
+    "json": "library/sheets/items/potion.json"
+   },
+   "axes": {
+    "liquid": [
+     "red",
+     "blue",
+     "green",
+     "purple",
+     "yellow",
+     "none"
+    ],
+    "effect": [
+     "health",
+     "mana",
+     "poison",
+     "magic",
+     "stamina",
+     "none"
+    ],
+    "shape": [
+     "round",
+     "bottle",
+     "flask"
+    ]
+   },
+   "sizes": [
+    16,
+    24,
+    32
+   ],
+   "variantCount": 12,
+   "variants": {
+    "red_small": {
+     "key": "red_small",
+     "name": "potion_red_small",
+     "id": "items/potion/red_small",
+     "label": "Petite potion rouge (soin)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "liquid": "red",
+      "effect": "health",
+      "shape": "round"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/red_small.png"
+    },
+    "blue_small": {
+     "key": "blue_small",
+     "name": "potion_blue_small",
+     "id": "items/potion/blue_small",
+     "label": "Petite potion bleue (mana)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "liquid": "blue",
+      "effect": "mana",
+      "shape": "round"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/blue_small.png"
+    },
+    "green_small": {
+     "key": "green_small",
+     "name": "potion_green_small",
+     "id": "items/potion/green_small",
+     "label": "Petite potion verte (poison)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "liquid": "green",
+      "effect": "poison",
+      "shape": "round"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/green_small.png"
+    },
+    "purple_small": {
+     "key": "purple_small",
+     "name": "potion_purple_small",
+     "id": "items/potion/purple_small",
+     "label": "Petite potion violette (magie)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "liquid": "purple",
+      "effect": "magic",
+      "shape": "round"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/purple_small.png"
+    },
+    "yellow_small": {
+     "key": "yellow_small",
+     "name": "potion_yellow_small",
+     "id": "items/potion/yellow_small",
+     "label": "Petite potion jaune (énergie)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "liquid": "yellow",
+      "effect": "stamina",
+      "shape": "round"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/yellow_small.png"
+    },
+    "red_bottle": {
+     "key": "red_bottle",
+     "name": "potion_red_bottle",
+     "id": "items/potion/red_bottle",
+     "label": "Bouteille rouge",
+     "kind": "sprite",
+     "w": 12,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "liquid": "red",
+      "effect": "health",
+      "shape": "bottle"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/red_bottle.png"
+    },
+    "blue_bottle": {
+     "key": "blue_bottle",
+     "name": "potion_blue_bottle",
+     "id": "items/potion/blue_bottle",
+     "label": "Bouteille bleue",
+     "kind": "sprite",
+     "w": 12,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "liquid": "blue",
+      "effect": "mana",
+      "shape": "bottle"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/blue_bottle.png"
+    },
+    "green_bottle": {
+     "key": "green_bottle",
+     "name": "potion_green_bottle",
+     "id": "items/potion/green_bottle",
+     "label": "Bouteille verte",
+     "kind": "sprite",
+     "w": 12,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "liquid": "green",
+      "effect": "poison",
+      "shape": "bottle"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/green_bottle.png"
+    },
+    "red_large": {
+     "key": "red_large",
+     "name": "potion_red_large",
+     "id": "items/potion/red_large",
+     "label": "Grand flacon rouge à bulles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "liquid": "red",
+      "effect": "health",
+      "shape": "flask"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/red_large.png"
+    },
+    "blue_large": {
+     "key": "blue_large",
+     "name": "potion_blue_large",
+     "id": "items/potion/blue_large",
+     "label": "Grand flacon bleu à bulles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "liquid": "blue",
+      "effect": "mana",
+      "shape": "flask"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/blue_large.png"
+    },
+    "purple_large": {
+     "key": "purple_large",
+     "name": "potion_purple_large",
+     "id": "items/potion/purple_large",
+     "label": "Grand flacon violet à bulles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "liquid": "purple",
+      "effect": "magic",
+      "shape": "flask"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/purple_large.png"
+    },
+    "empty_large": {
+     "key": "empty_large",
+     "name": "potion_empty_large",
+     "id": "items/potion/empty_large",
+     "label": "Grand flacon vide",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "liquid": "none",
+      "effect": "none",
+      "shape": "flask"
+     },
+     "tags": [],
+     "png": "library/png/items/potion/empty_large.png"
+    }
+   }
+  },
+  "characters/slime": {
+   "id": "characters/slime",
+   "slug": "slime",
+   "category": "characters",
+   "title": "Slime",
+   "description": "Petit monstre gélatineux animé (respiration en 4 images de 200 ms : écrasement / étirement), en plusieurs couleurs, plus une version immobile et un roi slime couronné.",
+   "tags": [
+    "slime",
+    "monster",
+    "enemy",
+    "character",
+    "rpg",
+    "animated",
+    "cute"
+   ],
+   "order": 0,
+   "source": "assets/characters/slime.px.js",
+   "module": "library/js/characters/slime.js",
+   "sheet": {
+    "png": "library/sheets/characters/slime.png",
+    "json": "library/sheets/characters/slime.json"
+   },
+   "axes": {
+    "color": [
+     "green",
+     "blue",
+     "red",
+     "purple"
+    ],
+    "state": [
+     "idle",
+     "hurt"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 6,
+   "variants": {
+    "green_idle": {
+     "key": "green_idle",
+     "name": "slime_green_idle",
+     "id": "characters/slime/green_idle",
+     "label": "Slime vert – animation repos",
+     "kind": "anim",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "color": "green",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/characters/slime/green_idle.png",
+     "gif": "library/png/characters/slime/green_idle.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "blue_idle": {
+     "key": "blue_idle",
+     "name": "slime_blue_idle",
+     "id": "characters/slime/blue_idle",
+     "label": "Slime bleu – animation repos",
+     "kind": "anim",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "color": "blue",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/characters/slime/blue_idle.png",
+     "gif": "library/png/characters/slime/blue_idle.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "red_idle": {
+     "key": "red_idle",
+     "name": "slime_red_idle",
+     "id": "characters/slime/red_idle",
+     "label": "Slime rouge – animation repos",
+     "kind": "anim",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "color": "red",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/characters/slime/red_idle.png",
+     "gif": "library/png/characters/slime/red_idle.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "purple_idle": {
+     "key": "purple_idle",
+     "name": "slime_purple_idle",
+     "id": "characters/slime/purple_idle",
+     "label": "Slime violet – animation repos",
+     "kind": "anim",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "color": "purple",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/characters/slime/purple_idle.png",
+     "gif": "library/png/characters/slime/purple_idle.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "green_hurt": {
+     "key": "green_hurt",
+     "name": "slime_green_hurt",
+     "id": "characters/slime/green_hurt",
+     "label": "Slime vert – touché",
+     "kind": "sprite",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "color": "green",
+      "state": "hurt"
+     },
+     "tags": [],
+     "png": "library/png/characters/slime/green_hurt.png"
+    },
+    "king_32": {
+     "key": "king_32",
+     "name": "slime_king_32",
+     "id": "characters/slime/king_32",
+     "label": "Roi slime couronné (32 px)",
+     "kind": "sprite",
+     "w": 29,
+     "h": 26,
+     "size": 32,
+     "props": {
+      "color": "green",
+      "state": "idle"
+     },
+     "tags": [
+      "boss"
+     ],
+     "png": "library/png/characters/slime/king_32.png"
+    }
+   }
+  }
+ }
+}

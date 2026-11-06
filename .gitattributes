@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.gif binary
+# Fichiers générés : diff réduit dans les PR
+library/** linguist-generated=true
+docs/index.html linguist-generated=true

@@ -1,0 +1,17 @@
+{
+  "nature": {
+    "title": "Nature",
+    "description": "Arbres, rochers, plantes et éléments du décor naturel.",
+    "icon": "nature/tree/oak_summer_16"
+  },
+  "items": {
+    "title": "Objets",
+    "description": "Potions, armes, butin et objets d'inventaire.",
+    "icon": "items/potion/red_small"
+  },
+  "characters": {
+    "title": "Personnages",
+    "description": "Héros, monstres et créatures (souvent animés).",
+    "icon": "characters/slime/green_idle"
+  }
+}

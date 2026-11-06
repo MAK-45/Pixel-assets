@@ -1,0 +1,17 @@
+{
+  "name": "pixel-assets",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bibliothèque d'assets pixel art dessinés en code (pxl / claude-pxl), exportés en PNG et en modules JS pour les agents IA.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "check": "node scripts/check.js",
+    "pxl": "node .claude/skills/claude-pxl/bin/pxl.js",
+    "new": "node scripts/new-asset.js"
+  }
+}

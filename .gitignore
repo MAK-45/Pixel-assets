@@ -1,0 +1,7 @@
+node_modules/
+# Sorties de travail de `pxl build` (aperçus agrandis, PNG intermédiaires)
+out/
+.pxl/
+*.log
+.DS_Store
+dist/

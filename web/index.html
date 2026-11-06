@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Assets</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bibliothèque de pixel art dessinée en code : aperçus, variantes, export PNG et modules JS pour agents IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand">
+      <canvas class="brand-mark" id="brand-mark" width="16" height="16" aria-hidden="true"></canvas>
+      <div>
+        <h1>Pixel Assets</h1>
+        <p class="stats" id="stats">Chargement…</p>
+      </div>
+    </div>
+    <div class="search">
+      <label class="sr-only" for="q">Rechercher un asset</label>
+      <input id="q" type="search" placeholder="Rechercher : sapin, automne, potion bleue…" autocomplete="off">
+    </div>
+    <button class="btn ghost" id="agents-btn" type="button">Pour les agents IA</button>
+  </header>
+
+  <nav class="cats" id="cats" aria-label="Catégories"></nav>
+
+  <main class="main" id="main">
+    <p class="empty" id="empty" hidden>Aucun asset ne correspond à cette recherche.</p>
+  </main>
+
+  <aside class="inspector" id="inspector" aria-label="Détail de la variante" hidden>
+    <div class="insp-head">
+      <div class="insp-title">
+        <p class="eyebrow" id="i-family"></p>
+        <h2 id="i-label"></h2>
+        <p class="meta-line" id="i-meta"></p>
+      </div>
+      <button class="icon-btn" id="i-close" type="button" aria-label="Fermer le détail">✕</button>
+    </div>
+
+    <div class="stage-wrap">
+      <div class="stage bg-checker" id="stage">
+        <canvas id="i-canvas"></canvas>
+      </div>
+      <div class="stage-tools">
+        <div class="seg" role="group" aria-label="Fond">
+          <button type="button" data-bg="checker" class="on" aria-label="Fond damier"><span class="sw sw-checker"></span></button>
+          <button type="button" data-bg="light" aria-label="Fond clair"><span class="sw sw-light"></span></button>
+          <button type="button" data-bg="dark" aria-label="Fond sombre"><span class="sw sw-dark"></span></button>
+          <button type="button" data-bg="grass" aria-label="Fond herbe"><span class="sw sw-grass"></span></button>
+        </div>
+        <div class="seg" role="group" aria-label="Zoom">
+          <button type="button" id="z-out" aria-label="Dézoomer">−</button>
+          <span class="zoom-val" id="z-val">×8</span>
+          <button type="button" id="z-in" aria-label="Zoomer">+</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="grid-toggle"> grille</label>
+      </div>
+      <div class="anim-tools" id="anim-tools" hidden>
+        <button type="button" class="btn small" id="a-play">Pause</button>
+        <button type="button" class="btn small ghost" id="a-prev" aria-label="Image précédente">◀</button>
+        <span class="frame-val" id="a-frame">1 / 4</span>
+        <button type="button" class="btn small ghost" id="a-next" aria-label="Image suivante">▶</button>
+      </div>
+    </div>
+
+    <section class="export">
+      <h3>Exporter en PNG</h3>
+      <div class="export-row">
+        <label for="x-scale">Échelle</label>
+        <select id="x-scale">
+          <option value="1">×1 (taille réelle)</option>
+          <option value="2">×2</option>
+          <option value="4" selected>×4</option>
+          <option value="8">×8</option>
+          <option value="16">×16</option>
+        </select>
+        <select id="x-what" aria-label="Contenu exporté" hidden>
+          <option value="frame">Image courante</option>
+          <option value="strip">Bande d'animation</option>
+        </select>
+        <span class="dims" id="x-dims"></span>
+      </div>
+      <div class="export-row">
+        <button type="button" class="btn" id="x-download">Télécharger le PNG</button>
+        <button type="button" class="btn ghost" id="x-copy">Copier l'image</button>
+      </div>
+      <p class="hint" id="x-hint" hidden>Si le téléchargement ne démarre pas, faites un clic droit (ou appui long) sur l'image ci-dessous puis « Enregistrer l'image ».</p>
+      <img class="x-result" id="x-result" alt="PNG exporté" hidden>
+    </section>
+
+    <section class="code">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" data-tab="source" aria-selected="true">Source pxl</button>
+        <button type="button" role="tab" data-tab="module" aria-selected="false">Module JS</button>
+        <button type="button" role="tab" data-tab="pixels" aria-selected="false">Pixels</button>
+      </div>
+      <div class="code-head">
+        <span class="code-path" id="c-path"></span>
+        <button type="button" class="btn small ghost" id="c-copy">Copier</button>
+      </div>
+      <pre class="codebox" id="c-box"><code id="c-code"></code></pre>
+    </section>
+  </aside>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <dialog class="agents" id="agents">
+    <div class="agents-body">
+      <div class="insp-head">
+        <h2>Récupérer les assets depuis un agent IA</h2>
+        <button class="icon-btn" id="agents-close" type="button" aria-label="Fermer">✕</button>
+      </div>
+      <p>Chaque dessin existe en trois formes dans le dépôt : PNG, module JavaScript (pixels + PNG en data URL) et code source pxl. Tous les chemins sont relatifs à la racine du dépôt.</p>
+      <ol class="steps">
+        <li><strong>Découvrir</strong> : lire <code>library/catalog.json</code> (catégories, familles, variantes, tailles, propriétés, chemins). Aucun pixel dedans, c'est léger.</li>
+        <li><strong>Charger</strong> : <code>import { load, loadVariant, find, draw } from "./library/index.js"</code>, ou importer directement <code>library/js/&lt;catégorie&gt;/&lt;asset&gt;.js</code>.</li>
+        <li><strong>Utiliser</strong> : <code>v.src</code> (PNG en data URL), <code>v.rows</code> + <code>v.palette</code> (pixels lisibles), <code>v.frames</code> pour les animations, ou les fichiers <code>library/png/…</code> et les sprite sheets <code>library/sheets/…</code>.</li>
+      </ol>
+      <pre class="codebox"><code id="agents-code"></code></pre>
+      <p class="hint">Guide complet : <code>library/README.md</code> et <code>llms.txt</code> à la racine du dépôt.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

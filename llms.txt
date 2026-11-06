@@ -1,0 +1,27 @@
+# Pixel Assets
+
+> Bibliothèque de pixel art dessinée en code (moteur pxl / skill claude-pxl). Chaque dessin est une famille
+> de variantes (espèce, couleur, saison, état, taille 16/32/48 px) exportée en PNG, en sprite sheet et en
+> module JavaScript avec les pixels lisibles (rows + palette). Pensée pour être consommée par des agents IA.
+
+Chemins relatifs à la racine du dépôt mak-45/pixel-assets. Fichiers bruts :
+https://raw.githubusercontent.com/mak-45/pixel-assets/main/<chemin> (remplacer `main` par la branche voulue).
+
+## Récupérer des assets
+
+- [library/catalog.json](library/catalog.json) : index de toutes les catégories, familles et variantes (sans pixels) — à lire en premier
+- [library/README.md](library/README.md) : format des variantes, API JS, exemples navigateur / Node / moteurs de jeu
+- [library/index.js](library/index.js) : point d'entrée ES module (`catalog`, `find`, `load`, `loadVariant`, `draw`, `toPixels`…)
+- [library/index.d.ts](library/index.d.ts) : types TypeScript
+- `library/js/<catégorie>/<asset>.js` : module ES d'une famille avec pixels (`variants.<clé>.src`, `.rows`, `.palette`)
+- `library/png/<catégorie>/<asset>/<variante>.png` : PNG 1x ; `library/sheets/<catégorie>/<asset>.png|json` : sprite sheets
+
+## Galerie
+
+- [docs/index.html](docs/index.html) : galerie autonome (aperçus, variantes, code, export PNG à l'échelle)
+
+## Contribuer (dessiner)
+
+- [CLAUDE.md](CLAUDE.md) : règles du projet, conventions d'un asset, style maison
+- [.claude/skills/draw/SKILL.md](.claude/skills/draw/SKILL.md) : workflow complet pour ajouter un dessin
+- [.claude/skills/claude-pxl/SKILL.md](.claude/skills/claude-pxl/SKILL.md) : le DSL de dessin pxl ; API dans reference.md

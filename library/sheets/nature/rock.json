@@ -1,0 +1,154 @@
+{
+ "frames": {
+  "small_16": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   }
+  },
+  "small_mossy_16": {
+   "frame": {
+    "x": 17,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   }
+  },
+  "pebbles_16": {
+   "frame": {
+    "x": 34,
+    "y": 0,
+    "w": 16,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 11
+   }
+  },
+  "boulder_32": {
+   "frame": {
+    "x": 0,
+    "y": 13,
+    "w": 32,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 25
+   }
+  },
+  "boulder_mossy_32": {
+   "frame": {
+    "x": 33,
+    "y": 13,
+    "w": 32,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 25
+   }
+  },
+  "boulder_snow_32": {
+   "frame": {
+    "x": 66,
+    "y": 13,
+    "w": 32,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 25
+   }
+  },
+  "boulder_sand_32": {
+   "frame": {
+    "x": 0,
+    "y": 39,
+    "w": 32,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 25
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "rock.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 98,
+   "h": 64
+  },
+  "scale": "1"
+ }
+}

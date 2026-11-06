@@ -1,0 +1,25 @@
+name: library
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+      - name: Valider les assets
+        run: npm run check
+      - name: Reconstruire la bibliothèque
+        run: npm run build
+      - name: Vérifier que library/ et docs/ sont à jour
+        run: |
+          if [ -n "$(git status --porcelain -- library docs)" ]; then
+            git status --short -- library docs
+            echo "::error::library/ ou docs/ n'est pas à jour : lancez npm run build et commitez le résultat."
+            exit 1
+          fi

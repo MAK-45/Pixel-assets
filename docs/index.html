@@ -1,0 +1,1230 @@
+<!-- GÉNÉRÉ par scripts/build.js depuis web/ — ne pas modifier. -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Assets</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bibliothèque de pixel art dessinée en code : aperçus, variantes, export PNG et modules JS pour agents IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Atlas de sprites : catégories à gauche, familles en planches sur damier, inspecteur à droite. */
+:root {
+  --bg: #f1eff5;
+  --surface: #ffffff;
+  --surface-2: #e7e3ee;
+  --fg: #1a1423;
+  --muted: #5e5872;
+  --line: #d5d0de;
+  --accent: #2e7a3a;
+  --accent-soft: #dcefd3;
+  --accent-fg: #ffffff;
+  --gold: #9a6a12;
+  --check-a: #e4e0eb;
+  --check-b: #f8f7fb;
+  --stage-light: #f4f2f8;
+  --stage-dark: #1a1423;
+  --stage-grass: #5aae45;
+  --code-bg: #1d1727;
+  --code-fg: #e9e5f2;
+  --code-dim: #8f87a3;
+  --tk-str: #a5d75a;
+  --tk-num: #f3c34a;
+  --tk-kw: #b77ee0;
+  --tk-fn: #7fb5f5;
+  --tk-com: #7d7592;
+  --hl-line: rgba(243, 195, 74, 0.16);
+  --shadow: 0 10px 30px rgba(26, 20, 35, 0.14);
+
+  --font-display: "Silkscreen", "Courier New", monospace;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --radius: 6px;
+  --side: 216px;
+  --insp: 460px;
+  --head-h: 64px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15111c;
+    --surface: #1e1928;
+    --surface-2: #2a2337;
+    --fg: #ece8f4;
+    --muted: #a49db6;
+    --line: #382f46;
+    --accent: #8ccf5a;
+    --accent-soft: #263a20;
+    --accent-fg: #15111c;
+    --gold: #f3c34a;
+    --check-a: #262031;
+    --check-b: #1f1a29;
+    --stage-light: #e9e6f0;
+    --stage-dark: #0f0c14;
+    --stage-grass: #4c8f3b;
+    --code-bg: #110e17;
+    --hl-line: rgba(243, 195, 74, 0.12);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15111c;
+  --surface: #1e1928;
+  --surface-2: #2a2337;
+  --fg: #ece8f4;
+  --muted: #a49db6;
+  --line: #382f46;
+  --accent: #8ccf5a;
+  --accent-soft: #263a20;
+  --accent-fg: #15111c;
+  --gold: #f3c34a;
+  --check-a: #262031;
+  --check-b: #1f1a29;
+  --stage-light: #e9e6f0;
+  --stage-dark: #0f0c14;
+  --stage-grass: #4c8f3b;
+  --code-bg: #110e17;
+  --hl-line: rgba(243, 195, 74, 0.12);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.55 var(--font-body);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--surface);
+}
+[hidden] { display: none !important; }
+code, pre, kbd { font-family: var(--font-mono); }
+img, canvas { image-rendering: pixelated; image-rendering: crisp-edges; max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------------------------------------------------------------- en-tête */
+.app {
+  display: grid;
+  grid-template-columns: var(--side) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+.app.inspecting { padding-right: var(--insp); }
+.top {
+  grid-column: 1 / -1;
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 12px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-mark { width: 32px; height: 32px; flex: none; }
+.brand h1 {
+  margin: 0;
+  font: 400 20px/1 var(--font-display);
+  letter-spacing: 0.02em;
+}
+.stats { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.search { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.search input {
+  width: 100%;
+  max-width: 520px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+}
+.search input::placeholder { color: var(--muted); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--accent); filter: none; }
+.btn.small { padding: 4px 10px; font-size: 13px; }
+.icon-btn {
+  flex: none;
+  width: 34px; height: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- catégories */
+.cats {
+  position: sticky;
+  top: calc(var(--head-h) + env(safe-area-inset-top, 0px));
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 18px 10px 18px max(10px, env(safe-area-inset-left, 0px));
+  max-height: calc(100vh - var(--head-h));
+  overflow-y: auto;
+}
+.cats .cap {
+  margin: 0 8px 8px;
+  font: 400 11px/1 var(--font-display);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.cat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.cat:hover { background: var(--surface-2); }
+.cat.on { background: var(--accent-soft); }
+.cat-icon {
+  width: 32px; height: 32px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 4px;
+  background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 8px 8px;
+}
+.cat-name { flex: 1; min-width: 0; font-weight: 500; }
+.cat-count { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cats .sub {
+  display: flex; flex-direction: column; gap: 0;
+  margin: 0 0 6px 50px;
+}
+.cats .sub a {
+  padding: 2px 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.cats .sub a:hover { color: var(--fg); }
+
+/* ---------------------------------------------------------------- planches */
+.main {
+  min-width: 0;
+  padding-block: 18px 64px;
+  padding-left: 12px;
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.empty { color: var(--muted); }
+.cat-section { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: calc(var(--head-h) + 12px); }
+.cat-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-bottom: 2px solid var(--fg); padding-bottom: 8px; }
+.cat-head h2 { margin: 0; font: 400 22px/1.1 var(--font-display); letter-spacing: 0.02em; }
+.cat-head p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.family {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-margin-top: calc(var(--head-h) + 12px);
+}
+.fam-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.fam-title { min-width: 0; flex: 1 1 320px; }
+.fam-title h3 { margin: 0; font-size: 19px; font-weight: 600; text-wrap: balance; }
+.fam-title h3 .id { margin-left: 8px; font: 400 12.5px var(--font-mono); color: var(--muted); }
+.fam-title p { margin: 4px 0 0; color: var(--muted); max-width: 70ch; }
+.fam-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  padding: 1px 8px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font: 12px/1.7 var(--font-mono);
+}
+.axes { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.axis { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.axis-name { font: 400 10.5px/1 var(--font-display); letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+.chip {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: 10px;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+.tile:hover { border-color: var(--accent); }
+.tile.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.tile-art {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 12px 12px;
+}
+.tile-cap { padding: 0 10px 9px; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.tile-label { font-size: 13px; font-weight: 500; line-height: 1.3; }
+.tile-dims { font: 11.5px var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 3px;
+  background: var(--gold);
+  color: var(--surface);
+  font: 400 9px/1.6 var(--font-display);
+  vertical-align: 1px;
+}
+
+/* ---------------------------------------------------------------- inspecteur */
+.inspector {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  width: var(--insp);
+  max-width: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-block: calc(16px + env(safe-area-inset-top, 0px)) calc(24px + env(safe-area-inset-bottom, 0px));
+  padding-left: 18px;
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.insp-head { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.insp-title { min-width: 0; }
+.eyebrow { margin: 0; font: 400 11px/1.3 var(--font-display); letter-spacing: 0.06em; color: var(--muted); }
+.insp-title h2 { margin: 4px 0 2px; font-size: 18px; font-weight: 600; text-wrap: balance; }
+.meta-line { margin: 0; font: 12.5px var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+
+.stage-wrap { display: flex; flex-direction: column; gap: 10px; }
+.stage {
+  height: 300px;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.stage canvas { max-width: none; }
+.bg-checker { background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 16px 16px; }
+.bg-light { background: var(--stage-light); }
+.bg-dark { background: var(--stage-dark); }
+.bg-grass { background: var(--stage-grass); }
+.stage-tools, .anim-tools, .export-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.seg button {
+  min-width: 34px; height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button.on { background: var(--accent-soft); }
+.sw { display: inline-block; width: 16px; height: 16px; border-radius: 3px; border: 1px solid var(--line); vertical-align: middle; }
+.sw-checker { background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 8px 8px; }
+.sw-light { background: var(--stage-light); }
+.sw-dark { background: var(--stage-dark); }
+.sw-grass { background: var(--stage-grass); }
+.zoom-val, .frame-val, .dims {
+  display: inline-grid; place-items: center;
+  min-width: 48px; padding: 0 6px;
+  font: 13px var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; }
+
+.export, .code { display: flex; flex-direction: column; gap: 10px; }
+.export h3 { margin: 0; font: 400 12px/1 var(--font-display); letter-spacing: 0.06em; }
+.export label { font-size: 13px; color: var(--muted); }
+select {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  font-size: 14px;
+}
+.hint { margin: 0; font-size: 13px; color: var(--muted); }
+.x-result {
+  align-self: flex-start;
+  max-height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 12px 12px;
+}
+
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tabs button {
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.code-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.code-path { min-width: 0; font: 12.5px var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.codebox {
+  margin: 0;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px 0;
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  font-size: 12.5px;
+  line-height: 1.55;
+  tab-size: 2;
+}
+.codebox code { display: block; min-width: max-content; }
+.codebox .ln { display: block; padding: 0 14px; }
+.codebox .ln.hl { background: var(--hl-line); box-shadow: inset 3px 0 0 var(--tk-num); }
+.codebox .ln::before {
+  content: attr(data-n);
+  display: inline-block;
+  width: 3ch;
+  margin-right: 14px;
+  text-align: right;
+  color: var(--code-dim);
+  user-select: none;
+}
+.codebox.plain .ln::before { content: none; }
+.t-str { color: var(--tk-str); }
+.t-num { color: var(--tk-num); }
+.t-kw { color: var(--tk-kw); }
+.t-fn { color: var(--tk-fn); }
+.t-com { color: var(--tk-com); font-style: italic; }
+.px-cell { display: inline-block; width: 1ch; text-align: center; }
+
+.scrim { position: fixed; inset: 0; z-index: 24; background: rgba(15, 12, 20, 0.5); }
+
+/* ---------------------------------------------------------------- agents */
+.agents {
+  width: min(720px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--fg);
+  box-shadow: var(--shadow);
+}
+.agents::backdrop { background: rgba(15, 12, 20, 0.55); }
+.agents-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.agents h2 { margin: 0; font-size: 18px; }
+.agents p { margin: 0; max-width: 70ch; }
+.steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.agents code { font-size: 0.9em; }
+.agents .codebox { padding: 12px 14px; white-space: pre; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------------------------------------------------------------- étroit */
+@media (max-width: 1100px) {
+  .app.inspecting { padding-right: 0; }
+}
+@media (max-width: 760px) {
+  :root { --head-h: 108px; }
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .top { flex-wrap: wrap; gap: 10px; }
+  .search { order: 3; flex-basis: 100%; }
+  #agents-btn { margin-left: auto; padding: 6px 10px; font-size: 13px; }
+  .cats {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) 4px max(16px, env(safe-area-inset-left, 0px));
+    gap: 6px;
+  }
+  .cats .cap, .cats .sub { display: none; }
+  .cat { flex: none; border: 1px solid var(--line); padding: 4px 10px 4px 4px; }
+  .cat-icon { width: 28px; height: 28px; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); gap: 28px; }
+  .family { padding: 14px; }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .inspector { width: 100%; border-left: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .stage { height: 240px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand">
+      <canvas class="brand-mark" id="brand-mark" width="16" height="16" aria-hidden="true"></canvas>
+      <div>
+        <h1>Pixel Assets</h1>
+        <p class="stats" id="stats">Chargement…</p>
+      </div>
+    </div>
+    <div class="search">
+      <label class="sr-only" for="q">Rechercher un asset</label>
+      <input id="q" type="search" placeholder="Rechercher : sapin, automne, potion bleue…" autocomplete="off">
+    </div>
+    <button class="btn ghost" id="agents-btn" type="button">Pour les agents IA</button>
+  </header>
+
+  <nav class="cats" id="cats" aria-label="Catégories"></nav>
+
+  <main class="main" id="main">
+    <p class="empty" id="empty" hidden>Aucun asset ne correspond à cette recherche.</p>
+  </main>
+
+  <aside class="inspector" id="inspector" aria-label="Détail de la variante" hidden>
+    <div class="insp-head">
+      <div class="insp-title">
+        <p class="eyebrow" id="i-family"></p>
+        <h2 id="i-label"></h2>
+        <p class="meta-line" id="i-meta"></p>
+      </div>
+      <button class="icon-btn" id="i-close" type="button" aria-label="Fermer le détail">✕</button>
+    </div>
+
+    <div class="stage-wrap">
+      <div class="stage bg-checker" id="stage">
+        <canvas id="i-canvas"></canvas>
+      </div>
+      <div class="stage-tools">
+        <div class="seg" role="group" aria-label="Fond">
+          <button type="button" data-bg="checker" class="on" aria-label="Fond damier"><span class="sw sw-checker"></span></button>
+          <button type="button" data-bg="light" aria-label="Fond clair"><span class="sw sw-light"></span></button>
+          <button type="button" data-bg="dark" aria-label="Fond sombre"><span class="sw sw-dark"></span></button>
+          <button type="button" data-bg="grass" aria-label="Fond herbe"><span class="sw sw-grass"></span></button>
+        </div>
+        <div class="seg" role="group" aria-label="Zoom">
+          <button type="button" id="z-out" aria-label="Dézoomer">−</button>
+          <span class="zoom-val" id="z-val">×8</span>
+          <button type="button" id="z-in" aria-label="Zoomer">+</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="grid-toggle"> grille</label>
+      </div>
+      <div class="anim-tools" id="anim-tools" hidden>
+        <button type="button" class="btn small" id="a-play">Pause</button>
+        <button type="button" class="btn small ghost" id="a-prev" aria-label="Image précédente">◀</button>
+        <span class="frame-val" id="a-frame">1 / 4</span>
+        <button type="button" class="btn small ghost" id="a-next" aria-label="Image suivante">▶</button>
+      </div>
+    </div>
+
+    <section class="export">
+      <h3>Exporter en PNG</h3>
+      <div class="export-row">
+        <label for="x-scale">Échelle</label>
+        <select id="x-scale">
+          <option value="1">×1 (taille réelle)</option>
+          <option value="2">×2</option>
+          <option value="4" selected>×4</option>
+          <option value="8">×8</option>
+          <option value="16">×16</option>
+        </select>
+        <select id="x-what" aria-label="Contenu exporté" hidden>
+          <option value="frame">Image courante</option>
+          <option value="strip">Bande d'animation</option>
+        </select>
+        <span class="dims" id="x-dims"></span>
+      </div>
+      <div class="export-row">
+        <button type="button" class="btn" id="x-download">Télécharger le PNG</button>
+        <button type="button" class="btn ghost" id="x-copy">Copier l'image</button>
+      </div>
+      <p class="hint" id="x-hint" hidden>Si le téléchargement ne démarre pas, faites un clic droit (ou appui long) sur l'image ci-dessous puis « Enregistrer l'image ».</p>
+      <img class="x-result" id="x-result" alt="PNG exporté" hidden>
+    </section>
+
+    <section class="code">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" data-tab="source" aria-selected="true">Source pxl</button>
+        <button type="button" role="tab" data-tab="module" aria-selected="false">Module JS</button>
+        <button type="button" role="tab" data-tab="pixels" aria-selected="false">Pixels</button>
+      </div>
+      <div class="code-head">
+        <span class="code-path" id="c-path"></span>
+        <button type="button" class="btn small ghost" id="c-copy">Copier</button>
+      </div>
+      <pre class="codebox" id="c-box"><code id="c-code"></code></pre>
+    </section>
+  </aside>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <dialog class="agents" id="agents">
+    <div class="agents-body">
+      <div class="insp-head">
+        <h2>Récupérer les assets depuis un agent IA</h2>
+        <button class="icon-btn" id="agents-close" type="button" aria-label="Fermer">✕</button>
+      </div>
+      <p>Chaque dessin existe en trois formes dans le dépôt : PNG, module JavaScript (pixels + PNG en data URL) et code source pxl. Tous les chemins sont relatifs à la racine du dépôt.</p>
+      <ol class="steps">
+        <li><strong>Découvrir</strong> : lire <code>library/catalog.json</code> (catégories, familles, variantes, tailles, propriétés, chemins). Aucun pixel dedans, c'est léger.</li>
+        <li><strong>Charger</strong> : <code>import { load, loadVariant, find, draw } from "./library/index.js"</code>, ou importer directement <code>library/js/&lt;catégorie&gt;/&lt;asset&gt;.js</code>.</li>
+        <li><strong>Utiliser</strong> : <code>v.src</code> (PNG en data URL), <code>v.rows</code> + <code>v.palette</code> (pixels lisibles), <code>v.frames</code> pour les animations, ou les fichiers <code>library/png/…</code> et les sprite sheets <code>library/sheets/…</code>.</li>
+      </ol>
+      <pre class="codebox"><code id="agents-code"></code></pre>
+      <p class="hint">Guide complet : <code>library/README.md</code> et <code>llms.txt</code> à la racine du dépôt.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+<script>window.__PIXEL_LIBRARY__ = {"catalog":{"name":"pixel-assets","format":1,"description":"Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).","stats":{"categories":3,"assets":4,"variants":44},"categories":[{"id":"nature","title":"Nature","description":"Arbres, rochers, plantes et éléments du décor naturel.","icon":"nature/tree/oak_summer_16","assets":["nature/rock","nature/tree"]},{"id":"items","title":"Objets","description":"Potions, armes, butin et objets d'inventaire.","icon":"items/potion/red_small","assets":["items/potion"]},{"id":"characters","title":"Personnages","description":"Héros, monstres et créatures (souvent animés).","icon":"characters/slime/green_idle","assets":["characters/slime"]}],"assets":{"nature/rock":{"id":"nature/rock","slug":"rock","category":"nature","title":"Rocher","description":"Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.","tags":["rock","stone","boulder","nature","decoration","obstacle"],"order":0,"source":"assets/nature/rock.px.js","module":"library/js/nature/rock.js","sheet":{"png":"library/sheets/nature/rock.png","json":"library/sheets/nature/rock.json"},"axes":{"form":["stone","pebbles","boulder"],"surface":["bare","mossy","snow"],"material":["granite","sandstone"]},"sizes":[16,32],"variantCount":7,"variants":{"small_16":{"key":"small_16","name":"rock_small_16","id":"nature/rock/small_16","label":"Caillou","kind":"sprite","w":16,"h":12,"size":16,"props":{"form":"stone","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/small_16.png"},"small_mossy_16":{"key":"small_mossy_16","name":"rock_small_mossy_16","id":"nature/rock/small_mossy_16","label":"Caillou moussu","kind":"sprite","w":16,"h":12,"size":16,"props":{"form":"stone","surface":"mossy","material":"granite"},"tags":[],"png":"library/png/nature/rock/small_mossy_16.png"},"pebbles_16":{"key":"pebbles_16","name":"rock_pebbles_16","id":"nature/rock/pebbles_16","label":"Tas de galets","kind":"sprite","w":16,"h":11,"size":16,"props":{"form":"pebbles","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/pebbles_16.png"},"boulder_32":{"key":"boulder_32","name":"rock_boulder_32","id":"nature/rock/boulder_32","label":"Gros rocher","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/boulder_32.png"},"boulder_mossy_32":{"key":"boulder_mossy_32","name":"rock_boulder_mossy_32","id":"nature/rock/boulder_mossy_32","label":"Gros rocher moussu","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"mossy","material":"granite"},"tags":[],"png":"library/png/nature/rock/boulder_mossy_32.png"},"boulder_snow_32":{"key":"boulder_snow_32","name":"rock_boulder_snow_32","id":"nature/rock/boulder_snow_32","label":"Gros rocher enneigé","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"snow","material":"granite"},"tags":["snow","winter"],"png":"library/png/nature/rock/boulder_snow_32.png"},"boulder_sand_32":{"key":"boulder_sand_32","name":"rock_boulder_sand_32","id":"nature/rock/boulder_sand_32","label":"Rocher de grès (désert)","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"bare","material":"sandstone"},"tags":["desert"],"png":"library/png/nature/rock/boulder_sand_32.png"}}},"nature/tree":{"id":"nature/tree","slug":"tree","category":"nature","title":"Arbre","description":"Arbres vus de face pour décors 2D : chêne, sapin, bouleau, pommier. Plusieurs saisons, densités de feuillage et tailles (16, 32, 48 px). Lumière en haut à gauche, contour sombre.","tags":["tree","plant","forest","nature","decoration","scenery"],"order":0,"source":"assets/nature/tree.px.js","module":"library/js/nature/tree.js","sheet":{"png":"library/sheets/nature/tree.png","json":"library/sheets/nature/tree.json"},"axes":{"species":["oak","pine","apple","birch"],"season":["summer","autumn","winter","spring"],"foliage":["full","sparse","bare"]},"sizes":[16,32,48],"variantCount":19,"variants":{"oak_summer_16":{"key":"oak_summer_16","name":"tree_oak_summer_16","id":"nature/tree/oak_summer_16","label":"Chêne – été (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_16.png"},"oak_autumn_16":{"key":"oak_autumn_16","name":"tree_oak_autumn_16","id":"nature/tree/oak_autumn_16","label":"Chêne – automne (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_16.png"},"pine_16":{"key":"pine_16","name":"tree_pine_16","id":"nature/tree/pine_16","label":"Sapin (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_16.png"},"pine_snow_16":{"key":"pine_snow_16","name":"tree_pine_snow_16","id":"nature/tree/pine_snow_16","label":"Sapin enneigé (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_snow_16.png"},"oak_summer_full_32":{"key":"oak_summer_full_32","name":"tree_oak_summer_full_32","id":"nature/tree/oak_summer_full_32","label":"Chêne – été, feuillage dense","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_full_32.png"},"oak_summer_sparse_32":{"key":"oak_summer_sparse_32","name":"tree_oak_summer_sparse_32","id":"nature/tree/oak_summer_sparse_32","label":"Chêne – été, peu de feuilles","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"summer","foliage":"sparse"},"tags":[],"png":"library/png/nature/tree/oak_summer_sparse_32.png"},"oak_winter_32":{"key":"oak_winter_32","name":"tree_oak_winter_32","id":"nature/tree/oak_winter_32","label":"Chêne – hiver, branches nues enneigées","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"winter","foliage":"bare"},"tags":[],"png":"library/png/nature/tree/oak_winter_32.png"},"oak_autumn_32":{"key":"oak_autumn_32","name":"tree_oak_autumn_32","id":"nature/tree/oak_autumn_32","label":"Chêne – automne (rouge-orangé)","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_32.png"},"oak_autumn_sparse_32":{"key":"oak_autumn_sparse_32","name":"tree_oak_autumn_sparse_32","id":"nature/tree/oak_autumn_sparse_32","label":"Chêne – fin d'automne, peu de feuilles","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"autumn","foliage":"sparse"},"tags":[],"png":"library/png/nature/tree/oak_autumn_sparse_32.png"},"oak_spring_32":{"key":"oak_spring_32","name":"tree_oak_spring_32","id":"nature/tree/oak_spring_32","label":"Chêne – printemps en fleurs","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"spring","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_spring_32.png"},"apple_32":{"key":"apple_32","name":"tree_apple_32","id":"nature/tree/apple_32","label":"Pommier avec pommes","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"apple","season":"summer","foliage":"full"},"tags":["fruit"],"png":"library/png/nature/tree/apple_32.png"},"pine_32":{"key":"pine_32","name":"tree_pine_32","id":"nature/tree/pine_32","label":"Sapin","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_32.png"},"pine_snow_32":{"key":"pine_snow_32","name":"tree_pine_snow_32","id":"nature/tree/pine_snow_32","label":"Sapin enneigé","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":["snow"],"png":"library/png/nature/tree/pine_snow_32.png"},"birch_32":{"key":"birch_32","name":"tree_birch_32","id":"nature/tree/birch_32","label":"Bouleau – été","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"birch","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/birch_32.png"},"birch_autumn_32":{"key":"birch_autumn_32","name":"tree_birch_autumn_32","id":"nature/tree/birch_autumn_32","label":"Bouleau – automne doré","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"birch","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/birch_autumn_32.png"},"oak_summer_48":{"key":"oak_summer_48","name":"tree_oak_summer_48","id":"nature/tree/oak_summer_48","label":"Grand chêne – été (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_48.png"},"oak_autumn_48":{"key":"oak_autumn_48","name":"tree_oak_autumn_48","id":"nature/tree/oak_autumn_48","label":"Grand chêne – automne (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_48.png"},"pine_48":{"key":"pine_48","name":"tree_pine_48","id":"nature/tree/pine_48","label":"Grand sapin (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_48.png"},"pine_snow_48":{"key":"pine_snow_48","name":"tree_pine_snow_48","id":"nature/tree/pine_snow_48","label":"Grand sapin enneigé (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":["snow"],"png":"library/png/nature/tree/pine_snow_48.png"}}},"items/potion":{"id":"items/potion","slug":"potion","category":"items","title":"Potion","description":"Fioles de potion pour inventaire ou butin : petite fiole ronde, bouteille haute et grand flacon à bulles, en plusieurs couleurs de liquide (soin, mana, poison, magie, énergie).","tags":["potion","item","loot","consumable","rpg","inventory","icon"],"order":0,"source":"assets/items/potion.px.js","module":"library/js/items/potion.js","sheet":{"png":"library/sheets/items/potion.png","json":"library/sheets/items/potion.json"},"axes":{"liquid":["red","blue","green","purple","yellow","none"],"effect":["health","mana","poison","magic","stamina","none"],"shape":["round","bottle","flask"]},"sizes":[16,24,32],"variantCount":12,"variants":{"red_small":{"key":"red_small","name":"potion_red_small","id":"items/potion/red_small","label":"Petite potion rouge (soin)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"red","effect":"health","shape":"round"},"tags":[],"png":"library/png/items/potion/red_small.png"},"blue_small":{"key":"blue_small","name":"potion_blue_small","id":"items/potion/blue_small","label":"Petite potion bleue (mana)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"blue","effect":"mana","shape":"round"},"tags":[],"png":"library/png/items/potion/blue_small.png"},"green_small":{"key":"green_small","name":"potion_green_small","id":"items/potion/green_small","label":"Petite potion verte (poison)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"green","effect":"poison","shape":"round"},"tags":[],"png":"library/png/items/potion/green_small.png"},"purple_small":{"key":"purple_small","name":"potion_purple_small","id":"items/potion/purple_small","label":"Petite potion violette (magie)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"purple","effect":"magic","shape":"round"},"tags":[],"png":"library/png/items/potion/purple_small.png"},"yellow_small":{"key":"yellow_small","name":"potion_yellow_small","id":"items/potion/yellow_small","label":"Petite potion jaune (énergie)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"yellow","effect":"stamina","shape":"round"},"tags":[],"png":"library/png/items/potion/yellow_small.png"},"red_bottle":{"key":"red_bottle","name":"potion_red_bottle","id":"items/potion/red_bottle","label":"Bouteille rouge","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"red","effect":"health","shape":"bottle"},"tags":[],"png":"library/png/items/potion/red_bottle.png"},"blue_bottle":{"key":"blue_bottle","name":"potion_blue_bottle","id":"items/potion/blue_bottle","label":"Bouteille bleue","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"blue","effect":"mana","shape":"bottle"},"tags":[],"png":"library/png/items/potion/blue_bottle.png"},"green_bottle":{"key":"green_bottle","name":"potion_green_bottle","id":"items/potion/green_bottle","label":"Bouteille verte","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"green","effect":"poison","shape":"bottle"},"tags":[],"png":"library/png/items/potion/green_bottle.png"},"red_large":{"key":"red_large","name":"potion_red_large","id":"items/potion/red_large","label":"Grand flacon rouge à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"red","effect":"health","shape":"flask"},"tags":[],"png":"library/png/items/potion/red_large.png"},"blue_large":{"key":"blue_large","name":"potion_blue_large","id":"items/potion/blue_large","label":"Grand flacon bleu à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"blue","effect":"mana","shape":"flask"},"tags":[],"png":"library/png/items/potion/blue_large.png"},"purple_large":{"key":"purple_large","name":"potion_purple_large","id":"items/potion/purple_large","label":"Grand flacon violet à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"purple","effect":"magic","shape":"flask"},"tags":[],"png":"library/png/items/potion/purple_large.png"},"empty_large":{"key":"empty_large","name":"potion_empty_large","id":"items/potion/empty_large","label":"Grand flacon vide","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"none","effect":"none","shape":"flask"},"tags":[],"png":"library/png/items/potion/empty_large.png"}}},"characters/slime":{"id":"characters/slime","slug":"slime","category":"characters","title":"Slime","description":"Petit monstre gélatineux animé (respiration en 4 images de 200 ms : écrasement / étirement), en plusieurs couleurs, plus une version immobile et un roi slime couronné.","tags":["slime","monster","enemy","character","rpg","animated","cute"],"order":0,"source":"assets/characters/slime.px.js","module":"library/js/characters/slime.js","sheet":{"png":"library/sheets/characters/slime.png","json":"library/sheets/characters/slime.json"},"axes":{"color":["green","blue","red","purple"],"state":["idle","hurt"]},"sizes":[16,32],"variantCount":6,"variants":{"green_idle":{"key":"green_idle","name":"slime_green_idle","id":"characters/slime/green_idle","label":"Slime vert – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"green","state":"idle"},"tags":[],"png":"library/png/characters/slime/green_idle.png","gif":"library/png/characters/slime/green_idle.gif","frameCount":4,"loopMs":800},"blue_idle":{"key":"blue_idle","name":"slime_blue_idle","id":"characters/slime/blue_idle","label":"Slime bleu – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"blue","state":"idle"},"tags":[],"png":"library/png/characters/slime/blue_idle.png","gif":"library/png/characters/slime/blue_idle.gif","frameCount":4,"loopMs":800},"red_idle":{"key":"red_idle","name":"slime_red_idle","id":"characters/slime/red_idle","label":"Slime rouge – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"red","state":"idle"},"tags":[],"png":"library/png/characters/slime/red_idle.png","gif":"library/png/characters/slime/red_idle.gif","frameCount":4,"loopMs":800},"purple_idle":{"key":"purple_idle","name":"slime_purple_idle","id":"characters/slime/purple_idle","label":"Slime violet – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"purple","state":"idle"},"tags":[],"png":"library/png/characters/slime/purple_idle.png","gif":"library/png/characters/slime/purple_idle.gif","frameCount":4,"loopMs":800},"green_hurt":{"key":"green_hurt","name":"slime_green_hurt","id":"characters/slime/green_hurt","label":"Slime vert – touché","kind":"sprite","w":15,"h":15,"size":16,"props":{"color":"green","state":"hurt"},"tags":[],"png":"library/png/characters/slime/green_hurt.png"},"king_32":{"key":"king_32","name":"slime_king_32","id":"characters/slime/king_32","label":"Roi slime couronné (32 px)","kind":"sprite","w":29,"h":26,"size":32,"props":{"color":"green","state":"idle"},"tags":["boss"],"png":"library/png/characters/slime/king_32.png"}}}}},"modules":{"characters/slime":{"id":"characters/slime","slug":"slime","category":"characters","title":"Slime","description":"Petit monstre gélatineux animé (respiration en 4 images de 200 ms : écrasement / étirement), en plusieurs couleurs, plus une version immobile et un roi slime couronné.","tags":["slime","monster","enemy","character","rpg","animated","cute"],"order":0,"source":"assets/characters/slime.px.js","module":"library/js/characters/slime.js","sheet":{"png":"library/sheets/characters/slime.png","json":"library/sheets/characters/slime.json"},"axes":{"color":["green","blue","red","purple"],"state":["idle","hurt"]},"sizes":[16,32],"variantCount":6,"variants":{"green_idle":{"key":"green_idle","name":"slime_green_idle","id":"characters/slime/green_idle","label":"Slime vert – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"green","state":"idle"},"tags":[],"png":"library/png/characters/slime/green_idle.png","gif":"library/png/characters/slime/green_idle.gif","frameCount":4,"loopMs":800,"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAFVBMVEUAAAAaFCMuejparkWl11ofSiz7+/9VJ2ZAAAAAAXRSTlMAQObYZgAAAD9JREFUeNqdzjEOACAIQ1F/Fe9/ZEMg4qCL3R4E0tZ+guegPBT7OUBDqgHKtWSEpz+YbOMGezmv01a5OcqSlRdiYAFIbV/BnQAAAABJRU5ErkJggg==","strip":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAPCAMAAACPzFxDAAAAFVBMVEUAAAAaFCMuejparkWl11ofSiz7+/9VJ2ZAAAAAAXRSTlMAQObYZgAAAIxJREFUeNq9kuEOwyAIBj0sff9H7qoihbou2ZL57/w4UGMpf17A966IEHs9dIspUoN99ord8iRPkS1xjXYYldIb9l62wRjFKmWAqGG9bjCRZbqf/s6UB7fYJzU7pQVpB8NlY6VNsmrpfEk/y4aiS3ncQdMTJHmyp3dZfREoM6H6d7l/CexjwFuO1S84AKNQBPm9H6e0AAAAAElFTkSuQmCC","gifSrc":"data:image/gif;base64,R0lGODlhDwAPAPIAAAAAABoUIy56OlquRaXXWh9KLPv7/wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJFAAAACwAAAAADwAPAAADOAi63P4wtkBpDCLn8PDQ2yQQoMYpmPCVQnGmRirE7bvJVOGitxnoNlYLiNIZj0TAD4k8KSvQiiIBACH5BAkUAAAALAAAAAAPAA8AAAMvCLrc/jDKSVW4F17BeWaBMHRksIQEqZqhaLTCyxWbB28Ffe+53v9AXzDIwhiPgAQAIfkECRQAAAAsAAAAAA8ADwAAAzgIutz+MLZAaQwi5/Dw0NskEKDGKZjwlUJxpkYqxO27yVThorcZ6DZWC4jSGY9EwA+JPCkr0IoiAQAh+QQJFAAAACwAAAAADwAPAAADOAi63B7QtSBqkIqOKu4TBGd9m+gtlMgVJ0AZqQCzDAVxEI12cd7GooIuo6oIf8KkEqlcTiBQ6CIBADs=","palette":{"G":"#1f4a2c","L":"#a5d75a","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","w":"#fbfbff"},"rows":["...............","...............","...............",".....kkkkk.....","....kgggggk....","...kglgggggk...","..kgLgggggggk..",".kgglgggggggGk.",".kggwkgggwkgGk.",".kggkkgggkkGGk.",".kggkkgggkkGGk.",".kggggggggGGGk.",".kGGGGGGGGGGGk.",".kGGGGGGGGGGGk.","..kkkkkkkkkkk.."],"frames":[{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kgggggk....","...kglgggggk...","..kgLgggggggk..",".kgglgggggggGk.",".kggwkgggwkgGk.",".kggkkgggkkGGk.",".kggkkgggkkGGk.",".kggggggggGGGk.",".kGGGGGGGGGGGk.",".kGGGGGGGGGGGk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","...............","...............","...............","...............",".....kkkkk.....","...kkgggggkk...","..kglgggggggk..",".kgLgggggggggk.","kgglwkgggwkggGk","kgggkkgggkkgGGk","kgggkkgggkkGGGk","kGGGGGGGGGGGGGk","kGGGGGGGGGGGGGk",".kkkkkkkkkkkkk."]},{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kgggggk....","...kglgggggk...","..kgLgggggggk..",".kgglgggggggGk.",".kggwkgggwkgGk.",".kggkkgggkkGGk.",".kggkkgggkkGGk.",".kggggggggGGGk.",".kGGGGGGGGGGGk.",".kGGGGGGGGGGGk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","......kkk......",".....kgggk.....","....kglgggk....","...kgLgggggk...","...kglgggggk...","..kggggggggGk..","..kgwkgggwkGk..","..kgkkgggkkGk..","..kgkkgggkkGk..","..kgggggggGGk..","..kgggggggGGk..","..kGGGGGGGGGk..","..kGGGGGGGGGk..","...kkkkkkkkk..."]}]},"blue_idle":{"key":"blue_idle","name":"slime_blue_idle","id":"characters/slime/blue_idle","label":"Slime bleu – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"blue","state":"idle"},"tags":[],"png":"library/png/characters/slime/blue_idle.png","gif":"library/png/characters/slime/blue_idle.gif","frameCount":4,"loopMs":800,"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAFVBMVEUAAAAaFCMvT7NPj+Cf0P8dKmv7+/8O/rq+AAAAAXRSTlMAQObYZgAAAD9JREFUeNqdzjEOACAIQ1F/Fe9/ZEMg4qCL3R4E0tZ+guegPBT7OUBDqgHKtWSEpz+YbOMGezmv01a5OcqSlRdiYAFIbV/BnQAAAABJRU5ErkJggg==","strip":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAPCAMAAACPzFxDAAAAFVBMVEUAAAAaFCMvT7NPj+Cf0P8dKmv7+/8O/rq+AAAAAXRSTlMAQObYZgAAAIxJREFUeNq9kuEOwyAIBj0sff9H7qoihbou2ZL57/w4UGMpf17A966IEHs9dIspUoN99ord8iRPkS1xjXYYldIb9l62wRjFKmWAqGG9bjCRZbqf/s6UB7fYJzU7pQVpB8NlY6VNsmrpfEk/y4aiS3ncQdMTJHmyp3dZfREoM6H6d7l/CexjwFuO1S84AKNQBPm9H6e0AAAAAElFTkSuQmCC","gifSrc":"data:image/gif;base64,R0lGODlhDwAPAPIAAAAAABoUIy9Ps0+P4J/Q/x0qa/v7/wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJFAAAACwAAAAADwAPAAADOAi63P4wtkBpDCLn8PDQ2yQQoMYpmPCVQnGmRirE7bvJVOGitxnoNlYLiNIZj0TAD4k8KSvQiiIBACH5BAkUAAAALAAAAAAPAA8AAAMvCLrc/jDKSVW4F17BeWaBMHRksIQEqZqhaLTCyxWbB28Ffe+53v9AXzDIwhiPgAQAIfkECRQAAAAsAAAAAA8ADwAAAzgIutz+MLZAaQwi5/Dw0NskEKDGKZjwlUJxpkYqxO27yVThorcZ6DZWC4jSGY9EwA+JPCkr0IoiAQAh+QQJFAAAACwAAAAADwAPAAADOAi63B7QtSBqkIqOKu4TBGd9m+gtlMgVJ0AZqQCzDAVxEI12cd7GooIuo6oIf8KkEqlcTiBQ6CIBADs=","palette":{"I":"#9fd0ff","U":"#1d2a6b","i":"#4f8fe0","k":"#1a1423","u":"#2f4fb3","w":"#fbfbff"},"rows":["...............","...............","...............",".....kkkkk.....","....kuuuuuk....","...kuiuuuuuk...","..kuIuuuuuuuk..",".kuuiuuuuuuuUk.",".kuuwkuuuwkuUk.",".kuukkuuukkUUk.",".kuukkuuukkUUk.",".kuuuuuuuuUUUk.",".kUUUUUUUUUUUk.",".kUUUUUUUUUUUk.","..kkkkkkkkkkk.."],"frames":[{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kuuuuuk....","...kuiuuuuuk...","..kuIuuuuuuuk..",".kuuiuuuuuuuUk.",".kuuwkuuuwkuUk.",".kuukkuuukkUUk.",".kuukkuuukkUUk.",".kuuuuuuuuUUUk.",".kUUUUUUUUUUUk.",".kUUUUUUUUUUUk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","...............","...............","...............","...............",".....kkkkk.....","...kkuuuuukk...","..kuiuuuuuuuk..",".kuIuuuuuuuuuk.","kuuiwkuuuwkuuUk","kuuukkuuukkuUUk","kuuukkuuukkUUUk","kUUUUUUUUUUUUUk","kUUUUUUUUUUUUUk",".kkkkkkkkkkkkk."]},{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kuuuuuk....","...kuiuuuuuk...","..kuIuuuuuuuk..",".kuuiuuuuuuuUk.",".kuuwkuuuwkuUk.",".kuukkuuukkUUk.",".kuukkuuukkUUk.",".kuuuuuuuuUUUk.",".kUUUUUUUUUUUk.",".kUUUUUUUUUUUk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","......kkk......",".....kuuuk.....","....kuiuuuk....","...kuIuuuuuk...","...kuiuuuuuk...","..kuuuuuuuuUk..","..kuwkuuuwkUk..","..kukkuuukkUk..","..kukkuuukkUk..","..kuuuuuuuUUk..","..kuuuuuuuUUk..","..kUUUUUUUUUk..","..kUUUUUUUUUk..","...kkkkkkkkk..."]}]},"red_idle":{"key":"red_idle","name":"slime_red_idle","id":"characters/slime/red_idle","label":"Slime rouge – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"red","state":"idle"},"tags":[],"png":"library/png/characters/slime/red_idle.png","gif":"library/png/characters/slime/red_idle.gif","frameCount":4,"loopMs":800,"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAFVBMVEUAAAAaFCOyOizgeCrzw0puHyT7+/997c/1AAAAAXRSTlMAQObYZgAAAD9JREFUeNqdzjEOACAIQ1F/Fe9/ZEMg4qCL3R4E0tZ+guegPBT7OUBDqgHKtWSEpz+YbOMGezmv01a5OcqSlRdiYAFIbV/BnQAAAABJRU5ErkJggg==","strip":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAPCAMAAACPzFxDAAAAFVBMVEUAAAAaFCOyOizgeCrzw0puHyT7+/997c/1AAAAAXRSTlMAQObYZgAAAIxJREFUeNq9kuEOwyAIBj0sff9H7qoihbou2ZL57/w4UGMpf17A966IEHs9dIspUoN99ord8iRPkS1xjXYYldIb9l62wRjFKmWAqGG9bjCRZbqf/s6UB7fYJzU7pQVpB8NlY6VNsmrpfEk/y4aiS3ncQdMTJHmyp3dZfREoM6H6d7l/CexjwFuO1S84AKNQBPm9H6e0AAAAAElFTkSuQmCC","gifSrc":"data:image/gif;base64,R0lGODlhDwAPAPIAAAAAABoUI7I6LOB4KvPDSm4fJPv7/wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJFAAAACwAAAAADwAPAAADOAi63P4wtkBpDCLn8PDQ2yQQoMYpmPCVQnGmRirE7bvJVOGitxnoNlYLiNIZj0TAD4k8KSvQiiIBACH5BAkUAAAALAAAAAAPAA8AAAMvCLrc/jDKSVW4F17BeWaBMHRksIQEqZqhaLTCyxWbB28Ffe+53v9AXzDIwhiPgAQAIfkECRQAAAAsAAAAAA8ADwAAAzgIutz+MLZAaQwi5/Dw0NskEKDGKZjwlUJxpkYqxO27yVThorcZ6DZWC4jSGY9EwA+JPCkr0IoiAQAh+QQJFAAAACwAAAAADwAPAAADOAi63B7QtSBqkIqOKu4TBGd9m+gtlMgVJ0AZqQCzDAVxEI12cd7GooIuo6oIf8KkEqlcTiBQ6CIBADs=","palette":{"R":"#6e1f24","k":"#1a1423","o":"#e0782a","r":"#b23a2c","w":"#fbfbff","y":"#f3c34a"},"rows":["...............","...............","...............",".....kkkkk.....","....krrrrrk....","...krorrrrrk...","..kryrrrrrrrk..",".krrorrrrrrrRk.",".krrwkrrrwkrRk.",".krrkkrrrkkRRk.",".krrkkrrrkkRRk.",".krrrrrrrrRRRk.",".kRRRRRRRRRRRk.",".kRRRRRRRRRRRk.","..kkkkkkkkkkk.."],"frames":[{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....krrrrrk....","...krorrrrrk...","..kryrrrrrrrk..",".krrorrrrrrrRk.",".krrwkrrrwkrRk.",".krrkkrrrkkRRk.",".krrkkrrrkkRRk.",".krrrrrrrrRRRk.",".kRRRRRRRRRRRk.",".kRRRRRRRRRRRk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","...............","...............","...............","...............",".....kkkkk.....","...kkrrrrrkk...","..krorrrrrrrk..",".kryrrrrrrrrrk.","krrowkrrrwkrrRk","krrrkkrrrkkrRRk","krrrkkrrrkkRRRk","kRRRRRRRRRRRRRk","kRRRRRRRRRRRRRk",".kkkkkkkkkkkkk."]},{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....krrrrrk....","...krorrrrrk...","..kryrrrrrrrk..",".krrorrrrrrrRk.",".krrwkrrrwkrRk.",".krrkkrrrkkRRk.",".krrkkrrrkkRRk.",".krrrrrrrrRRRk.",".kRRRRRRRRRRRk.",".kRRRRRRRRRRRk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","......kkk......",".....krrrk.....","....krorrrk....","...kryrrrrrk...","...krorrrrrk...","..krrrrrrrrRk..","..krwkrrrwkRk..","..krkkrrrkkRk..","..krkkrrrkkRk..","..krrrrrrrRRk..","..krrrrrrrRRk..","..kRRRRRRRRRk..","..kRRRRRRRRRk..","...kkkkkkkkk..."]}]},"purple_idle":{"key":"purple_idle","name":"slime_purple_idle","id":"characters/slime/purple_idle","label":"Slime violet – animation repos","kind":"anim","w":15,"h":15,"size":16,"props":{"color":"purple","state":"idle"},"tags":[],"png":"library/png/characters/slime/purple_idle.png","gif":"library/png/characters/slime/purple_idle.gif","frameCount":4,"loopMs":800,"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAFVBMVEUAAAAaFCN6P7C3fuD/s88/H2P7+/+i/CdAAAAAAXRSTlMAQObYZgAAAD9JREFUeNqdzjEOACAIQ1F/Fe9/ZEMg4qCL3R4E0tZ+guegPBT7OUBDqgHKtWSEpz+YbOMGezmv01a5OcqSlRdiYAFIbV/BnQAAAABJRU5ErkJggg==","strip":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAPCAMAAACPzFxDAAAAFVBMVEUAAAAaFCN6P7C3fuD/s88/H2P7+/+i/CdAAAAAAXRSTlMAQObYZgAAAIxJREFUeNq9kuEOwyAIBj0sff9H7qoihbou2ZL57/w4UGMpf17A966IEHs9dIspUoN99ord8iRPkS1xjXYYldIb9l62wRjFKmWAqGG9bjCRZbqf/s6UB7fYJzU7pQVpB8NlY6VNsmrpfEk/y4aiS3ncQdMTJHmyp3dZfREoM6H6d7l/CexjwFuO1S84AKNQBPm9H6e0AAAAAElFTkSuQmCC","gifSrc":"data:image/gif;base64,R0lGODlhDwAPAPIAAAAAABoUI3o/sLd+4P+zzz8fY/v7/wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJFAAAACwAAAAADwAPAAADOAi63P4wtkBpDCLn8PDQ2yQQoMYpmPCVQnGmRirE7bvJVOGitxnoNlYLiNIZj0TAD4k8KSvQiiIBACH5BAkUAAAALAAAAAAPAA8AAAMvCLrc/jDKSVW4F17BeWaBMHRksIQEqZqhaLTCyxWbB28Ffe+53v9AXzDIwhiPgAQAIfkECRQAAAAsAAAAAA8ADwAAAzgIutz+MLZAaQwi5/Dw0NskEKDGKZjwlUJxpkYqxO27yVThorcZ6DZWC4jSGY9EwA+JPCkr0IoiAQAh+QQJFAAAACwAAAAADwAPAAADOAi63B7QtSBqkIqOKu4TBGd9m+gtlMgVJ0AZqQCzDAVxEI12cd7GooIuo6oIf8KkEqlcTiBQ6CIBADs=","palette":{"V":"#3f1f63","Z":"#ffb3cf","k":"#1a1423","v":"#7a3fb0","w":"#fbfbff","x":"#b77ee0"},"rows":["...............","...............","...............",".....kkkkk.....","....kvvvvvk....","...kvxvvvvvk...","..kvZvvvvvvvk..",".kvvxvvvvvvvVk.",".kvvwkvvvwkvVk.",".kvvkkvvvkkVVk.",".kvvkkvvvkkVVk.",".kvvvvvvvvVVVk.",".kVVVVVVVVVVVk.",".kVVVVVVVVVVVk.","..kkkkkkkkkkk.."],"frames":[{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kvvvvvk....","...kvxvvvvvk...","..kvZvvvvvvvk..",".kvvxvvvvvvvVk.",".kvvwkvvvwkvVk.",".kvvkkvvvkkVVk.",".kvvkkvvvkkVVk.",".kvvvvvvvvVVVk.",".kVVVVVVVVVVVk.",".kVVVVVVVVVVVk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","...............","...............","...............","...............",".....kkkkk.....","...kkvvvvvkk...","..kvxvvvvvvvk..",".kvZvvvvvvvvvk.","kvvxwkvvvwkvvVk","kvvvkkvvvkkvVVk","kvvvkkvvvkkVVVk","kVVVVVVVVVVVVVk","kVVVVVVVVVVVVVk",".kkkkkkkkkkkkk."]},{"ms":200,"rows":["...............","...............","...............",".....kkkkk.....","....kvvvvvk....","...kvxvvvvvk...","..kvZvvvvvvvk..",".kvvxvvvvvvvVk.",".kvvwkvvvwkvVk.",".kvvkkvvvkkVVk.",".kvvkkvvvkkVVk.",".kvvvvvvvvVVVk.",".kVVVVVVVVVVVk.",".kVVVVVVVVVVVk.","..kkkkkkkkkkk.."]},{"ms":200,"rows":["...............","......kkk......",".....kvvvk.....","....kvxvvvk....","...kvZvvvvvk...","...kvxvvvvvk...","..kvvvvvvvvVk..","..kvwkvvvwkVk..","..kvkkvvvkkVk..","..kvkkvvvkkVk..","..kvvvvvvvVVk..","..kvvvvvvvVVk..","..kVVVVVVVVVk..","..kVVVVVVVVVk..","...kkkkkkkkk..."]}]},"green_hurt":{"key":"green_hurt","name":"slime_green_hurt","id":"characters/slime/green_hurt","label":"Slime vert – touché","kind":"sprite","w":15,"h":15,"size":16,"props":{"color":"green","state":"hurt"},"tags":[],"png":"library/png/characters/slime/green_hurt.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAD1BMVEUAAAAaFCNarkWl11ouejqqV2b0AAAAAXRSTlMAQObYZgAAADtJREFUeNq1jkEKADAIw9rO/795aHE4dl4OYloEgR8wGaakE2rJ8NYKKFF5kDMIr1Uq7Kcvj8nr/qXBBkSPAQ847sBIAAAAAElFTkSuQmCC","palette":{"L":"#a5d75a","g":"#2e7a3a","k":"#1a1423","l":"#5aae45"},"rows":["...............","...............","...............","...............","...............",".....kkkkk.....","...kklllllkk...","..klLlllllllk..",".klLlllllllllk.","kllklklllklklgk","klllklllllklggk","kllklklllklkggk","kgggggggggggggk","kgggggggggggggk",".kkkkkkkkkkkkk."]},"king_32":{"key":"king_32","name":"slime_king_32","id":"characters/slime/king_32","label":"Roi slime couronné (32 px)","kind":"sprite","w":29,"h":26,"size":32,"props":{"color":"green","state":"idle"},"tags":["boss"],"png":"library/png/characters/slime/king_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAaCAMAAAB8SKeFAAAAJFBMVEUAAAAaFCPzw0r/8KiyOixPj+DgeCparkUuejql11ofSiz7+/8ZuF87AAAAAXRSTlMAQObYZgAAAIZJREFUeNqVzwsSgyAMBFA21EqX+9/X4WOIEmy7M0yARxRC0MCMKRDo8FQgUUpxNUpJXPW+RGSbeutd8D6DC2MHkGyM43Ozi2NPXjojpQeuSpr9toBtZT9APYihOfe76YQYrY4SqkB7dO61/GHWs/IPvYVNffaw7o3Z6st8Uv6qXOebBqwTDj7eD6CcdlFfAAAAAElFTkSuQmCC","palette":{"G":"#1f4a2c","L":"#a5d75a","Y":"#fff0a8","g":"#2e7a3a","i":"#4f8fe0","k":"#1a1423","l":"#5aae45","o":"#e0782a","r":"#b23a2c","w":"#fbfbff","y":"#f3c34a"},"rows":["..........k...k...k..........",".........kyk.kyk.kyk.........",".........kyykyYykyyk.........",".........kyYyyyyyYyk.........",".........kyyryyyiyyk.........","....k...kkoooooooookk........","...klkkkgggggggggggggkk......","..kLkkgggggggggggggggggkk....","..klgggggggggggggggggggggk...","..kgggggggggggggggggggggggk..","..kggggGGgggggggggggGGggggk..",".kgggggggGGGgggggGGGgggggggk.",".kggggggwwkkgggggwwkkgggggGk.","kgggggggwwkkgggggwwkkgggggGGk","kgggggggkkkkkgggwkkkkggggGGGk","kgggggggkkkkkgggkkkkkgggGGGGk","kgggggggkkkkkgggkkkkkgggGGGGk","kggggggggggggggggggggggGGGGGk",".kggggggggggggggggggggGGGGGk.","kgggggggggggGGGGGgggggGGGGGGk","kggggggggggggggggggggGGGGGGGk","kgggggggggggggggggggGGGGGGGGk","kgggggggggggggggggggGGGGGGGGk","kGGGGGGGGGGGGGGGGGGGGGGGGGGGk","kGGGGGGGGGGGGGGGGGGGGGGGGGGGk",".kkkkkkkkkkkkkkkkkkkkkkkkkkk."]}}},"items/potion":{"id":"items/potion","slug":"potion","category":"items","title":"Potion","description":"Fioles de potion pour inventaire ou butin : petite fiole ronde, bouteille haute et grand flacon à bulles, en plusieurs couleurs de liquide (soin, mana, poison, magie, énergie).","tags":["potion","item","loot","consumable","rpg","inventory","icon"],"order":0,"source":"assets/items/potion.px.js","module":"library/js/items/potion.js","sheet":{"png":"library/sheets/items/potion.png","json":"library/sheets/items/potion.json"},"axes":{"liquid":["red","blue","green","purple","yellow","none"],"effect":["health","mana","poison","magic","stamina","none"],"shape":["round","bottle","flask"]},"sizes":[16,24,32],"variantCount":12,"variants":{"red_small":{"key":"red_small","name":"potion_red_small","id":"items/potion/red_small","label":"Petite potion rouge (soin)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"red","effect":"health","shape":"round"},"tags":[],"png":"library/png/items/potion/red_small.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAMAAAD+iNU2AAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PKyOizgeCpuHyROLdCRAAAAAXRSTlMAQObYZgAAAE5JREFUeNp9zkkSwCAIRFHaYAP3v3AKNAlu8lc+p0KkAiAtjHHhz6p6eLIbJJXozHByPwHNV1EboE2rHi96t/dz29fj/bAzp43smxCrXN4LewK6Jdz+KgAAAABJRU5ErkJggg==","palette":{"R":"#6e1f24","S":"#8fa3c7","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","s":"#d3e0f2","w":"#fbfbff"},"rows":["......kkk......",".....knnbk.....",".....knnbk.....",".....kSSSk.....",".....kwsSk.....","....ksssSsk....","...ksssssssk...","..kssssssssSk..",".ksroooooooRSk.",".ksrwrrrrrrRSk.",".kswrrrrrorRSk.",".kswrrorrrrRSk.",".ksrrrrrrrRRSk.","..ksrrrrrRRSk..","...kSRRRRRSk...","....kkkkkkk...."]},"blue_small":{"key":"blue_small","name":"potion_blue_small","id":"items/potion/blue_small","label":"Petite potion bleue (mana)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"blue","effect":"mana","shape":"round"},"tags":[],"png":"library/png/items/potion/blue_small.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAMAAAD+iNU2AAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PIvT7NPj+AdKmuRjIVzAAAAAXRSTlMAQObYZgAAAE5JREFUeNp9zkkSwCAIRFHaYAP3v3AKNAlu8lc+p0KkAiAtjHHhz6p6eLIbJJXozHByPwHNV1EboE2rHi96t/dz29fj/bAzp43smxCrXN4LewK6Jdz+KgAAAABJRU5ErkJggg==","palette":{"S":"#8fa3c7","U":"#1d2a6b","b":"#6a4128","i":"#4f8fe0","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","u":"#2f4fb3","w":"#fbfbff"},"rows":["......kkk......",".....knnbk.....",".....knnbk.....",".....kSSSk.....",".....kwsSk.....","....ksssSsk....","...ksssssssk...","..kssssssssSk..",".ksuiiiiiiiUSk.",".ksuwuuuuuuUSk.",".kswuuuuuiuUSk.",".kswuuiuuuuUSk.",".ksuuuuuuuUUSk.","..ksuuuuuUUSk..","...kSUUUUUSk...","....kkkkkkk...."]},"green_small":{"key":"green_small","name":"potion_green_small","id":"items/potion/green_small","label":"Petite potion verte (poison)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"green","effect":"poison","shape":"round"},"tags":[],"png":"library/png/items/potion/green_small.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAMAAAD+iNU2AAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PIuejparkUfSiwNmnRZAAAAAXRSTlMAQObYZgAAAE5JREFUeNp9zkkSwCAIRFHaYAP3v3AKNAlu8lc+p0KkAiAtjHHhz6p6eLIbJJXozHByPwHNV1EboE2rHi96t/dz29fj/bAzp43smxCrXN4LewK6Jdz+KgAAAABJRU5ErkJggg==","palette":{"G":"#1f4a2c","S":"#8fa3c7","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c","s":"#d3e0f2","w":"#fbfbff"},"rows":["......kkk......",".....knnbk.....",".....knnbk.....",".....kSSSk.....",".....kwsSk.....","....ksssSsk....","...ksssssssk...","..kssssssssSk..",".ksglllllllGSk.",".ksgwggggggGSk.",".kswggggglgGSk.",".kswgglggggGSk.",".ksgggggggGGSk.","..ksgggggGGSk..","...kSGGGGGSk...","....kkkkkkk...."]},"purple_small":{"key":"purple_small","name":"potion_purple_small","id":"items/potion/purple_small","label":"Petite potion violette (magie)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"purple","effect":"magic","shape":"round"},"tags":[],"png":"library/png/items/potion/purple_small.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAMAAAD+iNU2AAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PJ6P7C3fuA/H2MvRzDUAAAAAXRSTlMAQObYZgAAAE5JREFUeNp9zkkSwCAIRFHaYAP3v3AKNAlu8lc+p0KkAiAtjHHhz6p6eLIbJJXozHByPwHNV1EboE2rHi96t/dz29fj/bAzp43smxCrXN4LewK6Jdz+KgAAAABJRU5ErkJggg==","palette":{"S":"#8fa3c7","V":"#3f1f63","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","v":"#7a3fb0","w":"#fbfbff","x":"#b77ee0"},"rows":["......kkk......",".....knnbk.....",".....knnbk.....",".....kSSSk.....",".....kwsSk.....","....ksssSsk....","...ksssssssk...","..kssssssssSk..",".ksvxxxxxxxVSk.",".ksvwvvvvvvVSk.",".kswvvvvvxvVSk.",".kswvvxvvvvVSk.",".ksvvvvvvvVVSk.","..ksvvvvvVVSk..","...kSVVVVVSk...","....kkkkkkk...."]},"yellow_small":{"key":"yellow_small","name":"potion_yellow_small","id":"items/potion/yellow_small","label":"Petite potion jaune (énergie)","kind":"sprite","w":15,"h":16,"size":16,"props":{"liquid":"yellow","effect":"stamina","shape":"round"},"tags":[],"png":"library/png/items/potion/yellow_small.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAMAAAD+iNU2AAAAG1BMVEUAAAAaFCOcazxqQSiPo8f7+//T4PLgeCrzw0onu6UAAAAAAXRSTlMAQObYZgAAAE5JREFUeNp9zkkSwCAIRFFbsOH+J04BxuAmf+VzKsbIAIwW5hT8WVUvL3aDpBKdEW7uJ6B5JbkB2rLsddG7vZ/bvi7nw86YVqJvQlSxfAD7xAJswXNwWQAAAABJRU5ErkJggg==","palette":{"S":"#8fa3c7","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","s":"#d3e0f2","w":"#fbfbff","y":"#f3c34a"},"rows":["......kkk......",".....knnbk.....",".....knnbk.....",".....kSSSk.....",".....kwsSk.....","....ksssSsk....","...ksssssssk...","..kssssssssSk..",".ksoyyyyyyybSk.",".ksowoooooobSk.",".kswoooooyobSk.",".kswooyoooobSk.",".ksooooooobbSk.","..ksooooobbSk..","...kSbbbbbSk...","....kkkkkkk...."]},"red_bottle":{"key":"red_bottle","name":"potion_red_bottle","id":"items/potion/red_bottle","label":"Bouteille rouge","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"red","effect":"health","shape":"bottle"},"tags":[],"png":"library/png/items/potion/red_bottle.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAYCAMAAAD57OxYAAAAJFBMVEUAAAAaFCOcazxqQSjT4PKPo8f7+//geCqyOixuHyTJmls7Ihm9/n9SAAAAAXRSTlMAQObYZgAAAFpJREFUeNqFztEOgCAIhWGOHCn1/d+3QUzdqvVf+Y3JEBERAJAMpRTFP1R1gWRdsB18h7/JG7BAjPx3wAUeWYWAZ9TaEyUL9D766BOuhGYB2xfY52rmOXHPTC6qYwOyjnSv7wAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","N":"#c99a5b","R":"#6e1f24","S":"#8fa3c7","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","s":"#d3e0f2","w":"#fbfbff"},"rows":["....kkkk....","...knnnbk...","...knnnbk...","...knnnbk...","...kbbbbk...","...ksssSk...","...kswsSk...","...ksssSk...","...ksssSk...","..ksssssk...",".kwsssssSk..","kswsssssSSk.","ksooooooooSk","ksrrrrrrRRSk","ksrrrrrrRRSk","ksnnnnnnnnSk","ksNNBNBNnnSk","ksNNNBNBnnSk","ksbbbbbbbbSk","kswrrrrrRRSk","kswrrrrrRRSk","ksrrrrrrRRSk","ksssssssSSSk",".kkkkkkkkkk."]},"blue_bottle":{"key":"blue_bottle","name":"potion_blue_bottle","id":"items/potion/blue_bottle","label":"Bouteille bleue","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"blue","effect":"mana","shape":"bottle"},"tags":[],"png":"library/png/items/potion/blue_bottle.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAYCAMAAAD57OxYAAAAJFBMVEUAAAAaFCOcazxqQSjT4PKPo8f7+/9Pj+AvT7MdKmvJmls7Ihn/uF+pAAAAAXRSTlMAQObYZgAAAFpJREFUeNqFztEOgCAIhWGOHCn1/d+3QUzdqvVf+Y3JEBERAJAMpRTFP1R1gWRdsB18h7/JG7BAjPx3wAUeWYWAZ9TaEyUL9D766BOuhGYB2xfY52rmOXHPTC6qYwOyjnSv7wAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","N":"#c99a5b","S":"#8fa3c7","U":"#1d2a6b","b":"#6a4128","i":"#4f8fe0","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","u":"#2f4fb3","w":"#fbfbff"},"rows":["....kkkk....","...knnnbk...","...knnnbk...","...knnnbk...","...kbbbbk...","...ksssSk...","...kswsSk...","...ksssSk...","...ksssSk...","..ksssssk...",".kwsssssSk..","kswsssssSSk.","ksiiiiiiiiSk","ksuuuuuuUUSk","ksuuuuuuUUSk","ksnnnnnnnnSk","ksNNBNBNnnSk","ksNNNBNBnnSk","ksbbbbbbbbSk","kswuuuuuUUSk","kswuuuuuUUSk","ksuuuuuuUUSk","ksssssssSSSk",".kkkkkkkkkk."]},"green_bottle":{"key":"green_bottle","name":"potion_green_bottle","id":"items/potion/green_bottle","label":"Bouteille verte","kind":"sprite","w":12,"h":24,"size":24,"props":{"liquid":"green","effect":"poison","shape":"bottle"},"tags":[],"png":"library/png/items/potion/green_bottle.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAYCAMAAAD57OxYAAAAJFBMVEUAAAAaFCOcazxqQSjT4PKPo8f7+/9arkUuejofSizJmls7IhlxNHACAAAAAXRSTlMAQObYZgAAAFpJREFUeNqFztEOgCAIhWGOHCn1/d+3QUzdqvVf+Y3JEBERAJAMpRTFP1R1gWRdsB18h7/JG7BAjPx3wAUeWYWAZ9TaEyUL9D766BOuhGYB2xfY52rmOXHPTC6qYwOyjnSv7wAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","G":"#1f4a2c","N":"#c99a5b","S":"#8fa3c7","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c","s":"#d3e0f2","w":"#fbfbff"},"rows":["....kkkk....","...knnnbk...","...knnnbk...","...knnnbk...","...kbbbbk...","...ksssSk...","...kswsSk...","...ksssSk...","...ksssSk...","..ksssssk...",".kwsssssSk..","kswsssssSSk.","ksllllllllSk","ksggggggGGSk","ksggggggGGSk","ksnnnnnnnnSk","ksNNBNBNnnSk","ksNNNBNBnnSk","ksbbbbbbbbSk","kswgggggGGSk","kswgggggGGSk","ksggggggGGSk","ksssssssSSSk",".kkkkkkkkkk."]},"red_large":{"key":"red_large","name":"potion_red_large","id":"items/potion/red_large","label":"Grand flacon rouge à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"red","effect":"health","shape":"flask"},"tags":[],"png":"library/png/items/potion/red_large.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PLgeCqyOixuHyRc/7TCAAAAAXRSTlMAQObYZgAAAKVJREFUeNq1ksEOhCAMRDtYWvv/P7wRUaAUNnvYdyFxnmMlJepBgZYgXRz4n4Cjgm1BSmldwYXNDJy/CJJFZC0AchPf1RsvlD6OvuPyyZhycT9zz7+uCPKxApJ1ohMg+azoc5pZM5qg1dDL8ILuGrqXK7Mw5pHg81+EZmicE8RK9gxqXiBk6xrM1OUEFrNWr6Z+NcFsHTqv7mhEq42mMK/W9qU9/AB55wyQiYk4AAAAAABJRU5ErkJggg==","palette":{"R":"#6e1f24","S":"#8fa3c7","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","s":"#d3e0f2","w":"#fbfbff"},"rows":[".............kkkkkk.............","............knnnnnbk............","............knnnnnbk............","............knnnnnbk............","...........kbbbbbbbbk...........","...........knnnnnnnnk...........","............kSSSSSSk............","............kSwSSSSk............","............kswsssSk............","...........kkssssssskk..........",".........kkssssssssssskk........","........kssssssssssssssSk.......",".......kssssssssssssssssSk......","......ksssssssssssssssssSSk.....","......kswssssssssssssssssSk.....",".....kswsssssssssssssssssSSk....",".....kswooooooooooooooooooSk....","....kswrrrrrrrrorrrrrrroRRRSk...","....kswrrrrrrrororrrrroroRRSk...","....kswrrrorrrrorrrrrrroRRRSk...","....ksrrrororrrrrrrrrrrrRRRSk...","....ksrrrrorrrrrrrrrrrrrRRRSk...","....ksrrrrrrrrrrrrrrrrrRRRRSk...","....ksrrrrrrrrrrrrrrrrrRRRRSk...",".....ksrrrrrrrorrrrrrrRRRRSk....",".....ksRrorrrororrrrrRRRRRSk....","......kwRrrrrrorrrrrRRoRRSk.....","......kSsRRrrrrrrrRRRoRoSSk.....",".......kSSRRRRRRRRRRRRoSSk......","........kSSRRRRRRRRRRRSSk.......",".........kkSSRRRRRRRSSkk........","...........kkkkkkkkkkk.........."]},"blue_large":{"key":"blue_large","name":"potion_blue_large","id":"items/potion/blue_large","label":"Grand flacon bleu à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"blue","effect":"mana","shape":"flask"},"tags":[],"png":"library/png/items/potion/blue_large.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PJPj+AvT7MdKmudLfcHAAAAAXRSTlMAQObYZgAAAKVJREFUeNq1ksEOhCAMRDtYWvv/P7wRUaAUNnvYdyFxnmMlJepBgZYgXRz4n4Cjgm1BSmldwYXNDJy/CJJFZC0AchPf1RsvlD6OvuPyyZhycT9zz7+uCPKxApJ1ohMg+azoc5pZM5qg1dDL8ILuGrqXK7Mw5pHg81+EZmicE8RK9gxqXiBk6xrM1OUEFrNWr6Z+NcFsHTqv7mhEq42mMK/W9qU9/AB55wyQiYk4AAAAAABJRU5ErkJggg==","palette":{"S":"#8fa3c7","U":"#1d2a6b","b":"#6a4128","i":"#4f8fe0","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","u":"#2f4fb3","w":"#fbfbff"},"rows":[".............kkkkkk.............","............knnnnnbk............","............knnnnnbk............","............knnnnnbk............","...........kbbbbbbbbk...........","...........knnnnnnnnk...........","............kSSSSSSk............","............kSwSSSSk............","............kswsssSk............","...........kkssssssskk..........",".........kkssssssssssskk........","........kssssssssssssssSk.......",".......kssssssssssssssssSk......","......ksssssssssssssssssSSk.....","......kswssssssssssssssssSk.....",".....kswsssssssssssssssssSSk....",".....kswiiiiiiiiiiiiiiiiiiSk....","....kswuuuuuuuuiuuuuuuuiUUUSk...","....kswuuuuuuuiuiuuuuuiuiUUSk...","....kswuuuiuuuuiuuuuuuuiUUUSk...","....ksuuuiuiuuuuuuuuuuuuUUUSk...","....ksuuuuiuuuuuuuuuuuuuUUUSk...","....ksuuuuuuuuuuuuuuuuuUUUUSk...","....ksuuuuuuuuuuuuuuuuuUUUUSk...",".....ksuuuuuuuiuuuuuuuUUUUSk....",".....ksUuiuuuiuiuuuuuUUUUUSk....","......kwUuuuuuiuuuuuUUiUUSk.....","......kSsUUuuuuuuuUUUiUiSSk.....",".......kSSUUUUUUUUUUUUiSSk......","........kSSUUUUUUUUUUUSSk.......",".........kkSSUUUUUUUSSkk........","...........kkkkkkkkkkk.........."]},"purple_large":{"key":"purple_large","name":"potion_purple_large","id":"items/potion/purple_large","label":"Grand flacon violet à bulles","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"purple","effect":"magic","shape":"flask"},"tags":[],"png":"library/png/items/potion/purple_large.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAHlBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PK3fuB6P7A/H2OjxYw+AAAAAXRSTlMAQObYZgAAAKVJREFUeNq1ksEOhCAMRDtYWvv/P7wRUaAUNnvYdyFxnmMlJepBgZYgXRz4n4Cjgm1BSmldwYXNDJy/CJJFZC0AchPf1RsvlD6OvuPyyZhycT9zz7+uCPKxApJ1ohMg+azoc5pZM5qg1dDL8ILuGrqXK7Mw5pHg81+EZmicE8RK9gxqXiBk6xrM1OUEFrNWr6Z+NcFsHTqv7mhEq42mMK/W9qU9/AB55wyQiYk4AAAAAABJRU5ErkJggg==","palette":{"S":"#8fa3c7","V":"#3f1f63","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","v":"#7a3fb0","w":"#fbfbff","x":"#b77ee0"},"rows":[".............kkkkkk.............","............knnnnnbk............","............knnnnnbk............","............knnnnnbk............","...........kbbbbbbbbk...........","...........knnnnnnnnk...........","............kSSSSSSk............","............kSwSSSSk............","............kswsssSk............","...........kkssssssskk..........",".........kkssssssssssskk........","........kssssssssssssssSk.......",".......kssssssssssssssssSk......","......ksssssssssssssssssSSk.....","......kswssssssssssssssssSk.....",".....kswsssssssssssssssssSSk....",".....kswxxxxxxxxxxxxxxxxxxSk....","....kswvvvvvvvvxvvvvvvvxVVVSk...","....kswvvvvvvvxvxvvvvvxvxVVSk...","....kswvvvxvvvvxvvvvvvvxVVVSk...","....ksvvvxvxvvvvvvvvvvvvVVVSk...","....ksvvvvxvvvvvvvvvvvvvVVVSk...","....ksvvvvvvvvvvvvvvvvvVVVVSk...","....ksvvvvvvvvvvvvvvvvvVVVVSk...",".....ksvvvvvvvxvvvvvvvVVVVSk....",".....ksVvxvvvxvxvvvvvVVVVVSk....","......kwVvvvvvxvvvvvVVxVVSk.....","......kSsVVvvvvvvvVVVxVxSSk.....",".......kSSVVVVVVVVVVVVxSSk......","........kSSVVVVVVVVVVVSSk.......",".........kkSSVVVVVVVSSkk........","...........kkkkkkkkkkk.........."]},"empty_large":{"key":"empty_large","name":"potion_empty_large","id":"items/potion/empty_large","label":"Grand flacon vide","kind":"sprite","w":32,"h":32,"size":32,"props":{"liquid":"none","effect":"none","shape":"flask"},"tags":[],"png":"library/png/items/potion/empty_large.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGFBMVEUAAAAaFCOcazxqQSiPo8f7+//T4PLDwtRUM8xLAAAAAXRSTlMAQObYZgAAAIVJREFUeNrFkkkOwCAMAzGL+f+PKxZRAgmcqvqIRwYSOzcLVc4UfFHAdwBCF44B3ns7IlYd3hDTBWAiaQMAm/RZDdtAZlu7Z/E3YvO5fKa9345QfBlxAzSf80hVgDdAJvAPQBYD5wB9FXIZSGffIW7+uu9YkFztrHa7V35I6dyMWLUdeg8fxRwKBMfvoqgAAAAASUVORK5CYII=","palette":{"C":"#c3c2d4","S":"#8fa3c7","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","w":"#fbfbff"},"rows":[".............kkkkkk.............","............knnnnnbk............","............knnnnnbk............","............knnnnnbk............","...........kbbbbbbbbk...........","...........knnnnnnnnk...........","............kSSSSSSk............","............kSwSSSSk............","............kswsssSk............","...........kkssssssskk..........",".........kkssssssssssskk........","........kssssssssssssssSk.......",".......kssssssssssssssssSk......","......ksssssssssssssssssSSk.....","......kswssssssssssssssssSk.....",".....kswsssssssssssssssssSSk....",".....kswsssssssssssssssssSSk....","....kswssssssssssssssssssSSSk...","....kswsssssssssssssssssssSSk...","....kswssssssssssssssssssSSSk...","....kssssssssssssssssssssSSSk...","....kssssssssssssssssssssSSSk...","....kssssssssssssssssssssSSSk...","....ksssssssssssssssssssSSSSk...",".....kssssssssssssssssssSSSk....",".....ksssssssssssssssssSSSSk....","......kwssssssssssssssSSSSk.....","......kSsssssssssssssSSSSSk.....",".......kSSsssCsssssCSSSSSk......","........kSSSSSSSSSSSSSSSk.......",".........kkSSSSSSSSSSSkk........","...........kkkkkkkkkkk.........."]}}},"nature/rock":{"id":"nature/rock","slug":"rock","category":"nature","title":"Rocher","description":"Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.","tags":["rock","stone","boulder","nature","decoration","obstacle"],"order":0,"source":"assets/nature/rock.px.js","module":"library/js/nature/rock.js","sheet":{"png":"library/sheets/nature/rock.png","json":"library/sheets/nature/rock.json"},"axes":{"form":["stone","pebbles","boulder"],"surface":["bare","mossy","snow"],"material":["granite","sandstone"]},"sizes":[16,32],"variantCount":7,"variants":{"small_16":{"key":"small_16","name":"rock_small_16","id":"nature/rock/small_16","label":"Caillou","kind":"sprite","w":16,"h":12,"size":16,"props":{"form":"stone","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/small_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAMAAABcOc2zAAAAElBMVEUAAAAaFCOLiqNXVnDDwtQvLTyMQaCfAAAAAXRSTlMAQObYZgAAAEJJREFUeNptzkkSgDAIRNEe4P5XtiSQaGnv3i8WAP8jyRcl+SQqIiSb27ov3IXWOJNjL08oVUiC7mWHR1n+hvpyBlxv8gFqrYtXwAAAAABJRU5ErkJggg==","palette":{"C":"#c3c2d4","c":"#8b8aa3","d":"#2f2d3c","k":"#1a1423","m":"#575670"},"rows":["................","......kkkk......","....kkcccmkk....","...kcCCCccmmk...","..kcCccccmmmmk..",".kmcccccmmmmddk.","kmccccmmmmmdddk.","kmccmmmmdmmddddk","kmmmmmmmmdmddddk",".kmmmmmmmmddddk.",".kmmmmmmmmddddk.","..kkkkkkkkkkkk.."]},"small_mossy_16":{"key":"small_mossy_16","name":"rock_small_mossy_16","id":"nature/rock/small_mossy_16","label":"Caillou moussu","kind":"sprite","w":16,"h":12,"size":16,"props":{"form":"stone","surface":"mossy","material":"granite"},"tags":[],"png":"library/png/nature/rock/small_mossy_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAMAAABcOc2zAAAAFVBMVEUAAAAaFCNarkWLiqNXVnAuejovLTw6USOCAAAAAXRSTlMAQObYZgAAAENJREFUeNptzkEOACEIQ1FKK/c/8kSEqBm7e39Vs/cA4KI7tRPoYzglHCalKhDnpiPQ1nKHVIaAQbWocJTlf8iXPbMPjXoByOQmekIAAAAASUVORK5CYII=","palette":{"c":"#8b8aa3","d":"#2f2d3c","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","m":"#575670"},"rows":["................","......kkkk......","....kkllcmkk....","...kclgglcmmk...","..kclggccmmmmk..",".kmcccccmmmmddk.","kmccccmmmmmdddk.","kmccmmmmdmmddddk","kmmmmmmmmdmddddk",".kmmmmmmmmddddk.",".kmmmmmmmmddddk.","..kkkkkkkkkkkk.."]},"pebbles_16":{"key":"pebbles_16","name":"rock_pebbles_16","id":"nature/rock/pebbles_16","label":"Tas de galets","kind":"sprite","w":16,"h":11,"size":16,"props":{"form":"pebbles","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/pebbles_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAElBMVEUAAAAaFCOLiqPDwtRXVnAvLTxjbqUMAAAAAXRSTlMAQObYZgAAAElJREFUeNpNjsENADEIw0hw91/5BLS95oHASFYi/kjSu8qZOUTYlrPmvgFekMCyN5DqX4CWjqCh0RVoATmgBQ0Y0AJNTqnbMOIDbE4BSs0aIrMAAAAASUVORK5CYII=","palette":{"C":"#c3c2d4","c":"#8b8aa3","d":"#2f2d3c","k":"#1a1423","m":"#575670"},"rows":["...........kkkk.",".....kkkk.kcCCCk","....kmccckcCccck","...kmcmmmmcCccck","...kmCmmmdccccck","..kkmmmmmdccmkk.",".kmccckkmmmmcmk.","kmcmmmmkdmmmCmk.","kmCmmmdkdmmmmmk.","kmmmmmdkkkkkkk..",".kkkkkk........."]},"boulder_32":{"key":"boulder_32","name":"rock_boulder_32","id":"nature/rock/boulder_32","label":"Gros rocher","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"bare","material":"granite"},"tags":[],"png":"library/png/nature/rock/boulder_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAZCAMAAABn0dyjAAAAElBMVEUAAAAaFCOLiqPDwtRXVnAvLTxjbqUMAAAAAXRSTlMAQObYZgAAAH1JREFUeNqV00ESwCAIA0AD8f9f7oxaTZF2LNcs4aKl/B0AnyHM7IW00N29kd301OYgyVdK8yBguk3GDjzWuYEt7wRyf6WVc+oQoO4uUCfQVS0YAtTVFGiiFzLwLGgAPAPpBRWVQUTAUzBvLZBXSB4rdlBwF8aBPtZsjr7BBYi3B1XOub3sAAAAAElFTkSuQmCC","palette":{"C":"#c3c2d4","c":"#8b8aa3","d":"#2f2d3c","k":"#1a1423","m":"#575670"},"rows":["................................","................kkk.............","............kkkkccckk...........",".........kkkccCCCCccckkk........","........kccCCCcccccccccck.......",".......kccCccccccccccmcCck......","......kcCCccccccccccmmcccck.....",".....kcCccccccccccmmmmcccck.....","....kcCccccccccccmmmmmmmccck....","...kccccccccccmmdmmmmmmmmmmdk...","..kmcccccccmmmmmdmmmmmmmmmddk...","..kccccmmdmmmmmdmmmmmmmmmmdddk..",".kmcmmmmmdmmmmmdmmmmmmmmmmdddk..",".kmmmmmmdmmmmmmdmmmmmmmmmddddk..",".kmmmmmmdmmmmmdmmmmmmmmmmddddk..","kmmmmmmmdmmmmmdmmmmmmmmmmddddk..","kmmmmmmdmmmmmmdmmmmmmmmmddddddk.",".kmmmmmdmmmmmmmdmmmmmmmmddddddk.",".kmmmmmmmmmmmmmdmmmmmmmmddddddk.",".kmmmmmmmmmmmmmmdmmmmmmdddddddk.","..kmmmmmmmmmmmmmdmmmmmmddddddk..","..kmmmmmmmmmmmmmmmmmmmmddddddk..","...kmdddddddddddddddddddddddk...","....kkkkkkkkkkkkkkkkkkkkkkkk....","................................"]},"boulder_mossy_32":{"key":"boulder_mossy_32","name":"rock_boulder_mossy_32","id":"nature/rock/boulder_mossy_32","label":"Gros rocher moussu","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"mossy","material":"granite"},"tags":[],"png":"library/png/nature/rock/boulder_mossy_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAZCAMAAABn0dyjAAAAGFBMVEUAAAAaFCOLiqPDwtRarkUuejpXVnAvLTwWIRRnAAAAAXRSTlMAQObYZgAAAKRJREFUeNqV00sWhSAMA1BS0rD/HXuoilXwfTrikNt2AqX8WwA+hjCzFxJhZa1BZgNjrSTNjDQ65pxm7j12l9HwzD26A0n0uwBr79yFJPVjAnC3I2bkkiwJ9PsoSk2j2iEg29fvt1c+gNNHax5wCCi3rkD0n0neMCbwbUAAKE9YgpzcN2RxJu0N6AsgH6JdIIT7EqCUaYdmUHAOfBbyY13VT99gA66CCoYiRy+EAAAAAElFTkSuQmCC","palette":{"C":"#c3c2d4","c":"#8b8aa3","d":"#2f2d3c","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","m":"#575670"},"rows":["................................","................kkk.............","............kkkkccckk...........",".........kkkccClCCccckkk........","........kclCClllcccllclgk.......",".......kcllccggccllggmclck......","......kclgllcccccggcmmlglck.....",".....klCcllglcccccmmmmglcck.....","....kggclglcccclcmmmmmmmccck....","...kcclcccccclmmdmmmmmmmmmmdk...","..kmcllccccmmmmmdmmmmmmmmmddk...","..kglglmmdmmmmmdmmmmmmmmmmdddk..",".kmcmmmmmdmmmmmdmmmmmmmmmmdddk..",".klglmmmdmmmmmmdmmmmmmmmmddddk..",".kmlmmmmdmmmmmdmmmmmmmmmmddddk..","kmlglmmmdmmmmmdmmmmmmmmmmddddk..","kmmmmmmdmmmmmmdmmmmmmmmmddddddk.",".kmmmmmdmmmmmmmdmmmmmmmmddddddk.",".kmmmmmmmmmmmmmdmmmmmmmmddddddk.",".kmmmmllmmmmmmmmdmmmmmmdddddddk.","..kmmmggmmmmmmmmdmmmmmmddddddk..","..kmmmmmmmmmmmmmmmmmmmmddddddk..","...kmdddddddddddddddddddddddk...","....kkkkkkkkkkkkkkkkkkkkkkkk....","................................"]},"boulder_snow_32":{"key":"boulder_snow_32","name":"rock_boulder_snow_32","id":"nature/rock/boulder_snow_32","label":"Gros rocher enneigé","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"snow","material":"granite"},"tags":["snow","winter"],"png":"library/png/nature/rock/boulder_snow_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAZCAMAAABn0dyjAAAAFVBMVEUAAAAaFCPT4PL7+/9XVnAvLTyLiqPRqwyjAAAAAXRSTlMAQObYZgAAAH5JREFUeNqVkzkSwCAMA5Ft8v8nZ4ZTgCFE7a7kBkL4GwBHCBHZKAmqqiZldTKVFji8UxOdDAi3zeYNDHVbhIVnBXS/02gtsRhQ7nYhNoGrPFAM6EPIE4wJX/CEcSAJ0C/hcIGNSuJOsFuh3eqCP0F8nliFgDo4B/xYvVx9gxeKfgdWGK+giQAAAABJRU5ErkJggg==","palette":{"c":"#8b8aa3","d":"#2f2d3c","k":"#1a1423","m":"#575670","s":"#d3e0f2","w":"#fbfbff"},"rows":["................................","................kkk.............","............kkkkssskk...........",".........kkksswwwwssskkk........","........ksswwwssssssssssk.......",".......ksswssssssssssmswsk......","......kswwssssssssssmmssssk.....",".....kswssssssssssmmmmssssk.....","....kswssssssssssmmmmmmmsssk....","...kssssssssssmmdmmmmmmmmmmdk...","..kwsssssssmmmmmdmmmmmmmmmddk...","..kssssmmdmmmmmdmmmmmmmmmmdddk..",".kwcmmmmmdmmmmmdmmmmmmmmmmdddk..",".kmmmmmmdmmmmmmdmmmmmmmmmddddk..",".kmmmmmmdmmmmmdmmmmmmmmmmddddk..","kwmmmmmmdmmmmmdmmmmmmmmmmddddk..","kmmmmmmdmmmmmmdmmmmmmmmmddddddk.",".kmmmmmdmmmmmmmdmmmmmmmmddddddk.",".kmmmmmmmmmmmmmdmmmmmmmmddddddk.",".kmmmmmmmmmmmmmmdmmmmmmdddddddk.","..kmmmmmmmmmmmmmdmmmmmmddddddk..","..kmmmmmmmmmmmmmmmmmmmmddddddk..","...kmdddddddddddddddddddddddk...","....kkkkkkkkkkkkkkkkkkkkkkkk....","................................"]},"boulder_sand_32":{"key":"boulder_sand_32","name":"rock_boulder_sand_32","id":"nature/rock/boulder_sand_32","label":"Rocher de grès (désert)","kind":"sprite","w":32,"h":25,"size":32,"props":{"form":"boulder","surface":"bare","material":"sandstone"},"tags":["desert"],"png":"library/png/nature/rock/boulder_sand_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAZCAMAAABn0dyjAAAAElBMVEUAAAAaFCOcazzJmltqQSg7IhkTaE0CAAAAAXRSTlMAQObYZgAAAH1JREFUeNqV00ESwCAIA0AD8f9f7oxaTZF2LNcs4aKl/B0AnyHM7IW00N29kd301OYgyVdK8yBguk3GDjzWuYEt7wRyf6WVc+oQoO4uUCfQVS0YAtTVFGiiFzLwLGgAPAPpBRWVQUTAUzBvLZBXSB4rdlBwF8aBPtZsjr7BBYi3B1XOub3sAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","N":"#c99a5b","b":"#6a4128","k":"#1a1423","n":"#9c6b3c"},"rows":["................................","................kkk.............","............kkkknnnkk...........",".........kkknnNNNNnnnkkk........","........knnNNNnnnnnnnnnnk.......",".......knnNnnnnnnnnnnbnNnk......","......knNNnnnnnnnnnnbbnnnnk.....",".....knNnnnnnnnnnnbbbbnnnnk.....","....knNnnnnnnnnnnbbbbbbbnnnk....","...knnnnnnnnnnbbBbbbbbbbbbbBk...","..kbnnnnnnnbbbbbBbbbbbbbbbBBk...","..knnnnbbBbbbbbBbbbbbbbbbbBBBk..",".kbnbbbbbBbbbbbBbbbbbbbbbbBBBk..",".kbbbbbbBbbbbbbBbbbbbbbbbBBBBk..",".kbbbbbbBbbbbbBbbbbbbbbbbBBBBk..","kbbbbbbbBbbbbbBbbbbbbbbbbBBBBk..","kbbbbbbBbbbbbbBbbbbbbbbbBBBBBBk.",".kbbbbbBbbbbbbbBbbbbbbbbBBBBBBk.",".kbbbbbbbbbbbbbBbbbbbbbbBBBBBBk.",".kbbbbbbbbbbbbbbBbbbbbbBBBBBBBk.","..kbbbbbbbbbbbbbBbbbbbbBBBBBBk..","..kbbbbbbbbbbbbbbbbbbbbBBBBBBk..","...kbBBBBBBBBBBBBBBBBBBBBBBBk...","....kkkkkkkkkkkkkkkkkkkkkkkk....","................................"]}}},"nature/tree":{"id":"nature/tree","slug":"tree","category":"nature","title":"Arbre","description":"Arbres vus de face pour décors 2D : chêne, sapin, bouleau, pommier. Plusieurs saisons, densités de feuillage et tailles (16, 32, 48 px). Lumière en haut à gauche, contour sombre.","tags":["tree","plant","forest","nature","decoration","scenery"],"order":0,"source":"assets/nature/tree.px.js","module":"library/js/nature/tree.js","sheet":{"png":"library/sheets/nature/tree.png","json":"library/sheets/nature/tree.json"},"axes":{"species":["oak","pine","apple","birch"],"season":["summer","autumn","winter","spring"],"foliage":["full","sparse","bare"]},"sizes":[16,32,48],"variantCount":19,"variants":{"oak_summer_16":{"key":"oak_summer_16","name":"tree_oak_summer_16","id":"nature/tree/oak_summer_16","label":"Chêne – été (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAG1BMVEUAAAAaFCNarkUuejql11ofSixqQSg7IhmcazxPnIFEAAAAAXRSTlMAQObYZgAAAGFJREFUeNpdjlEOwDAIQkWK7f1PvKhd040/Hkg0SyFlR4C7kwfBfSQgsf3w9hR2ob2oJK93UkqCShs2qOsi3TBQzbqQq5lULLyPSTGl61lgxbx+N/sDrIh5EUQE8CG515sPEIQCCWugNwcAAAAASUVORK5CYII=","palette":{"B":"#3b2219","G":"#1f4a2c","L":"#a5d75a","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c"},"rows":[".....kkkkk......","...kklllggkk....","..kllLllggggk...",".klLlllgggggGk..",".kllllggggGgGGk.","kllllggglggGGGGk","klgggglllgggGGGk","kgggggglllgGGGGk",".kgGgggggggGGGk.","..kGGGGgGGGGGk..","...kkGGbBGGkk...",".....kknbBk.....","......knbBk.....",".....knbbBBk....","....kbbbkkBBk...",".....kkk..kk...."]},"oak_autumn_16":{"key":"oak_autumn_16","name":"tree_oak_autumn_16","id":"nature/tree/oak_autumn_16","label":"Chêne – automne (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAG1BMVEUAAAAaFCPgeCqyOizzw0puHyRqQSg7IhmcazzEoNGZAAAAAXRSTlMAQObYZgAAAGFJREFUeNpdjlEOwDAIQkWK7f1PvKhd040/Hkg0SyFlR4C7kwfBfSQgsf3w9hR2ob2oJK93UkqCShs2qOsi3TBQzbqQq5lULLyPSTGl61lgxbx+N/sDrIh5EUQE8CG515sPEIQCCWugNwcAAAAASUVORK5CYII=","palette":{"B":"#3b2219","R":"#6e1f24","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","y":"#f3c34a"},"rows":[".....kkkkk......","...kkooorrkk....","..kooyoorrrrk...",".koyooorrrrrRk..",".koooorrrrRrRRk.","koooorrrorrRRRRk","korrrrooorrrRRRk","krrrrrrooorRRRRk",".krRrrrrrrrRRRk.","..kRRRRrRRRRRk..","...kkRRbBRRkk...",".....kknbBk.....","......knbBk.....",".....knbbBBk....","....kbbbkkBBk...",".....kkk..kk...."]},"pine_16":{"key":"pine_16","name":"tree_pine_16","id":"nature/tree/pine_16","label":"Sapin (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGFBMVEUAAAAaFCM0hGghXk8WOjdirXxqQSg7IhnCk1lYAAAAAXRSTlMAQObYZgAAAFJJREFUeNpdj0EOwCAIBB0W9f8/bkrRongwM9kl2loO7RyMiyUuducUKgLrOiKYy4vYnCYWKDqfycAfwftmamN1MISGENnhPWMS937JmNd3WfwAqPgBazUY0zYAAAAASUVORK5CYII=","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","b":"#6a4128","e":"#348468","k":"#1a1423","p":"#215e4f"},"rows":["........k.......",".......kek......","......keppk.....",".....keppPPk....",".....kepppPk....","....keEpppPPk...","....kePpPpPPk...","...kePpPpPPkPk..","..kepppppppPPPk.","..kePpPpPpPPkPk.","..kPEPpPpPPkPkk.",".kepppppppppPPPk",".kekpkpbpkpkPkPk","..k.k.kbBkk.k.k.","......kbBk......",".......kk......."]},"pine_snow_16":{"key":"pine_snow_16","name":"tree_pine_snow_16","id":"nature/tree/pine_snow_16","label":"Sapin enneigé (16 px)","kind":"sprite","w":16,"h":16,"size":16,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_snow_16.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIVBMVEUAAAAaFCP7+/80hGghXk/T4PIWOjePo8dirXxqQSg7Ihl/t52vAAAAAXRSTlMAQObYZgAAAFhJREFUeNpdz4EOwBAMRVG3Uxv//8HLm65BX0LaOEIpUZS9sH3CZZWj98YKarVlgKncc4I35SZvaNZE4sgEIoECiEyEPUlYRBpc6VrDoPTBt+dL+ji+y9+/yr4BviQKpeQAAAAASUVORK5CYII=","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","S":"#8fa3c7","b":"#6a4128","e":"#348468","k":"#1a1423","p":"#215e4f","s":"#d3e0f2","w":"#fbfbff"},"rows":["........k.......",".......kwk......","......kewpk.....",".....kewpsPk....",".....kwppwPk....","....kwwwwwssk...","....ksPsPsPSk...","...kePwPpwPksk..","..kwwwwwwwssssk.","..ksPsPsPsPSkSk.","..kwEPwPpwPkskk.",".kwwwwwwwwwssssk",".ksksksbskskSkSk","..k.k.kbBkk.k.k.","......kbBk......",".......kk......."]},"oak_summer_full_32":{"key":"oak_summer_full_32","name":"tree_oak_summer_full_32","id":"nature/tree/oak_summer_full_32","label":"Chêne – été, feuillage dense","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_full_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAG1BMVEUAAAAaFCMuejofSixarkWl11pqQSg7IhmcazwSOOjZAAAAAXRSTlMAQObYZgAAALlJREFUeNrVk0kOBCEIRWUQ+/4n7ogCzr3uvzCp8IQPUimNAlW6CrCKjoReRWZWYs/T73JWYs/jd9mBiajxbAQi8kpoggYQuigIqxAArQCyubD8I6AtmAvPFQRwZnQX1gY50Q0Y0OrXoArCYT3NxwJYWzGNGaifamOexgAQRpUD0IhJAfQ+r4BPiob+NNTOGDWdNTznj7gRYNrifScTSCl1G6/LDR+R8lj7vwBARKQIPONS5EHA/v9/ATBxBm3ay7yPAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","G":"#1f4a2c","L":"#a5d75a","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c"},"rows":[".............kkkkkk.............","............kgggggGk............",".......kkkkkglllgggGkkkkk.......","......kgggggGlLllgggggggGk......",".....kglllgggGlllggggggggGk.....","....kgllLllgggGllggglgggggGk....","....kglllllgggGGggggggggggGGk...","....kglllgggggGGggggggGgggGGk...","....kgglglllgggGglgggggGggGGk...","...kggggllLllggglllgggggGggGGk..","..klLlgglllllgggllggggggGGggGGk.",".kglllgglllllgggggGgggggGGGGGGGk",".kglllggglllglllgggGggggGGGGGGGk",".kggggggggGgllLllgggGgggGGGGGGGk",".kGggglLlggglllllgggGGgggGGGGGGk",".kGGgglllggglllllgggGGgggGGGGGGk","..kGGgggggggggggggggGGgggGGGGGk.","...kGgggggggggggggggGGgggGGGGk..","....kGgggggGgggggggGGGgggGGGk...","....kGGGGGGGGGGGGGGGGGGGGGGGk...",".....kGGGGGGGGGGGGGGGGGGGGGk....","......kGGGGGkkkkkkkkkGGGGGk.....",".......kkkkk.kbBBkk..kkkkk......",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"oak_summer_sparse_32":{"key":"oak_summer_sparse_32","name":"tree_oak_summer_sparse_32","id":"nature/tree/oak_summer_sparse_32","label":"Chêne – été, peu de feuilles","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"summer","foliage":"sparse"},"tags":[],"png":"library/png/nature/tree/oak_summer_sparse_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGFBMVEUAAAAaFCNarkUuejofSixqQSicazw7IhmKLexJAAAAAXRSTlMAQObYZgAAALpJREFUeNrlkgEOwyAMAzHg7f8/nnBMSrfBHrBIRW1yGKehlDUwouwDtdbW8QNo/UMmhMcSQDOEu3CLkgFTq3Cmc2mdeAeuEBCGEcIKjAeuJ3BtRgEJpBG3DEuOzwS8wV0aWBVUTwsdXAFVac0AOhYPOpNzywQYRwoYK5GAj+MsSYZk2lTvStEe9Cor2YZGpawBOH8bKskH+Zz1L9chgG19EAHs7xQEnO6cPJR/BzTGw4+KmZ9+NRxr7gVAlQZ2p8EiDwAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","G":"#1f4a2c","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c"},"rows":[".............kkkkk..............","............klllgGk.............","............klllggGkkkk.........","...kkkkk.kkkklllggGgggGkkkkk....","..klllgGkgggGgggggGgggGGgggGkk..","..klllggGgggGGgggGGgggGGggggGbk.","..klllggGgggGGGGGGGGGGGGggggGGk.","..kgggggGGGGGGkGGGkkGGGgggggGGk.","..kGgggGGGGGGk.kbbkkgggGgggGGGk.","...kGGGGgggGk..kbbkkgggGGGGGGk..","..kkkGGGgggGGk.kbbkkgggGGGGGkk..",".kgggGkbgggGGk.kbbkkGGGGGbgggGk.",".kgggGGkGGGGGk.kbbk.kGGGbbgggGGk",".kgggGGkbGGGk..kbbk..kbbbkgggGGk",".kGGGGGkkbbbk..kbbk.kbbbbbGGGGGk","..kGGGkbbbbbbk.kbbkkbbbbkkkGGGk.","...kkk.kkkkbbkkkbbkkbbbk...kkk..","..........kbbbnbbBkbbbk.........","...........kbbnbbBbbbk..........","............kbnbbBbbk...........",".............knbbBbk............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"oak_winter_32":{"key":"oak_winter_32","name":"tree_oak_winter_32","id":"nature/tree/oak_winter_32","label":"Chêne – hiver, branches nues enneigées","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"winter","foliage":"bare"},"tags":[],"png":"library/png/nature/tree/oak_winter_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAFVBMVEUAAAAaFCP7+/9qQSg7IhnT4PKcazxYSpRdAAAAAXRSTlMAQObYZgAAAKxJREFUeNrlkeEOwyAIhDlO9/6P3ABWYJtN9nvEaOx9nocV+b3wpNhQHCAoTAQR0IcnCBtuQBRl7ULRarA5X30Gi8Gtby0w3UGJ93wO3HALGvkS8BNEb7EDLAZ5dQICDVB6uHIFa3AAYBArpOlAvoNtuZ7AG2DUfgeT6YQBrptBa8OhNZWz7Z+RqsqxAn4n5uQ46ka8yHHWReAA5BmA/AdwJACNOiCYWQciKz9e8AoDCDuB/x0AAAAASUVORK5CYII=","palette":{"B":"#3b2219","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","s":"#d3e0f2","w":"#fbfbff"},"rows":["................................","..................k.............","...........k..k..kwk..k.........","..........kwkkwk.kbk.kwk........","...k......kbkkbkkwk..kbk.....k..","..kbk....kwk..kwkbk.kwk.....kbk.","...kbk...kbk..kbwk..kbk....kbk..","....kbk..kbk...kbwk..kwk..kbk...",".....kwkkwk....kbbk..kbk.kwk....",".....kbkkbk....kbbk...kwkkbk....","......kwkbk....kbbk...kbkwk.....","..k...kbwk.....kbbk....kwbk...k.",".kbk...kbwk....kbbk...kwbbk..kbk","..kbkkkkbbwk...kbbk..kwbbkkkkbk.","...kbbbkkbbwk..kbbk.kwbbbbbbbk..","....kkkbbbbbwk.kbbkkwbbbkkkkk...",".......kkkkbbkkkbbkkbbbk........","..........kbbwwwbBkwbbk.........","...........kbbssbBwbbk..........","............kbnbbBbbk...........",".............knbbBbk............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBkk............","...........kkwwwwwwwkk..........","..........ksssssssssssk.........","...........kkkkkkkkkkk.........."]},"oak_autumn_32":{"key":"oak_autumn_32","name":"tree_oak_autumn_32","id":"nature/tree/oak_autumn_32","label":"Chêne – automne (rouge-orangé)","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAG1BMVEUAAAAaFCOyOixuHyTgeCrzw0pqQSg7Ihmcazx2Q9IkAAAAAXRSTlMAQObYZgAAALlJREFUeNrVk0kOBCEIRWUQ+/4n7ogCzr3uvzCp8IQPUimNAlW6CrCKjoReRWZWYs/T73JWYs/jd9mBiajxbAQi8kpoggYQuigIqxAArQCyubD8I6AtmAvPFQRwZnQX1gY50Q0Y0OrXoArCYT3NxwJYWzGNGaifamOexgAQRpUD0IhJAfQ+r4BPiob+NNTOGDWdNTznj7gRYNrifScTSCl1G6/LDR+R8lj7vwBARKQIPONS5EHA/v9/ATBxBm3ay7yPAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","R":"#6e1f24","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","y":"#f3c34a"},"rows":[".............kkkkkk.............","............krrrrrRk............",".......kkkkkrooorrrRkkkkk.......","......krrrrrRoyoorrrrrrrRk......",".....krooorrrRooorrrrrrrrRk.....","....krooyoorrrRoorrrorrrrrRk....","....krooooorrrRRrrrrrrrrrrRRk...","....krooorrrrrRRrrrrrrRrrrRRk...","....krrorooorrrRrorrrrrRrrRRk...","...krrrrooyoorrrooorrrrrRrrRRk..","..koyorrooooorrroorrrrrrRRrrRRk.",".krooorrooooorrrrrRrrrrrRRRRRRRk",".krooorrrooorooorrrRrrrrRRRRRRRk",".krrrrrrrrRrooyoorrrRrrrRRRRRRRk",".kRrrroyorrrooooorrrRRrrrRRRRRRk",".kRRrrooorrrooooorrrRRrrrRRRRRRk","..kRRrrrrrrrrrrrrrrrRRrrrRRRRRk.","...kRrrrrrrrrrrrrrrrRRrrrRRRRk..","....kRrrrrrRrrrrrrrRRRrrrRRRk...","....kRRRRRRRRRRRRRRRRRRRRRRRk...",".....kRRRRRRRRRRRRRRRRRRRRRk....","......kRRRRRkkkkkkkkkRRRRRk.....",".......kkkkk.kbBBkk..kkkkk......",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"oak_autumn_sparse_32":{"key":"oak_autumn_sparse_32","name":"tree_oak_autumn_sparse_32","id":"nature/tree/oak_autumn_sparse_32","label":"Chêne – fin d'automne, peu de feuilles","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"autumn","foliage":"sparse"},"tags":[],"png":"library/png/nature/tree/oak_autumn_sparse_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAFVBMVEUAAAAaFCPzw0rgeCpqQSicazw7IhlFKcw8AAAAAXRSTlMAQObYZgAAAK1JREFUeNrlkgEOBCEIA61y9/8nX6BdxBi9ByzJmqwMtYit1YBHOwd678PwBxi2yVDYFwJDEFbhwZQAUVU4t3MZRj8VmFEBCkfAPyifwCxGgwNpRC1Dkv6bgArUpYCqEPm0YFiAtBkS5FE88MynpALyQFdIQMcVAPM6oCawtMkK1DZiVNrNzDZUM/uYfWfl9hwIHPNOEDi/KQRwe3Phob0diDFeLoozv101FHXvB3WuBfc6l69RAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","y":"#f3c34a"},"rows":[".............kkkkk..............","............kyyyobk.............","............kyyyoobkkkk.........","...kkkkk.kkkkyyyoobooobkkkkk....","..kyyyobkooobooooobooobbooobkk..","..kyyyoobooobbooobbooobboooobbk.","..kyyyoobooobbbbbbbbbbbboooobbk.","..kooooobbbbbbkbbbkkbbbooooobbk.","..kbooobbbbbbk.kbbkkooobooobbbk.","...kbbbbooobk..kbbkkooobbbbbbk..","..kkkbbbooobbk.kbbkkooobbbbbkk..",".kooobkbooobbk.kbbkkbbbbbbooobk.",".kooobbkbbbbbk.kbbk.kbbbbbooobbk",".kooobbkbbbbk..kbbk..kbbbkooobbk",".kbbbbbkkbbbk..kbbk.kbbbbbbbbbbk","..kbbbkbbbbbbk.kbbkkbbbbkkkbbbk.","...kkk.kkkkbbkkkbbkkbbbk...kkk..","..........kbbbnbbBkbbbk.........","...........kbbnbbBbbbk..........","............kbnbbBbbk...........",".............knbbBbk............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"oak_spring_32":{"key":"oak_spring_32","name":"tree_oak_spring_32","id":"nature/tree/oak_spring_32","label":"Chêne – printemps en fleurs","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"oak","season":"spring","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_spring_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAIVBMVEUAAAAaFCMuejofSixarkWl11r/s8/kappqQSg7IhmcazwgCPdoAAAAAXRSTlMAQObYZgAAANxJREFUeNrVk9kOhDAIRWUR6Pz/B0/K0lbr+D7XxGg4hQvicawC1/FTgF30SPhRZGYn9jx5lk8n9jwgeZYHcCEAWc4iEJHvhBcPgHCIJlHuClCkO4BcHaCgihMT8BY4O+icepZBAJ+Mw0XFpRMC00ABGUMlF0yH/R5PGnYnUG2lj+pBCuivbiPKqCjRSOEAYeaWiOMVCGLK++t1Ku5FNJyNIXudZVIq/aIRzwxz1KSk4fqi5XPSk9aVCQJKWzx38gBrrW/jz+WGj1l7Wfu/AMDMrBm8xq3ZCwH7//8FGcYHfLa+yXYAAAAASUVORK5CYII=","palette":{"B":"#3b2219","G":"#1f4a2c","L":"#a5d75a","Z":"#ffb3cf","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c","z":"#e46a9a"},"rows":[".............kkkkkk.............","............kgggggGk............",".......kkkkkglllgggGkkkkk.......","......kgggggGlLllgggggggGk......",".....kZlllgggGlllggggggggGk.....","....kglZLllgggGllggglgggggGk....","....kglllllgggGGggggggggggGGk...","....kglllgggggGGggggzgGgggGGk...","....kgglglllgggGgZgzZzgGggGGk...","...kggggllLllggglllgzgggzggGGk..","..klLlgglllllgggllgzgggzZzggGZk.",".kglllgglllllgggggzZzgggzGGGGGGk",".kglllggglllglllgggzggggGGGGGGGk",".kggggggggGgllLllgzgGgggGGZGGGGk",".kGggglLlggglllllzZzGGgggGGGGGGk",".kGGgglllgggZlllzZzgGGgggGGGGGGk","..kGGggggggggggggzggGGgzgGGGGGk.","...kGgzgzgggggggggggGGzZzGGGGk..","....kzZzZzZGgggggggGGGgzgGGGk...","....kGzGzGZGGGGGGGGGGGGGGGGGk...",".....kGGGGGGGGGGGGGGGGGGGGGk....","......kGGGGGkkkkkkkkkGGGGGk.....",".......kkkkk.kbBBkk..kkkkk......",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"apple_32":{"key":"apple_32","name":"tree_apple_32","id":"nature/tree/apple_32","label":"Pommier avec pommes","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"apple","season":"summer","foliage":"full"},"tags":["fruit"],"png":"library/png/nature/tree/apple_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJFBMVEUAAAAaFCMuejofSixarkWl11rgeCqyOixuHyRqQSg7IhmcazxolhUMAAAAAXRSTlMAQObYZgAAANFJREFUeNrVk90ShCAIheMnEff933cHEsVsu99z0eTwgQei48gC1/FTgCZ6JDwVmdmJvU7P5dOJvc7I5QEshMXPIBCREYtkwgtcAPV8AyYRN0yApK4AcrjATmICvIVwMWpNAvhkHC6iDRpENxCA5zrggunQnv5W5A7EZLoPqbQCdnQb6zQSQEXGLQkoRbpLm8qiCxCp0SeFswWgNClCK0IjTv4p0qjpLqm5wBOxxoOA0BbvO3mAtmbb+HO54aPaXtb+LwBQVW0Kr3Ft+kLA/v9/AaJVB2gwSJaWAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","G":"#1f4a2c","L":"#a5d75a","R":"#6e1f24","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c"},"rows":[".............kkkkkk.............","............kgggggGk............",".......kkkkkglllgggGkkkkk.......","......kgggggGlLllgggggggGk......",".....kglllgggGlllggggggggGk.....","....kgllLllgggGllggglggorgGk....","....kglllllgggGGgggggggorgGGk...","....kglllgggggGGggggggGrRgGGk...","....kgglglllgggGglgggggGggGGk...","...kggggllLllggglllgggggGggGGk..","..klLlgglllllgggllggggggGGggGGk.",".kglllgglllllgggggGgggggGGGGGGGk",".kglllggglllglllggorggggGGGGGGGk",".kggggggggGgllLllgrRGgggGGGGGGGk",".kGggglLlggglllllgggGGgggGGGGGGk",".kGGorlllggglllllgggGGgggGoorGGk","..kGrRggggggggggggggGGgggGrrRGk.","...kGggorgggggggggggGGgggGGGGk..","....kGgrRggGgggggggGGGorgGGGk...","....kGGGGGGGGGGGGGGGGGrRGGGGk...",".....kGGGGGGGGGGGGGGGGGGGGGk....","......kGGGGGkkkkkkkkkGGGGGk.....",".......kkkkk.kbBBkk..kkkkk......",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............",".............knbbBk.............","............kbbbbBbk............","...........kbbbbbBbbk...........","............kkkkkkkk............"]},"pine_32":{"key":"pine_32","name":"tree_pine_32","id":"nature/tree/pine_32","label":"Sapin","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGFBMVEUAAAAaFCM0hGghXk8WOjdirXxqQSg7IhnCk1lYAAAAAXRSTlMAQObYZgAAAKRJREFUeNqFk9sSgCAIRF0h/P8/brAsQcR8aJo9sccupbgDJT9QcciJcAAYhwEZgXopsCf6gGTEyLcjUJlYG7ZAz5VA1qAV4YhnC3uLcf87YiVew2EZAF9OPcfeIOyYDAZgCJsHBCrIOThPgC9vmVSwr/AKnjBbnIFBWMVAE9NjtjliA9exGvx5J9TgX0JNzzxbYF4izVwvL70DyZ8lIi0nAPep3KLrBcddJCdsAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","b":"#6a4128","e":"#348468","k":"#1a1423","p":"#215e4f"},"rows":["................k...............","...............kek..............","..............keppk.............","..............kepPk.............",".............kepppPk............","............keEpppPPk...........","............kepppppPk...........","...........kepppppPPPk..........","...........kePpPpPPkPk..........","...........kPpPpPpPPkk..........","..........keppppppPPPPk.........",".........keEppppppppPPPk........","........kepppppppppPPPPPk.......","........kePpPpPpPpPPkPkPk.......","........kPpPpPpPpPpkPkPkk.......",".......keEppppppppppPPPPPk......","......keppppppppppppPPPPPPk.....",".....keppppppppppppppPPPPPPk....",".....kekpPpPpPpPpPpkPkPkPkPk....","......kkPEPpPpPpPpPpkPkPkkk.....",".....kepppppppppppppPPPPPPPk....","....kepppppppppppppppPPPPPPPk...","...keEpppppppppppppppPPPPPPPPk..","...kekpPpPpPpPpPpPpPpkPkPkPkPk..","...kkePpPpPpPpPpPpPpkPkPkPkPkk..","..keppppppppppppppppppPPPPPPPPk.",".keEpppppppppppppppppPPPPPPPPPPk",".kekpkpkpkpkpkpbpBpkpkPkPkPkPkPk","..k.k.k.k.k.k.kbbBk.k.k.k.k.k.k.","..............kbbBk.............",".............kbbbBBk............","..............kkkkk............."]},"pine_snow_32":{"key":"pine_snow_32","name":"tree_pine_snow_32","id":"nature/tree/pine_snow_32","label":"Sapin enneigé","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":["snow"],"png":"library/png/nature/tree/pine_snow_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAIVBMVEUAAAAaFCP7+/80hGghXk/T4PIWOjdirXyPo8dqQSg7IhlxbKu1AAAAAXRSTlMAQObYZgAAAMJJREFUeNp90lsOhTAIBFCnDljd/4Jv2ttC3/BhopNyRK9rKFznQjgncAfifAAFxwNIKg7PnxTYJxDIwP0QhFwiuwREU0fEXUCZW4H9K2Tkmpl2xKJcJYqwKBfOIqzK2VmFVEIxO/9LpDMHBW4aMVBFVbpEIzRl54Q0RkHE5AT0GZVYLLFFtsyeaEpLDERXVmZPXDCB24GG9HWin18+pytmgRuyIgm8X/nSNbYKeAPv+6UVeXfbtBHLnxLS1jLRlt39AWbqB4lKJuABAAAAAElFTkSuQmCC","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","S":"#8fa3c7","b":"#6a4128","e":"#348468","k":"#1a1423","p":"#215e4f","s":"#d3e0f2","w":"#fbfbff"},"rows":["................k...............","...............kwk..............","..............kewpk.............","..............kwpsk.............",".............kepppPk............","............keEpppPPk...........","............kwppwppsk...........","...........kwwwwwwsssk..........","...........ksPsPsPSkSk..........","...........kPpPpPpPPkk..........","..........keppppppPPPPk.........",".........kewppwppwppsPPk........","........kwwwwwwwwwwsssssk.......","........ksPsPsPsPsPSkSkSk.......","........kPpPpPpPpPpkPkPkk.......",".......keEppppppppppPPPPPk......","......kepwppwppwppwpPsPPsPk.....",".....kwwwwwwwwwwwwwwsssssssk....",".....ksksPsPsPsPsPskSkSkSkSk....","......kkPEPpPpPpPpPpkPkPkkk.....",".....kepppppppppppppPPPPPPPk....","....kepwppwppwppwppwpPsPPsPPk...","...kwwwwwwwwwwwwwwwwwssssssssk..","...ksksPsPsPsPsPsPsPskSkSkSkSk..","...kkePpPpPpPpPpPpPpkPkPkPkPkk..","..kwppwppwppwppwppwppsPPsPPsPPk.",".kwwwwwwwwwwwwwwwwwwwssssssssssk",".ksksksksksksksbsBskskSkSkSkSkSk","..k.k.k.k.k.kkkbbBkkk.k.k.k.k.k.","..........kkwwwwwwwwwkk.........",".........ksssssssssssssk........","..........kkkkkkkkkkkkk........."]},"birch_32":{"key":"birch_32","name":"tree_birch_32","id":"nature/tree/birch_32","label":"Bouleau – été","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"birch","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/birch_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAG1BMVEUAAAAaFCNarkUuejql11ovLTzDwtT7+/9XVnDd+HLsAAAAAXRSTlMAQObYZgAAAKNJREFUeNql09EShCAIBVABif7/i3dQGU0QH5ZXTnQ1KuVToFXOBYhIdBZQa00EADagAo7jFcRDbDweXmPj9fEazehgZIgBovZNXAA50CMuYBMWcQQll2I5A9orNjBbMSCbT+OeHCD8xNhBEzvYzknjInCk8B9jxgj7SwyXcIqlwo259NtK926y2EDZUitgfnIgcgWcg/c6gfmvDCAiTy7c7/8DQpgEl8VmlisAAAAASUVORK5CYII=","palette":{"C":"#c3c2d4","L":"#a5d75a","d":"#2f2d3c","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","m":"#575670","w":"#fbfbff"},"rows":["..............kkkkk.............",".............klllggk............","............kLLLllggk...........","..........kklLLLlllggkk.........",".........klllggLlllllggk........","........kLLLllgglLLLllggk.......",".......klLLLllllllgLlllggk......",".......klLLLlLLLlllglllggk......",".......kllllLLLLLlllgllggk......",".......kllllLLLLLlllgglggk......","......kLLLllLLLLLlllggllggk.....",".....klLLLlllLLLllllgglllggk....",".....klLLLllllllllllgglggggk....",".....kllllllllggllllgglggggk....",".....kglllLLLllgLLLllggggggk....",".....kggllLLLlllLLLlllgggggk....","......kgglLLLlllLLLlllggggk.....",".......kgllllLLLlgllllgggk......","........kglllLLLllgllgggk.......","........kggllLLLllggggggk.......",".........kgggggggggggggk........","..........kgggggggggggk.........","...........kkkgggggkkk..........","..............kgggk.............","..............kddCk.............","..............kwwCk.............","..............kwwdk.............","..............kmwCk.............","..............kwddk.............","..............kwwCk.............",".............kwwwCCk............","..............kkkkk............."]},"birch_autumn_32":{"key":"birch_autumn_32","name":"tree_birch_autumn_32","id":"nature/tree/birch_autumn_32","label":"Bouleau – automne doré","kind":"sprite","w":32,"h":32,"size":32,"props":{"species":"birch","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/birch_autumn_32.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAG1BMVEUAAAAaFCPzw0rgeCr/8KgvLTzDwtT7+/9XVnAcTK3UAAAAAXRSTlMAQObYZgAAAKNJREFUeNql09EShCAIBVABif7/i3dQGU0QH5ZXTnQ1KuVToFXOBYhIdBZQa00EADagAo7jFcRDbDweXmPj9fEazehgZIgBovZNXAA50CMuYBMWcQQll2I5A9orNjBbMSCbT+OeHCD8xNhBEzvYzknjInCk8B9jxgj7SwyXcIqlwo259NtK926y2EDZUitgfnIgcgWcg/c6gfmvDCAiTy7c7/8DQpgEl8VmlisAAAAASUVORK5CYII=","palette":{"C":"#c3c2d4","Y":"#fff0a8","d":"#2f2d3c","k":"#1a1423","m":"#575670","o":"#e0782a","w":"#fbfbff","y":"#f3c34a"},"rows":["..............kkkkk.............",".............kyyyook............","............kYYYyyook...........","..........kkyYYYyyyookk.........",".........kyyyooYyyyyyook........","........kYYYyyooyYYYyyook.......",".......kyYYYyyyyyyoYyyyook......",".......kyYYYyYYYyyyoyyyook......",".......kyyyyYYYYYyyyoyyook......",".......kyyyyYYYYYyyyooyook......","......kYYYyyYYYYYyyyooyyook.....",".....kyYYYyyyYYYyyyyooyyyook....",".....kyYYYyyyyyyyyyyooyooook....",".....kyyyyyyyyooyyyyooyooook....",".....koyyyYYYyyoYYYyyooooook....",".....kooyyYYYyyyYYYyyyoooook....","......kooyYYYyyyYYYyyyooook.....",".......koyyyyYYYyoyyyyoook......","........koyyyYYYyyoyyoook.......","........kooyyYYYyyooooook.......",".........koooooooooooook........","..........koooooooooook.........","...........kkkoooookkk..........","..............koook.............","..............kddCk.............","..............kwwCk.............","..............kwwdk.............","..............kmwCk.............","..............kwddk.............","..............kwwCk.............",".............kwwwCCk............","..............kkkkk............."]},"oak_summer_48":{"key":"oak_summer_48","name":"tree_oak_summer_48","id":"nature/tree/oak_summer_48","label":"Grand chêne – été (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"oak","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_summer_48.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAG1BMVEUAAAAaFCMuejofSixarkWl11o7IhlqQSicazx2tv1ZAAAAAXRSTlMAQObYZgAAAT9JREFUeNrdldmOxSAIhotQOe//xCeiLFK7TTLJZLhojOWTn6V221YGYttTAyjN8CkChZoJcnt0s+4/iCttqoTICLzSFpQQ7WM5bKVtUmKrCwKikgOBB6IH2GOI0lZ0FsIU+bk4acqEAv31iFP0cQqMQok2c8YF0NpV1J+8vk7g1IzUsQOQ+wdDsxZKc1DPnIe3eC4TOmAG6r/TOHglqTUyAxSAOCOYIjQiDlH0j4VNQHHlPts6VSmLDpRxsBxJNlQUCxQA1Gnw2p5nIVljd9un2jpAAZBGgAr1yTysJ2AmYv19Pfnb538Ro7tDmr5bIIwrvgSMsBTzGvMXhPc2f6Pw0r9Vqm9LNapcqRV0B5e3Zb935clVLOzc3OIfZub64o/y4foPAOb6x4D6A4B/F3g3GsBileGVf+vdU8Js8fILBH0O7WI9kXoAAAAASUVORK5CYII=","palette":{"B":"#3b2219","G":"#1f4a2c","L":"#a5d75a","b":"#6a4128","g":"#2e7a3a","k":"#1a1423","l":"#5aae45","n":"#9c6b3c"},"rows":[".....................kkkkkk.....................","...................kkgggggGkk...................","..................kglllllgggGk..................","............kkkkkkglllllllgggGkkkkkk............","..........kkgggggGlllllllllggGgggggGkk..........",".........kglllllgggGllLllllggggggggggGk.........","........kglllllllgggGllllllgggggggggggGk........","........klllllllllggGGllllllggggggggggGGk.......",".......kgllllLllllgggGllllglggglgggggggGk.......",".......kglllllllllggggggggGlgggggggggggGGk......",".......kgllllllgggggglllgggGggggGggggggGGk......",".......kgllllglllllgllLllgggGgggggGggggGGk......",".....kkkggllgllllllglllllgggGGgggggGgggGGkk.....","....kgggggGllllllllglllllgggGGgggggGGgggggGkk...","...kglllggggllllLllgglllggggGGggggggGggggggGGk..","..kglllllggglllllllgggggggGgGGggggggGGGGGGGGGGk.",".kglllLlllgglllllllglllllgggGGggggggGGlGGGGGGGk.",".kglllllllggllllllglllllllgggGGgggggGGGGGGGGGGGk",".kglllllllgggllllglllllllllgggGgggggGGGGGGGGGGGk",".kgglllllgggggGlllllllllllllggGGggggggGGGGGGGGGk",".kggglllglllgggGglllllLlllllgggGggggggGGGGGGGGGk",".kGggggglllllgggglllllllllllgggGGgggggGGGGGGGGGk","..kGggglllLlllggglllllllllllgggGGglgggGGGGGGGGk.","..kGGggggggggggggggGGggggggggggGGgggggGGGGGGGGk.","...kGGgggggggggglgggGGgggggglgggGGggggGGGGGGGk..","....kkgggggggggggggggGGggggggggggGGgggGGGGGkk...",".....kgggggggggggggggGGggggggggggGGgggGGGGGk....",".....kGggggggggggggggGGggggggggggGGgggGGGGGk....","......kGggggggGgggggGGGgggGgggggGGGgggGGGGk.....","......kGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGk.....",".......kGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGk......","........kkGGGGGkGGGkkBkkkkkBkGGGGkGGGGGkk.......","..........kkkkk.kkkkkbBBBBBBkkkkk.kkkkk.........","....................knbbbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbbbBBk....................","....................knbbbBBk....................","....................knbbbBBk....................","....................knBbbBBk....................","....................knBbbbBk....................","....................knBbbbBk....................","....................knbbbbBk....................","...................kbbbbbbBbk...................","..................kbbbbbbbBbbk..................","...................kkkkkkkkkk..................."]},"oak_autumn_48":{"key":"oak_autumn_48","name":"tree_oak_autumn_48","id":"nature/tree/oak_autumn_48","label":"Grand chêne – automne (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"oak","season":"autumn","foliage":"full"},"tags":[],"png":"library/png/nature/tree/oak_autumn_48.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAG1BMVEUAAAAaFCOyOixuHyTgeCrzw0o7IhlqQSicazwSzcekAAAAAXRSTlMAQObYZgAAAT9JREFUeNrdldmOxSAIhotQOe//xCeiLFK7TTLJZLhojOWTn6V221YGYttTAyjN8CkChZoJcnt0s+4/iCttqoTICLzSFpQQ7WM5bKVtUmKrCwKikgOBB6IH2GOI0lZ0FsIU+bk4acqEAv31iFP0cQqMQok2c8YF0NpV1J+8vk7g1IzUsQOQ+wdDsxZKc1DPnIe3eC4TOmAG6r/TOHglqTUyAxSAOCOYIjQiDlH0j4VNQHHlPts6VSmLDpRxsBxJNlQUCxQA1Gnw2p5nIVljd9un2jpAAZBGgAr1yTysJ2AmYv19Pfnb538Ro7tDmr5bIIwrvgSMsBTzGvMXhPc2f6Pw0r9Vqm9LNapcqRV0B5e3Zb935clVLOzc3OIfZub64o/y4foPAOb6x4D6A4B/F3g3GsBileGVf+vdU8Js8fILBH0O7WI9kXoAAAAASUVORK5CYII=","palette":{"B":"#3b2219","R":"#6e1f24","b":"#6a4128","k":"#1a1423","n":"#9c6b3c","o":"#e0782a","r":"#b23a2c","y":"#f3c34a"},"rows":[".....................kkkkkk.....................","...................kkrrrrrRkk...................","..................krooooorrrRk..................","............kkkkkkrooooooorrrRkkkkkk............","..........kkrrrrrRooooooooorrRrrrrrRkk..........",".........krooooorrrRooyoooorrrrrrrrrrRk.........","........krooooooorrrRoooooorrrrrrrrrrrRk........","........kooooooooorrRRoooooorrrrrrrrrrRRk.......",".......krooooyoooorrrRoooororrrorrrrrrrRk.......",".......krooooooooorrrrrrrrRorrrrrrrrrrrRRk......",".......kroooooorrrrrrooorrrRrrrrRrrrrrrRRk......",".......kroooorooooorooyoorrrRrrrrrRrrrrRRk......",".....kkkrrooroooooorooooorrrRRrrrrrRrrrRRkk.....","....krrrrrRoooooooorooooorrrRRrrrrrRRrrrrrRkk...","...krooorrrrooooyoorrooorrrrRRrrrrrrRrrrrrrRRk..","..krooooorrrooooooorrrrrrrRrRRrrrrrrRRRRRRRRRRk.",".kroooyooorrooooooorooooorrrRRrrrrrrRRoRRRRRRRk.",".krooooooorroooooorooooooorrrRRrrrrrRRRRRRRRRRRk",".krooooooorrroooorooooooooorrrRrrrrrRRRRRRRRRRRk",".krrooooorrrrrRooooooooooooorrRRrrrrrrRRRRRRRRRk",".krrrooorooorrrRroooooyooooorrrRrrrrrrRRRRRRRRRk",".kRrrrrrooooorrrrooooooooooorrrRRrrrrrRRRRRRRRRk","..kRrrroooyooorrrooooooooooorrrRRrorrrRRRRRRRRk.","..kRRrrrrrrrrrrrrrrRRrrrrrrrrrrRRrrrrrRRRRRRRRk.","...kRRrrrrrrrrrrorrrRRrrrrrrorrrRRrrrrRRRRRRRk..","....kkrrrrrrrrrrrrrrrRRrrrrrrrrrrRRrrrRRRRRkk...",".....krrrrrrrrrrrrrrrRRrrrrrrrrrrRRrrrRRRRRk....",".....kRrrrrrrrrrrrrrrRRrrrrrrrrrrRRrrrRRRRRk....","......kRrrrrrrRrrrrrRRRrrrRrrrrrRRRrrrRRRRk.....","......kRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRk.....",".......kRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRk......","........kkRRRRRkRRRkkBkkkkkBkRRRRkRRRRRkk.......","..........kkkkk.kkkkkbBBBBBBkkkkk.kkkkk.........","....................knbbbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbBbbBk....................","....................knbbbBBk....................","....................knbbbBBk....................","....................knbbbBBk....................","....................knBbbBBk....................","....................knBbbbBk....................","....................knBbbbBk....................","....................knbbbbBk....................","...................kbbbbbbBbk...................","..................kbbbbbbbBbbk..................","...................kkkkkkkkkk..................."]},"pine_48":{"key":"pine_48","name":"tree_pine_48","id":"nature/tree/pine_48","label":"Grand sapin (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"pine","season":"summer","foliage":"full"},"tags":[],"png":"library/png/nature/tree/pine_48.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAG1BMVEUAAAAaFCM0hGghXk8WOjdirXycazxqQSg7Ihk7alPyAAAAAXRSTlMAQObYZgAAAPlJREFUeNq1ldESgyAMBDkTxf//4k7RAoEEkofCi9NmTW6VMSVjIcUWDgTriRAEGMEGEQLH+QXcRLl/hHgB9gLPQAECB1PZDCfQ1SMykXemn6NS7wBavY/oBir1W6IqIiYw9qLA50DAncAzk6zfE33iVm8T4/0bAvMcE4hp8mS3EFabVzMEjNBwZt6lVjIviVW9RszzSAR7p0xoXrUWkE7rMS1vIJJrpkUGaJlFBmwVyRayiaFoQLBWNGmSLZKiqNc0voLYPbchtZXZyABffW2yUDQjTZHcF2W6n2ueRWHeV875Vn43z+oL+D+j/wdyDCj1+Y4Qz9L++gABHAxj2zaW3QAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","b":"#6a4128","e":"#348468","k":"#1a1423","n":"#9c6b3c","p":"#215e4f"},"rows":["........................k.......................",".......................kek......................","......................keppk.....................","......................kepPk.....................",".....................kepppPk....................","....................keEpppPPk...................","...................keppppppPPk..................","...................kepppppPPPk..................","..................keEppppppPPPk.................","..................kePpPpPpPPkPk.................","..................kPpPpPpPPkPkk.................",".................keEppppppppPPPk................",".................keppppppppPPPPk................","................keppppppppppPPPPk...............","...............keEpppppppppPPPPPPk..............","...............kePpPpPpPpPpkPkPkPk..............","...............kPEPpPpPpPpPpkPkPkk..............","..............keppppppppppppPPPPPPk.............",".............keppppppppppppppPPPPPPk............","............keEpppppppppppppPPPPPPPPk...........","...........kepppppppppppppppppPPPPPPPk..........","...........kekpkpPpPpPpPpPpPpkPkPkPkPk..........","............k.kePpPpPpPpPpPpkPkPkPk.k...........","............kkeppppppppppppppPPPPPPkk...........","...........keEpppppppppppppppPPPPPPPPk..........","..........keppppppppppppppppppPPPPPPPPk.........",".........keppppppppppppppppppPPPPPPPPPPk........","........keEppppppppppppppppppppPPPPPPPPPk.......","........kekpkpPpPpPpPpPpPpPpkpkPkPkPkPkPk.......",".........kkkePpPpPpPpPpPpPpPpPPkPkPkPkkk........",".........keEpppppppppppppppppPPPPPPPPPPk........",".......kkepppppppppppppppppppppPPPPPPPPPkk......","......keppppppppppppppppppppppPPPPPPPPPPPPk.....",".....keEppppppppppppppppppppppppPPPPPPPPPPPk....",".....kekpkpPpPpPpPpPpPpPpPpPpkpkPkPkPkPkPkPk....","......k.kePpPpPpPpPpPpPpPpPpPpPPkPkPkPkPk.k.....","......kkeEppppppppppppppppppppPPPPPPPPPPPkk.....",".....kepppppppppppppppppppppppppPPPPPPPPPPPk....","...kkepppppppppppppppppppppppppPPPPPPPPPPPPPkk..","..keEppppppppppppppppppppppppppppPPPPPPPPPPPPPk.","..kekpkpkpkpkpkpkpkpkpnpbpBpkpkpkPkPkPkPkPkPkPk.","...k.k.k.k.k.k.k.k.k.knbbbBk.k.k.k.k.k.k.k.k.k..",".....................knbbbBk....................",".....................knbbbBk....................",".....................knbbbBk....................",".....................kbbbbBk....................","....................kbbbbbBBk...................",".....................kkkkkkk...................."]},"pine_snow_48":{"key":"pine_snow_48","name":"tree_pine_snow_48","id":"nature/tree/pine_snow_48","label":"Grand sapin enneigé (48 px)","kind":"sprite","w":48,"h":48,"size":48,"props":{"species":"pine","season":"winter","foliage":"full"},"tags":["snow"],"png":"library/png/nature/tree/pine_snow_48.png","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAJFBMVEUAAAAaFCP7+/80hGghXk/T4PIWOjdirXyPo8ecazxqQSg7IhmR2HwAAAAAAXRSTlMAQObYZgAAASxJREFUeNqV1VESgyAMBFBXk0jt/e/bQVEJISWAHx2H1e4b1GVxBpa5gXUugW0lzN2AGFM3ICLBxPo9B8KJ8/ozidyYVhIOBrBeg5ljxcFyzYQUCwidUyBAmKi0jrS4jc71gUAhygdLAOomupmGUA8RCyNhDAXZCxIJYQz1Nr5b/++t148T2PaHKB9ZKR8ICNVOrhQ4T7FOrhQWbK9RURL4bxA4pTHedirgtW4vP0pUu87Cdpysae3akbWmks8kXxbQps9jeu5ARIzezp3W6BnVkeYeXaJaqYHqE2kmBdUjMkwKqt12hqndgugZKSbd2iHyIkCfqLzzDZRP1DIVqItIzw8f/L1+JwsFOz/HcXw7591ntQTin9GpAIASQOALBGi0UQZsB4b/pxl6wQ+MHRBW/2PEaAAAAABJRU5ErkJggg==","palette":{"B":"#3b2219","E":"#62ad7c","P":"#163a37","S":"#8fa3c7","b":"#6a4128","e":"#348468","k":"#1a1423","n":"#9c6b3c","p":"#215e4f","s":"#d3e0f2","w":"#fbfbff"},"rows":["........................k.......................",".......................kwk......................","......................kewpk.....................","......................kwpsk.....................",".....................kepppPk....................","....................keEpppPPk...................","...................keppppppPPk..................","...................kewppwpPsPk..................","..................kwwwwwwwssssk.................","..................ksPsPsPsPSkSk.................","..................kPpPpPpPPkPkk.................",".................keEppppppppPPPk................",".................keppppppppPPPPk................","................kewppwppwppsPPsPk...............","...............kwwwwwwwwwwwssssssk..............","...............ksPsPsPsPsPskSkSkSk..............","...............kPEPpPpPpPpPpkPkPkk..............","..............keppppppppppppPPPPPPk.............",".............keppppppppppppppPPPPPPk............","............keEwppwppwppwppwPPsPPsPPk...........","...........kwwwwwwwwwwwwwwwwwssssssssk..........","...........ksksksPsPsPsPsPsPskSkSkSkSk..........","............k.kePpPpPpPpPpPpkPkPkPk.k...........","............kkeppppppppppppppPPPPPPkk...........","...........keEpppppppppppppppPPPPPPPPk..........","..........keppppppppppppppppppPPPPPPPPk.........",".........kewppwppwppwppwppwppwPPsPPsPPsk........","........kwwwwwwwwwwwwwwwwwwwwwssssssssssk.......","........ksksksPsPsPsPsPsPsPskskSkSkSkSkSk.......",".........kkkePpPpPpPpPpPpPpPpPPkPkPkPkkk........",".........keEpppppppppppppppppPPPPPPPPPPk........",".......kkepppppppppppppppppppppPPPPPPPPPkk......","......kewppwppwppwppwppwppwppwPPsPPsPPsPPsk.....",".....kwwwwwwwwwwwwwwwwwwwwwwwwwssssssssssssk....",".....ksksksPsPsPsPsPsPsPsPsPskskSkSkSkSkSkSk....","......k.kePpPpPpPpPpPpPpPpPpPpPPkPkPkPkPk.k.....","......kkeEppppppppppppppppppppPPPPPPPPPPPkk.....",".....kepppppppppppppppppppppppppPPPPPPPPPPPkk...","...kkwppwppwppwppwppwppwppwppwpPsPPsPPsPPsPPsk..","..kwwwwwwwwwwwwwwwwwwwwwwwwwwwwwssssssssssssssk.","..ksksksksksksksksksksnsbsBskskskSkSkSkSkSkSkSk.","...k.k.k.k.k.k.k.k.k.knbbbBk.k.k.k.k.k.k.k.k.k..",".....................knbbbBk....................",".....................knbbbBk....................","..................kkkknbbbBkkkk.................","...............kkkwwwwwwwwwwwwwkkk..............","..............ksssssssssssssssssssk.............","...............kkkkkkkkkkkkkkkkkkk.............."]}}}},"sources":{"characters/slime":"include(\"../_palette.px.js\")\n\nconst meta = {\n  title: \"Slime\",\n  description: \"Petit monstre gélatineux animé (respiration en 4 images de 200 ms : écrasement / étirement), en plusieurs couleurs, plus une version immobile et un roi slime couronné.\",\n  tags: [\"slime\", \"monster\", \"enemy\", \"character\", \"rpg\", \"animated\", \"cute\"],\n  variants: {\n    green_idle: { label: \"Slime vert – animation repos\", props: { color: \"green\", state: \"idle\" } },\n    blue_idle: { label: \"Slime bleu – animation repos\", props: { color: \"blue\", state: \"idle\" } },\n    red_idle: { label: \"Slime rouge – animation repos\", props: { color: \"red\", state: \"idle\" } },\n    purple_idle: { label: \"Slime violet – animation repos\", props: { color: \"purple\", state: \"idle\" } },\n    green_hurt: { label: \"Slime vert – touché\", props: { color: \"green\", state: \"hurt\" } },\n    king_32: { label: \"Roi slime couronné (32 px)\", props: { color: \"green\", state: \"idle\" }, tags: [\"boss\"] },\n  },\n}\n\n// Corps en vert (G ombre, g corps, l reflet, L brillance) ; les autres couleurs sont des swaps.\nconst COLORS = {\n  blue: { G: \"U\", g: \"u\", l: \"i\", L: \"I\" },\n  red: { G: \"R\", g: \"r\", l: \"o\", L: \"y\" },\n  purple: { G: \"V\", g: \"v\", l: \"x\", L: \"Z\" },\n}\n\n// Un slime : dôme posé au sol. squash > 0 = écrasé (plus large), \u003c 0 = étiré (plus haut).\nconst body = (cx, ground, rx, ry, squash = 0, eyes = \"open\") => (c) => {\n  const w = rx + squash, h = ry - squash\n  const top = ground - h * 2 + 1\n  c.ellipse(cx, ground - h + 1, w, h, \"g\")\n  c.rect(cx - w, ground - Math.floor(h / 2), w * 2 + 1, Math.floor(h / 2) + 1, \"g\")\n  // ombre en bas et à droite\n  c.recolor({ g: \"G\" }, (x, y) => y >= ground - 1 || (x - cx) / w + (y - top) / (h * 2) > 1.25)\n  // reflets\n  c.px(cx - w + 2, top + 2, \"L\"); c.px(cx - w + 2, top + 3, \"l\"); c.px(cx - w + 3, top + 1, \"l\")\n  // yeux\n  const ey = ground - h + 1\n  if (eyes === \"open\") {\n    c.rect(cx - 3, ey - 1, 2, 3, \"k\"); c.rect(cx + 2, ey - 1, 2, 3, \"k\")\n    c.px(cx - 3, ey - 1, \"w\"); c.px(cx + 2, ey - 1, \"w\")\n  } else {\n    c.line(cx - 4, ey - 1, cx - 2, ey + 1, \"k\"); c.line(cx - 4, ey + 1, cx - 2, ey - 1, \"k\")\n    c.line(cx + 2, ey - 1, cx + 4, ey + 1, \"k\"); c.line(cx + 2, ey + 1, cx + 4, ey - 1, \"k\")\n  }\n}\n\nconst SQUASH = [0, 1, 0, -1]\nconst idle = (name, swap) => anim(name, { w: 13, h: 13, frames: 4, fps: 5, outline: \"k\", ...(swap ? { swap } : {}) },\n  (c) => body(6, 12, 5, 5, SQUASH[c.frame])(c))\n\nidle(\"slime_green_idle\")\nfor (const [color, swap] of Object.entries(COLORS)) idle(`slime_${color}_idle`, swap)\n\n// Touché : écrasé, yeux en croix, couleurs éclaircies (flash d'impact).\nsprite(\"slime_green_hurt\", { w: 13, h: 13, outline: \"k\" }, body(6, 12, 5, 5, 1, \"x\"),\n  recolor({ l: \"L\", g: \"l\", G: \"g\" }))\n\n// Roi : plus gros, avec une couronne dorée.\nsprite(\"_crown\", `\n  y...y...y\n  yy.yYy.yy\n  yYyyyyyYy\n  yyryyyiyy\n  ooooooooo`)\nsprite(\"slime_king_32\", { w: 30, h: 28, outline: \"k\", crop: true },\n  body(15, 27, 13, 10, 0),\n  rect(9, 15, 4, 5, \"k\"), rect(18, 15, 4, 5, \"k\"), rect(9, 15, 2, 2, \"w\"), rect(18, 15, 2, 2, \"w\"),\n  line(8, 13, 12, 14, \"G\"), line(22, 13, 18, 14, \"G\"), // sourcils froncés\n  hline(13, 22, 5, \"G\"),\n  stamp(\"_crown\", 11, 4),\n)\n\nsheet(\"slimes\", [\"slime_*\"], { pad: 2 })\n","items/potion":"include(\"../_palette.px.js\")\n\nconst meta = {\n  title: \"Potion\",\n  description: \"Fioles de potion pour inventaire ou butin : petite fiole ronde, bouteille haute et grand flacon à bulles, en plusieurs couleurs de liquide (soin, mana, poison, magie, énergie).\",\n  tags: [\"potion\", \"item\", \"loot\", \"consumable\", \"rpg\", \"inventory\", \"icon\"],\n  variants: {\n    red_small: { label: \"Petite potion rouge (soin)\", props: { liquid: \"red\", effect: \"health\", shape: \"round\" } },\n    blue_small: { label: \"Petite potion bleue (mana)\", props: { liquid: \"blue\", effect: \"mana\", shape: \"round\" } },\n    green_small: { label: \"Petite potion verte (poison)\", props: { liquid: \"green\", effect: \"poison\", shape: \"round\" } },\n    purple_small: { label: \"Petite potion violette (magie)\", props: { liquid: \"purple\", effect: \"magic\", shape: \"round\" } },\n    yellow_small: { label: \"Petite potion jaune (énergie)\", props: { liquid: \"yellow\", effect: \"stamina\", shape: \"round\" } },\n    red_bottle: { label: \"Bouteille rouge\", props: { liquid: \"red\", effect: \"health\", shape: \"bottle\" } },\n    blue_bottle: { label: \"Bouteille bleue\", props: { liquid: \"blue\", effect: \"mana\", shape: \"bottle\" } },\n    green_bottle: { label: \"Bouteille verte\", props: { liquid: \"green\", effect: \"poison\", shape: \"bottle\" } },\n    red_large: { label: \"Grand flacon rouge à bulles\", props: { liquid: \"red\", effect: \"health\", shape: \"flask\" } },\n    blue_large: { label: \"Grand flacon bleu à bulles\", props: { liquid: \"blue\", effect: \"mana\", shape: \"flask\" } },\n    purple_large: { label: \"Grand flacon violet à bulles\", props: { liquid: \"purple\", effect: \"magic\", shape: \"flask\" } },\n    empty_large: { label: \"Grand flacon vide\", props: { liquid: \"none\", effect: \"none\", shape: \"flask\" } },\n  },\n}\n\n// Le liquide est dessiné en rouge (R sombre, r moyen, o surface/reflet) ; les autres couleurs sont des swaps.\nconst LIQUID = {\n  blue: { R: \"U\", r: \"u\", o: \"i\" },\n  green: { R: \"G\", r: \"g\", o: \"l\" },\n  purple: { R: \"V\", r: \"v\", o: \"x\" },\n  yellow: { R: \"b\", r: \"o\", o: \"y\" },\n}\n// Verre : s (corps), S (ombre du verre), w (reflets). Bouchon : n / b.\n// Ombre en croissant : tout ce qui sort d'un cercle décalé vers la lumière (en haut à gauche).\nconst outside = (cx, cy, r) => (x, y) => (x - cx) ** 2 + (y - cy) ** 2 > r * r\n\n// ---------------------------------------------------------------- petite fiole ronde (16 px)\nsprite(\"potion_red_small\", { w: 13, h: 14, outline: \"k\" },\n  rect(5, 0, 3, 2, \"n\"), px(7, 1, \"b\"), px(7, 0, \"b\"),          // bouchon\n  rect(5, 2, 3, 3, \"s\"), px(7, 3, \"S\"), px(7, 4, \"S\"),           // col\n  circ(6, 9, 5, \"s\"),                                            // panse en verre\n  clip([0, 7, 13, 7], circ(6, 9, 4, \"r\")),                       // liquide sous le niveau\n  hline(3, 7, 7, \"o\"),                                           // surface\n  recolor({ r: \"R\" }, outside(5, 8, 4.5)),                       // ombre du liquide\n  recolor({ s: \"S\" }, outside(5, 8, 5.2)),                       // ombre du verre\n  vline(7, 2, 3, \"S\"),\n  px(5, 3, \"w\"), px(3, 8, \"w\"), px(2, 9, \"w\"), px(2, 10, \"w\"),   // reflets\n  px(5, 10, \"o\"), px(8, 9, \"o\"),                                 // bulles\n)\nfor (const [name, swap] of Object.entries(LIQUID))\n  sprite(`potion_${name}_small`, { base: \"potion_red_small\", swap })\n\n// ---------------------------------------------------------------- bouteille haute (24 px)\nsprite(\"potion_red_bottle\", { w: 10, h: 22, outline: \"k\" },\n  rect(3, 0, 4, 3, \"n\"), vline(6, 0, 3, \"b\"), hline(3, 3, 4, \"b\"),   // bouchon + cire\n  rect(3, 4, 4, 4, \"s\"), vline(6, 4, 4, \"S\"),                         // col\n  poly([3, 8, 7, 8, 10, 11, 10, 22, 0, 22, 0, 11], \"s\"),              // épaules + corps\n  rect(1, 11, 8, 10, \"r\"), hline(1, 11, 8, \"o\"),                      // liquide\n  rect(1, 14, 8, 4, \"N\"), hline(1, 14, 8, \"n\"), hline(1, 17, 8, \"b\"), // étiquette\n  px(3, 15, \"B\"), px(4, 16, \"B\"), px(5, 15, \"B\"), px(6, 16, \"B\"),     // motif de l'étiquette\n  recolor({ r: \"R\", N: \"n\", s: \"S\" }, (x) => x >= 7),\n  vline(1, 9, 2, \"w\"), vline(1, 18, 2, \"w\"), px(4, 5, \"w\"),           // reflets\n)\nfor (const name of [\"blue\", \"green\"])\n  sprite(`potion_${name}_bottle`, { base: \"potion_red_bottle\", swap: LIQUID[name] })\n\n// ---------------------------------------------------------------- grand flacon à bulles (32 px)\nsprite(\"_bubble_a\", \"o\")\nsprite(\"_bubble_b\", `\n  .o.\n  o.o\n  .o.`)\nconst FLASK = [\n  rect(12, 0, 6, 3, \"n\"), vline(17, 0, 3, \"b\"), hline(11, 3, 8, \"b\"), hline(11, 4, 8, \"n\"),  // bouchon\n  rect(12, 5, 6, 6, \"s\"), vline(17, 5, 6, \"S\"),                                              // col\n  circ(15, 19, 11, \"s\"),                                                                     // panse\n]\nconst FLASK_LIGHT = [\n  recolor({ s: \"S\" }, outside(13, 17, 11)),\n  px(13, 6, \"w\"), px(13, 7, \"w\"),\n  line(7, 13, 5, 17, \"w\"), px(5, 18, \"w\"), px(6, 25, \"w\"),\n]\nsprite(\"potion_red_large\", { w: 30, h: 30, outline: \"k\" },\n  ...FLASK,\n  clip([0, 15, 30, 15], circ(15, 19, 10, \"r\")),\n  hline(6, 15, 19, \"o\"), hline(8, 16, 15, \"r\"),\n  recolor({ r: \"R\" }, outside(13, 17, 9.6)),\n  scatter(\"_bubble_*\", 7, 17, 16, 10, 7, { on: \"rR\", seed: 3 }),\n  ...FLASK_LIGHT,\n)\nfor (const name of [\"blue\", \"purple\"])\n  sprite(`potion_${name}_large`, { base: \"potion_red_large\", swap: LIQUID[name] })\nsprite(\"potion_empty_large\", { w: 30, h: 30, outline: \"k\" }, ...FLASK, ...FLASK_LIGHT,\n  hline(8, 28, 15, \"S\"), px(12, 27, \"C\"), px(18, 27, \"C\"))\n\nsheet(\"potions\", [\"potion_*\"], { pad: 2 })\n","nature/rock":"include(\"../_palette.px.js\")\n\nconst meta = {\n  title: \"Rocher\",\n  description: \"Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.\",\n  tags: [\"rock\", \"stone\", \"boulder\", \"nature\", \"decoration\", \"obstacle\"],\n  variants: {\n    small_16: { label: \"Caillou\", props: { form: \"stone\", surface: \"bare\", material: \"granite\" } },\n    small_mossy_16: { label: \"Caillou moussu\", props: { form: \"stone\", surface: \"mossy\", material: \"granite\" } },\n    pebbles_16: { label: \"Tas de galets\", props: { form: \"pebbles\", surface: \"bare\", material: \"granite\" } },\n    boulder_32: { label: \"Gros rocher\", props: { form: \"boulder\", surface: \"bare\", material: \"granite\" } },\n    boulder_mossy_32: { label: \"Gros rocher moussu\", props: { form: \"boulder\", surface: \"mossy\", material: \"granite\" } },\n    boulder_snow_32: { label: \"Gros rocher enneigé\", props: { form: \"boulder\", surface: \"snow\", material: \"granite\" }, tags: [\"snow\", \"winter\"] },\n    boulder_sand_32: { label: \"Rocher de grès (désert)\", props: { form: \"boulder\", surface: \"bare\", material: \"sandstone\" }, tags: [\"desert\"] },\n  },\n}\n\n// Pierre : d sombre (faces à l'ombre), m corps, c faces éclairées, C arêtes en pleine lumière.\nconst SANDSTONE = { d: \"B\", m: \"b\", c: \"n\", C: \"N\" }\n\nsprite(\"_moss_a\", `\n  .l.\n  lgl`)\nsprite(\"_moss_b\", `\n  ll\n  gg`)\nsprite(\"_moss_c\", \"l\")\n\n// ---------------------------------------------------------------- petits (16 px)\nconst STONE16 = [\n  poly([1, 10, 0, 6, 3, 2, 8, 1, 12, 3, 14, 7, 13, 10], \"m\"),\n  poly([1, 6, 3, 2, 8, 1, 9, 3, 6, 5, 2, 7], \"c\"),\n  poly([12, 3, 14, 7, 13, 10, 9, 10, 10, 6], \"d\"),\n  hline(4, 2, 3, \"C\"), px(3, 3, \"C\"),\n  line(7, 6, 9, 8, \"d\"),  // fissure\n]\nsprite(\"rock_small_16\", { w: 14, h: 10, outline: \"k\" }, ...STONE16)\nsprite(\"rock_small_mossy_16\", { w: 14, h: 10, outline: \"k\" }, ...STONE16,\n  scatter(\"_moss_*\", 1, 0, 11, 5, 5, { on: \"cC\", clip: true, seed: 2 }))\n\nsprite(\"_pebble\", { w: 6, h: 4 },\n  poly([0, 4, 0, 2, 2, 0, 5, 0, 6, 2, 6, 4], \"m\"), hline(2, 0, 3, \"c\"), px(1, 1, \"c\"), px(1, 2, \"C\"),\n  vline(5, 2, 2, \"d\"))\nsprite(\"rock_pebbles_16\", { w: 14, h: 9, outline: \"k\" },\n  stamp(\"_pebble\", 0, 5), stamp(\"_pebble\", 7, 4, { flip: \"x\" }), stamp(\"_pebble\", 3, 1),\n  stamp(\"_pebble\", 9, 0, { swap: { m: \"c\", c: \"C\" } }))\n\n// ---------------------------------------------------------------- gros rocher (32 px)\nconst BOULDER = [\n  poly([3, 22, 0, 15, 3, 8, 9, 3, 17, 1, 24, 4, 28, 11, 29, 18, 27, 22], \"m\"),\n  // faces du haut (éclairées)\n  poly([3, 8, 9, 3, 17, 1, 21, 4, 15, 8, 8, 10, 2, 12], \"c\"),\n  poly([17, 1, 24, 4, 26, 8, 21, 7, 21, 4], \"c\"),\n  line(5, 7, 9, 4, \"C\"), line(10, 3, 16, 2, \"C\"), px(22, 4, \"C\"),\n  // face droite (ombre)\n  poly([24, 4, 28, 11, 29, 18, 27, 22, 21, 22, 24, 14, 26, 8], \"d\"),\n  // arêtes et fissures\n  line(15, 8, 13, 14, \"d\"), line(13, 14, 15, 19, \"d\"), line(8, 10, 6, 16, \"d\"),\n  line(21, 7, 22, 12, \"m\"),\n  hline(4, 21, 18, \"d\"), // ombre au sol\n]\nsprite(\"rock_boulder_32\", { w: 30, h: 23, outline: \"k\" }, ...BOULDER)\nsprite(\"rock_boulder_mossy_32\", { w: 30, h: 23, outline: \"k\" }, ...BOULDER,\n  scatter(\"_moss_*\", 2, 0, 24, 11, 22, { on: \"cC\", clip: true, rflip: \"x\", seed: 5 }),\n  scatter(\"_moss_*\", 1, 12, 8, 8, 3, { on: \"m\", clip: true, seed: 6 }))\nsprite(\"rock_boulder_snow_32\", { w: 30, h: 23, outline: \"k\" }, ...BOULDER,\n  recolor({ c: \"s\", C: \"w\" }, (x, y) => y \u003c 9),\n  recolor({ c: \"s\" }, (x, y) => y \u003c 11 && x \u003c 12),\n  (c) => { for (let x = 0; x \u003c 24; x++) for (let y = 0; y \u003c c.h; y++) if (c.is(x, y, \"mdc\") && c.is(x, y - 1, \".\")) { c.px(x, y, \"w\"); break } })\nsprite(\"rock_boulder_sand_32\", { base: \"rock_boulder_32\", swap: SANDSTONE })\n\nsheet(\"rocks\", [\"rock_*\"], { pad: 2 })\n","nature/tree":"include(\"../_palette.px.js\")\n\nconst meta = {\n  title: \"Arbre\",\n  description: \"Arbres vus de face pour décors 2D : chêne, sapin, bouleau, pommier. Plusieurs saisons, densités de feuillage et tailles (16, 32, 48 px). Lumière en haut à gauche, contour sombre.\",\n  tags: [\"tree\", \"plant\", \"forest\", \"nature\", \"decoration\", \"scenery\"],\n  variants: {\n    oak_summer_16: { label: \"Chêne – été (16 px)\", props: { species: \"oak\", season: \"summer\", foliage: \"full\" } },\n    oak_autumn_16: { label: \"Chêne – automne (16 px)\", props: { species: \"oak\", season: \"autumn\", foliage: \"full\" } },\n    pine_16: { label: \"Sapin (16 px)\", props: { species: \"pine\", season: \"summer\", foliage: \"full\" } },\n    pine_snow_16: { label: \"Sapin enneigé (16 px)\", props: { species: \"pine\", season: \"winter\", foliage: \"full\" } },\n\n    oak_summer_full_32: { label: \"Chêne – été, feuillage dense\", props: { species: \"oak\", season: \"summer\", foliage: \"full\" } },\n    oak_summer_sparse_32: { label: \"Chêne – été, peu de feuilles\", props: { species: \"oak\", season: \"summer\", foliage: \"sparse\" } },\n    oak_spring_32: { label: \"Chêne – printemps en fleurs\", props: { species: \"oak\", season: \"spring\", foliage: \"full\" } },\n    oak_autumn_32: { label: \"Chêne – automne (rouge-orangé)\", props: { species: \"oak\", season: \"autumn\", foliage: \"full\" } },\n    oak_autumn_sparse_32: { label: \"Chêne – fin d'automne, peu de feuilles\", props: { species: \"oak\", season: \"autumn\", foliage: \"sparse\" } },\n    oak_winter_32: { label: \"Chêne – hiver, branches nues enneigées\", props: { species: \"oak\", season: \"winter\", foliage: \"bare\" } },\n    apple_32: { label: \"Pommier avec pommes\", props: { species: \"apple\", season: \"summer\", foliage: \"full\" }, tags: [\"fruit\"] },\n    pine_32: { label: \"Sapin\", props: { species: \"pine\", season: \"summer\", foliage: \"full\" } },\n    pine_snow_32: { label: \"Sapin enneigé\", props: { species: \"pine\", season: \"winter\", foliage: \"full\" }, tags: [\"snow\"] },\n    birch_32: { label: \"Bouleau – été\", props: { species: \"birch\", season: \"summer\", foliage: \"full\" } },\n    birch_autumn_32: { label: \"Bouleau – automne doré\", props: { species: \"birch\", season: \"autumn\", foliage: \"full\" } },\n\n    oak_summer_48: { label: \"Grand chêne – été (48 px)\", props: { species: \"oak\", season: \"summer\", foliage: \"full\" } },\n    oak_autumn_48: { label: \"Grand chêne – automne (48 px)\", props: { species: \"oak\", season: \"autumn\", foliage: \"full\" } },\n    pine_48: { label: \"Grand sapin (48 px)\", props: { species: \"pine\", season: \"summer\", foliage: \"full\" } },\n    pine_snow_48: { label: \"Grand sapin enneigé (48 px)\", props: { species: \"pine\", season: \"winter\", foliage: \"full\" }, tags: [\"snow\"] },\n  },\n}\n\n// ================================================================ outils communs\n\n// Recolorations de saison (feuillus : G sombre, g moyen, l clair, L reflet).\nconst AUTUMN = { G: \"R\", g: \"r\", l: \"o\", L: \"y\" }\nconst GOLD = { G: \"b\", g: \"o\", l: \"y\", L: \"Y\" }\n\n// Couronne en « grappes » : chaque grappe (x, y, r) a un bord sombre en bas à droite, un corps moyen,\n// une zone claire en haut à gauche et un reflet. Grappes listées du fond vers l'avant.\nconst LEAF = { d: \"G\", m: \"g\", l: \"l\", h: \"L\" }\nconst clumps = (blobs, p = LEAF) => (c) => {\n  for (const [x, y, r] of blobs) {\n    c.circ(x, y, r, p.d)\n    c.circ(x - 1, y - 1, r - 1, p.m)\n    if (r >= 3) c.circ(x - 2, y - 2, Math.max(1, r - 3), p.l)\n    if (r >= 4) c.px(x - 2, y - 3, p.h)\n  }\n}\n\n// Tronc évasé : x = centre, top = haut du fût, bottom = sol, w = largeur (paire).\nconst trunk = (x, top, bottom, w, bark = { d: \"B\", m: \"b\", l: \"n\" }) => [\n  poly([x - w / 2 - 2, bottom, x - w / 2, bottom - 3, x - w / 2, top, x + w / 2, top, x + w / 2, bottom - 3, x + w / 2 + 2, bottom], bark.m),\n  vline(x + w / 2 - 1, top, bottom - top, bark.d),\n  vline(x - w / 2, top, bottom - top - 2, bark.l),\n]\n\n// Neige : chaque pixel de `keys` exposé vers le haut devient blanc, celui du dessous bleuté.\nconst snowCap = (keys) => (c) => {\n  const top = []\n  for (let y = 0; y \u003c c.h; y++)\n    for (let x = 0; x \u003c c.w; x++)\n      if (c.is(x, y, keys) && c.is(x, y + 1, keys) && (y === 0 || c.is(x, y - 1, \".\"))) top.push([x, y])\n  for (const [x, y] of top) {\n    c.px(x, y, \"w\")\n    if (c.is(x, y + 1, keys) && c.is(x - 1, y, \"w.\")) c.px(x, y + 1, \"s\")\n  }\n}\n\n// Sapin en étages : tiers = [sommetY, baseY, demi-largeur], du haut vers le bas.\n// Dessinés du bas vers le haut ; chaque étage a une frange en dents de scie et projette une ombre.\nconst PINE = { d: \"P\", m: \"p\", l: \"e\", h: \"E\" }\n// snow: true -> neige posée sur le bout des branches de chaque étage et sur la cime.\nconst pine = (cx, tiers, { snow = false } = {}, p = PINE) => (c) => {\n  for (let i = tiers.length - 1; i >= 0; i--) {\n    const [ay, by, hw] = tiers[i]\n    for (let y = ay; y \u003c= by; y++) {\n      const half = Math.round(((y - ay) / Math.max(1, by - ay)) * hw)\n      const edge = cx + Math.floor(half / 3) + ((y - ay) % 2)\n      for (let x = cx - half; x \u003c= cx + half; x++) c.px(x, y, x > edge ? p.d : p.m)\n      c.px(cx - half, y, p.l)\n      if (half >= 3 && (y - ay) % 3 === 1) c.px(cx - half + 1, y, p.h)\n    }\n    for (let x = cx - hw; x \u003c= cx + hw; x += 2) c.px(x, by + 1, x > cx + hw / 3 ? p.d : x === cx - hw ? p.l : p.m)\n    if (snow) {\n      const lit = (x) => x \u003c= cx + hw / 3\n      for (let x = cx - hw; x \u003c= cx + hw; x++) c.px(x, by, lit(x) ? \"w\" : \"s\")\n      for (let x = cx - hw + 1; x \u003c= cx + hw - 1; x++) if ((x * 7 + by) % 3 === 0) c.px(x, by - 1, lit(x) ? \"w\" : \"s\")\n      for (let x = cx - hw; x \u003c= cx + hw; x += 2) c.px(x, by + 1, lit(x) ? \"s\" : \"S\")\n      if (i === 0) { c.px(cx, ay, \"w\"); c.px(cx, ay + 1, \"w\"); c.px(cx - 1, ay + 2, \"w\"); c.px(cx + 1, ay + 2, \"s\") }\n    }\n    // ombre de cet étage sur celui du dessous\n    if (i \u003c tiers.length - 1)\n      for (let x = cx - hw; x \u003c= cx + hw; x++) {\n        const y = by + ((x - cx + hw) % 2 === 0 ? 2 : 1)\n        if (c.is(x, y, p.m + p.l + p.h)) c.px(x, y, p.d)\n        else if (c.is(x, y, p.d)) c.px(x, y, \"k\")\n      }\n  }\n}\n\n// ================================================================ brosses\nsprite(\"_apple\", `\n  or\n  rR`)\nsprite(\"_blossom_a\", \"Z\")\nsprite(\"_blossom_b\", `\n  .z.\n  zZz\n  .z.`)\n\n// ================================================================ 16 px (dessinés à la main)\n\nsprite(\"tree_oak_summer_16\", { outline: \"k\" }, `\n  ....lllgg.....\n  ..llLllgggg...\n  .lLlllgggggG..\n  .llllggggGgGG.\n  llllggglggGGGG\n  lgggglllgggGGG\n  gggggglllgGGGG\n  .gGgggggggGGG.\n  ..GGGGgGGGGG..\n  ....GGbBGG....\n  ......nbB.....\n  ......nbB.....\n  .....nbbBB....\n  ....bbb..BB...`)\nsprite(\"tree_oak_autumn_16\", { base: \"tree_oak_summer_16\", swap: AUTUMN })\n\nconst PINE16 = [rect(6, 11, 2, 3, \"b\"), vline(7, 11, 3, \"B\"), pine(7, [[0, 4, 3], [2, 7, 5], [5, 10, 6]])]\nsprite(\"tree_pine_16\", { w: 14, h: 14, outline: \"k\" }, ...PINE16)\nsprite(\"tree_pine_snow_16\", { w: 14, h: 14, outline: \"k\" }, PINE16[0], PINE16[1], pine(7, [[0, 4, 3], [2, 7, 5], [5, 10, 6]], { snow: true }))\n\n// ================================================================ 32 px\n\nconst OAK32 = [\n  [15, 5, 5], [9, 7, 5], [21, 7, 5],\n  [5, 12, 4], [25, 12, 4], [11, 11, 5], [19, 11, 5],\n  [8, 16, 4], [22, 16, 4], [15, 15, 5],\n]\n// lumière venant d'en haut à gauche : le côté droit perd ses reflets, le bas s'assombrit\nconst oakLight32 = [\n  recolor({ l: \"g\", L: \"l\" }, (x, y) => x > 16 || y > 14),\n  recolor({ g: \"G\" }, (x, y) => y > 17 || (x > 23 && y > 9)),\n]\n\nsprite(\"tree_oak_summer_full_32\", { w: 30, h: 30, outline: \"k\" },\n  ...trunk(15, 16, 30, 4),\n  clumps(OAK32),\n  ...oakLight32,\n  shade([12, 20, 7, 2], 1), // ombre de la couronne sur le tronc\n)\n\n// Squelette de branches commun aux versions clairsemées et nues.\nconst BRANCHES32 = [\n  line(14, 19, 7, 11, \"b\", 2), line(16, 18, 23, 10, \"b\", 2), line(15, 17, 15, 6, \"b\", 2),\n  line(7, 11, 4, 6, \"b\"), line(7, 11, 9, 5, \"b\"), line(23, 10, 26, 6, \"b\"), line(23, 10, 20, 5, \"b\"),\n  line(15, 6, 13, 2, \"b\"), line(15, 6, 17, 1, \"b\"), line(11, 15, 3, 13, \"b\"), line(19, 14, 27, 13, \"b\"),\n  line(4, 6, 2, 4, \"b\"), line(26, 6, 28, 4, \"b\"),\n]\nconst SPARSE32 = [[5, 6, 3], [25, 6, 3], [15, 3, 3], [10, 5, 2], [20, 4, 2], [3, 12, 2], [27, 12, 2], [9, 10, 2], [21, 9, 2]]\n\nsprite(\"tree_oak_summer_sparse_32\", { w: 30, h: 30, outline: \"k\" },\n  ...BRANCHES32,\n  ...trunk(15, 16, 30, 4),\n  clumps(SPARSE32),\n  recolor({ l: \"g\", L: \"l\" }, (x, y) => x > 18),\n)\n\nsprite(\"tree_oak_winter_32\", { w: 30, h: 30, outline: \"k\" },\n  ...BRANCHES32,\n  line(9, 5, 10, 2, \"b\"), line(20, 5, 21, 2, \"b\"), line(3, 13, 1, 11, \"b\"), line(27, 13, 29, 11, \"b\"),\n  ...trunk(15, 16, 30, 4),\n  snowCap(\"bBn\"),\n  rect(10, 29, 11, 1, \"s\"), rect(12, 28, 7, 1, \"w\"), // neige au pied\n)\n\nsprite(\"tree_oak_autumn_32\", { base: \"tree_oak_summer_full_32\", swap: AUTUMN })\nsprite(\"tree_oak_autumn_sparse_32\", { base: \"tree_oak_summer_sparse_32\", swap: GOLD })\n\nsprite(\"tree_oak_spring_32\", { base: \"tree_oak_summer_full_32\" },\n  scatter(\"_blossom_*\", 2, 1, 28, 20, 16, { on: \"gGl\", seed: 6 }))\n\nsprite(\"tree_apple_32\", { base: \"tree_oak_summer_full_32\" },\n  scatter(\"_apple\", 3, 3, 26, 17, 8, { on: \"gG\", seed: 2 }))\n\nconst TRUNK_PINE32 = [rect(14, 24, 3, 6, \"b\"), vline(16, 24, 6, \"B\"), px(13, 29, \"b\"), px(17, 29, \"B\")]\nconst TIERS32 = [[0, 6, 4], [3, 11, 7], [7, 16, 10], [11, 21, 12], [15, 25, 14]]\nsprite(\"tree_pine_32\", { w: 30, h: 30, outline: \"k\" }, ...TRUNK_PINE32, pine(15, TIERS32))\nsprite(\"tree_pine_snow_32\", { w: 30, h: 30, outline: \"k\" }, ...TRUNK_PINE32, pine(15, TIERS32, { snow: true }),\n  rect(9, 29, 13, 1, \"s\"), rect(11, 28, 9, 1, \"w\"))\n\n// Bouleau : tronc blanc tacheté, couronne claire et aérée.\nconst BIRCH_LEAF = { d: \"g\", m: \"l\", l: \"L\", h: \"L\" }\nconst BIRCH32 = [[15, 4, 4], [11, 7, 4], [19, 7, 4], [9, 12, 4], [21, 12, 4], [15, 10, 5], [12, 16, 4], [18, 16, 4], [15, 19, 3]]\nsprite(\"tree_birch_32\", { w: 30, h: 30, outline: \"k\" },\n  line(14, 14, 10, 9, \"C\", 1), line(16, 13, 20, 8, \"C\", 1),\n  rect(14, 12, 3, 18, \"w\"), vline(16, 12, 18, \"C\"), px(13, 29, \"w\"), px(17, 29, \"C\"),\n  clumps(BIRCH32, BIRCH_LEAF),\n  recolor({ L: \"l\" }, (x, y) => x > 17 && y > 6),\n  recolor({ l: \"g\" }, (x, y) => y > 18 || (x > 21 && y > 10)),\n  // marques noires de l'écorce\n  hline(14, 23, 2, \"d\"), px(16, 25, \"d\"), hline(15, 27, 2, \"d\"), px(14, 26, \"m\"),\n)\nsprite(\"tree_birch_autumn_32\", { base: \"tree_birch_32\", swap: { g: \"o\", l: \"y\", L: \"Y\" } })\n\n// ================================================================ 48 px\n\nconst OAK48 = [\n  [23, 7, 7], [14, 10, 7], [32, 10, 7],\n  [7, 18, 6], [39, 18, 6], [17, 16, 7], [29, 16, 7], [23, 13, 5],\n  [11, 24, 6], [35, 24, 6], [23, 22, 8], [17, 26, 4], [29, 26, 4],\n]\nsprite(\"tree_oak_summer_48\", { w: 46, h: 46, outline: \"k\" },\n  ...trunk(23, 26, 46, 6),\n  line(22, 30, 16, 26, \"b\", 2), line(25, 30, 31, 26, \"b\", 2),\n  clumps(OAK48),\n  recolor({ l: \"g\", L: \"l\" }, (x, y) => x > 26 || y > 21),\n  recolor({ g: \"G\" }, (x, y) => y > 27 || (x > 36 && y > 13)),\n  shade([18, 30, 10, 2], 1),\n  // fissures de l'écorce\n  vline(22, 33, 4, \"B\"), vline(24, 37, 4, \"B\"), vline(21, 40, 3, \"B\"),\n)\nsprite(\"tree_oak_autumn_48\", { base: \"tree_oak_summer_48\", swap: AUTUMN })\n\nconst TRUNK_PINE48 = [rect(21, 38, 5, 8, \"b\"), vline(25, 38, 8, \"B\"), vline(21, 38, 6, \"n\"), px(20, 45, \"b\"), px(26, 45, \"B\")]\nconst TIERS48 = [[0, 7, 5], [3, 13, 8], [8, 19, 12], [13, 26, 15], [19, 32, 18], [25, 38, 21]]\nsprite(\"tree_pine_48\", { w: 46, h: 46, outline: \"k\" }, ...TRUNK_PINE48, pine(23, TIERS48))\nsprite(\"tree_pine_snow_48\", { w: 46, h: 46, outline: \"k\" }, ...TRUNK_PINE48, pine(23, TIERS48, { snow: true }),\n  rect(14, 45, 19, 1, \"s\"), rect(17, 44, 13, 1, \"w\"))\n\nsheet(\"trees\", [\"tree_*\"], { pad: 2 })\n","_palette":"// Palette commune à toute la bibliothèque. Chaque asset commence par :\n//   include(\"../_palette.px.js\")\n// Clés mnémotechniques (une lettre = une couleur). Majuscule = variante sombre OU claire,\n// voir le commentaire de chaque matériau. Les rampes (sombre -> clair) pilotent shade()/light().\n// Ajouter une couleur : choisir une clé libre, l'ajouter ici ET dans une rampe, puis `npm run build`.\n\npal({\n  k: \"#1a1423\", // contour / encre\n\n  // verts feuillus : G sombre -> g -> l -> L clair\n  G: \"#1f4a2c\", g: \"#2e7a3a\", l: \"#5aae45\", L: \"#a5d75a\",\n  // verts conifères (froids) : P sombre -> p -> e -> E clair\n  P: \"#163a37\", p: \"#215e4f\", e: \"#348468\", E: \"#62ad7c\",\n  // bois / écorce / terre : B sombre -> b -> n -> N clair\n  B: \"#3b2219\", b: \"#6a4128\", n: \"#9c6b3c\", N: \"#c99a5b\",\n  // rouge -> orange -> jaune (automne, feu, pommes, or) : R sombre ... Y clair\n  R: \"#6e1f24\", r: \"#b23a2c\", o: \"#e0782a\", y: \"#f3c34a\", Y: \"#fff0a8\",\n  // bleus (eau, potions, glace) : U sombre -> u -> i -> I clair\n  U: \"#1d2a6b\", u: \"#2f4fb3\", i: \"#4f8fe0\", I: \"#9fd0ff\",\n  // violets / magie : V sombre -> v -> x clair\n  V: \"#3f1f63\", v: \"#7a3fb0\", x: \"#b77ee0\",\n  // roses (fleurs, peau rosée) : z -> Z clair\n  z: \"#e46a9a\", Z: \"#ffb3cf\",\n  // gris pierre / métal : d sombre -> m -> c -> C clair\n  d: \"#2f2d3c\", m: \"#575670\", c: \"#8b8aa3\", C: \"#c3c2d4\",\n  // neige / blanc : S ombre bleutée -> s -> w blanc\n  S: \"#8fa3c7\", s: \"#d3e0f2\", w: \"#fbfbff\",\n})\n\nramps(\n  \"kGglL\",  // feuillus\n  \"kPpeE\",  // conifères\n  \"kBbnN\",  // bois\n  \"kRroyY\", // feu / automne\n  \"kUuiI\",  // bleus\n  \"kVvx\",   // violets\n  \"RzZ\",    // roses\n  \"kdmcC\",  // pierre\n  \"dSsw\",   // neige\n)\n"}};</script>
+<script type="module">
+// Galerie Pixel Assets — vanilla JS, aucune dépendance.
+// Deux modes de chargement :
+//   - autonome (docs/index.html) : données inlinées dans window.__PIXEL_LIBRARY__ par scripts/build.js
+//   - serveur (npm run dev, /web/) : lit ../library/catalog.json et importe les modules ../library/js/…
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === undefined || v === null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k !== null && k !== undefined && k !== false) e.append(k);
+  return e;
+};
+const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const hashOf = (s) => norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const REPO = "mak-45/pixel-assets";
+
+const state = {
+  catalog: null,
+  modules: {},
+  sources: null,
+  base: null,
+  query: "",
+  filters: {},
+  sel: null,
+  zoom: 8,
+  bg: "checker",
+  grid: false,
+  frame: 0,
+  playing: true,
+  tab: "source",
+};
+
+// ================================================================ chargement
+async function loadLibrary() {
+  const inline = window.__PIXEL_LIBRARY__;
+  if (inline) {
+    Object.assign(state, { catalog: inline.catalog, modules: inline.modules, sources: inline.sources });
+    return;
+  }
+  state.base = new URL("../", location.href);
+  const res = await fetch(new URL("library/catalog.json", state.base));
+  if (!res.ok) throw new Error("library/catalog.json introuvable : lancez `npm run build`.");
+  state.catalog = await res.json();
+  await Promise.all(Object.values(state.catalog.assets).map(async (a) => {
+    state.modules[a.id] = (await import(new URL(a.module, state.base).href)).default;
+  }));
+}
+
+const sourceCache = new Map();
+async function sourceOf(asset) {
+  if (state.sources?.[asset.id]) return state.sources[asset.id];
+  if (sourceCache.has(asset.id)) return sourceCache.get(asset.id);
+  const text = state.base
+    ? await fetch(new URL(asset.source, state.base)).then((r) => (r.ok ? r.text() : `// ${asset.source} introuvable`))
+    : `// Source non incluse : voir ${asset.source}`;
+  sourceCache.set(asset.id, text);
+  return text;
+}
+
+// ================================================================ dessin pixel
+const images = new Map();
+function imageOf(src) {
+  let img = images.get(src);
+  if (!img) { img = new Image(); img.src = src; images.set(src, img); }
+  return img;
+}
+
+/** Dessine une variante (ou une image de l'animation) sur un contexte 2D à l'échelle donnée. */
+function drawVariant(ctx, v, x, y, scale, frame = 0) {
+  const rows = v.frames ? v.frames[frame % v.frames.length].rows : v.rows;
+  if (rows && v.palette) {
+    for (let j = 0; j < v.h; j++) {
+      const row = rows[j];
+      for (let i = 0; i < v.w; i++) {
+        const k = row[i];
+        if (k === ".") continue;
+        ctx.fillStyle = v.palette[k];
+        ctx.fillRect(x + i * scale, y + j * scale, scale, scale);
+      }
+    }
+    return;
+  }
+  // Repli : trop de couleurs pour une table de clés, on dessine le PNG.
+  ctx.imageSmoothingEnabled = false;
+  if (v.strip) ctx.drawImage(imageOf(v.strip), (frame % v.frameCount) * v.w, 0, v.w, v.h, x, y, v.w * scale, v.h * scale);
+  else ctx.drawImage(imageOf(v.src), x, y, v.w * scale, v.h * scale);
+}
+
+function renderToCanvas(v, scale, what = "frame", frame = 0) {
+  const n = what === "strip" && v.frames ? v.frames.length : 1;
+  const c = document.createElement("canvas");
+  c.width = v.w * scale * n;
+  c.height = v.h * scale;
+  const ctx = c.getContext("2d");
+  for (let f = 0; f < n; f++) drawVariant(ctx, v, f * v.w * scale, 0, scale, n > 1 ? f : frame);
+  return c;
+}
+
+// ================================================================ recherche / filtres
+function variantMatches(asset, v) {
+  const f = state.filters[asset.id] ?? {};
+  for (const [axis, val] of Object.entries(f)) if (v.props[axis] !== val) return false;
+  if (!state.query) return true;
+  const hay = norm([asset.title, asset.description, asset.category, asset.slug, ...asset.tags, v.label, v.key, ...v.tags, ...Object.values(v.props)].join(" "));
+  return norm(state.query).split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+}
+
+// ================================================================ rendu : catégories
+function renderCats() {
+  const nav = $("#cats");
+  nav.replaceChildren(el("p", { class: "cap", text: "Catégories" }));
+  for (const cat of state.catalog.categories) {
+    const count = cat.assets.reduce((n, id) => n + state.catalog.assets[id].variantCount, 0);
+    const icon = el("canvas", { width: 16, height: 16, "aria-hidden": "true" });
+    const [aId, key] = splitVariantId(cat.icon);
+    const iv = state.modules[aId]?.variants[key] ?? firstVariant(cat.assets[0]);
+    if (iv) paintFit(icon, iv, 24);
+    nav.append(el("button", {
+      class: "cat", type: "button", "data-cat": cat.id,
+      onclick: () => { document.getElementById(`cat-${cat.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    }, el("span", { class: "cat-icon" }, icon), el("span", { class: "cat-name", text: cat.title }), el("span", { class: "cat-count", text: count })));
+    nav.append(el("div", { class: "sub" }, cat.assets.map((id) => el("a", {
+      href: `#${hashOf(id)}`, text: state.catalog.assets[id].title,
+      onclick: (e) => { e.preventDefault(); document.getElementById(`fam-${hashOf(id)}`)?.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    }))));
+  }
+}
+
+function splitVariantId(full = "") {
+  const i = full.lastIndexOf("/");
+  return [full.slice(0, i), full.slice(i + 1)];
+}
+function firstVariant(assetId) {
+  const m = state.modules[assetId];
+  return m && Object.values(m.variants)[0];
+}
+/** Dessine v dans un petit canvas, à la plus grande échelle entière qui tient dans `box` px. */
+function paintFit(canvas, v, box) {
+  const s = Math.max(1, Math.floor(box / Math.max(v.w, v.h)));
+  canvas.width = v.w * s;
+  canvas.height = v.h * s;
+  canvas.style.width = `${v.w * s}px`;
+  canvas.style.height = `${v.h * s}px`;
+  drawVariant(canvas.getContext("2d"), v, 0, 0, s);
+}
+
+// ================================================================ rendu : planches
+function renderMain() {
+  const main = $("#main");
+  const empty = $("#empty");
+  main.replaceChildren(empty);
+  let shown = 0;
+  for (const cat of state.catalog.categories) {
+    const fams = [];
+    for (const id of cat.assets) {
+      const fam = renderFamily(state.modules[id]);
+      if (fam) fams.push(fam);
+    }
+    document.querySelector(`.cat[data-cat="${cat.id}"]`)?.toggleAttribute("hidden", !fams.length);
+    if (!fams.length) continue;
+    shown += fams.length;
+    main.append(el("section", { class: "cat-section", id: `cat-${cat.id}` },
+      el("div", { class: "cat-head" }, el("h2", { text: cat.title }), el("p", { text: cat.description })),
+      fams));
+  }
+  empty.hidden = shown > 0;
+  markSelectedTile();
+}
+
+function renderFamily(asset) {
+  const variants = Object.values(asset.variants).filter((v) => variantMatches(asset, v));
+  if (!variants.length) return null;
+  const f = state.filters[asset.id] ?? {};
+  const axes = Object.entries(asset.axes).filter(([, vals]) => vals.length > 1);
+  const total = Object.keys(asset.variants).length;
+  return el("article", { class: "family", id: `fam-${hashOf(asset.id)}` },
+    el("div", { class: "fam-head" },
+      el("div", { class: "fam-title" },
+        el("h3", {}, asset.title, el("span", { class: "id", text: asset.id })),
+        el("p", { text: asset.description })),
+      el("div", { class: "fam-actions" },
+        el("span", { class: "tile-dims", text: `${variants.length === total ? total : `${variants.length} / ${total}`} variantes · ${asset.sizes.map((s) => s + " px").join(", ")}` }))),
+    el("div", { class: "tags" }, asset.tags.map((t) => el("span", { class: "tag", text: t }))),
+    axes.length ? el("div", { class: "axes" }, axes.map(([axis, vals]) => el("div", { class: "axis" },
+      el("span", { class: "axis-name", text: axis }),
+      vals.map((val) => el("button", {
+        class: `chip${f[axis] === val ? " on" : ""}`, type: "button", "aria-pressed": String(f[axis] === val), text: String(val),
+        onclick: () => {
+          const cur = (state.filters[asset.id] ??= {});
+          if (cur[axis] === val) delete cur[axis]; else cur[axis] = val;
+          renderMain();
+        },
+      }))))) : null,
+    el("div", { class: "tiles" }, variants.map((v) => renderTile(asset, v))));
+}
+
+function renderTile(asset, v) {
+  const s = Math.max(1, Math.floor(96 / Math.max(v.w, v.h)));
+  const img = el("img", { src: v.gifSrc ?? v.src, width: v.w * s, height: v.h * s, alt: v.label, loading: "lazy", decoding: "async" });
+  return el("button", {
+    class: "tile", type: "button", "data-id": v.id, title: v.name,
+    onclick: () => openInspector(asset.id, v.key),
+  },
+  el("span", { class: "tile-art" }, img),
+  el("span", { class: "tile-cap" },
+    el("span", { class: "tile-label" }, v.label, v.frames ? el("span", { class: "badge", text: "anim" }) : null),
+    el("span", { class: "tile-dims", text: `${v.w}×${v.h} · ${v.key}` })));
+}
+
+function markSelectedTile() {
+  document.querySelectorAll(".tile.on").forEach((t) => t.classList.remove("on"));
+  if (state.sel) document.querySelector(`.tile[data-id="${CSS.escape(state.sel.v.id)}"]`)?.classList.add("on");
+}
+
+// ================================================================ inspecteur
+let animTimer = 0;
+
+function openInspector(assetId, key, { updateHash = true } = {}) {
+  const asset = state.modules[assetId];
+  const v = asset?.variants[key];
+  if (!v) return;
+  state.sel = { asset, v };
+  state.frame = 0;
+  state.playing = true;
+  const box = window.innerWidth <= 760 ? 220 : 270;
+  state.zoom = Math.max(1, Math.min(24, Math.floor(box / Math.max(v.w, v.h))));
+  const cat = state.catalog.categories.find((c) => c.id === asset.category);
+  $("#i-family").textContent = `${cat?.title ?? asset.category} / ${asset.title}`;
+  $("#i-label").textContent = v.label;
+  $("#i-meta").textContent = `${v.name} · ${v.w}×${v.h} px · ${v.kind}${v.frames ? ` · ${v.frames.length} images, ${v.loopMs} ms` : ""}`;
+  $("#anim-tools").hidden = !v.frames;
+  $("#x-what").hidden = !v.frames;
+  $("#x-result").hidden = true;
+  $("#x-hint").hidden = true;
+  $("#inspector").hidden = false;
+  $("#app").classList.add("inspecting");
+  $("#scrim").hidden = window.innerWidth > 760;
+  if (updateHash) history.replaceState(null, "", `#${hashOf(v.id)}`);
+  markSelectedTile();
+  paintStage();
+  updateDims();
+  renderCode();
+  startAnim();
+}
+
+function closeInspector() {
+  state.sel = null;
+  cancelAnimationFrame(animTimer);
+  $("#inspector").hidden = true;
+  $("#scrim").hidden = true;
+  $("#app").classList.remove("inspecting");
+  history.replaceState(null, "", location.pathname + location.search);
+  markSelectedTile();
+}
+
+function paintStage() {
+  if (!state.sel) return;
+  const { v } = state.sel;
+  const s = state.zoom;
+  const c = $("#i-canvas");
+  c.width = v.w * s;
+  c.height = v.h * s;
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  drawVariant(ctx, v, 0, 0, s, state.frame);
+  if (state.grid && s >= 4) {
+    ctx.fillStyle = "rgba(128, 120, 150, 0.35)";
+    for (let i = 0; i <= v.w; i++) ctx.fillRect(i * s, 0, 1, c.height);
+    for (let j = 0; j <= v.h; j++) ctx.fillRect(0, j * s, c.width, 1);
+  }
+  $("#z-val").textContent = `×${s}`;
+  if (v.frames) {
+    $("#a-frame").textContent = `${state.frame + 1} / ${v.frames.length}`;
+    $("#a-play").textContent = state.playing ? "Pause" : "Lecture";
+  }
+}
+
+function startAnim() {
+  cancelAnimationFrame(animTimer);
+  const v = state.sel?.v;
+  if (!v?.frames) return;
+  let last = performance.now(), acc = 0;
+  const tick = (now) => {
+    if (state.sel?.v !== v) return;
+    if (state.playing) {
+      acc += now - last;
+      const ms = v.frames[state.frame].ms;
+      if (acc >= ms) {
+        acc -= ms;
+        state.frame = (state.frame + 1) % v.frames.length;
+        paintStage();
+      }
+    }
+    last = now;
+    animTimer = requestAnimationFrame(tick);
+  };
+  animTimer = requestAnimationFrame(tick);
+}
+
+function updateDims() {
+  if (!state.sel) return;
+  const { v } = state.sel;
+  const s = Number($("#x-scale").value);
+  const n = $("#x-what").value === "strip" && v.frames ? v.frames.length : 1;
+  $("#x-dims").textContent = `${v.w * s * n}×${v.h * s} px`;
+}
+
+function exportCanvas() {
+  const { v } = state.sel;
+  return renderToCanvas(v, Number($("#x-scale").value), $("#x-what").value, state.frame);
+}
+function exportName() {
+  const { asset, v } = state.sel;
+  const s = $("#x-scale").value;
+  const strip = $("#x-what").value === "strip" && v.frames ? "_strip" : v.frames ? `_f${state.frame}` : "";
+  return `${asset.slug}_${v.key}${strip}${s === "1" ? "" : `@${s}x`}.png`;
+}
+
+function downloadPng() {
+  const url = exportCanvas().toDataURL("image/png");
+  const a = el("a", { href: url, download: exportName() });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  const img = $("#x-result");
+  img.src = url;
+  img.hidden = false;
+  $("#x-hint").hidden = false;
+  toast(`PNG prêt : ${exportName()}`);
+}
+
+async function copyPng() {
+  try {
+    const blob = await new Promise((ok) => exportCanvas().toBlob(ok, "image/png"));
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+    toast("Image copiée dans le presse-papiers");
+  } catch {
+    toast("Copie d'image refusée par le navigateur : utilisez Télécharger");
+  }
+}
+
+// ================================================================ code
+const KW = new Set("const let var for of in if else return function new await async import from export default true false null undefined typeof".split(" "));
+const TOKEN = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|(`(?:\\[\s\S]|[^`\\])*`|"(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_$][\w$]*)/g;
+
+/** Coloration JS minimale, découpée en lignes (les jetons multilignes sont coupés proprement). */
+function highlight(text, plain = false) {
+  const lines = [[]];
+  const push = (cls, s) => {
+    s.split("\n").forEach((part, i) => {
+      if (i > 0) lines.push([]);
+      if (part) lines[lines.length - 1].push(cls ? el("span", { class: cls, text: part }) : document.createTextNode(part));
+    });
+  };
+  if (plain) push(null, text);
+  else {
+    let last = 0;
+    for (const m of text.matchAll(TOKEN)) {
+      if (m.index > last) push(null, text.slice(last, m.index));
+      const [tok, com, str, num, word] = m;
+      if (com) push("t-com", tok);
+      else if (str) push("t-str", tok);
+      else if (num) push("t-num", tok);
+      else if (word && KW.has(word)) push("t-kw", tok);
+      else if (word && text[m.index + tok.length] === "(") push("t-fn", tok);
+      else push(null, tok);
+      last = m.index + tok.length;
+    }
+    if (last < text.length) push(null, text.slice(last));
+  }
+  return lines;
+}
+
+function setCode(text, { path, hl = [], plain = false, start = 1 } = {}) {
+  const code = $("#c-code");
+  const lines = highlight(text, plain);
+  code.replaceChildren(...lines.map((parts, i) => el("span", { class: `ln${hl.includes(i) ? " hl" : ""}`, "data-n": i + start }, parts.length ? parts : "​")));
+  $("#c-path").textContent = path ?? "";
+  $("#c-box").dataset.raw = text;
+  const first = code.querySelector(".ln.hl");
+  const box = $("#c-box");
+  box.scrollTop = 0;
+  if (first) box.scrollTop = Math.max(0, first.getBoundingClientRect().top - box.getBoundingClientRect().top - 48);
+}
+
+function moduleSnippet(asset, v) {
+  const data = { key: v.key, w: v.w, h: v.h, palette: v.palette, rows: v.rows };
+  if (v.frames) Object.assign(data, { frames: v.frames.map((f) => ({ ms: f.ms, rows: "…" })) });
+  const rows = JSON.stringify(data, null, 2).replace(/"rows": \[\n([\s\S]*?)\n\s*\]/, (_, body) => `"rows": [\n${body}\n  ]`);
+  return `// 1) Dans le dépôt (navigateur ou Node >= 18, ES modules)
+import { loadVariant, draw, toCanvas } from "./library/index.js";
+const v = await loadVariant("${v.id}");
+draw(ctx, v, x, y, { scale: 4${v.frames ? ", frame: 0" : ""} });   // pixels nets à toute échelle
+document.body.append(toCanvas(v, { scale: 8 }));
+
+// 2) Ou directement le module de la famille
+import ${asset.slug} from "./${asset.module}";
+const img = new Image();
+img.src = ${asset.slug}.variants.${/^[a-z_$][\w$]*$/i.test(v.key) ? v.key : `["${v.key}"]`}.src;   // PNG en data URL
+${v.frames ? `// Animation : .strip (bande ${v.frames.length} images), .frames[i].rows, .gifSrc\n` : ""}
+// Fichiers : ${v.png}${v.gif ? `, ${v.gif}` : ""}
+// Sprite sheet : ${asset.sheet.png} + ${asset.sheet.json.split("/").pop()}
+
+// Données de la variante (rows : "." = transparent, une lettre = une couleur de palette)
+const ${v.key.replace(/\W/g, "_")} = ${rows};
+`;
+}
+
+async function renderCode() {
+  if (!state.sel) return;
+  const { asset, v } = state.sel;
+  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === state.tab)));
+  $("#c-box").classList.toggle("plain", false);
+  if (state.tab === "source") {
+    const text = await sourceOf(asset);
+    if (state.sel?.v !== v || state.tab !== "source") return;
+    const lines = text.split("\n");
+    let at = lines.findIndex((l) => l.includes(`"${v.name}"`));
+    if (at < 0) {
+      // nom construit dans une boucle (`potion_${name}_small`) : chercher le motif
+      const parts = v.key.split("_");
+      at = lines.findIndex((l) => /sprite\(|anim\(|idle\(/.test(l) && parts.every((p) => l.includes(p) || l.includes("${")) && l.includes(parts[parts.length - 1]));
+    }
+    const hl = [];
+    // surligner la définition : de sa première ligne jusqu'à la prochaine instruction de premier niveau
+    if (at >= 0) for (let i = at; i < lines.length && i - at < 40; i++) {
+      hl.push(i);
+      const next = lines[i + 1] ?? "";
+      if (next.trim() === "" || /^\S/.test(next)) break;
+    }
+    setCode(text, { path: asset.source, hl });
+  } else if (state.tab === "module") {
+    setCode(moduleSnippet(asset, v), { path: `${asset.module} → variants.${v.key}` });
+  } else {
+    const rows = v.frames ? v.frames[state.frame].rows : v.rows;
+    const legend = Object.entries(v.palette ?? {}).map(([k, c]) => `${k} ${c}`).join("   ");
+    const text = rows ? rows.join("\n") : "(trop de couleurs pour une table de clés : utiliser v.src)";
+    setCode(text, { path: `${v.w}×${v.h} · "." transparent · palette : ${legend}`, plain: true, start: 0 });
+  }
+}
+
+// ================================================================ divers
+let toastTimer = 0;
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast("Copié");
+  } catch {
+    const r = document.createRange();
+    r.selectNodeContents($("#c-code"));
+    const sel = getSelection();
+    sel.removeAllRanges();
+    sel.addRange(r);
+    toast("Texte sélectionné : Ctrl+C pour copier");
+  }
+}
+
+function agentsCode() {
+  return `// Dans le dépôt cloné (ES modules, navigateur ou Node >= 18)
+import { catalog, find, load, loadVariant, draw, toPixels } from "./library/index.js";
+
+find({ category: "nature", props: { season: "autumn" }, maxSize: 32 })   // -> variantes (sans pixels)
+const tree = await load("nature/tree");                                  // famille complète
+const v = tree.variants.oak_autumn_32;
+v.src;              // PNG 1x en data URL
+v.rows, v.palette;  // pixels lisibles ("." = transparent)
+toPixels(v);        // { w, h, data: Uint8ClampedArray RGBA }, aussi dans Node
+
+// À distance, sans cloner
+const RAW = "https://raw.githubusercontent.com/${REPO}/main/";
+const cat = await (await fetch(RAW + "library/catalog.json")).json();
+const png = RAW + cat.assets["nature/tree"].variants.oak_autumn_32.png;
+// Dépôt public : import ES direct via jsDelivr
+const mod = await import("https://cdn.jsdelivr.net/gh/${REPO}@main/library/js/nature/tree.js");`;
+}
+
+function applyHash() {
+  const h = location.hash.slice(1);
+  if (!h) return;
+  for (const a of Object.values(state.modules)) {
+    if (hashOf(a.id) === h) { document.getElementById(`fam-${h}`)?.scrollIntoView({ block: "start" }); return; }
+    for (const v of Object.values(a.variants)) if (hashOf(v.id) === h) {
+      openInspector(a.id, v.key, { updateHash: false });
+      document.getElementById(`fam-${hashOf(a.id)}`)?.scrollIntoView({ block: "start" });
+      return;
+    }
+  }
+}
+
+function bind() {
+  let qTimer = 0;
+  $("#q").addEventListener("input", (e) => {
+    clearTimeout(qTimer);
+    qTimer = setTimeout(() => { state.query = e.target.value.trim(); renderMain(); }, 120);
+  });
+  $("#i-close").addEventListener("click", closeInspector);
+  $("#scrim").addEventListener("click", closeInspector);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && state.sel && !$("#agents").open) closeInspector();
+  });
+  document.querySelectorAll("[data-bg]").forEach((b) => b.addEventListener("click", () => {
+    state.bg = b.dataset.bg;
+    document.querySelectorAll("[data-bg]").forEach((x) => x.classList.toggle("on", x === b));
+    $("#stage").className = `stage bg-${state.bg}`;
+  }));
+  $("#z-in").addEventListener("click", () => { state.zoom = Math.min(32, state.zoom + 1); paintStage(); });
+  $("#z-out").addEventListener("click", () => { state.zoom = Math.max(1, state.zoom - 1); paintStage(); });
+  $("#grid-toggle").addEventListener("change", (e) => { state.grid = e.target.checked; paintStage(); });
+  $("#a-play").addEventListener("click", () => { state.playing = !state.playing; paintStage(); });
+  const step = (d) => {
+    const v = state.sel?.v;
+    if (!v?.frames) return;
+    state.playing = false;
+    state.frame = (state.frame + d + v.frames.length) % v.frames.length;
+    paintStage();
+    if (state.tab === "pixels") renderCode();
+  };
+  $("#a-prev").addEventListener("click", () => step(-1));
+  $("#a-next").addEventListener("click", () => step(1));
+  $("#x-scale").addEventListener("change", updateDims);
+  $("#x-what").addEventListener("change", updateDims);
+  $("#x-download").addEventListener("click", downloadPng);
+  $("#x-copy").addEventListener("click", copyPng);
+  document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => { state.tab = b.dataset.tab; renderCode(); }));
+  $("#c-copy").addEventListener("click", () => copyText($("#c-box").dataset.raw ?? ""));
+  $("#agents-btn").addEventListener("click", () => { $("#agents-code").replaceChildren(...highlight(agentsCode()).map((p) => el("span", { class: "ln" }, p.length ? p : "​"))); $("#agents").showModal(); });
+  $("#agents-close").addEventListener("click", () => $("#agents").close());
+  $("#agents").addEventListener("click", (e) => { if (e.target === $("#agents")) $("#agents").close(); });
+  window.addEventListener("hashchange", applyHash);
+}
+
+async function main() {
+  try {
+    await loadLibrary();
+  } catch (e) {
+    $("#stats").textContent = e.message;
+    return;
+  }
+  const s = state.catalog.stats;
+  $("#stats").textContent = `${s.categories} catégories · ${s.assets} familles · ${s.variants} variantes`;
+  const mark = firstVariant("nature/tree") && state.modules["nature/tree"].variants.oak_summer_16;
+  if (mark) paintFit($("#brand-mark"), mark, 32);
+  $("#brand-mark").style.width = "32px";
+  $("#brand-mark").style.height = "32px";
+  renderCats();
+  renderMain();
+  bind();
+  applyHash();
+}
+
+main();
+
+// Mode développement (npm run dev) : recharge la page quand la bibliothèque est reconstruite.
+if (!window.__PIXEL_LIBRARY__ && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && "EventSource" in window) {
+  const es = new EventSource("/__reload");
+  es.onmessage = () => location.reload();
+  es.onerror = () => es.close();
+}
+
+</script>
+</body>
+</html>
