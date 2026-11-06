@@ -83,7 +83,7 @@ Publie-le avec l'outil Artifact (`file_path: dist/gallery.html`). Si une URL est
 mets à jour **cet** artefact (paramètre `url`, après l'avoir lu avec `action: "read"`) au lieu d'en créer
 un nouveau, puis donne le lien à l'utilisateur.
 
-Galerie publiée : _(aucune pour l'instant — note ici l'URL après la première publication)_
+Galerie publiée : https://claude.ai/artifact/PA6pqoVNvPzmVja58HBe54 (privée : partage via le menu Share de la page)
 
 ## Consommation par d'autres agents
 
