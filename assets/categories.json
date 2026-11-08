@@ -4,6 +4,11 @@
     "description": "Arbres, rochers, plantes et éléments du décor naturel.",
     "icon": "nature/tree/oak_summer_16"
   },
+  "landscape": {
+    "title": "Paysage",
+    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
+    "icon": "landscape/mountain/peak_snow_16"
+  },
   "items": {
     "title": "Objets",
     "description": "Potions, armes, butin et objets d'inventaire.",

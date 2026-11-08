@@ -3,9 +3,9 @@
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 3,
-  "assets": 4,
-  "variants": 44
+  "categories": 4,
+  "assets": 11,
+  "variants": 127
  },
  "categories": [
   {
@@ -14,8 +14,23 @@
    "description": "Arbres, rochers, plantes et éléments du décor naturel.",
    "icon": "nature/tree/oak_summer_16",
    "assets": [
+    "nature/bush",
+    "nature/fern",
+    "nature/flower",
+    "nature/grass",
+    "nature/mushroom",
     "nature/rock",
     "nature/tree"
+   ]
+  },
+  {
+   "id": "landscape",
+   "title": "Paysage",
+   "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
+   "icon": "landscape/mountain/peak_snow_16",
+   "assets": [
+    "landscape/hill",
+    "landscape/mountain"
    ]
   },
   {
@@ -38,19 +53,1093 @@
   }
  ],
  "assets": {
+  "nature/bush": {
+   "id": "nature/bush",
+   "slug": "bush",
+   "category": "nature",
+   "title": "Buisson",
+   "description": "Buissons posés au sol, vus de face pour décors 2D : buisson rond (16, 32 px), haie taillée (48 px), en versions été, à baies rouges, en fleurs, automne, enneigé et sec sans feuilles. Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "bush",
+    "shrub",
+    "plant",
+    "vegetation",
+    "ground",
+    "nature",
+    "decoration",
+    "foliage"
+   ],
+   "order": 0,
+   "source": "assets/nature/bush.px.js",
+   "module": "library/js/nature/bush.js",
+   "sheet": {
+    "png": "library/sheets/nature/bush.png",
+    "json": "library/sheets/nature/bush.json"
+   },
+   "axes": {
+    "shape": [
+     "round",
+     "hedge"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "spring",
+     "winter"
+    ],
+    "feature": [
+     "plain",
+     "berries",
+     "flowers",
+     "snow",
+     "bare"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 11,
+   "variants": {
+    "round_16": {
+     "key": "round_16",
+     "name": "bush_round_16",
+     "id": "nature/bush/round_16",
+     "label": "Petit buisson (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "feature": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/bush/round_16.png"
+    },
+    "berry_16": {
+     "key": "berry_16",
+     "name": "bush_berry_16",
+     "id": "nature/bush/berry_16",
+     "label": "Petit buisson à baies (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "feature": "berries"
+     },
+     "tags": [
+      "berry",
+      "fruit"
+     ],
+     "png": "library/png/nature/bush/berry_16.png"
+    },
+    "autumn_16": {
+     "key": "autumn_16",
+     "name": "bush_autumn_16",
+     "id": "nature/bush/autumn_16",
+     "label": "Petit buisson d'automne (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "autumn",
+      "feature": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/bush/autumn_16.png"
+    },
+    "round_32": {
+     "key": "round_32",
+     "name": "bush_round_32",
+     "id": "nature/bush/round_32",
+     "label": "Buisson rond",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "feature": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/bush/round_32.png"
+    },
+    "berry_32": {
+     "key": "berry_32",
+     "name": "bush_berry_32",
+     "id": "nature/bush/berry_32",
+     "label": "Buisson à baies rouges",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "feature": "berries"
+     },
+     "tags": [
+      "berry",
+      "fruit"
+     ],
+     "png": "library/png/nature/bush/berry_32.png"
+    },
+    "flowering_32": {
+     "key": "flowering_32",
+     "name": "bush_flowering_32",
+     "id": "nature/bush/flowering_32",
+     "label": "Buisson en fleurs (printemps)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "spring",
+      "feature": "flowers"
+     },
+     "tags": [
+      "flower",
+      "blossom"
+     ],
+     "png": "library/png/nature/bush/flowering_32.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "bush_autumn_32",
+     "id": "nature/bush/autumn_32",
+     "label": "Buisson d'automne",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "autumn",
+      "feature": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/bush/autumn_32.png"
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "bush_snow_32",
+     "id": "nature/bush/snow_32",
+     "label": "Buisson enneigé",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "winter",
+      "feature": "snow"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/nature/bush/snow_32.png"
+    },
+    "dry_32": {
+     "key": "dry_32",
+     "name": "bush_dry_32",
+     "id": "nature/bush/dry_32",
+     "label": "Buisson sec sans feuilles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "winter",
+      "feature": "bare"
+     },
+     "tags": [
+      "dead",
+      "twigs"
+     ],
+     "png": "library/png/nature/bush/dry_32.png"
+    },
+    "hedge_48": {
+     "key": "hedge_48",
+     "name": "bush_hedge_48",
+     "id": "nature/bush/hedge_48",
+     "label": "Haie taillée (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "hedge",
+      "season": "summer",
+      "feature": "plain"
+     },
+     "tags": [
+      "hedge",
+      "garden"
+     ],
+     "png": "library/png/nature/bush/hedge_48.png"
+    },
+    "hedge_flowering_48": {
+     "key": "hedge_flowering_48",
+     "name": "bush_hedge_flowering_48",
+     "id": "nature/bush/hedge_flowering_48",
+     "label": "Haie fleurie (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "hedge",
+      "season": "spring",
+      "feature": "flowers"
+     },
+     "tags": [
+      "hedge",
+      "garden",
+      "flower"
+     ],
+     "png": "library/png/nature/bush/hedge_flowering_48.png"
+    }
+   }
+  },
+  "nature/fern": {
+   "id": "nature/fern",
+   "slug": "fern",
+   "category": "nature",
+   "title": "Fougère",
+   "description": "Fougères de sous-bois vues de face, posées au sol : petite fougère et jeune crosse enroulée (16 px) ; grande fougère en vert clair, vert forêt bleuté, rousse d'automne et enneigée (32 px). Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "fern",
+    "plant",
+    "vegetation",
+    "ground",
+    "forest",
+    "undergrowth",
+    "nature",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/nature/fern.px.js",
+   "module": "library/js/nature/fern.js",
+   "sheet": {
+    "png": "library/sheets/nature/fern.png",
+    "json": "library/sheets/nature/fern.json"
+   },
+   "axes": {
+    "state": [
+     "mature",
+     "young"
+    ],
+    "season": [
+     "summer",
+     "spring",
+     "autumn",
+     "winter"
+    ],
+    "color": [
+     "green",
+     "teal",
+     "brown"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 6,
+   "variants": {
+    "small_16": {
+     "key": "small_16",
+     "name": "fern_small_16",
+     "id": "nature/fern/small_16",
+     "label": "Petite fougère",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "state": "mature",
+      "season": "summer",
+      "color": "green"
+     },
+     "tags": [],
+     "png": "library/png/nature/fern/small_16.png"
+    },
+    "young_16": {
+     "key": "young_16",
+     "name": "fern_young_16",
+     "id": "nature/fern/young_16",
+     "label": "Jeune fougère en crosse",
+     "kind": "sprite",
+     "w": 14,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "state": "young",
+      "season": "spring",
+      "color": "green"
+     },
+     "tags": [
+      "fiddlehead"
+     ],
+     "png": "library/png/nature/fern/young_16.png"
+    },
+    "large_32": {
+     "key": "large_32",
+     "name": "fern_large_32",
+     "id": "nature/fern/large_32",
+     "label": "Grande fougère",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "state": "mature",
+      "season": "summer",
+      "color": "green"
+     },
+     "tags": [],
+     "png": "library/png/nature/fern/large_32.png"
+    },
+    "forest_32": {
+     "key": "forest_32",
+     "name": "fern_forest_32",
+     "id": "nature/fern/forest_32",
+     "label": "Grande fougère de forêt sombre",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "state": "mature",
+      "season": "summer",
+      "color": "teal"
+     },
+     "tags": [],
+     "png": "library/png/nature/fern/forest_32.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "fern_autumn_32",
+     "id": "nature/fern/autumn_32",
+     "label": "Fougère rousse d'automne",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "state": "mature",
+      "season": "autumn",
+      "color": "brown"
+     },
+     "tags": [],
+     "png": "library/png/nature/fern/autumn_32.png"
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "fern_snow_32",
+     "id": "nature/fern/snow_32",
+     "label": "Fougère enneigée",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "state": "mature",
+      "season": "winter",
+      "color": "green"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/nature/fern/snow_32.png"
+    }
+   }
+  },
+  "nature/flower": {
+   "id": "nature/flower",
+   "slug": "flower",
+   "category": "nature",
+   "title": "Fleur",
+   "description": "Fleurs sauvages et de jardin vues de face, posées au sol : marguerite, tulipes (rouge, jaune, rose, violette, blanche), coquelicot, jacinthe des bois, lavande (16 px) ; tournesol et massif de fleurs mélangées (32 px). Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "flower",
+    "plant",
+    "vegetation",
+    "ground",
+    "nature",
+    "decoration",
+    "garden",
+    "meadow"
+   ],
+   "order": 0,
+   "source": "assets/nature/flower.px.js",
+   "module": "library/js/nature/flower.js",
+   "sheet": {
+    "png": "library/sheets/nature/flower.png",
+    "json": "library/sheets/nature/flower.json"
+   },
+   "axes": {
+    "species": [
+     "tulip",
+     "daisy",
+     "poppy",
+     "bluebell",
+     "lavender",
+     "sunflower",
+     "mixed"
+    ],
+    "color": [
+     "red",
+     "yellow",
+     "pink",
+     "purple",
+     "white",
+     "blue",
+     "mixed"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 11,
+   "variants": {
+    "tulip_red_16": {
+     "key": "tulip_red_16",
+     "name": "flower_tulip_red_16",
+     "id": "nature/flower/tulip_red_16",
+     "label": "Tulipe rouge",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "red"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/tulip_red_16.png"
+    },
+    "tulip_yellow_16": {
+     "key": "tulip_yellow_16",
+     "name": "flower_tulip_yellow_16",
+     "id": "nature/flower/tulip_yellow_16",
+     "label": "Tulipe jaune",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "yellow"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/tulip_yellow_16.png"
+    },
+    "tulip_pink_16": {
+     "key": "tulip_pink_16",
+     "name": "flower_tulip_pink_16",
+     "id": "nature/flower/tulip_pink_16",
+     "label": "Tulipe rose",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "pink"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/tulip_pink_16.png"
+    },
+    "tulip_purple_16": {
+     "key": "tulip_purple_16",
+     "name": "flower_tulip_purple_16",
+     "id": "nature/flower/tulip_purple_16",
+     "label": "Tulipe violette",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "purple"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/tulip_purple_16.png"
+    },
+    "tulip_white_16": {
+     "key": "tulip_white_16",
+     "name": "flower_tulip_white_16",
+     "id": "nature/flower/tulip_white_16",
+     "label": "Tulipe blanche",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "white"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/tulip_white_16.png"
+    },
+    "daisy_16": {
+     "key": "daisy_16",
+     "name": "flower_daisy_16",
+     "id": "nature/flower/daisy_16",
+     "label": "Marguerite",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "daisy",
+      "color": "white"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/daisy_16.png"
+    },
+    "poppy_16": {
+     "key": "poppy_16",
+     "name": "flower_poppy_16",
+     "id": "nature/flower/poppy_16",
+     "label": "Coquelicot",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "poppy",
+      "color": "red"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/poppy_16.png"
+    },
+    "bluebell_16": {
+     "key": "bluebell_16",
+     "name": "flower_bluebell_16",
+     "id": "nature/flower/bluebell_16",
+     "label": "Jacinthe des bois",
+     "kind": "sprite",
+     "w": 14,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "bluebell",
+      "color": "blue"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/bluebell_16.png"
+    },
+    "lavender_16": {
+     "key": "lavender_16",
+     "name": "flower_lavender_16",
+     "id": "nature/flower/lavender_16",
+     "label": "Lavande",
+     "kind": "sprite",
+     "w": 13,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "lavender",
+      "color": "purple"
+     },
+     "tags": [
+      "herb"
+     ],
+     "png": "library/png/nature/flower/lavender_16.png"
+    },
+    "sunflower_32": {
+     "key": "sunflower_32",
+     "name": "flower_sunflower_32",
+     "id": "nature/flower/sunflower_32",
+     "label": "Tournesol (32 px)",
+     "kind": "sprite",
+     "w": 24,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "sunflower",
+      "color": "yellow"
+     },
+     "tags": [],
+     "png": "library/png/nature/flower/sunflower_32.png"
+    },
+    "bed_32": {
+     "key": "bed_32",
+     "name": "flower_bed_32",
+     "id": "nature/flower/bed_32",
+     "label": "Massif de fleurs mélangées (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "species": "mixed",
+      "color": "mixed"
+     },
+     "tags": [
+      "flowerbed",
+      "garden"
+     ],
+     "png": "library/png/nature/flower/bed_32.png"
+    }
+   }
+  },
+  "nature/grass": {
+   "id": "nature/grass",
+   "slug": "grass",
+   "category": "nature",
+   "title": "Herbe",
+   "description": "Végétation basse vue de face, posée au sol : touffes d'herbe (16 px) en versions été, sèche, enneigée, fleurie et animée au vent ; trèfle ; hautes herbes (32 px) normales, sèches à épis et animées au vent ; roseaux à massettes. Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "grass",
+    "tuft",
+    "plant",
+    "vegetation",
+    "ground",
+    "nature",
+    "decoration",
+    "meadow"
+   ],
+   "order": 0,
+   "source": "assets/nature/grass.px.js",
+   "module": "library/js/nature/grass.js",
+   "sheet": {
+    "png": "library/sheets/nature/grass.png",
+    "json": "library/sheets/nature/grass.json"
+   },
+   "axes": {
+    "shape": [
+     "tuft",
+     "clover",
+     "tall",
+     "reed"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "winter",
+     "spring"
+    ],
+    "state": [
+     "still",
+     "wind"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 10,
+   "variants": {
+    "tuft_16": {
+     "key": "tuft_16",
+     "name": "grass_tuft_16",
+     "id": "nature/grass/tuft_16",
+     "label": "Touffe d'herbe",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "summer",
+      "state": "still"
+     },
+     "tags": [],
+     "png": "library/png/nature/grass/tuft_16.png"
+    },
+    "tuft_dry_16": {
+     "key": "tuft_dry_16",
+     "name": "grass_tuft_dry_16",
+     "id": "nature/grass/tuft_dry_16",
+     "label": "Touffe d'herbe sèche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "autumn",
+      "state": "still"
+     },
+     "tags": [
+      "dry",
+      "straw"
+     ],
+     "png": "library/png/nature/grass/tuft_dry_16.png"
+    },
+    "tuft_snow_16": {
+     "key": "tuft_snow_16",
+     "name": "grass_tuft_snow_16",
+     "id": "nature/grass/tuft_snow_16",
+     "label": "Touffe d'herbe enneigée",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "winter",
+      "state": "still"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/nature/grass/tuft_snow_16.png"
+    },
+    "tuft_flowers_16": {
+     "key": "tuft_flowers_16",
+     "name": "grass_tuft_flowers_16",
+     "id": "nature/grass/tuft_flowers_16",
+     "label": "Touffe d'herbe fleurie",
+     "kind": "sprite",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "spring",
+      "state": "still"
+     },
+     "tags": [
+      "flower"
+     ],
+     "png": "library/png/nature/grass/tuft_flowers_16.png"
+    },
+    "tuft_wind_16": {
+     "key": "tuft_wind_16",
+     "name": "grass_tuft_wind_16",
+     "id": "nature/grass/tuft_wind_16",
+     "label": "Touffe d'herbe au vent (animée)",
+     "kind": "anim",
+     "w": 16,
+     "h": 13,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "summer",
+      "state": "wind"
+     },
+     "tags": [
+      "animated",
+      "wind"
+     ],
+     "png": "library/png/nature/grass/tuft_wind_16.png",
+     "gif": "library/png/nature/grass/tuft_wind_16.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "clover_16": {
+     "key": "clover_16",
+     "name": "grass_clover_16",
+     "id": "nature/grass/clover_16",
+     "label": "Trèfle",
+     "kind": "sprite",
+     "w": 16,
+     "h": 10,
+     "size": 16,
+     "props": {
+      "shape": "clover",
+      "season": "summer",
+      "state": "still"
+     },
+     "tags": [
+      "clover",
+      "lucky"
+     ],
+     "png": "library/png/nature/grass/clover_16.png"
+    },
+    "tall_32": {
+     "key": "tall_32",
+     "name": "grass_tall_32",
+     "id": "nature/grass/tall_32",
+     "label": "Hautes herbes",
+     "kind": "sprite",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "summer",
+      "state": "still"
+     },
+     "tags": [],
+     "png": "library/png/nature/grass/tall_32.png"
+    },
+    "tall_dry_32": {
+     "key": "tall_dry_32",
+     "name": "grass_tall_dry_32",
+     "id": "nature/grass/tall_dry_32",
+     "label": "Hautes herbes sèches à épis",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "autumn",
+      "state": "still"
+     },
+     "tags": [
+      "dry",
+      "straw",
+      "wheat"
+     ],
+     "png": "library/png/nature/grass/tall_dry_32.png"
+    },
+    "tall_wind_32": {
+     "key": "tall_wind_32",
+     "name": "grass_tall_wind_32",
+     "id": "nature/grass/tall_wind_32",
+     "label": "Hautes herbes au vent (animées)",
+     "kind": "anim",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "summer",
+      "state": "wind"
+     },
+     "tags": [
+      "animated",
+      "wind"
+     ],
+     "png": "library/png/nature/grass/tall_wind_32.png",
+     "gif": "library/png/nature/grass/tall_wind_32.gif",
+     "frameCount": 6,
+     "loopMs": 1002
+    },
+    "reeds_32": {
+     "key": "reeds_32",
+     "name": "grass_reeds_32",
+     "id": "nature/grass/reeds_32",
+     "label": "Roseaux à massettes",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "reed",
+      "season": "summer",
+      "state": "still"
+     },
+     "tags": [
+      "reed",
+      "cattail",
+      "swamp",
+      "water"
+     ],
+     "png": "library/png/nature/grass/reeds_32.png"
+    }
+   }
+  },
+  "nature/mushroom": {
+   "id": "nature/mushroom",
+   "slug": "mushroom",
+   "category": "nature",
+   "title": "Champignon",
+   "description": "Champignons poussant au sol, vus de face : amanite tue-mouches rouge à points blancs, cèpe brun, girolle orangée, touffe de petits champignons beiges, champignon magique bleu lumineux et violet (16 px), grande amanite (32 px). Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "mushroom",
+    "fungus",
+    "toadstool",
+    "plant",
+    "ground",
+    "forest",
+    "undergrowth",
+    "nature",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/nature/mushroom.px.js",
+   "module": "library/js/nature/mushroom.js",
+   "sheet": {
+    "png": "library/sheets/nature/mushroom.png",
+    "json": "library/sheets/nature/mushroom.json"
+   },
+   "axes": {
+    "species": [
+     "amanita",
+     "bolete",
+     "chanterelle",
+     "cluster",
+     "magic"
+    ],
+    "color": [
+     "red",
+     "brown",
+     "orange",
+     "tan",
+     "blue",
+     "purple"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 7,
+   "variants": {
+    "amanita_16": {
+     "key": "amanita_16",
+     "name": "mushroom_amanita_16",
+     "id": "nature/mushroom/amanita_16",
+     "label": "Amanite tue-mouches",
+     "kind": "sprite",
+     "w": 16,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "species": "amanita",
+      "color": "red"
+     },
+     "tags": [
+      "poison"
+     ],
+     "png": "library/png/nature/mushroom/amanita_16.png"
+    },
+    "bolete_16": {
+     "key": "bolete_16",
+     "name": "mushroom_bolete_16",
+     "id": "nature/mushroom/bolete_16",
+     "label": "Cèpe",
+     "kind": "sprite",
+     "w": 16,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "species": "bolete",
+      "color": "brown"
+     },
+     "tags": [
+      "edible"
+     ],
+     "png": "library/png/nature/mushroom/bolete_16.png"
+    },
+    "chanterelle_16": {
+     "key": "chanterelle_16",
+     "name": "mushroom_chanterelle_16",
+     "id": "nature/mushroom/chanterelle_16",
+     "label": "Girolles",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "species": "chanterelle",
+      "color": "orange"
+     },
+     "tags": [
+      "edible"
+     ],
+     "png": "library/png/nature/mushroom/chanterelle_16.png"
+    },
+    "cluster_16": {
+     "key": "cluster_16",
+     "name": "mushroom_cluster_16",
+     "id": "nature/mushroom/cluster_16",
+     "label": "Touffe de petits champignons",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "species": "cluster",
+      "color": "tan"
+     },
+     "tags": [],
+     "png": "library/png/nature/mushroom/cluster_16.png"
+    },
+    "magic_blue_16": {
+     "key": "magic_blue_16",
+     "name": "mushroom_magic_blue_16",
+     "id": "nature/mushroom/magic_blue_16",
+     "label": "Champignon magique bleu (lumineux)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "species": "magic",
+      "color": "blue"
+     },
+     "tags": [
+      "magic",
+      "glow",
+      "fantasy"
+     ],
+     "png": "library/png/nature/mushroom/magic_blue_16.png"
+    },
+    "magic_purple_16": {
+     "key": "magic_purple_16",
+     "name": "mushroom_magic_purple_16",
+     "id": "nature/mushroom/magic_purple_16",
+     "label": "Champignon magique violet (lumineux)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "species": "magic",
+      "color": "purple"
+     },
+     "tags": [
+      "magic",
+      "glow",
+      "fantasy"
+     ],
+     "png": "library/png/nature/mushroom/magic_purple_16.png"
+    },
+    "amanita_32": {
+     "key": "amanita_32",
+     "name": "mushroom_amanita_32",
+     "id": "nature/mushroom/amanita_32",
+     "label": "Grande amanite (32 px)",
+     "kind": "sprite",
+     "w": 28,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "amanita",
+      "color": "red"
+     },
+     "tags": [
+      "poison"
+     ],
+     "png": "library/png/nature/mushroom/amanita_32.png"
+    }
+   }
+  },
   "nature/rock": {
    "id": "nature/rock",
    "slug": "rock",
    "category": "nature",
    "title": "Rocher",
-   "description": "Pierres et rochers pour décors : petit caillou, tas de galets, gros rocher à facettes, en versions nue, moussue, enneigée et grès du désert.",
+   "description": "Pierres et rochers pour décors, vus de face : petit caillou, tas de galets, gros rocher à facettes, cairn de pierres empilées (16, 32 px), aiguille rocheuse, escarpement de blocs (48 px) et arche naturelle (48 px), en versions nue, moussue, enneigée, grès du désert. Lumière en haut à gauche, contour sombre.",
    "tags": [
     "rock",
     "stone",
     "boulder",
     "nature",
     "decoration",
-    "obstacle"
+    "obstacle",
+    "cliff",
+    "terrain"
    ],
    "order": 0,
    "source": "assets/nature/rock.px.js",
@@ -63,7 +1152,11 @@
     "form": [
      "stone",
      "pebbles",
-     "boulder"
+     "boulder",
+     "cairn",
+     "spire",
+     "crag",
+     "arch"
     ],
     "surface": [
      "bare",
@@ -77,9 +1170,10 @@
    },
    "sizes": [
     16,
-    32
+    32,
+    48
    ],
-   "variantCount": 7,
+   "variantCount": 16,
    "variants": {
     "small_16": {
      "key": "small_16",
@@ -204,6 +1298,200 @@
       "desert"
      ],
      "png": "library/png/nature/rock/boulder_sand_32.png"
+    },
+    "cairn_16": {
+     "key": "cairn_16",
+     "name": "rock_cairn_16",
+     "id": "nature/rock/cairn_16",
+     "label": "Cairn (16 px)",
+     "kind": "sprite",
+     "w": 14,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "form": "cairn",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "cairn",
+      "stack",
+      "landmark",
+      "trail"
+     ],
+     "png": "library/png/nature/rock/cairn_16.png"
+    },
+    "cairn_32": {
+     "key": "cairn_32",
+     "name": "rock_cairn_32",
+     "id": "nature/rock/cairn_32",
+     "label": "Grand cairn moussu à la base",
+     "kind": "sprite",
+     "w": 22,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "form": "cairn",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "cairn",
+      "stack",
+      "landmark",
+      "trail"
+     ],
+     "png": "library/png/nature/rock/cairn_32.png"
+    },
+    "spire_32": {
+     "key": "spire_32",
+     "name": "rock_spire_32",
+     "id": "nature/rock/spire_32",
+     "label": "Aiguille rocheuse",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "spire",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "spire",
+      "pillar",
+      "needle"
+     ],
+     "png": "library/png/nature/rock/spire_32.png"
+    },
+    "spire_sand_32": {
+     "key": "spire_sand_32",
+     "name": "rock_spire_sand_32",
+     "id": "nature/rock/spire_sand_32",
+     "label": "Aiguille de grès (désert)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "spire",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "spire",
+      "pillar",
+      "desert",
+      "hoodoo"
+     ],
+     "png": "library/png/nature/rock/spire_sand_32.png"
+    },
+    "crag_48": {
+     "key": "crag_48",
+     "name": "rock_crag_48",
+     "id": "nature/rock/crag_48",
+     "label": "Escarpement de blocs (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "outcrop"
+     ],
+     "png": "library/png/nature/rock/crag_48.png"
+    },
+    "crag_mossy_48": {
+     "key": "crag_mossy_48",
+     "name": "rock_crag_mossy_48",
+     "id": "nature/rock/crag_mossy_48",
+     "label": "Escarpement moussu (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "outcrop",
+      "moss"
+     ],
+     "png": "library/png/nature/rock/crag_mossy_48.png"
+    },
+    "crag_snow_48": {
+     "key": "crag_snow_48",
+     "name": "rock_crag_snow_48",
+     "id": "nature/rock/crag_snow_48",
+     "label": "Escarpement enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "crag",
+      "surface": "snow",
+      "material": "granite"
+     },
+     "tags": [
+      "crag",
+      "cliff",
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/nature/rock/crag_snow_48.png"
+    },
+    "arch_48": {
+     "key": "arch_48",
+     "name": "rock_arch_48",
+     "id": "nature/rock/arch_48",
+     "label": "Arche naturelle (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "arch",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "arch",
+      "landmark"
+     ],
+     "png": "library/png/nature/rock/arch_48.png"
+    },
+    "arch_sand_48": {
+     "key": "arch_sand_48",
+     "name": "rock_arch_sand_48",
+     "id": "nature/rock/arch_sand_48",
+     "label": "Arche de grès du désert (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "form": "arch",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "arch",
+      "landmark",
+      "desert",
+      "canyon"
+     ],
+     "png": "library/png/nature/rock/arch_sand_48.png"
     }
    }
   },
@@ -582,6 +1870,727 @@
       "snow"
      ],
      "png": "library/png/nature/tree/pine_snow_48.png"
+    }
+   }
+  },
+  "landscape/hill": {
+   "id": "landscape/hill",
+   "slug": "hill",
+   "category": "landscape",
+   "title": "Colline",
+   "description": "Collines vues de face pour décors 2D, posées au sol : colline ronde (16, 32 px) en herbe d'été, fleurie, parsemée de pierres, dorée d'automne ou enneigée ; vallonnement de trois collines qui se recouvrent (64 × 24) en été, fleuri, automne et hiver ; dune de sable et champ de dunes du désert. Ombrage en croissants (lumière en haut à gauche), contour sombre.",
+   "tags": [
+    "hill",
+    "landscape",
+    "terrain",
+    "background",
+    "scenery",
+    "relief",
+    "meadow",
+    "ground"
+   ],
+   "order": 0,
+   "source": "assets/landscape/hill.px.js",
+   "module": "library/js/landscape/hill.js",
+   "sheet": {
+    "png": "library/sheets/landscape/hill.png",
+    "json": "library/sheets/landscape/hill.json"
+   },
+   "axes": {
+    "shape": [
+     "round",
+     "rolling",
+     "dune"
+    ],
+    "season": [
+     "summer",
+     "spring",
+     "autumn",
+     "winter"
+    ],
+    "cover": [
+     "grass",
+     "flowers",
+     "rocks",
+     "snow",
+     "sand"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    64
+   ],
+   "variantCount": 12,
+   "variants": {
+    "round_32": {
+     "key": "round_32",
+     "name": "hill_round_32",
+     "id": "landscape/hill/round_32",
+     "label": "Colline ronde – été",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/round_32.png"
+    },
+    "flowers_32": {
+     "key": "flowers_32",
+     "name": "hill_flowers_32",
+     "id": "landscape/hill/flowers_32",
+     "label": "Colline fleurie – printemps",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "spring",
+      "cover": "flowers"
+     },
+     "tags": [
+      "flower",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/flowers_32.png"
+    },
+    "rocky_32": {
+     "key": "rocky_32",
+     "name": "hill_rocky_32",
+     "id": "landscape/hill/rocky_32",
+     "label": "Colline semée de pierres",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "rocks"
+     },
+     "tags": [
+      "rock",
+      "stone",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/rocky_32.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "hill_autumn_32",
+     "id": "landscape/hill/autumn_32",
+     "label": "Colline dorée – automne",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "autumn",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "golden"
+     ],
+     "png": "library/png/landscape/hill/autumn_32.png"
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "hill_snow_32",
+     "id": "landscape/hill/snow_32",
+     "label": "Colline enneigée – hiver",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "winter",
+      "cover": "snow"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/hill/snow_32.png"
+    },
+    "round_16": {
+     "key": "round_16",
+     "name": "hill_round_16",
+     "id": "landscape/hill/round_16",
+     "label": "Petite colline (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 10,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "icon",
+      "grass"
+     ],
+     "png": "library/png/landscape/hill/round_16.png"
+    },
+    "rolling_64": {
+     "key": "rolling_64",
+     "name": "hill_rolling_64",
+     "id": "landscape/hill/rolling_64",
+     "label": "Vallonnement – été (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_64.png"
+    },
+    "rolling_flowers_64": {
+     "key": "rolling_flowers_64",
+     "name": "hill_rolling_flowers_64",
+     "id": "landscape/hill/rolling_flowers_64",
+     "label": "Vallonnement fleuri – printemps (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "spring",
+      "cover": "flowers"
+     },
+     "tags": [
+      "flower",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_flowers_64.png"
+    },
+    "rolling_autumn_64": {
+     "key": "rolling_autumn_64",
+     "name": "hill_rolling_autumn_64",
+     "id": "landscape/hill/rolling_autumn_64",
+     "label": "Vallonnement doré – automne (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "autumn",
+      "cover": "grass"
+     },
+     "tags": [
+      "golden",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_autumn_64.png"
+    },
+    "rolling_snow_64": {
+     "key": "rolling_snow_64",
+     "name": "hill_rolling_snow_64",
+     "id": "landscape/hill/rolling_snow_64",
+     "label": "Vallonnement enneigé – hiver (64 × 24)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 24,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "winter",
+      "cover": "snow"
+     },
+     "tags": [
+      "snow",
+      "countryside"
+     ],
+     "png": "library/png/landscape/hill/rolling_snow_64.png"
+    },
+    "dune_32": {
+     "key": "dune_32",
+     "name": "hill_dune_32",
+     "id": "landscape/hill/dune_32",
+     "label": "Dune de sable",
+     "kind": "sprite",
+     "w": 32,
+     "h": 14,
+     "size": 32,
+     "props": {
+      "shape": "dune",
+      "season": "summer",
+      "cover": "sand"
+     },
+     "tags": [
+      "desert",
+      "sand"
+     ],
+     "png": "library/png/landscape/hill/dune_32.png"
+    },
+    "dunes_64": {
+     "key": "dunes_64",
+     "name": "hill_dunes_64",
+     "id": "landscape/hill/dunes_64",
+     "label": "Champ de dunes (64 × 22)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 22,
+     "size": 64,
+     "props": {
+      "shape": "dune",
+      "season": "summer",
+      "cover": "sand"
+     },
+     "tags": [
+      "desert",
+      "sand"
+     ],
+     "png": "library/png/landscape/hill/dunes_64.png"
+    }
+   }
+  },
+  "landscape/mountain": {
+   "id": "landscape/mountain",
+   "slug": "mountain",
+   "category": "landscape",
+   "title": "Montagne",
+   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+   "tags": [
+    "mountain",
+    "peak",
+    "landscape",
+    "background",
+    "scenery",
+    "terrain",
+    "parallax",
+    "relief"
+   ],
+   "order": 0,
+   "source": "assets/landscape/mountain.px.js",
+   "module": "library/js/landscape/mountain.js",
+   "sheet": {
+    "png": "library/sheets/landscape/mountain.png",
+    "json": "library/sheets/landscape/mountain.json"
+   },
+   "axes": {
+    "shape": [
+     "peak",
+     "range",
+     "volcano",
+     "mesa"
+    ],
+    "cover": [
+     "snowcap",
+     "forest",
+     "snow",
+     "lava",
+     "bare"
+    ],
+    "tone": [
+     "day",
+     "haze",
+     "dusk"
+    ],
+    "material": [
+     "granite",
+     "basalt",
+     "sandstone",
+     "redstone"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48,
+    64
+   ],
+   "variantCount": 17,
+   "variants": {
+    "peak_snow_64": {
+     "key": "peak_snow_64",
+     "name": "mountain_peak_snow_64",
+     "id": "landscape/mountain/peak_snow_64",
+     "label": "Grand pic enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_64.png"
+    },
+    "peak_alpine_64": {
+     "key": "peak_alpine_64",
+     "name": "mountain_peak_alpine_64",
+     "id": "landscape/mountain/peak_alpine_64",
+     "label": "Grand pic alpin, alpage et sapins (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine",
+      "meadow"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_64.png"
+    },
+    "peak_winter_64": {
+     "key": "peak_winter_64",
+     "name": "mountain_peak_winter_64",
+     "id": "landscape/mountain/peak_winter_64",
+     "label": "Grand pic tout enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 46,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_64.png"
+    },
+    "peak_snow_32": {
+     "key": "peak_snow_32",
+     "name": "mountain_peak_snow_32",
+     "id": "landscape/mountain/peak_snow_32",
+     "label": "Pic enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_32.png"
+    },
+    "peak_alpine_32": {
+     "key": "peak_alpine_32",
+     "name": "mountain_peak_alpine_32",
+     "id": "landscape/mountain/peak_alpine_32",
+     "label": "Pic alpin, forêt au pied (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_32.png"
+    },
+    "peak_winter_32": {
+     "key": "peak_winter_32",
+     "name": "mountain_peak_winter_32",
+     "id": "landscape/mountain/peak_winter_32",
+     "label": "Pic tout enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 28,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_32.png"
+    },
+    "peak_snow_16": {
+     "key": "peak_snow_16",
+     "name": "mountain_peak_snow_16",
+     "id": "landscape/mountain/peak_snow_16",
+     "label": "Pic enneigé (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "snow"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_16.png"
+    },
+    "peak_alpine_16": {
+     "key": "peak_alpine_16",
+     "name": "mountain_peak_alpine_16",
+     "id": "landscape/mountain/peak_alpine_16",
+     "label": "Pic alpin (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "forest"
+     ],
+     "png": "library/png/landscape/mountain/peak_alpine_16.png"
+    },
+    "peak_winter_16": {
+     "key": "peak_winter_16",
+     "name": "mountain_peak_winter_16",
+     "id": "landscape/mountain/peak_winter_16",
+     "label": "Pic en hiver (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "icon",
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_16.png"
+    },
+    "range_snow_64": {
+     "key": "range_snow_64",
+     "name": "mountain_range_snow_64",
+     "id": "landscape/mountain/range_snow_64",
+     "label": "Chaîne de sommets enneigés (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_snow_64.png"
+    },
+    "range_alpine_64": {
+     "key": "range_alpine_64",
+     "name": "mountain_range_alpine_64",
+     "id": "landscape/mountain/range_alpine_64",
+     "label": "Chaîne alpine, forêt au pied (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "forest",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "forest",
+      "pine",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_alpine_64.png"
+    },
+    "range_far_64": {
+     "key": "range_far_64",
+     "name": "mountain_range_far_64",
+     "id": "landscape/mountain/range_far_64",
+     "label": "Chaîne lointaine bleutée (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "haze",
+      "material": "granite"
+     },
+     "tags": [
+      "distant",
+      "haze",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_far_64.png"
+    },
+    "range_dusk_64": {
+     "key": "range_dusk_64",
+     "name": "mountain_range_dusk_64",
+     "id": "landscape/mountain/range_dusk_64",
+     "label": "Chaîne au crépuscule (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "tone": "dusk",
+      "material": "granite"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "range"
+     ],
+     "png": "library/png/landscape/mountain/range_dusk_64.png"
+    },
+    "volcano_snow_48": {
+     "key": "volcano_snow_48",
+     "name": "mountain_volcano_snow_48",
+     "id": "landscape/mountain/volcano_snow_48",
+     "label": "Volcan endormi enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "volcano",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "volcano",
+      "snow",
+      "dormant"
+     ],
+     "png": "library/png/landscape/mountain/volcano_snow_48.png"
+    },
+    "volcano_active_48": {
+     "key": "volcano_active_48",
+     "name": "mountain_volcano_active_48",
+     "id": "landscape/mountain/volcano_active_48",
+     "label": "Volcan en éruption, animé (48 px)",
+     "kind": "anim",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "volcano",
+      "cover": "lava",
+      "tone": "day",
+      "material": "basalt"
+     },
+     "tags": [
+      "volcano",
+      "lava",
+      "smoke",
+      "eruption",
+      "animated",
+      "fire"
+     ],
+     "png": "library/png/landscape/mountain/volcano_active_48.png",
+     "gif": "library/png/landscape/mountain/volcano_active_48.gif",
+     "frameCount": 6,
+     "loopMs": 1002
+    },
+    "mesa_48": {
+     "key": "mesa_48",
+     "name": "mountain_mesa_48",
+     "id": "landscape/mountain/mesa_48",
+     "label": "Mesa de grès (48 × 32)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "cliff"
+     ],
+     "png": "library/png/landscape/mountain/mesa_48.png"
+    },
+    "mesa_red_48": {
+     "key": "mesa_red_48",
+     "name": "mountain_mesa_red_48",
+     "id": "landscape/mountain/mesa_red_48",
+     "label": "Mesa de roche rouge (48 × 32)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "redstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "cliff",
+      "canyon"
+     ],
+     "png": "library/png/landscape/mountain/mesa_red_48.png"
     }
    }
   },
