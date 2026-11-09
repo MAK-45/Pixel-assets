@@ -1,0 +1,174 @@
+{
+ "frames": {
+  "wood_16": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 10
+   }
+  },
+  "wood_32": {
+   "frame": {
+    "x": 17,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  },
+  "wood_back_32": {
+   "frame": {
+    "x": 50,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  },
+  "wood_back_48": {
+   "frame": {
+    "x": 0,
+    "y": 21,
+    "w": 48,
+    "h": 28
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 28
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 28
+   }
+  },
+  "green_32": {
+   "frame": {
+    "x": 49,
+    "y": 21,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  },
+  "stone_32": {
+   "frame": {
+    "x": 82,
+    "y": 21,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  },
+  "autumn_32": {
+   "frame": {
+    "x": 0,
+    "y": 50,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  },
+  "snow_32": {
+   "frame": {
+    "x": 33,
+    "y": 50,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "bench.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 114,
+   "h": 70
+  },
+  "scale": "1"
+ }
+}

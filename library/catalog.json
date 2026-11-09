@@ -3,9 +3,9 @@
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 4,
-  "assets": 12,
-  "variants": 138
+  "categories": 5,
+  "assets": 14,
+  "variants": 153
  },
  "categories": [
   {
@@ -50,6 +50,16 @@
    "assets": [
     "characters/slime",
     "characters/trooper"
+   ]
+  },
+  {
+   "id": "mobilier",
+   "title": "Mobilier urbain",
+   "description": "Mobilier de rue et de parc pour décors 2D : bancs publics (bois, pierre, fonte verte, enneigés, en automne) et lampadaires (potence, double globe, moderne, applique, éteints ou allumés).",
+   "icon": "mobilier/lamp/classic_on_32",
+   "assets": [
+    "mobilier/bench",
+    "mobilier/lamp"
    ]
   }
  ],
@@ -3267,6 +3277,378 @@
      "gif": "library/png/characters/trooper/turn.gif",
      "frameCount": 4,
      "loopMs": 1800
+    }
+   }
+  },
+  "mobilier/bench": {
+   "id": "mobilier/bench",
+   "slug": "bench",
+   "category": "mobilier",
+   "title": "Banc public",
+   "description": "Bancs publics posés au sol, vus de face pour décors 2D : banc de lattes en bois sans dossier (16 et 32 px), banc à dossier (32 et 48 px), banc vert en fonte peinte, banc de pierre massif, banc d'automne avec feuilles mortes et banc enneigé. Lumière en haut à gauche, contour sombre, assise au tiers haut du sprite.",
+   "tags": [
+    "bench",
+    "park",
+    "street",
+    "furniture",
+    "seat",
+    "urban",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/mobilier/bench.px.js",
+   "module": "library/js/mobilier/bench.js",
+   "sheet": {
+    "png": "library/sheets/mobilier/bench.png",
+    "json": "library/sheets/mobilier/bench.json"
+   },
+   "axes": {
+    "material": [
+     "wood",
+     "green_iron",
+     "stone"
+    ],
+    "backrest": [
+     "no",
+     "yes"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "winter"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 8,
+   "variants": {
+    "wood_16": {
+     "key": "wood_16",
+     "name": "bench_wood_16",
+     "id": "mobilier/bench/wood_16",
+     "label": "Petit banc en bois, sans dossier (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 10,
+     "size": 16,
+     "props": {
+      "material": "wood",
+      "backrest": "no",
+      "season": "summer"
+     },
+     "tags": [
+      "wood"
+     ],
+     "png": "library/png/mobilier/bench/wood_16.png"
+    },
+    "wood_32": {
+     "key": "wood_32",
+     "name": "bench_wood_32",
+     "id": "mobilier/bench/wood_32",
+     "label": "Banc en bois, sans dossier (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "wood",
+      "backrest": "no",
+      "season": "summer"
+     },
+     "tags": [
+      "wood"
+     ],
+     "png": "library/png/mobilier/bench/wood_32.png"
+    },
+    "wood_back_32": {
+     "key": "wood_back_32",
+     "name": "bench_wood_back_32",
+     "id": "mobilier/bench/wood_back_32",
+     "label": "Banc en bois à dossier (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "wood",
+      "backrest": "yes",
+      "season": "summer"
+     },
+     "tags": [
+      "wood",
+      "backrest"
+     ],
+     "png": "library/png/mobilier/bench/wood_back_32.png"
+    },
+    "wood_back_48": {
+     "key": "wood_back_48",
+     "name": "bench_wood_back_48",
+     "id": "mobilier/bench/wood_back_48",
+     "label": "Grand banc en bois à dossier (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 28,
+     "size": 48,
+     "props": {
+      "material": "wood",
+      "backrest": "yes",
+      "season": "summer"
+     },
+     "tags": [
+      "wood",
+      "backrest"
+     ],
+     "png": "library/png/mobilier/bench/wood_back_48.png"
+    },
+    "green_32": {
+     "key": "green_32",
+     "name": "bench_green_32",
+     "id": "mobilier/bench/green_32",
+     "label": "Banc vert en fonte (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "green_iron",
+      "backrest": "yes",
+      "season": "summer"
+     },
+     "tags": [
+      "iron",
+      "green",
+      "park"
+     ],
+     "png": "library/png/mobilier/bench/green_32.png"
+    },
+    "stone_32": {
+     "key": "stone_32",
+     "name": "bench_stone_32",
+     "id": "mobilier/bench/stone_32",
+     "label": "Banc de pierre massif (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "stone",
+      "backrest": "no",
+      "season": "summer"
+     },
+     "tags": [
+      "stone"
+     ],
+     "png": "library/png/mobilier/bench/stone_32.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "bench_autumn_32",
+     "id": "mobilier/bench/autumn_32",
+     "label": "Banc d'automne, feuilles mortes (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "wood",
+      "backrest": "yes",
+      "season": "autumn"
+     },
+     "tags": [
+      "autumn",
+      "leaves"
+     ],
+     "png": "library/png/mobilier/bench/autumn_32.png"
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "bench_snow_32",
+     "id": "mobilier/bench/snow_32",
+     "label": "Banc enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 20,
+     "size": 32,
+     "props": {
+      "material": "wood",
+      "backrest": "yes",
+      "season": "winter"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/mobilier/bench/snow_32.png"
+    }
+   }
+  },
+  "mobilier/lamp": {
+   "id": "mobilier/lamp",
+   "slug": "lamp",
+   "category": "mobilier",
+   "title": "Lampadaire",
+   "description": "Lampadaires de rue vus de face pour décors 2D : petit lampadaire de chemin (16 px), potence classique (32 px) et tête moderne (32 px), double globe à l'ancienne (48 px). Chaque modèle existe allumé (verre jaune, halo) ou éteint (verre pâle). Fût sombre en fonte, socle élargi, lumière en haut à gauche.",
+   "tags": [
+    "lamp",
+    "street-lamp",
+    "lamppost",
+    "light",
+    "urban",
+    "night",
+    "furniture"
+   ],
+   "order": 0,
+   "source": "assets/mobilier/lamp.px.js",
+   "module": "library/js/mobilier/lamp.js",
+   "sheet": {
+    "png": "library/sheets/mobilier/lamp.png",
+    "json": "library/sheets/mobilier/lamp.json"
+   },
+   "axes": {
+    "shape": [
+     "post",
+     "classic",
+     "modern",
+     "double"
+    ],
+    "state": [
+     "on",
+     "off"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 7,
+   "variants": {
+    "post_16_on": {
+     "key": "post_16_on",
+     "name": "lamp_post_16_on",
+     "id": "mobilier/lamp/post_16_on",
+     "label": "Petit lampadaire de chemin, allumé (16 px)",
+     "kind": "sprite",
+     "w": 8,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "post",
+      "state": "on"
+     },
+     "tags": [
+      "glow",
+      "path"
+     ],
+     "png": "library/png/mobilier/lamp/post_16_on.png"
+    },
+    "classic_32_on": {
+     "key": "classic_32_on",
+     "name": "lamp_classic_32_on",
+     "id": "mobilier/lamp/classic_32_on",
+     "label": "Lampadaire à potence, allumé (32 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "classic",
+      "state": "on"
+     },
+     "tags": [
+      "glow"
+     ],
+     "png": "library/png/mobilier/lamp/classic_32_on.png"
+    },
+    "classic_32_off": {
+     "key": "classic_32_off",
+     "name": "lamp_classic_32_off",
+     "id": "mobilier/lamp/classic_32_off",
+     "label": "Lampadaire à potence, éteint (32 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "classic",
+      "state": "off"
+     },
+     "tags": [],
+     "png": "library/png/mobilier/lamp/classic_32_off.png"
+    },
+    "modern_32_on": {
+     "key": "modern_32_on",
+     "name": "lamp_modern_32_on",
+     "id": "mobilier/lamp/modern_32_on",
+     "label": "Lampadaire moderne, allumé (32 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "modern",
+      "state": "on"
+     },
+     "tags": [
+      "glow"
+     ],
+     "png": "library/png/mobilier/lamp/modern_32_on.png"
+    },
+    "modern_32_off": {
+     "key": "modern_32_off",
+     "name": "lamp_modern_32_off",
+     "id": "mobilier/lamp/modern_32_off",
+     "label": "Lampadaire moderne, éteint (32 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "modern",
+      "state": "off"
+     },
+     "tags": [],
+     "png": "library/png/mobilier/lamp/modern_32_off.png"
+    },
+    "double_48_on": {
+     "key": "double_48_on",
+     "name": "lamp_double_48_on",
+     "id": "mobilier/lamp/double_48_on",
+     "label": "Double globe à l'ancienne, allumé (48 px)",
+     "kind": "sprite",
+     "w": 24,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "double",
+      "state": "on"
+     },
+     "tags": [
+      "glow",
+      "victorian"
+     ],
+     "png": "library/png/mobilier/lamp/double_48_on.png"
+    },
+    "double_48_off": {
+     "key": "double_48_off",
+     "name": "lamp_double_48_off",
+     "id": "mobilier/lamp/double_48_off",
+     "label": "Double globe à l'ancienne, éteint (48 px)",
+     "kind": "sprite",
+     "w": 24,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "double",
+      "state": "off"
+     },
+     "tags": [
+      "victorian"
+     ],
+     "png": "library/png/mobilier/lamp/double_48_off.png"
     }
    }
   }
