@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 4,
-  "assets": 11,
-  "variants": 127
+  "assets": 12,
+  "variants": 138
  },
  "categories": [
   {
@@ -48,7 +48,8 @@
    "description": "Héros, monstres et créatures (souvent animés).",
    "icon": "characters/slime/green_idle",
    "assets": [
-    "characters/slime"
+    "characters/slime",
+    "characters/trooper"
    ]
   }
  ],
@@ -3001,6 +3002,271 @@
       "boss"
      ],
      "png": "library/png/characters/slime/king_32.png"
+    }
+   }
+  },
+  "characters/trooper": {
+   "id": "characters/trooper",
+   "slug": "trooper",
+   "category": "characters",
+   "title": "Soldat en armure",
+   "description": "Skin « soldat en armure blanche » (casque à visière noire, plastron, ceinture, combinaison noire aux articulations) pour le personnage humain au sol : vues statiques face / dos / profil / trois-quarts, attente animée de face (respiration, poids d'une jambe sur l'autre) et marche de profil (talon, pied à plat, pointe, genoux, bras qui balancent, buste penché), plus le demi-tour face → profil.",
+   "tags": [
+    "character",
+    "soldier",
+    "trooper",
+    "armor",
+    "sci-fi",
+    "human",
+    "skin",
+    "animated",
+    "walk",
+    "idle"
+   ],
+   "order": 0,
+   "source": "assets/characters/trooper.px.js",
+   "module": "library/js/characters/trooper.js",
+   "sheet": {
+    "png": "library/sheets/characters/trooper.png",
+    "json": "library/sheets/characters/trooper.json"
+   },
+   "axes": {
+    "view": [
+     "front",
+     "back",
+     "three_quarter",
+     "side",
+     "turn"
+    ],
+    "facing": [
+     "front",
+     "back",
+     "right",
+     "left"
+    ],
+    "state": [
+     "static",
+     "idle",
+     "walk",
+     "turn"
+    ]
+   },
+   "sizes": [
+    64
+   ],
+   "variantCount": 11,
+   "variants": {
+    "front": {
+     "key": "front",
+     "name": "trooper_front",
+     "id": "characters/trooper/front",
+     "label": "De face (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "front",
+      "facing": "front",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/front.png"
+    },
+    "idle_front": {
+     "key": "idle_front",
+     "name": "trooper_idle_front",
+     "id": "characters/trooper/idle_front",
+     "label": "Attente de face – respiration (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "front",
+      "facing": "front",
+      "state": "idle"
+     },
+     "tags": [
+      "breathing"
+     ],
+     "png": "library/png/characters/trooper/idle_front.png",
+     "gif": "library/png/characters/trooper/idle_front.gif",
+     "frameCount": 8,
+     "loopMs": 1600
+    },
+    "back": {
+     "key": "back",
+     "name": "trooper_back",
+     "id": "characters/trooper/back",
+     "label": "De dos (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "back",
+      "facing": "back",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/back.png"
+    },
+    "three_quarter": {
+     "key": "three_quarter",
+     "name": "trooper_three_quarter",
+     "id": "characters/trooper/three_quarter",
+     "label": "Trois-quarts vers la droite (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "three_quarter",
+      "facing": "right",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/three_quarter.png"
+    },
+    "side": {
+     "key": "side",
+     "name": "trooper_side",
+     "id": "characters/trooper/side",
+     "label": "Profil vers la droite (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "side",
+      "facing": "right",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/side.png"
+    },
+    "walk_right": {
+     "key": "walk_right",
+     "name": "trooper_walk_right",
+     "id": "characters/trooper/walk_right",
+     "label": "Marche de profil vers la droite (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "side",
+      "facing": "right",
+      "state": "walk"
+     },
+     "tags": [
+      "walk-cycle"
+     ],
+     "png": "library/png/characters/trooper/walk_right.png",
+     "gif": "library/png/characters/trooper/walk_right.gif",
+     "frameCount": 10,
+     "loopMs": 1000
+    },
+    "walk_left": {
+     "key": "walk_left",
+     "name": "trooper_walk_left",
+     "id": "characters/trooper/walk_left",
+     "label": "Marche de profil vers la gauche (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "side",
+      "facing": "left",
+      "state": "walk"
+     },
+     "tags": [
+      "walk-cycle"
+     ],
+     "png": "library/png/characters/trooper/walk_left.png",
+     "gif": "library/png/characters/trooper/walk_left.gif",
+     "frameCount": 10,
+     "loopMs": 1000
+    },
+    "idle_side": {
+     "key": "idle_side",
+     "name": "trooper_idle_side",
+     "id": "characters/trooper/idle_side",
+     "label": "Attente de profil – respiration (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "side",
+      "facing": "right",
+      "state": "idle"
+     },
+     "tags": [
+      "breathing"
+     ],
+     "png": "library/png/characters/trooper/idle_side.png",
+     "gif": "library/png/characters/trooper/idle_side.gif",
+     "frameCount": 8,
+     "loopMs": 1600
+    },
+    "side_left": {
+     "key": "side_left",
+     "name": "trooper_side_left",
+     "id": "characters/trooper/side_left",
+     "label": "Profil vers la gauche (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "side",
+      "facing": "left",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/side_left.png"
+    },
+    "three_quarter_left": {
+     "key": "three_quarter_left",
+     "name": "trooper_three_quarter_left",
+     "id": "characters/trooper/three_quarter_left",
+     "label": "Trois-quarts vers la gauche (statique)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "three_quarter",
+      "facing": "left",
+      "state": "static"
+     },
+     "tags": [],
+     "png": "library/png/characters/trooper/three_quarter_left.png"
+    },
+    "turn": {
+     "key": "turn",
+     "name": "trooper_turn",
+     "id": "characters/trooper/turn",
+     "label": "Demi-tour face → profil → face (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "view": "turn",
+      "facing": "right",
+      "state": "turn"
+     },
+     "tags": [
+      "transition"
+     ],
+     "png": "library/png/characters/trooper/turn.png",
+     "gif": "library/png/characters/trooper/turn.gif",
+     "frameCount": 4,
+     "loopMs": 1800
     }
    }
   }
