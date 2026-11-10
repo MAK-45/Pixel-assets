@@ -18,10 +18,5 @@
     "title": "Personnages",
     "description": "Héros, monstres et créatures (souvent animés).",
     "icon": "characters/slime/green_idle"
-  },
-  "mobilier": {
-    "title": "Mobilier urbain",
-    "description": "Mobilier de rue et de parc pour décors 2D : bancs publics (bois, pierre, fonte verte, enneigés, en automne) et lampadaires (potence, double globe, moderne, applique, éteints ou allumés).",
-    "icon": "mobilier/lamp/classic_on_32"
   }
 }
