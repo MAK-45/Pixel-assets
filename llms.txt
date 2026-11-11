@@ -2,7 +2,8 @@
 
 > Bibliothèque de pixel art dessinée en code (moteur pxl / skill claude-pxl). Chaque dessin est une famille
 > de variantes (espèce, couleur, saison, état, taille 16/32/48 px) exportée en PNG, en sprite sheet et en
-> module JavaScript avec les pixels lisibles (rows + palette). Pensée pour être consommée par des agents IA.
+> module JavaScript avec les pixels lisibles (rows + palette), plus des scènes de jeu 16:9 en parallaxe.
+> Pensée pour être consommée par des agents IA.
 
 Chemins relatifs à la racine du dépôt mak-45/pixel-assets. Fichiers bruts :
 https://raw.githubusercontent.com/mak-45/pixel-assets/main/<chemin> (remplacer `main` par la branche voulue).
@@ -15,6 +16,14 @@ https://raw.githubusercontent.com/mak-45/pixel-assets/main/<chemin> (remplacer `
 - [library/index.d.ts](library/index.d.ts) : types TypeScript
 - `library/js/<catégorie>/<asset>.js` : module ES d'une famille avec pixels (`variants.<clé>.src`, `.rows`, `.palette`)
 - `library/png/<catégorie>/<asset>/<variante>.png` : PNG 1x ; `library/sheets/<catégorie>/<asset>.png|json` : sprite sheets
+- [library/scene-runtime.js](library/scene-runtime.js) : moteur des scènes (`createSceneFrom`, `fitCanvas`) : parallaxe infinie, périodes, effets
+- `library/scenes/<asset>/` : scène prête pour un jeu : `<asset>.js` (module autonome), `scene.json` + PNG des plans par période
+
+## Scènes
+
+Catégorie `scenes` : décors 16:9 (base 320 × 180) dont les variantes sont des périodes (jour, crépuscule, nuit, sombre).
+`catalog.assets[id].scene.type` vaut `parallax` (dynamique : plans qui défilent à l'infini) ou `static` (écran fixe) ;
+`groundY` = ligne de sol. Voir la section « Scènes » de library/README.md.
 
 ## Galerie
 

@@ -38,6 +38,10 @@ main + une version 32 px détaillée). Les recolorations coûtent une ligne (`ba
 
 ## 3. Dessiner
 
+**Scène** (décor de jeu 16:9) : suivre la section « Scènes » de `CLAUDE.md` (parties privées + `meta.scene`,
+`importAssets` pour réutiliser une sélection d'assets, type dynamique ou statique explicite) et prévisualiser avec
+`npm run scene -- assets/scenes/<asset>.px.js --planes` au lieu de la CLI pxl.
+
 1. Nouvelle famille : `npm run new -- <catégorie> <asset> "<Titre>"`, puis remplace l'exemple.
 2. Dessine la variante principale (la plus grande / la plus représentative) en premier.
 3. Boucle courte, une variante à la fois :

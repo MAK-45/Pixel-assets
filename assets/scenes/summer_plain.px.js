@@ -104,7 +104,7 @@ const FAR = {
   day: { k: "c", d: "S", m: "c", c: "C", C: "s", S: "C", s: "s", w: "w" },
   dusk: { k: "V", d: "V", m: "v", c: "x", C: "Z", S: "x", s: "Z", w: "Y" },
   night: { k: "Q", d: "O", m: "M", c: "U", C: "u", S: "U", s: "S", w: "s" },
-  overcast: { k: "d", d: "d", m: "m", c: "c", C: "C", S: "m", s: "c", w: "C" },
+  overcast: { k: "d", d: "d", m: "m", c: "c", C: "C", S: "m", s: "c", w: "c" },
 }
 const FAR2 = {
   day: { k: "S", d: "S", m: "C", c: "s", C: "s", S: "C", s: "s", w: "s" },

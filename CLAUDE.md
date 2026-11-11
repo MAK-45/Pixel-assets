@@ -35,6 +35,7 @@ se cherchent toi-même, sans les demander. Une fois l'idée arrêtée, enchaîne
 ```bash
 npm run pxl -- build assets/nature/tree.px.js --only tree_oak_autumn_32   # aperçus d'un asset en cours
 npm run pxl -- ascii assets/nature/tree.px.js tree_oak_autumn_32          # pixels en texte + règles x/y
+npm run scene -- assets/scenes/summer_plain.px.js --planes                # aperçus d'une scène (périodes + plans)
 npm run new -- <catégorie> <asset> "<Titre>"   # squelette d'une nouvelle famille
 npm run check                                 # valide tous les assets sans écrire
 npm run build                                 # library/ + docs/index.html + dist/gallery.html
@@ -50,10 +51,12 @@ et renvoie les erreurs : corrige-les immédiatement.
 assets/_palette.px.js        palette commune (clés mnémotechniques + rampes) — incluse partout
 assets/categories.json       catégories : titre, description, icône (id d'une variante), ordre
 assets/<cat>/<asset>.px.js   SOURCE : une famille d'assets = un fichier, chaque sprite exporté = une variante
+assets/scenes/<asset>.px.js  SOURCE d'une scène : parties privées + meta.scene (variantes = périodes)
 library/                     GÉNÉRÉ, consommé par les agents : catalog.json, index.js, js/, png/, sheets/
 web/                         interface de la galerie (index.html, style.css, app.js) — à modifier ici
 docs/index.html              GÉNÉRÉ : galerie autonome (GitHub Pages / ouverture directe)
-scripts/                     build.js, check.js, dev.js, new-asset.js, lib/, templates/ (runtime.js, index.d.ts)
+scripts/                     build.js, check.js, dev.js, new-asset.js, scene-preview.js, lib/ (library.js, scene.js),
+                             templates/ (runtime.js, index.d.ts, scene-runtime.js = moteur des scènes exporté)
 .claude/skills/claude-pxl/   moteur de dessin (vendored, voir VENDORED.md) ; draw/ = workflow du projet
 ```
 
@@ -84,6 +87,31 @@ scripts/                     build.js, check.js, dev.js, new-asset.js, lib/, tem
 - Ombrages par formes (grappes, croissants, faces) plutôt que par seuil linéaire.
 - Silhouette lisible à 1×. Vérifie chaque taille à son échelle réelle, pas seulement agrandie.
 - Vue de face (décors 2D) sauf demande contraire ; sol en bas du canevas pour les objets posés.
+
+## Scènes (décors de jeu 16:9)
+
+Une scène = `assets/scenes/<asset>.px.js`. Elle ne définit que des **parties privées** (`_nom`) et se décrit dans
+`meta.scene` ; ses **variantes sont ses périodes** (`day`, `dusk`, `night`, `overcast`…). Toujours dire si elle est :
+
+- **dynamique** (`type: "parallax"`) : plans en bandes qui bouclent sans couture (largeurs différentes par plan,
+  2 à 4 écrans), chacun avec son `factor` (0 = fixe … 1 = sol … >1 = premier plan devant le personnage) ;
+- **statique** (`type: "static"`) : un écran fixe (plans en `factor: 0`), mêmes périodes et effets possibles.
+
+La galerie affiche le badge ⇄ Dynamique ou ▣ Statique d'après ce type. Conventions :
+
+- Base **320 × 180** (agrandie d'un facteur entier par le moteur, vue élargie si l'écran ne tombe pas juste),
+  personnage d'environ 32 px, `groundY` = ligne des pieds (150 pour la Plaine d'été).
+- Réutiliser les assets existants avec `importAssets("<cat>/<asset>", ["variante", …])` : chaque variante devient la
+  partie `_<asset>_<variante>` (pixels en clés de palette, donc `swap` marche). Faire une sélection, pas tout utiliser.
+- Composer chaque plan dans les couleurs de la maison, puis le recolorer par période avec `swap` : clés d'ambiance de la
+  palette (crépuscule `D a A f F`, nuit `q j J t T` et ciel `Q O M`, temps couvert `h H X W`). Plans lointains sans
+  contour noir et proches de la couleur du ciel (perspective atmosphérique), plans proches au style maison.
+- `meta.scene` : `planes` (`image: "_plan_{period}"`, `y`, `factor`, `front`, `optional`, `drift`, `actors` animés),
+  `sprites` (acteurs et effets), `effects` par période (`twinkle`, `shooting`, `birds`, `butterflies`, `fireflies`),
+  `speed`. Le moteur (`scripts/templates/scene-runtime.js`) est le même dans la galerie et dans l'export.
+- Regarder `assets/scenes/out/_preview/<asset>_<période>.png` (et `__<plan>.png` avec `--planes`) après chaque essai.
+- Le build écrit `library/scenes/<asset>/` : module autonome `<asset>.js` (bouton « Exporter le code » de la galerie),
+  `scene.json` + PNG des plans, README.
 
 ## Artefact (fin de tâche)
 
