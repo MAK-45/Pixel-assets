@@ -3,9 +3,9 @@
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 4,
-  "assets": 12,
-  "variants": 138
+  "categories": 5,
+  "assets": 16,
+  "variants": 177
  },
  "categories": [
   {
@@ -31,6 +31,18 @@
    "assets": [
     "landscape/hill",
     "landscape/mountain"
+   ]
+  },
+  {
+   "id": "sky",
+   "title": "Ciel",
+   "description": "Éléments du ciel pour décors et icônes météo : nuages, soleils, lunes et étoiles.",
+   "icon": "sky/sun/rays_16",
+   "assets": [
+    "sky/cloud",
+    "sky/moon",
+    "sky/star",
+    "sky/sun"
    ]
   },
   {
@@ -2592,6 +2604,940 @@
       "canyon"
      ],
      "png": "library/png/landscape/mountain/mesa_red_48.png"
+    }
+   }
+  },
+  "sky/cloud": {
+   "id": "sky/cloud",
+   "slug": "cloud",
+   "category": "sky",
+   "title": "Nuage",
+   "description": "Nuages vus de face pour ciels de décors 2D : cumulus (16, 32 px), petit nuage, longue bande de stratus (48 × 16), nuage gris d'orage, nuage de pluie (fixe et animé), nuage de neige, nuage d'orage à éclair, et recolorations coucher de soleil et nuit. Puffs arrondis, lumière en haut à gauche, base plate ombrée.",
+   "tags": [
+    "cloud",
+    "sky",
+    "weather",
+    "background",
+    "scenery",
+    "cumulus"
+   ],
+   "order": 0,
+   "source": "assets/sky/cloud.px.js",
+   "module": "library/js/sky/cloud.js",
+   "sheet": {
+    "png": "library/sheets/sky/cloud.png",
+    "json": "library/sheets/sky/cloud.json"
+   },
+   "axes": {
+    "shape": [
+     "cumulus",
+     "puff",
+     "stratus"
+    ],
+    "weather": [
+     "fair",
+     "storm",
+     "rain",
+     "snow",
+     "thunder"
+    ],
+    "time": [
+     "day",
+     "sunset",
+     "night"
+    ]
+   },
+   "sizes": [
+    16,
+    24,
+    32,
+    48
+   ],
+   "variantCount": 12,
+   "variants": {
+    "cumulus_32": {
+     "key": "cumulus_32",
+     "name": "cloud_cumulus_32",
+     "id": "sky/cloud/cumulus_32",
+     "label": "Cumulus",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "fair",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/cloud/cumulus_32.png"
+    },
+    "sunset_32": {
+     "key": "sunset_32",
+     "name": "cloud_sunset_32",
+     "id": "sky/cloud/sunset_32",
+     "label": "Cumulus au coucher du soleil",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "fair",
+      "time": "sunset"
+     },
+     "tags": [
+      "pink",
+      "dusk"
+     ],
+     "png": "library/png/sky/cloud/sunset_32.png"
+    },
+    "night_32": {
+     "key": "night_32",
+     "name": "cloud_night_32",
+     "id": "sky/cloud/night_32",
+     "label": "Cumulus de nuit",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "fair",
+      "time": "night"
+     },
+     "tags": [
+      "dark"
+     ],
+     "png": "library/png/sky/cloud/night_32.png"
+    },
+    "storm_32": {
+     "key": "storm_32",
+     "name": "cloud_storm_32",
+     "id": "sky/cloud/storm_32",
+     "label": "Nuage gris d'orage",
+     "kind": "sprite",
+     "w": 32,
+     "h": 18,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "storm",
+      "time": "day"
+     },
+     "tags": [
+      "gray",
+      "dark"
+     ],
+     "png": "library/png/sky/cloud/storm_32.png"
+    },
+    "cumulus_16": {
+     "key": "cumulus_16",
+     "name": "cloud_cumulus_16",
+     "id": "sky/cloud/cumulus_16",
+     "label": "Petit cumulus (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 10,
+     "size": 16,
+     "props": {
+      "shape": "cumulus",
+      "weather": "fair",
+      "time": "day"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/cloud/cumulus_16.png"
+    },
+    "puff_24": {
+     "key": "puff_24",
+     "name": "cloud_puff_24",
+     "id": "sky/cloud/puff_24",
+     "label": "Petit nuage isolé",
+     "kind": "sprite",
+     "w": 24,
+     "h": 14,
+     "size": 24,
+     "props": {
+      "shape": "puff",
+      "weather": "fair",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/cloud/puff_24.png"
+    },
+    "stratus_48": {
+     "key": "stratus_48",
+     "name": "cloud_stratus_48",
+     "id": "sky/cloud/stratus_48",
+     "label": "Bande de stratus (48 × 16)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 15,
+     "size": 48,
+     "props": {
+      "shape": "stratus",
+      "weather": "fair",
+      "time": "day"
+     },
+     "tags": [
+      "long"
+     ],
+     "png": "library/png/sky/cloud/stratus_48.png"
+    },
+    "sunset_48": {
+     "key": "sunset_48",
+     "name": "cloud_sunset_48",
+     "id": "sky/cloud/sunset_48",
+     "label": "Stratus au coucher du soleil (48 × 16)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 15,
+     "size": 48,
+     "props": {
+      "shape": "stratus",
+      "weather": "fair",
+      "time": "sunset"
+     },
+     "tags": [
+      "pink",
+      "dusk",
+      "long"
+     ],
+     "png": "library/png/sky/cloud/sunset_48.png"
+    },
+    "rain_32": {
+     "key": "rain_32",
+     "name": "cloud_rain_32",
+     "id": "sky/cloud/rain_32",
+     "label": "Nuage de pluie",
+     "kind": "sprite",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "rain",
+      "time": "day"
+     },
+     "tags": [
+      "rain",
+      "drops"
+     ],
+     "png": "library/png/sky/cloud/rain_32.png"
+    },
+    "rain_anim_32": {
+     "key": "rain_anim_32",
+     "name": "cloud_rain_anim_32",
+     "id": "sky/cloud/rain_anim_32",
+     "label": "Nuage de pluie (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "rain",
+      "time": "day"
+     },
+     "tags": [
+      "rain",
+      "animated"
+     ],
+     "png": "library/png/sky/cloud/rain_anim_32.png",
+     "gif": "library/png/sky/cloud/rain_anim_32.gif",
+     "frameCount": 5,
+     "loopMs": 500
+    },
+    "snow_32": {
+     "key": "snow_32",
+     "name": "cloud_snow_32",
+     "id": "sky/cloud/snow_32",
+     "label": "Nuage de neige",
+     "kind": "sprite",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "snow",
+      "time": "day"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/sky/cloud/snow_32.png"
+    },
+    "thunder_32": {
+     "key": "thunder_32",
+     "name": "cloud_thunder_32",
+     "id": "sky/cloud/thunder_32",
+     "label": "Nuage d'orage à éclair",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "cumulus",
+      "weather": "thunder",
+      "time": "day"
+     },
+     "tags": [
+      "lightning",
+      "storm"
+     ],
+     "png": "library/png/sky/cloud/thunder_32.png"
+    }
+   }
+  },
+  "sky/moon": {
+   "id": "sky/moon",
+   "slug": "moon",
+   "category": "sky",
+   "title": "Lune",
+   "description": "Lunes pour ciels de nuit : croissant (16, 32 px), premier quartier, gibbeuse, pleine lune (16, 32 px) à cratères, lune rousse des moissons, lune de sang et croissant endormi avec visage. Partie éclairée à gauche (lumière en haut à gauche), partie sombre transparente, terminateur adouci d'une nuance.",
+   "tags": [
+    "moon",
+    "sky",
+    "night",
+    "lunar",
+    "phase",
+    "crescent",
+    "icon"
+   ],
+   "order": 0,
+   "source": "assets/sky/moon.px.js",
+   "module": "library/js/sky/moon.js",
+   "sheet": {
+    "png": "library/sheets/sky/moon.png",
+    "json": "library/sheets/sky/moon.json"
+   },
+   "axes": {
+    "phase": [
+     "full",
+     "gibbous",
+     "quarter",
+     "crescent"
+    ],
+    "color": [
+     "silver",
+     "orange",
+     "red"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 9,
+   "variants": {
+    "full_32": {
+     "key": "full_32",
+     "name": "moon_full_32",
+     "id": "sky/moon/full_32",
+     "label": "Pleine lune",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "silver"
+     },
+     "tags": [
+      "craters"
+     ],
+     "png": "library/png/sky/moon/full_32.png"
+    },
+    "gibbous_32": {
+     "key": "gibbous_32",
+     "name": "moon_gibbous_32",
+     "id": "sky/moon/gibbous_32",
+     "label": "Lune gibbeuse",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "gibbous",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/moon/gibbous_32.png"
+    },
+    "quarter_32": {
+     "key": "quarter_32",
+     "name": "moon_quarter_32",
+     "id": "sky/moon/quarter_32",
+     "label": "Quartier de lune",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "quarter",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/moon/quarter_32.png"
+    },
+    "crescent_32": {
+     "key": "crescent_32",
+     "name": "moon_crescent_32",
+     "id": "sky/moon/crescent_32",
+     "label": "Croissant de lune",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "crescent",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/moon/crescent_32.png"
+    },
+    "harvest_32": {
+     "key": "harvest_32",
+     "name": "moon_harvest_32",
+     "id": "sky/moon/harvest_32",
+     "label": "Lune rousse des moissons",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "orange"
+     },
+     "tags": [
+      "autumn",
+      "harvest"
+     ],
+     "png": "library/png/sky/moon/harvest_32.png"
+    },
+    "blood_32": {
+     "key": "blood_32",
+     "name": "moon_blood_32",
+     "id": "sky/moon/blood_32",
+     "label": "Lune de sang",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "red"
+     },
+     "tags": [
+      "eclipse",
+      "red",
+      "horror"
+     ],
+     "png": "library/png/sky/moon/blood_32.png"
+    },
+    "sleepy_32": {
+     "key": "sleepy_32",
+     "name": "moon_sleepy_32",
+     "id": "sky/moon/sleepy_32",
+     "label": "Croissant endormi",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "crescent",
+      "color": "silver"
+     },
+     "tags": [
+      "cute",
+      "face",
+      "sleep"
+     ],
+     "png": "library/png/sky/moon/sleepy_32.png"
+    },
+    "full_16": {
+     "key": "full_16",
+     "name": "moon_full_16",
+     "id": "sky/moon/full_16",
+     "label": "Pleine lune (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "phase": "full",
+      "color": "silver"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/moon/full_16.png"
+    },
+    "crescent_16": {
+     "key": "crescent_16",
+     "name": "moon_crescent_16",
+     "id": "sky/moon/crescent_16",
+     "label": "Croissant (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "phase": "crescent",
+      "color": "silver"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/moon/crescent_16.png"
+    }
+   }
+  },
+  "sky/star": {
+   "id": "sky/star",
+   "slug": "star",
+   "category": "sky",
+   "title": "Étoile",
+   "description": "Étoiles pour ciels de nuit, butin ou interface : étoile à cinq branches en relief (16, 32 px) dorée, argentée ou souriante, scintillement à quatre branches (16, 32 px) doré ou bleu, scintillement animé, étoile filante à traîne et petit amas d'étoiles. Facettes éclairées en haut à gauche.",
+   "tags": [
+    "star",
+    "sky",
+    "night",
+    "sparkle",
+    "twinkle",
+    "icon",
+    "collectible"
+   ],
+   "order": 0,
+   "source": "assets/sky/star.px.js",
+   "module": "library/js/sky/star.js",
+   "sheet": {
+    "png": "library/sheets/sky/star.png",
+    "json": "library/sheets/sky/star.json"
+   },
+   "axes": {
+    "shape": [
+     "five",
+     "sparkle",
+     "shooting",
+     "cluster"
+    ],
+    "color": [
+     "gold",
+     "silver",
+     "blue",
+     "white"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 10,
+   "variants": {
+    "five_32": {
+     "key": "five_32",
+     "name": "star_five_32",
+     "id": "sky/star/five_32",
+     "label": "Étoile dorée",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "five",
+      "color": "gold"
+     },
+     "tags": [
+      "rating",
+      "collectible"
+     ],
+     "png": "library/png/sky/star/five_32.png"
+    },
+    "silver_32": {
+     "key": "silver_32",
+     "name": "star_silver_32",
+     "id": "sky/star/silver_32",
+     "label": "Étoile argentée",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "five",
+      "color": "silver"
+     },
+     "tags": [
+      "rating"
+     ],
+     "png": "library/png/sky/star/silver_32.png"
+    },
+    "smile_32": {
+     "key": "smile_32",
+     "name": "star_smile_32",
+     "id": "sky/star/smile_32",
+     "label": "Étoile souriante",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "five",
+      "color": "gold"
+     },
+     "tags": [
+      "cute",
+      "face"
+     ],
+     "png": "library/png/sky/star/smile_32.png"
+    },
+    "five_16": {
+     "key": "five_16",
+     "name": "star_five_16",
+     "id": "sky/star/five_16",
+     "label": "Étoile dorée (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "five",
+      "color": "gold"
+     },
+     "tags": [
+      "icon",
+      "rating"
+     ],
+     "png": "library/png/sky/star/five_16.png"
+    },
+    "sparkle_32": {
+     "key": "sparkle_32",
+     "name": "star_sparkle_32",
+     "id": "sky/star/sparkle_32",
+     "label": "Grand scintillement",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "sparkle",
+      "color": "gold"
+     },
+     "tags": [
+      "shine",
+      "north-star"
+     ],
+     "png": "library/png/sky/star/sparkle_32.png"
+    },
+    "sparkle_16": {
+     "key": "sparkle_16",
+     "name": "star_sparkle_16",
+     "id": "sky/star/sparkle_16",
+     "label": "Scintillement (16 px)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "shape": "sparkle",
+      "color": "gold"
+     },
+     "tags": [
+      "icon",
+      "shine"
+     ],
+     "png": "library/png/sky/star/sparkle_16.png"
+    },
+    "sparkle_blue_16": {
+     "key": "sparkle_blue_16",
+     "name": "star_sparkle_blue_16",
+     "id": "sky/star/sparkle_blue_16",
+     "label": "Scintillement bleu (16 px)",
+     "kind": "sprite",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "shape": "sparkle",
+      "color": "blue"
+     },
+     "tags": [
+      "icon",
+      "magic"
+     ],
+     "png": "library/png/sky/star/sparkle_blue_16.png"
+    },
+    "twinkle_16": {
+     "key": "twinkle_16",
+     "name": "star_twinkle_16",
+     "id": "sky/star/twinkle_16",
+     "label": "Scintillement animé (16 px)",
+     "kind": "anim",
+     "w": 15,
+     "h": 15,
+     "size": 16,
+     "props": {
+      "shape": "sparkle",
+      "color": "gold"
+     },
+     "tags": [
+      "animated",
+      "shine"
+     ],
+     "png": "library/png/sky/star/twinkle_16.png",
+     "gif": "library/png/sky/star/twinkle_16.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "shooting_32": {
+     "key": "shooting_32",
+     "name": "star_shooting_32",
+     "id": "sky/star/shooting_32",
+     "label": "Étoile filante",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "shooting",
+      "color": "gold"
+     },
+     "tags": [
+      "comet",
+      "wish",
+      "trail"
+     ],
+     "png": "library/png/sky/star/shooting_32.png"
+    },
+    "cluster_32": {
+     "key": "cluster_32",
+     "name": "star_cluster_32",
+     "id": "sky/star/cluster_32",
+     "label": "Amas d'étoiles",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "cluster",
+      "color": "white"
+     },
+     "tags": [
+      "night",
+      "background",
+      "starfield"
+     ],
+     "png": "library/png/sky/star/cluster_32.png"
+    }
+   }
+  },
+  "sky/sun": {
+   "id": "sky/sun",
+   "slug": "sun",
+   "category": "sky",
+   "title": "Soleil",
+   "description": "Soleils pour ciels et icônes météo : soleil à rayons (16, 32 px), soleil souriant, rayons qui tournent (animé), soleil pâle d'hiver, soleil couchant sur l'horizon, éclipse avec couronne et soleil derrière un nuage. Disque ombré en croissant (lumière en haut à gauche), rayons triangulaires alternés longs/courts.",
+   "tags": [
+    "sun",
+    "sky",
+    "weather",
+    "sunny",
+    "day",
+    "light",
+    "icon"
+   ],
+   "order": 0,
+   "source": "assets/sky/sun.px.js",
+   "module": "library/js/sky/sun.js",
+   "sheet": {
+    "png": "library/sheets/sky/sun.png",
+    "json": "library/sheets/sky/sun.json"
+   },
+   "axes": {
+    "style": [
+     "rays",
+     "disc",
+     "corona"
+    ],
+    "mood": [
+     "plain",
+     "smile"
+    ],
+    "time": [
+     "day",
+     "winter",
+     "sunset",
+     "eclipse"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 8,
+   "variants": {
+    "rays_32": {
+     "key": "rays_32",
+     "name": "sun_rays_32",
+     "id": "sky/sun/rays_32",
+     "label": "Soleil à rayons",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "mood": "plain",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/sun/rays_32.png"
+    },
+    "pale_32": {
+     "key": "pale_32",
+     "name": "sun_pale_32",
+     "id": "sky/sun/pale_32",
+     "label": "Soleil pâle d'hiver",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "mood": "plain",
+      "time": "winter"
+     },
+     "tags": [
+      "winter",
+      "cold"
+     ],
+     "png": "library/png/sky/sun/pale_32.png"
+    },
+    "smile_32": {
+     "key": "smile_32",
+     "name": "sun_smile_32",
+     "id": "sky/sun/smile_32",
+     "label": "Soleil souriant",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "mood": "smile",
+      "time": "day"
+     },
+     "tags": [
+      "cute",
+      "face"
+     ],
+     "png": "library/png/sky/sun/smile_32.png"
+    },
+    "spin_32": {
+     "key": "spin_32",
+     "name": "sun_spin_32",
+     "id": "sky/sun/spin_32",
+     "label": "Soleil rayonnant (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "mood": "plain",
+      "time": "day"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/sky/sun/spin_32.png",
+     "gif": "library/png/sky/sun/spin_32.gif",
+     "frameCount": 4,
+     "loopMs": 500
+    },
+    "rays_16": {
+     "key": "rays_16",
+     "name": "sun_rays_16",
+     "id": "sky/sun/rays_16",
+     "label": "Soleil à rayons (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "style": "rays",
+      "mood": "plain",
+      "time": "day"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/sun/rays_16.png"
+    },
+    "setting_32": {
+     "key": "setting_32",
+     "name": "sun_setting_32",
+     "id": "sky/sun/setting_32",
+     "label": "Soleil couchant sur l'horizon",
+     "kind": "sprite",
+     "w": 32,
+     "h": 22,
+     "size": 32,
+     "props": {
+      "style": "disc",
+      "mood": "plain",
+      "time": "sunset"
+     },
+     "tags": [
+      "sunset",
+      "dusk",
+      "horizon"
+     ],
+     "png": "library/png/sky/sun/setting_32.png"
+    },
+    "eclipse_32": {
+     "key": "eclipse_32",
+     "name": "sun_eclipse_32",
+     "id": "sky/sun/eclipse_32",
+     "label": "Éclipse solaire",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "corona",
+      "mood": "plain",
+      "time": "eclipse"
+     },
+     "tags": [
+      "eclipse",
+      "dark"
+     ],
+     "png": "library/png/sky/sun/eclipse_32.png"
+    },
+    "cloudy_32": {
+     "key": "cloudy_32",
+     "name": "sun_cloudy_32",
+     "id": "sky/sun/cloudy_32",
+     "label": "Soleil derrière un nuage",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "mood": "plain",
+      "time": "day"
+     },
+     "tags": [
+      "cloud",
+      "weather",
+      "partly-cloudy"
+     ],
+     "png": "library/png/sky/sun/cloudy_32.png"
     }
    }
   },

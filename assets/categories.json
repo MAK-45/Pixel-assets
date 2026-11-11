@@ -9,6 +9,11 @@
     "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
     "icon": "landscape/mountain/peak_snow_16"
   },
+  "sky": {
+    "title": "Ciel",
+    "description": "Éléments du ciel pour décors et icônes météo : nuages, soleils, lunes et étoiles.",
+    "icon": "sky/sun/rays_16"
+  },
   "items": {
     "title": "Objets",
     "description": "Potions, armes, butin et objets d'inventaire.",
