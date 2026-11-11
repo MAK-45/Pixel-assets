@@ -655,6 +655,7 @@ async function openViewer(assetId, period, { updateHash = true } = {}) {
   $("#v-file").textContent = file;
   $("#v-export-info").textContent = `Module JavaScript autonome « ${file} » : moteur de scène et images des ${sc.periods.length} périodes (${Math.round(new Blob([bundle]).size / 1024)} Ko), sans dépendance. Le pack .zip contient en plus les PNG de chaque plan et scene.json pour un autre moteur.`;
   $("#v-export-hint").hidden = true;
+  $("#v-fallback").hidden = true;
   const usage = state.runtime.sceneUsage(sc, file).map((l) => (l.startsWith("  ") ? l.slice(2) : l ? `// ${l}` : "")).join("\n");
   $("#v-usage").replaceChildren(...highlight(usage).map((parts) => el("span", { class: "ln" }, parts.length ? parts : "​")));
   $("#v-usage").dataset.raw = usage;
@@ -835,11 +836,18 @@ function exportZip() {
 }
 
 async function copyBundle() {
+  const text = bundleText(viewer.asset);
   try {
-    await navigator.clipboard.writeText(bundleText(viewer.asset));
+    await navigator.clipboard.writeText(text);
     toast(`Code copié : colle-le dans ${viewer.asset.slug}.js`);
   } catch {
-    toast("Copie refusée par le navigateur : utilise « Télécharger le .js »");
+    // presse-papiers refusé (cadre d'artefact…) : le code apparaît sélectionné, prêt pour Ctrl+C
+    const box = $("#v-fallback");
+    box.value = text;
+    box.hidden = false;
+    box.focus();
+    box.select();
+    toast("Code sélectionné ci-dessous : Ctrl+C (ou Cmd+C) pour le copier");
   }
 }
 
