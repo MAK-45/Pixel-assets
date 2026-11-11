@@ -128,6 +128,75 @@
     </div>
   </dialog>
 
+  <dialog class="viewer" id="viewer" aria-labelledby="v-title">
+    <div class="viewer-body">
+      <div class="insp-head">
+        <div class="insp-title">
+          <p class="eyebrow" id="v-family"></p>
+          <h2 id="v-title"></h2>
+          <p class="meta-line" id="v-meta"></p>
+        </div>
+        <button class="icon-btn" id="v-close" type="button" aria-label="Fermer la visionneuse">✕</button>
+      </div>
+
+      <div class="v-stage-wrap" id="v-stage-wrap">
+        <div class="v-stage" id="v-stage">
+          <canvas id="v-canvas" width="320" height="180"></canvas>
+          <p class="v-hint" id="v-hint">← → pour marcher · Maj pour courir</p>
+        </div>
+        <p class="v-status" id="v-status"></p>
+      </div>
+
+      <div class="v-controls">
+        <section class="v-group">
+          <h3>Période</h3>
+          <div class="seg v-periods" id="v-periods" role="group" aria-label="Période de la journée"></div>
+        </section>
+        <section class="v-group" id="v-move-group">
+          <h3>Déplacement</h3>
+          <div class="v-row">
+            <div class="seg" role="group" aria-label="Marcher">
+              <button type="button" id="v-left" aria-label="Marcher vers la gauche">◀</button>
+              <button type="button" id="v-stop" aria-label="S'arrêter">■</button>
+              <button type="button" id="v-right" aria-label="Marcher vers la droite">▶</button>
+            </div>
+            <label class="toggle"><input type="checkbox" id="v-run"> courir</label>
+            <label class="toggle"><input type="checkbox" id="v-auto" checked> démo auto</label>
+          </div>
+        </section>
+        <section class="v-group">
+          <h3>Affichage</h3>
+          <div class="v-row">
+            <select id="v-res" aria-label="Résolution simulée"></select>
+            <label class="toggle"><input type="checkbox" id="v-marker" checked> repère 32 px</label>
+            <button type="button" class="btn small ghost" id="v-full">Plein écran</button>
+          </div>
+        </section>
+        <section class="v-group">
+          <h3>Plans</h3>
+          <div class="v-planes" id="v-planes"></div>
+        </section>
+      </div>
+
+      <section class="v-export">
+        <h3>Exporter le code de la scène</h3>
+        <p class="hint" id="v-export-info"></p>
+        <div class="v-row">
+          <button type="button" class="btn" id="v-copy-js">Copier le code</button>
+          <button type="button" class="btn ghost" id="v-dl-js">Télécharger le .js</button>
+          <button type="button" class="btn ghost" id="v-dl-zip">Pack .zip (PNG + JSON)</button>
+        </div>
+        <p class="hint" id="v-export-hint" hidden>Si le téléchargement ne démarre pas ici, utilise « Copier le code » puis colle-le dans un fichier <code id="v-file"></code> de ton jeu.</p>
+        <textarea class="v-fallback" id="v-fallback" readonly hidden aria-label="Code de la scène à copier"></textarea>
+        <div class="code-head">
+          <span class="code-path">Utilisation dans ton jeu</span>
+          <button type="button" class="btn small ghost" id="v-copy-usage">Copier</button>
+        </div>
+        <pre class="codebox"><code id="v-usage"></code></pre>
+      </section>
+    </div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 </div>
 <script type="module" src="app.js"></script>

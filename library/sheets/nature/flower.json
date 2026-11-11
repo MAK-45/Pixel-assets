@@ -1,0 +1,234 @@
+{
+ "frames": {
+  "tulip_red_16": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "tulip_yellow_16": {
+   "frame": {
+    "x": 14,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "tulip_pink_16": {
+   "frame": {
+    "x": 28,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "tulip_purple_16": {
+   "frame": {
+    "x": 42,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "tulip_white_16": {
+   "frame": {
+    "x": 0,
+    "y": 17,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "daisy_16": {
+   "frame": {
+    "x": 14,
+    "y": 17,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "poppy_16": {
+   "frame": {
+    "x": 28,
+    "y": 17,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "bluebell_16": {
+   "frame": {
+    "x": 42,
+    "y": 17,
+    "w": 14,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 14,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 14,
+    "h": 16
+   }
+  },
+  "lavender_16": {
+   "frame": {
+    "x": 0,
+    "y": 34,
+    "w": 13,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 16
+   }
+  },
+  "sunflower_32": {
+   "frame": {
+    "x": 14,
+    "y": 34,
+    "w": 24,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 32
+   }
+  },
+  "bed_32": {
+   "frame": {
+    "x": 39,
+    "y": 34,
+    "w": 32,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 20
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "flower.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 71,
+   "h": 66
+  },
+  "scale": "1"
+ }
+}

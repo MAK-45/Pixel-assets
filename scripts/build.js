@@ -6,6 +6,8 @@
 //   library/js/<cat>/<asset>.js      un module ES par famille, avec toutes les variantes
 //   library/png/<cat>/<asset>/<variante>.png (+ .gif pour les animations)
 //   library/sheets/<cat>/<asset>.png + .json   sprite sheet par famille
+//   library/scenes/<asset>/          paquet d'une scène : module autonome, scene.json, PNG des plans
+//   library/scene-runtime.js         moteur des scènes (parallaxe, périodes, effets)
 //   docs/index.html                  galerie autonome (un seul fichier, ouvrable sans serveur)
 //   dist/gallery.html                même galerie au format artefact claude.ai (non versionnée)
 // Atomique : si un asset a une erreur, rien n'est écrit.
@@ -46,7 +48,7 @@ function catalogOf(records) {
     .filter((c) => records.some((r) => r.category === c));
   const byCat = (c) => records.filter((r) => r.category === c)
     .sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug));
-  const strip = (r) => ({
+  const strip = ({ sceneData, ...r }) => ({
     ...r,
     variants: Object.fromEntries(Object.entries(r.variants).map(([k, v]) => {
       const { data, ...rest } = v;
@@ -76,9 +78,10 @@ function catalogOf(records) {
 }
 
 /** Famille avec pixels, telle qu'exportée par son module JS (src en data URL, rows + palette). */
-function moduleAsset(record) {
+function moduleAsset({ sceneData, ...record }) {
   return {
     ...record,
+    ...(sceneData ? { scene: sceneData } : {}),
     variants: Object.fromEntries(Object.entries(record.variants).map(([k, v]) => {
       const { data, ...rest } = v;
       const flat = { ...rest, src: data.pngDataUrl };
@@ -92,11 +95,15 @@ function moduleAsset(record) {
 
 function moduleOf(record) {
   const asset = moduleAsset(record);
+  const usage = record.sceneData
+    ? [`//   import asset from "./${record.slug}.js"; import { createSceneFrom } from "../../scene-runtime.js";`,
+       `//   const scene = await createSceneFrom(asset.scene, { period: "${record.sceneData.defaultPeriod}" }); // voir library/README.md`]
+    : [`//   import asset from "./${record.slug}.js"; const v = asset.variants["${Object.keys(record.variants)[0]}"];`,
+       `//   v.src (data URL PNG), v.rows + v.palette (pixels, "." = transparent), v.w, v.h`];
   return [
     `// GÉNÉRÉ par scripts/build.js — ne pas modifier. Source : ${record.source}`,
     `// ${record.title} — ${record.variantCount} variante(s). Usage :`,
-    `//   import asset from "./${record.slug}.js"; const v = asset.variants["${Object.keys(record.variants)[0]}"];`,
-    `//   v.src (data URL PNG), v.rows + v.palette (pixels, "." = transparent), v.w, v.h`,
+    ...usage,
     `/** @type {import("../../index.d.ts").PixelAsset} */`,
     `export const asset = ${JSON.stringify(asset, null, 1)};`,
     `export default asset;`,
@@ -115,6 +122,7 @@ function indexOf(catalog) {
 //   const v = await loadVariant("nature/tree/oak_summer_full_32");
 //   const hits = find({ category: "nature", tag: "tree", props: { season: "autumn" } });
 export * from "./runtime.js";
+export { createSceneFrom, fitCanvas } from "./scene-runtime.js";
 
 /** @type {import("./index.d.ts").Catalog} */
 export const catalog = ${JSON.stringify(catalog, null, 1)};
@@ -178,7 +186,7 @@ function write(path, data) {
 }
 
 export function writeLibrary({ records, files }) {
-  for (const d of ["png", "js", "sheets"]) rmSync(join(LIBRARY_DIR, d), { recursive: true, force: true });
+  for (const d of ["png", "js", "sheets", "scenes"]) rmSync(join(LIBRARY_DIR, d), { recursive: true, force: true });
   for (const f of files) write(f.path, f.data);
   const catalog = catalogOf(records);
   for (const r of records) write(r.module, moduleOf(r));
@@ -186,9 +194,11 @@ export function writeLibrary({ records, files }) {
   write("library/index.js", indexOf(catalog));
   copyFileSync(join(ROOT, "scripts/templates/runtime.js"), join(LIBRARY_DIR, "runtime.js"));
   copyFileSync(join(ROOT, "scripts/templates/index.d.ts"), join(LIBRARY_DIR, "index.d.ts"));
+  copyFileSync(join(ROOT, "scripts/templates/scene-runtime.js"), join(LIBRARY_DIR, "scene-runtime.js"));
   const sources = Object.fromEntries(records.map((r) => [r.id, readFileSync(join(ROOT, r.source), "utf8")]));
   sources["_palette"] = readFileSync(join(ASSETS_DIR, "_palette.px.js"), "utf8");
-  const lib = { catalog, modules: Object.fromEntries(records.map((r) => [r.id, moduleAsset(r)])), sources };
+  const sceneRuntime = readFileSync(join(ROOT, "scripts/templates/scene-runtime.js"), "utf8");
+  const lib = { catalog, modules: Object.fromEntries(records.map((r) => [r.id, moduleAsset(r)])), sources, sceneRuntime };
   write("docs/index.html", standaloneGallery(lib));
   // Version « fragment » pour la publication en artefact claude.ai (non versionnée).
   write("dist/gallery.html", standaloneGallery(lib, { fragment: true }));

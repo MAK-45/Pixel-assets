@@ -38,6 +38,10 @@ main + une version 32 px détaillée). Les recolorations coûtent une ligne (`ba
 
 ## 3. Dessiner
 
+**Scène** (décor de jeu 16:9, fond, niveau) : ce n'est pas ce skill. Scène dynamique (parallaxe) : skill
+**`/scene-dynamique`** (`.claude/skills/scene-dynamique/SKILL.md`) ; scène statique : skill prévu, pas encore écrit.
+`/draw` sert à y dessiner les assets qui manquent (palmier, cactus…).
+
 1. Nouvelle famille : `npm run new -- <catégorie> <asset> "<Titre>"`, puis remplace l'exemple.
 2. Dessine la variante principale (la plus grande / la plus représentative) en premier.
 3. Boucle courte, une variante à la fois :

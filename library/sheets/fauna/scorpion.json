@@ -1,0 +1,296 @@
+{
+ "frames": {
+  "sand_16": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   }
+  },
+  "black_16": {
+   "frame": {
+    "x": 17,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   }
+  },
+  "red_16": {
+   "frame": {
+    "x": 34,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   }
+  },
+  "sand_walk_16_0": {
+   "frame": {
+    "x": 51,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   },
+   "duration": 100
+  },
+  "sand_walk_16_1": {
+   "frame": {
+    "x": 0,
+    "y": 13,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   },
+   "duration": 100
+  },
+  "sand_walk_16_2": {
+   "frame": {
+    "x": 17,
+    "y": 13,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   },
+   "duration": 100
+  },
+  "sand_walk_16_3": {
+   "frame": {
+    "x": 34,
+    "y": 13,
+    "w": 16,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 12
+   },
+   "duration": 100
+  },
+  "sand_32": {
+   "frame": {
+    "x": 51,
+    "y": 13,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   }
+  },
+  "black_32": {
+   "frame": {
+    "x": 0,
+    "y": 44,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   }
+  },
+  "sand_walk_32_0": {
+   "frame": {
+    "x": 33,
+    "y": 44,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   },
+   "duration": 100
+  },
+  "sand_walk_32_1": {
+   "frame": {
+    "x": 66,
+    "y": 44,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   },
+   "duration": 100
+  },
+  "sand_walk_32_2": {
+   "frame": {
+    "x": 99,
+    "y": 44,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   },
+   "duration": 100
+  },
+  "sand_walk_32_3": {
+   "frame": {
+    "x": 0,
+    "y": 75,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   },
+   "duration": 100
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "scorpion.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 131,
+   "h": 105
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "sand_walk_16",
+    "from": 3,
+    "to": 6,
+    "direction": "forward"
+   },
+   {
+    "name": "sand_walk_32",
+    "from": 9,
+    "to": 12,
+    "direction": "forward"
+   }
+  ]
+ }
+}

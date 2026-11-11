@@ -1,0 +1,234 @@
+{
+ "frames": {
+  "round_16": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 13
+   }
+  },
+  "berry_16": {
+   "frame": {
+    "x": 17,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 13
+   }
+  },
+  "autumn_16": {
+   "frame": {
+    "x": 34,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 13
+   }
+  },
+  "round_32": {
+   "frame": {
+    "x": 51,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "berry_32": {
+   "frame": {
+    "x": 0,
+    "y": 22,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "flowering_32": {
+   "frame": {
+    "x": 33,
+    "y": 22,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "autumn_32": {
+   "frame": {
+    "x": 66,
+    "y": 22,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "snow_32": {
+   "frame": {
+    "x": 99,
+    "y": 22,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "dry_32": {
+   "frame": {
+    "x": 0,
+    "y": 44,
+    "w": 32,
+    "h": 21
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 21
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 21
+   }
+  },
+  "hedge_48": {
+   "frame": {
+    "x": 33,
+    "y": 44,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  },
+  "hedge_flowering_48": {
+   "frame": {
+    "x": 82,
+    "y": 44,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "bush.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 131,
+   "h": 68
+  },
+  "scale": "1"
+ }
+}

@@ -1,0 +1,254 @@
+{
+ "frames": {
+  "round_32": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "flowers_32": {
+   "frame": {
+    "x": 33,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "rocky_32": {
+   "frame": {
+    "x": 66,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "autumn_32": {
+   "frame": {
+    "x": 99,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "snow_32": {
+   "frame": {
+    "x": 0,
+    "y": 19,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "round_16": {
+   "frame": {
+    "x": 33,
+    "y": 19,
+    "w": 16,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 10
+   }
+  },
+  "rolling_64": {
+   "frame": {
+    "x": 50,
+    "y": 19,
+    "w": 64,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 24
+   }
+  },
+  "rolling_flowers_64": {
+   "frame": {
+    "x": 115,
+    "y": 19,
+    "w": 64,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 24
+   }
+  },
+  "rolling_autumn_64": {
+   "frame": {
+    "x": 0,
+    "y": 44,
+    "w": 64,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 24
+   }
+  },
+  "rolling_snow_64": {
+   "frame": {
+    "x": 65,
+    "y": 44,
+    "w": 64,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 24
+   }
+  },
+  "dune_32": {
+   "frame": {
+    "x": 130,
+    "y": 44,
+    "w": 32,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 14
+   }
+  },
+  "dunes_64": {
+   "frame": {
+    "x": 163,
+    "y": 44,
+    "w": 64,
+    "h": 22
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 22
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 22
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "hill.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 227,
+   "h": 68
+  },
+  "scale": "1"
+ }
+}

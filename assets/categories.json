@@ -1,8 +1,28 @@
 {
+  "scenes": {
+    "title": "Scènes",
+    "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
+    "icon": "scenes/summer_plain/day"
+  },
   "nature": {
     "title": "Nature",
     "description": "Arbres, rochers, plantes et éléments du décor naturel.",
     "icon": "nature/tree/oak_summer_16"
+  },
+  "landscape": {
+    "title": "Paysage",
+    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
+    "icon": "landscape/mountain/peak_snow_16"
+  },
+  "sky": {
+    "title": "Ciel",
+    "description": "Éléments du ciel pour décors et icônes météo : nuages, soleils, lunes et étoiles.",
+    "icon": "sky/sun/rays_16"
+  },
+  "fauna": {
+    "title": "Faune",
+    "description": "Petits animaux d'ambiance pour décors et scènes : oiseaux, papillons, lucioles (souvent animés).",
+    "icon": "fauna/butterfly/monarch_16"
   },
   "items": {
     "title": "Objets",
