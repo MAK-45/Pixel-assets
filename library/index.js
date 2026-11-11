@@ -14,8 +14,8 @@ export const catalog = {
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 19,
-  "variants": 195
+  "assets": 24,
+  "variants": 235
  },
  "categories": [
   {
@@ -33,13 +33,17 @@ export const catalog = {
    "description": "Arbres, rochers, plantes et éléments du décor naturel.",
    "icon": "nature/tree/oak_summer_16",
    "assets": [
+    "nature/bones",
     "nature/bush",
+    "nature/cactus",
     "nature/fern",
     "nature/flower",
     "nature/grass",
     "nature/mushroom",
+    "nature/palm",
     "nature/rock",
-    "nature/tree"
+    "nature/tree",
+    "nature/tumbleweed"
    ]
   },
   {
@@ -72,7 +76,8 @@ export const catalog = {
    "assets": [
     "fauna/bird",
     "fauna/butterfly",
-    "fauna/firefly"
+    "fauna/firefly",
+    "fauna/scorpion"
    ]
   },
   {
@@ -289,6 +294,183 @@ export const catalog = {
     "json": "library/scenes/summer_plain/scene.json",
     "bundle": "library/scenes/summer_plain/summer_plain.js",
     "runtime": "library/scene-runtime.js"
+   }
+  },
+  "nature/bones": {
+   "id": "nature/bones",
+   "slug": "bones",
+   "category": "nature",
+   "title": "Ossements",
+   "description": "Ossements blanchis par le soleil pour décors de désert et de western, vus de face : crâne de bovin à cornes (16 et 32 px, posé ou à demi enfoui dans le sable), os seul et os croisés (16 px), cage thoracique à demi ensablée (32 et 48 px). Os blanc à ombres bleutées, cornes brunes, lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "bones",
+    "skull",
+    "desert",
+    "western",
+    "dead",
+    "skeleton",
+    "ribs",
+    "decoration",
+    "nature"
+   ],
+   "order": 0,
+   "source": "assets/nature/bones.px.js",
+   "module": "library/js/nature/bones.js",
+   "sheet": {
+    "png": "library/sheets/nature/bones.png",
+    "json": "library/sheets/nature/bones.json"
+   },
+   "axes": {
+    "kind": [
+     "skull",
+     "bone",
+     "crossed",
+     "ribs"
+    ],
+    "ground": [
+     "bare",
+     "sand"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 7,
+   "variants": {
+    "skull_32": {
+     "key": "skull_32",
+     "name": "bones_skull_32",
+     "id": "nature/bones/skull_32",
+     "label": "Crâne de bovin à cornes",
+     "kind": "sprite",
+     "w": 32,
+     "h": 24,
+     "size": 32,
+     "props": {
+      "kind": "skull",
+      "ground": "bare"
+     },
+     "tags": [
+      "cow",
+      "horns"
+     ],
+     "png": "library/png/nature/bones/skull_32.png"
+    },
+    "skull_16": {
+     "key": "skull_16",
+     "name": "bones_skull_16",
+     "id": "nature/bones/skull_16",
+     "label": "Crâne à cornes (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 11,
+     "size": 16,
+     "props": {
+      "kind": "skull",
+      "ground": "bare"
+     },
+     "tags": [
+      "cow",
+      "horns"
+     ],
+     "png": "library/png/nature/bones/skull_16.png"
+    },
+    "skull_sand_32": {
+     "key": "skull_sand_32",
+     "name": "bones_skull_sand_32",
+     "id": "nature/bones/skull_sand_32",
+     "label": "Crâne à demi enfoui dans le sable",
+     "kind": "sprite",
+     "w": 32,
+     "h": 24,
+     "size": 32,
+     "props": {
+      "kind": "skull",
+      "ground": "sand"
+     },
+     "tags": [
+      "cow",
+      "horns",
+      "sand"
+     ],
+     "png": "library/png/nature/bones/skull_sand_32.png"
+    },
+    "bone_16": {
+     "key": "bone_16",
+     "name": "bones_bone_16",
+     "id": "nature/bones/bone_16",
+     "label": "Os (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "kind": "bone",
+      "ground": "bare"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/nature/bones/bone_16.png"
+    },
+    "crossed_16": {
+     "key": "crossed_16",
+     "name": "bones_crossed_16",
+     "id": "nature/bones/crossed_16",
+     "label": "Os croisés (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "kind": "crossed",
+      "ground": "bare"
+     },
+     "tags": [
+      "icon",
+      "danger"
+     ],
+     "png": "library/png/nature/bones/crossed_16.png"
+    },
+    "ribs_32": {
+     "key": "ribs_32",
+     "name": "bones_ribs_32",
+     "id": "nature/bones/ribs_32",
+     "label": "Cage thoracique ensablée",
+     "kind": "sprite",
+     "w": 32,
+     "h": 22,
+     "size": 32,
+     "props": {
+      "kind": "ribs",
+      "ground": "sand"
+     },
+     "tags": [
+      "carcass"
+     ],
+     "png": "library/png/nature/bones/ribs_32.png"
+    },
+    "ribs_48": {
+     "key": "ribs_48",
+     "name": "bones_ribs_48",
+     "id": "nature/bones/ribs_48",
+     "label": "Grande cage thoracique ensablée (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 30,
+     "size": 48,
+     "props": {
+      "kind": "ribs",
+      "ground": "sand"
+     },
+     "tags": [
+      "carcass",
+      "landmark"
+     ],
+     "png": "library/png/nature/bones/ribs_48.png"
+    }
    }
   },
   "nature/bush": {
@@ -547,6 +729,264 @@ export const catalog = {
       "flower"
      ],
      "png": "library/png/nature/bush/hedge_flowering_48.png"
+    }
+   }
+  },
+  "nature/cactus": {
+   "id": "nature/cactus",
+   "slug": "cactus",
+   "category": "nature",
+   "title": "Cactus",
+   "description": "Cactus du désert posés au sol, vus de face pour décors 2D : saguaro à bras (16, 32 et 48 px, avec ou sans fleurs blanches), cactus tonneau (16 et 32 px, nu ou couronné de fleurs) et figuier de Barbarie en raquettes (16 et 32 px, nu, en fleurs jaunes ou chargé de figues). Côtes et épines marquées, lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "cactus",
+    "desert",
+    "plant",
+    "succulent",
+    "spines",
+    "western",
+    "arid",
+    "nature",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/nature/cactus.px.js",
+   "module": "library/js/nature/cactus.js",
+   "sheet": {
+    "png": "library/sheets/nature/cactus.png",
+    "json": "library/sheets/nature/cactus.json"
+   },
+   "axes": {
+    "species": [
+     "saguaro",
+     "barrel",
+     "prickly-pear"
+    ],
+    "state": [
+     "plain",
+     "flowers",
+     "fruit"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 12,
+   "variants": {
+    "saguaro_16": {
+     "key": "saguaro_16",
+     "name": "cactus_saguaro_16",
+     "id": "nature/cactus/saguaro_16",
+     "label": "Petit saguaro (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "saguaro",
+      "state": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/cactus/saguaro_16.png"
+    },
+    "saguaro_32": {
+     "key": "saguaro_32",
+     "name": "cactus_saguaro_32",
+     "id": "nature/cactus/saguaro_32",
+     "label": "Saguaro à deux bras",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "saguaro",
+      "state": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/cactus/saguaro_32.png"
+    },
+    "saguaro_flowers_32": {
+     "key": "saguaro_flowers_32",
+     "name": "cactus_saguaro_flowers_32",
+     "id": "nature/cactus/saguaro_flowers_32",
+     "label": "Saguaro en fleurs",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "saguaro",
+      "state": "flowers"
+     },
+     "tags": [
+      "flower",
+      "blossom",
+      "spring"
+     ],
+     "png": "library/png/nature/cactus/saguaro_flowers_32.png"
+    },
+    "saguaro_48": {
+     "key": "saguaro_48",
+     "name": "cactus_saguaro_48",
+     "id": "nature/cactus/saguaro_48",
+     "label": "Grand saguaro à trois bras (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "saguaro",
+      "state": "plain"
+     },
+     "tags": [
+      "tall",
+      "landmark"
+     ],
+     "png": "library/png/nature/cactus/saguaro_48.png"
+    },
+    "barrel_16": {
+     "key": "barrel_16",
+     "name": "cactus_barrel_16",
+     "id": "nature/cactus/barrel_16",
+     "label": "Cactus tonneau (16 px)",
+     "kind": "sprite",
+     "w": 14,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "species": "barrel",
+      "state": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/cactus/barrel_16.png"
+    },
+    "barrel_flowers_16": {
+     "key": "barrel_flowers_16",
+     "name": "cactus_barrel_flowers_16",
+     "id": "nature/cactus/barrel_flowers_16",
+     "label": "Cactus tonneau en fleurs (16 px)",
+     "kind": "sprite",
+     "w": 14,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "species": "barrel",
+      "state": "flowers"
+     },
+     "tags": [
+      "flower"
+     ],
+     "png": "library/png/nature/cactus/barrel_flowers_16.png"
+    },
+    "barrel_32": {
+     "key": "barrel_32",
+     "name": "cactus_barrel_32",
+     "id": "nature/cactus/barrel_32",
+     "label": "Grand cactus tonneau",
+     "kind": "sprite",
+     "w": 28,
+     "h": 24,
+     "size": 32,
+     "props": {
+      "species": "barrel",
+      "state": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/cactus/barrel_32.png"
+    },
+    "barrel_flowers_32": {
+     "key": "barrel_flowers_32",
+     "name": "cactus_barrel_flowers_32",
+     "id": "nature/cactus/barrel_flowers_32",
+     "label": "Grand cactus tonneau en fleurs",
+     "kind": "sprite",
+     "w": 28,
+     "h": 24,
+     "size": 32,
+     "props": {
+      "species": "barrel",
+      "state": "flowers"
+     },
+     "tags": [
+      "flower"
+     ],
+     "png": "library/png/nature/cactus/barrel_flowers_32.png"
+    },
+    "prickly_16": {
+     "key": "prickly_16",
+     "name": "cactus_prickly_16",
+     "id": "nature/cactus/prickly_16",
+     "label": "Figuier de Barbarie (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "prickly-pear",
+      "state": "plain"
+     },
+     "tags": [
+      "opuntia"
+     ],
+     "png": "library/png/nature/cactus/prickly_16.png"
+    },
+    "prickly_32": {
+     "key": "prickly_32",
+     "name": "cactus_prickly_32",
+     "id": "nature/cactus/prickly_32",
+     "label": "Figuier de Barbarie",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "prickly-pear",
+      "state": "plain"
+     },
+     "tags": [
+      "opuntia"
+     ],
+     "png": "library/png/nature/cactus/prickly_32.png"
+    },
+    "prickly_flowers_32": {
+     "key": "prickly_flowers_32",
+     "name": "cactus_prickly_flowers_32",
+     "id": "nature/cactus/prickly_flowers_32",
+     "label": "Figuier de Barbarie en fleurs",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "prickly-pear",
+      "state": "flowers"
+     },
+     "tags": [
+      "opuntia",
+      "flower"
+     ],
+     "png": "library/png/nature/cactus/prickly_flowers_32.png"
+    },
+    "prickly_fruit_32": {
+     "key": "prickly_fruit_32",
+     "name": "cactus_prickly_fruit_32",
+     "id": "nature/cactus/prickly_fruit_32",
+     "label": "Figuier de Barbarie chargé de figues",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "prickly-pear",
+      "state": "fruit"
+     },
+     "tags": [
+      "opuntia",
+      "fruit"
+     ],
+     "png": "library/png/nature/cactus/prickly_fruit_32.png"
     }
    }
   },
@@ -1363,6 +1803,201 @@ export const catalog = {
     }
    }
   },
+  "nature/palm": {
+   "id": "nature/palm",
+   "slug": "palm",
+   "category": "nature",
+   "title": "Palmier",
+   "description": "Palmiers d'oasis et de plage, vus de face pour décors 2D : jeune palmier sans tronc (16 px), petit palmier (16 px), palmier dattier droit (32 et 48 px, avec ou sans régimes de dattes), cocotier penché avec noix de coco (32 et 48 px) et palmier desséché aux palmes brunes. Tronc annelé, palmes en arc, lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "palm",
+    "tree",
+    "desert",
+    "oasis",
+    "beach",
+    "tropical",
+    "date",
+    "coconut",
+    "nature",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/nature/palm.px.js",
+   "module": "library/js/nature/palm.js",
+   "sheet": {
+    "png": "library/sheets/nature/palm.png",
+    "json": "library/sheets/nature/palm.json"
+   },
+   "axes": {
+    "species": [
+     "date",
+     "coconut"
+    ],
+    "state": [
+     "young",
+     "plain",
+     "fruit",
+     "dry"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 8,
+   "variants": {
+    "young_16": {
+     "key": "young_16",
+     "name": "palm_young_16",
+     "id": "nature/palm/young_16",
+     "label": "Jeune palmier sans tronc (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 14,
+     "size": 16,
+     "props": {
+      "species": "date",
+      "state": "young"
+     },
+     "tags": [
+      "shrub"
+     ],
+     "png": "library/png/nature/palm/young_16.png"
+    },
+    "small_16": {
+     "key": "small_16",
+     "name": "palm_small_16",
+     "id": "nature/palm/small_16",
+     "label": "Petit palmier (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "date",
+      "state": "plain"
+     },
+     "tags": [],
+     "png": "library/png/nature/palm/small_16.png"
+    },
+    "date_32": {
+     "key": "date_32",
+     "name": "palm_date_32",
+     "id": "nature/palm/date_32",
+     "label": "Palmier dattier",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "date",
+      "state": "plain"
+     },
+     "tags": [
+      "oasis"
+     ],
+     "png": "library/png/nature/palm/date_32.png"
+    },
+    "date_fruit_32": {
+     "key": "date_fruit_32",
+     "name": "palm_date_fruit_32",
+     "id": "nature/palm/date_fruit_32",
+     "label": "Palmier dattier avec dattes",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "date",
+      "state": "fruit"
+     },
+     "tags": [
+      "oasis",
+      "fruit"
+     ],
+     "png": "library/png/nature/palm/date_fruit_32.png"
+    },
+    "dry_32": {
+     "key": "dry_32",
+     "name": "palm_dry_32",
+     "id": "nature/palm/dry_32",
+     "label": "Palmier desséché",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "date",
+      "state": "dry"
+     },
+     "tags": [
+      "dead",
+      "drought"
+     ],
+     "png": "library/png/nature/palm/dry_32.png"
+    },
+    "coconut_32": {
+     "key": "coconut_32",
+     "name": "palm_coconut_32",
+     "id": "nature/palm/coconut_32",
+     "label": "Cocotier penché",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "coconut",
+      "state": "fruit"
+     },
+     "tags": [
+      "beach",
+      "fruit"
+     ],
+     "png": "library/png/nature/palm/coconut_32.png"
+    },
+    "date_48": {
+     "key": "date_48",
+     "name": "palm_date_48",
+     "id": "nature/palm/date_48",
+     "label": "Grand palmier dattier (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "date",
+      "state": "fruit"
+     },
+     "tags": [
+      "oasis",
+      "fruit",
+      "tall"
+     ],
+     "png": "library/png/nature/palm/date_48.png"
+    },
+    "coconut_48": {
+     "key": "coconut_48",
+     "name": "palm_coconut_48",
+     "id": "nature/palm/coconut_48",
+     "label": "Grand cocotier penché (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "coconut",
+      "state": "fruit"
+     },
+     "tags": [
+      "beach",
+      "fruit",
+      "tall"
+     ],
+     "png": "library/png/nature/palm/coconut_48.png"
+    }
+   }
+  },
   "nature/rock": {
    "id": "nature/rock",
    "slug": "rock",
@@ -2108,6 +2743,159 @@ export const catalog = {
       "snow"
      ],
      "png": "library/png/nature/tree/pine_snow_48.png"
+    }
+   }
+  },
+  "nature/tumbleweed": {
+   "id": "nature/tumbleweed",
+   "slug": "tumbleweed",
+   "category": "nature",
+   "title": "Virevoltant",
+   "description": "Virevoltants (boules de broussailles sèches roulées par le vent), vus de face pour décors de désert et de western : boule sèche (16 et 32 px), boule délavée par le soleil, jeune boule encore verte, et versions animées qui roulent en rebondissant (16 et 32 px, 4 images de 100 ms). Lacis de brindilles, lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "tumbleweed",
+    "desert",
+    "western",
+    "dry",
+    "plant",
+    "wind",
+    "rolling",
+    "nature",
+    "decoration"
+   ],
+   "order": 0,
+   "source": "assets/nature/tumbleweed.px.js",
+   "module": "library/js/nature/tumbleweed.js",
+   "sheet": {
+    "png": "library/sheets/nature/tumbleweed.png",
+    "json": "library/sheets/nature/tumbleweed.json"
+   },
+   "axes": {
+    "color": [
+     "brown",
+     "pale",
+     "green"
+    ],
+    "state": [
+     "still",
+     "rolling"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 6,
+   "variants": {
+    "dry_16": {
+     "key": "dry_16",
+     "name": "tumbleweed_dry_16",
+     "id": "nature/tumbleweed/dry_16",
+     "label": "Virevoltant sec (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "color": "brown",
+      "state": "still"
+     },
+     "tags": [],
+     "png": "library/png/nature/tumbleweed/dry_16.png"
+    },
+    "dry_32": {
+     "key": "dry_32",
+     "name": "tumbleweed_dry_32",
+     "id": "nature/tumbleweed/dry_32",
+     "label": "Virevoltant sec",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "color": "brown",
+      "state": "still"
+     },
+     "tags": [],
+     "png": "library/png/nature/tumbleweed/dry_32.png"
+    },
+    "pale_32": {
+     "key": "pale_32",
+     "name": "tumbleweed_pale_32",
+     "id": "nature/tumbleweed/pale_32",
+     "label": "Virevoltant délavé",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "color": "pale",
+      "state": "still"
+     },
+     "tags": [
+      "bleached"
+     ],
+     "png": "library/png/nature/tumbleweed/pale_32.png"
+    },
+    "green_32": {
+     "key": "green_32",
+     "name": "tumbleweed_green_32",
+     "id": "nature/tumbleweed/green_32",
+     "label": "Jeune virevoltant encore vert",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "color": "green",
+      "state": "still"
+     },
+     "tags": [
+      "young"
+     ],
+     "png": "library/png/nature/tumbleweed/green_32.png"
+    },
+    "roll_16": {
+     "key": "roll_16",
+     "name": "tumbleweed_roll_16",
+     "id": "nature/tumbleweed/roll_16",
+     "label": "Virevoltant qui roule (16 px, animé)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "color": "brown",
+      "state": "rolling"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/nature/tumbleweed/roll_16.png",
+     "gif": "library/png/nature/tumbleweed/roll_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "roll_32": {
+     "key": "roll_32",
+     "name": "tumbleweed_roll_32",
+     "id": "nature/tumbleweed/roll_32",
+     "label": "Virevoltant qui roule (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "color": "brown",
+      "state": "rolling"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/nature/tumbleweed/roll_32.png",
+     "gif": "library/png/nature/tumbleweed/roll_32.gif",
+     "frameCount": 4,
+     "loopMs": 400
     }
    }
   },
@@ -4458,6 +5246,170 @@ export const catalog = {
     }
    }
   },
+  "fauna/scorpion": {
+   "id": "fauna/scorpion",
+   "slug": "scorpion",
+   "category": "fauna",
+   "title": "Scorpion",
+   "description": "Scorpions du désert vus de profil (tête à droite), queue recourbée au-dessus du dos : petit scorpion (16 px) jaune des sables, noir ou rouge, petit scorpion qui marche (animé, 4 images de 100 ms), grand scorpion détaillé (32 px) jaune ou noir, et grand scorpion qui marche en agitant son dard. Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "scorpion",
+    "desert",
+    "arachnid",
+    "critter",
+    "enemy",
+    "venom",
+    "sand",
+    "fauna"
+   ],
+   "order": 0,
+   "source": "assets/fauna/scorpion.px.js",
+   "module": "library/js/fauna/scorpion.js",
+   "sheet": {
+    "png": "library/sheets/fauna/scorpion.png",
+    "json": "library/sheets/fauna/scorpion.json"
+   },
+   "axes": {
+    "color": [
+     "sand",
+     "black",
+     "red"
+    ],
+    "state": [
+     "idle",
+     "walk"
+    ]
+   },
+   "sizes": [
+    16,
+    32
+   ],
+   "variantCount": 7,
+   "variants": {
+    "sand_16": {
+     "key": "sand_16",
+     "name": "scorpion_sand_16",
+     "id": "fauna/scorpion/sand_16",
+     "label": "Scorpion des sables (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "color": "sand",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/fauna/scorpion/sand_16.png"
+    },
+    "black_16": {
+     "key": "black_16",
+     "name": "scorpion_black_16",
+     "id": "fauna/scorpion/black_16",
+     "label": "Scorpion noir (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "color": "black",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/fauna/scorpion/black_16.png"
+    },
+    "red_16": {
+     "key": "red_16",
+     "name": "scorpion_red_16",
+     "id": "fauna/scorpion/red_16",
+     "label": "Scorpion rouge (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "color": "red",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/fauna/scorpion/red_16.png"
+    },
+    "sand_walk_16": {
+     "key": "sand_walk_16",
+     "name": "scorpion_sand_walk_16",
+     "id": "fauna/scorpion/sand_walk_16",
+     "label": "Scorpion des sables qui marche (16 px, animé)",
+     "kind": "anim",
+     "w": 16,
+     "h": 12,
+     "size": 16,
+     "props": {
+      "color": "sand",
+      "state": "walk"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/fauna/scorpion/sand_walk_16.png",
+     "gif": "library/png/fauna/scorpion/sand_walk_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "sand_32": {
+     "key": "sand_32",
+     "name": "scorpion_sand_32",
+     "id": "fauna/scorpion/sand_32",
+     "label": "Grand scorpion des sables",
+     "kind": "sprite",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "color": "sand",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/fauna/scorpion/sand_32.png"
+    },
+    "black_32": {
+     "key": "black_32",
+     "name": "scorpion_black_32",
+     "id": "fauna/scorpion/black_32",
+     "label": "Grand scorpion noir",
+     "kind": "sprite",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "color": "black",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/fauna/scorpion/black_32.png"
+    },
+    "sand_walk_32": {
+     "key": "sand_walk_32",
+     "name": "scorpion_sand_walk_32",
+     "id": "fauna/scorpion/sand_walk_32",
+     "label": "Grand scorpion qui marche (animé)",
+     "kind": "anim",
+     "w": 32,
+     "h": 30,
+     "size": 32,
+     "props": {
+      "color": "sand",
+      "state": "walk"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/fauna/scorpion/sand_walk_32.png",
+     "gif": "library/png/fauna/scorpion/sand_walk_32.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    }
+   }
+  },
   "items/potion": {
    "id": "items/potion",
    "slug": "potion",
@@ -4873,13 +5825,17 @@ export const catalog = {
 
 const loaders = {
   "scenes/summer_plain": () => import("./js/scenes/summer_plain.js"),
+  "nature/bones": () => import("./js/nature/bones.js"),
   "nature/bush": () => import("./js/nature/bush.js"),
+  "nature/cactus": () => import("./js/nature/cactus.js"),
   "nature/fern": () => import("./js/nature/fern.js"),
   "nature/flower": () => import("./js/nature/flower.js"),
   "nature/grass": () => import("./js/nature/grass.js"),
   "nature/mushroom": () => import("./js/nature/mushroom.js"),
+  "nature/palm": () => import("./js/nature/palm.js"),
   "nature/rock": () => import("./js/nature/rock.js"),
   "nature/tree": () => import("./js/nature/tree.js"),
+  "nature/tumbleweed": () => import("./js/nature/tumbleweed.js"),
   "landscape/hill": () => import("./js/landscape/hill.js"),
   "landscape/mountain": () => import("./js/landscape/mountain.js"),
   "sky/cloud": () => import("./js/sky/cloud.js"),
@@ -4889,6 +5845,7 @@ const loaders = {
   "fauna/bird": () => import("./js/fauna/bird.js"),
   "fauna/butterfly": () => import("./js/fauna/butterfly.js"),
   "fauna/firefly": () => import("./js/fauna/firefly.js"),
+  "fauna/scorpion": () => import("./js/fauna/scorpion.js"),
   "items/potion": () => import("./js/items/potion.js"),
   "characters/slime": () => import("./js/characters/slime.js"),
 };
