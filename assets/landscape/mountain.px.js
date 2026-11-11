@@ -2,7 +2,7 @@ include("../_palette.px.js")
 
 const meta = {
   title: "Montagne",
-  description: "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+  description: "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
   tags: ["mountain", "peak", "landscape", "background", "scenery", "terrain", "parallax", "relief"],
   variants: {
     peak_snow_16: { label: "Pic enneigé (16 px)", props: { shape: "peak", cover: "snowcap", tone: "day", material: "granite" }, tags: ["icon", "snow"] },
@@ -14,6 +14,8 @@ const meta = {
     peak_snow_64: { label: "Grand pic enneigé (64 px)", props: { shape: "peak", cover: "snowcap", tone: "day", material: "granite" }, tags: ["snow"] },
     peak_alpine_64: { label: "Grand pic alpin, alpage et sapins (64 px)", props: { shape: "peak", cover: "forest", tone: "day", material: "granite" }, tags: ["forest", "pine", "meadow"] },
     peak_winter_64: { label: "Grand pic tout enneigé (64 px)", props: { shape: "peak", cover: "snow", tone: "day", material: "granite" }, tags: ["snow", "winter"] },
+    peak_snow_128: { label: "Très grand pic enneigé, fond de scène (128 px)", props: { shape: "peak", cover: "snowcap", tone: "day", material: "granite" }, tags: ["snow", "backdrop"] },
+    peak_winter_128: { label: "Très grand pic tout enneigé, fond de scène (128 px)", props: { shape: "peak", cover: "snow", tone: "day", material: "granite" }, tags: ["snow", "winter", "backdrop"] },
     range_snow_64: { label: "Chaîne de sommets enneigés (64 × 32)", props: { shape: "range", cover: "snowcap", tone: "day", material: "granite" }, tags: ["snow", "range"] },
     range_alpine_64: { label: "Chaîne alpine, forêt au pied (64 × 32)", props: { shape: "range", cover: "forest", tone: "day", material: "granite" }, tags: ["forest", "pine", "range"] },
     range_far_64: { label: "Chaîne lointaine bleutée (64 × 32)", props: { shape: "range", cover: "snowcap", tone: "haze", material: "granite" }, tags: ["distant", "haze", "range"] },
@@ -55,27 +57,30 @@ const SNOW = { C: "w", c: "w", m: "s", d: "S" }
 const W64 = 62, H64 = 44
 const SKY64 = [0, 44, 3, 41, 7, 37, 10, 35, 13, 34, 16, 30, 20, 25, 23, 23, 25, 22, 28, 16, 31, 10, 33, 5, 35, 1,
   37, 3, 39, 7, 41, 10, 43, 14, 45, 15, 47, 13, 49, 10, 51, 12, 53, 16, 55, 21, 57, 27, 59, 33, 61, 39, 62, 44]
-const PEAK64 = [
+// Géométrie du grand pic en données : elle sert à l'échelle 1 (64 px) et 2 (128 px, fond de scène).
+const PEAK64_SHAPES = [
   // face gauche éclairée en entier, puis les faces qui se détournent de la lumière
-  poly(SKY64, "c"),
+  ["poly", SKY64, "c"],
   // éperons : ils rayonnent depuis le sommet et les épaulements ; la face droite de chacun
   // se détourne de la lumière (demi-teinte), en coin qui s'élargit vers le pied
-  poly([34, 4, 33, 14, 31, 26, 30, 36, 30, 44, 35, 44, 34, 34, 34, 22, 35, 10], "m"),
-  poly([28, 16, 26, 24, 23, 33, 21, 44, 25, 44, 26, 34, 28, 26, 29, 19], "m"),
-  poly([20, 25, 18, 31, 15, 38, 13, 44, 16, 44, 18, 37, 21, 29], "m"),
-  poly([10, 35, 8, 39, 6, 44, 9, 44, 10, 40], "m"),
+  ["poly", [34, 4, 33, 14, 31, 26, 30, 36, 30, 44, 35, 44, 34, 34, 34, 22, 35, 10], "m"],
+  ["poly", [28, 16, 26, 24, 23, 33, 21, 44, 25, 44, 26, 34, 28, 26, 29, 19], "m"],
+  ["poly", [20, 25, 18, 31, 15, 38, 13, 44, 16, 44, 18, 37, 21, 29], "m"],
+  ["poly", [10, 35, 8, 39, 6, 44, 9, 44, 10, 40], "m"],
   // pied de la montagne moins éclairé
-  poly([0, 44, 3, 41, 9, 42, 18, 41, 24, 42, 31, 40, 38, 42, 39, 44], "m"),
+  ["poly", [0, 44, 3, 41, 9, 42, 18, 41, 24, 42, 31, 40, 38, 42, 39, 44], "m"],
   // face à l'ombre du sommet principal, avec deux arêtes à peine éclairées
-  poly([35, 1, 37, 3, 39, 7, 41, 10, 43, 14, 45, 15, 46, 20, 48, 26, 50, 34, 52, 44, 39, 44, 37, 38, 38, 31, 36, 24, 37, 17, 35, 11, 36, 6], "d"),
-  line(41, 11, 43, 19, "m"), line(43, 19, 44, 25, "m"),
+  ["poly", [35, 1, 37, 3, 39, 7, 41, 10, 43, 14, 45, 15, 46, 20, 48, 26, 50, 34, 52, 44, 39, 44, 37, 38, 38, 31, 36, 24, 37, 17, 35, 11, 36, 6], "d"],
+  ["line", [41, 11, 43, 19], "m"], ["line", [43, 19, 44, 25], "m"],
   // second sommet : face gauche en demi-teinte, face droite dans l'ombre
-  poly([45, 15, 47, 13, 49, 10, 49, 16, 50, 23, 51, 30, 47, 24, 46, 20], "m"),
-  poly([49, 10, 51, 12, 53, 16, 55, 21, 57, 27, 59, 33, 61, 39, 62, 44, 52, 44, 51, 30, 50, 23, 49, 16], "d"),
-  line(54, 19, 55, 26, "m"),
+  ["poly", [45, 15, 47, 13, 49, 10, 49, 16, 50, 23, 51, 30, 47, 24, 46, 20], "m"],
+  ["poly", [49, 10, 51, 12, 53, 16, 55, 21, 57, 27, 59, 33, 61, 39, 62, 44, 52, 44, 51, 30, 50, 23, 49, 16], "d"],
+  ["line", [54, 19, 55, 26], "m"],
   // arêtes en pleine lumière le long de la crête gauche
-  line(4, 40, 9, 36, "C"), line(17, 29, 21, 25, "C"), line(26, 20, 30, 12, "C"),
+  ["line", [4, 40, 9, 36], "C"], ["line", [17, 29, 21, 25], "C"], ["line", [26, 20, 30, 12], "C"],
 ]
+const shapes = (list, k = 1) => list.map(([t, pts, col]) => t === "poly" ? poly(pts.map((v) => v * k), col) : line(...pts.map((v) => v * k), col))
+const PEAK64 = shapes(PEAK64_SHAPES)
 const snowcap64 = clip((x, y) => y <= lineY(13, [[25, 8, 3], [31, 7, 2], [37, 9, 3], [42, 5, 2], [48, 6, 3]])(x), recolor(SNOW))
 
 // Alpage + forêt de sapins au pied. top(x) = haut de la forêt ; l'alpage occupe les `meadow` px
@@ -105,13 +110,36 @@ const RIDGE64 = [35, 1, 36, 6, 35, 11, 37, 17, 36, 24, 38, 31, 37, 38, 39, 44]
 sprite("mountain_peak_snow_64", { w: W64, h: H64, outline: "k" }, ...PEAK64, snowcap64)
 sprite("mountain_peak_alpine_64", { w: W64, h: H64, outline: "k" }, ...PEAK64, snowcap64,
   firForest((x) => 37 - lineY(0, [[7, 5, 7], [19, 4, 6], [30, 3, 5], [46, 2, 5], [57, 4, 5]])(x), RIDGE64))
-sprite("mountain_peak_winter_64", { w: W64, h: H64, outline: "k" }, ...PEAK64,
-  recolor(SNOW),
-  // rochers trop raides pour garder la neige, le long des éperons
-  poly([33, 16, 32, 22, 33, 23, 34, 17], "m"), poly([31, 28, 30, 34, 31, 35, 32, 29], "m"),
-  poly([27, 21, 25, 27, 26, 28, 28, 22], "m"), poly([19, 31, 17, 36, 18, 37, 20, 32], "m"),
-  poly([42, 15, 43, 21, 44, 21, 43, 15], "d"), poly([50, 22, 51, 28, 52, 28, 51, 22], "d"),
-  poly([37, 33, 38, 39, 39, 39, 38, 33], "d"))
+// Hiver : rochers trop raides pour garder la neige, le long des éperons.
+const WINTER64_ROCKS = [
+  ["poly", [33, 16, 32, 22, 33, 23, 34, 17], "m"], ["poly", [31, 28, 30, 34, 31, 35, 32, 29], "m"],
+  ["poly", [27, 21, 25, 27, 26, 28, 28, 22], "m"], ["poly", [19, 31, 17, 36, 18, 37, 20, 32], "m"],
+  ["poly", [42, 15, 43, 21, 44, 21, 43, 15], "d"], ["poly", [50, 22, 51, 28, 52, 28, 51, 22], "d"],
+  ["poly", [37, 33, 38, 39, 39, 39, 38, 33], "d"],
+]
+sprite("mountain_peak_winter_64", { w: W64, h: H64, outline: "k" }, ...PEAK64, recolor(SNOW), ...shapes(WINTER64_ROCKS))
+
+// ================================================================ très grand pic (128 px, fond de scène)
+
+// Même montagne à l'échelle 2 : les arêtes restent fines, on ajoute des éperons secondaires,
+// des couloirs et une moraine au pied pour que les grandes faces ne soient pas vides.
+const PEAK128 = [
+  ...shapes(PEAK64_SHAPES, 2),
+  // éperons secondaires de la face éclairée (demi-teinte) et leurs arêtes vives
+  poly([46, 50, 42, 62, 38, 76, 36, 88, 40, 88, 41, 76, 45, 62], "m"),
+  poly([60, 26, 58, 38, 55, 50, 54, 58, 57, 56, 58, 44, 61, 32], "m"),
+  poly([14, 74, 11, 80, 9, 88, 12, 88, 14, 80], "m"),
+  line(45, 50, 50, 44, "C"), line(31, 64, 36, 58, "C"), line(60, 26, 64, 18, "C"), line(9, 78, 13, 74, "C"),
+  // couloirs dans la face à l'ombre, à peine éclairés
+  line(76, 30, 80, 44, "m"), line(80, 44, 82, 58, "m"), line(88, 40, 92, 56, "m"), line(98, 34, 101, 50, "m"),
+  line(110, 50, 113, 64, "m"), line(84, 70, 86, 86, "m"), line(104, 68, 106, 86, "m"),
+  // moraine : pied plus sombre et quelques blocs
+  poly([0, 88, 6, 84, 18, 85, 34, 83, 50, 85, 66, 82, 80, 85, 96, 83, 112, 85, 124, 88], "d"),
+  hline(20, 86, 6, "m"), hline(58, 86, 5, "m"), hline(90, 86, 4, "m"),
+]
+const snowcap128 = clip((x, y) => y <= lineY(27, [[50, 15, 6], [62, 13, 4], [74, 18, 6], [84, 10, 4], [96, 12, 6], [104, 8, 4]])(x), recolor(SNOW))
+sprite("mountain_peak_snow_128", { w: W64 * 2, h: H64 * 2, outline: "k" }, ...PEAK128, snowcap128)
+sprite("mountain_peak_winter_128", { w: W64 * 2, h: H64 * 2, outline: "k" }, ...PEAK128, recolor(SNOW), ...shapes(WINTER64_ROCKS, 2))
 
 // ================================================================ pic moyen (32 px)
 

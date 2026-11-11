@@ -14,6 +14,11 @@
     "description": "Éléments du ciel pour décors et icônes météo : nuages, soleils, lunes et étoiles.",
     "icon": "sky/sun/rays_16"
   },
+  "fauna": {
+    "title": "Faune",
+    "description": "Petits animaux d'ambiance pour décors et scènes : oiseaux, papillons, lucioles (souvent animés).",
+    "icon": "fauna/butterfly/monarch_16"
+  },
   "items": {
     "title": "Objets",
     "description": "Potions, armes, butin et objets d'inventaire.",

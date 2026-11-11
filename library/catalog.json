@@ -3,9 +3,9 @@
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 5,
-  "assets": 15,
-  "variants": 166
+  "categories": 6,
+  "assets": 18,
+  "variants": 191
  },
  "categories": [
   {
@@ -43,6 +43,17 @@
     "sky/moon",
     "sky/star",
     "sky/sun"
+   ]
+  },
+  {
+   "id": "fauna",
+   "title": "Faune",
+   "description": "Petits animaux d'ambiance pour décors et scènes : oiseaux, papillons, lucioles (souvent animés).",
+   "icon": "fauna/butterfly/monarch_16",
+   "assets": [
+    "fauna/bird",
+    "fauna/butterfly",
+    "fauna/firefly"
    ]
   },
   {
@@ -2181,7 +2192,7 @@
    "slug": "mountain",
    "category": "landscape",
    "title": "Montagne",
-   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
    "tags": [
     "mountain",
     "peak",
@@ -2229,9 +2240,10 @@
     16,
     32,
     48,
-    64
+    64,
+    128
    ],
-   "variantCount": 17,
+   "variantCount": 19,
    "variants": {
     "peak_snow_64": {
      "key": "peak_snow_64",
@@ -2295,6 +2307,49 @@
       "winter"
      ],
      "png": "library/png/landscape/mountain/peak_winter_64.png"
+    },
+    "peak_snow_128": {
+     "key": "peak_snow_128",
+     "name": "mountain_peak_snow_128",
+     "id": "landscape/mountain/peak_snow_128",
+     "label": "Très grand pic enneigé, fond de scène (128 px)",
+     "kind": "sprite",
+     "w": 126,
+     "h": 90,
+     "size": 128,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "backdrop"
+     ],
+     "png": "library/png/landscape/mountain/peak_snow_128.png"
+    },
+    "peak_winter_128": {
+     "key": "peak_winter_128",
+     "name": "mountain_peak_winter_128",
+     "id": "landscape/mountain/peak_winter_128",
+     "label": "Très grand pic tout enneigé, fond de scène (128 px)",
+     "kind": "sprite",
+     "w": 126,
+     "h": 90,
+     "size": 128,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "tone": "day",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter",
+      "backdrop"
+     ],
+     "png": "library/png/landscape/mountain/peak_winter_128.png"
     },
     "peak_snow_32": {
      "key": "peak_snow_32",
@@ -3100,7 +3155,7 @@
    "slug": "star",
    "category": "sky",
    "title": "Étoile",
-   "description": "Étoiles pour ciels de nuit, butin ou interface : étoile à cinq branches en relief (16, 32 px) dorée, argentée ou souriante, scintillement à quatre branches (16, 32 px) doré ou bleu, scintillement animé, étoile filante à traîne et petit amas d'étoiles. Facettes éclairées en haut à gauche.",
+   "description": "Étoiles pour ciels de nuit, butin ou interface : étoile à cinq branches en relief (16, 32 px) dorée, argentée ou souriante, scintillement à quatre branches (16, 32 px) doré ou bleu, scintillement animé, étoile filante à traîne et petit amas d'étoiles. Facettes éclairées en haut à gauche. Pour les ciels de scène (8 px, sans contour) : point d'étoile, petite croix, scintillement animé blanc ou bleu, et étoile filante animée à traîne fondue (24 px) que le moteur de scène fait traverser le ciel.",
    "tags": [
     "star",
     "sky",
@@ -3122,7 +3177,10 @@
      "five",
      "sparkle",
      "shooting",
-     "cluster"
+     "cluster",
+     "dot",
+     "plus",
+     "twinkle"
     ],
     "color": [
      "gold",
@@ -3132,10 +3190,12 @@
     ]
    },
    "sizes": [
+    8,
     16,
+    24,
     32
    ],
-   "variantCount": 10,
+   "variantCount": 15,
    "variants": {
     "five_32": {
      "key": "five_32",
@@ -3330,6 +3390,115 @@
       "starfield"
      ],
      "png": "library/png/sky/star/cluster_32.png"
+    },
+    "tiny_dot_8": {
+     "key": "tiny_dot_8",
+     "name": "star_tiny_dot_8",
+     "id": "sky/star/tiny_dot_8",
+     "label": "Point d'étoile (ciel de scène)",
+     "kind": "sprite",
+     "w": 1,
+     "h": 1,
+     "size": 8,
+     "props": {
+      "shape": "dot",
+      "color": "white"
+     },
+     "tags": [
+      "starfield",
+      "particle"
+     ],
+     "png": "library/png/sky/star/tiny_dot_8.png"
+    },
+    "tiny_plus_8": {
+     "key": "tiny_plus_8",
+     "name": "star_tiny_plus_8",
+     "id": "sky/star/tiny_plus_8",
+     "label": "Petite croix (ciel de scène)",
+     "kind": "sprite",
+     "w": 3,
+     "h": 3,
+     "size": 8,
+     "props": {
+      "shape": "plus",
+      "color": "white"
+     },
+     "tags": [
+      "starfield",
+      "particle"
+     ],
+     "png": "library/png/sky/star/tiny_plus_8.png"
+    },
+    "tiny_twinkle_8": {
+     "key": "tiny_twinkle_8",
+     "name": "star_tiny_twinkle_8",
+     "id": "sky/star/tiny_twinkle_8",
+     "label": "Petite étoile qui scintille (scène)",
+     "kind": "anim",
+     "w": 5,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "shape": "twinkle",
+      "color": "white"
+     },
+     "tags": [
+      "starfield",
+      "particle",
+      "animated"
+     ],
+     "png": "library/png/sky/star/tiny_twinkle_8.png",
+     "gif": "library/png/sky/star/tiny_twinkle_8.gif",
+     "frameCount": 6,
+     "loopMs": 1000
+    },
+    "tiny_twinkle_blue_8": {
+     "key": "tiny_twinkle_blue_8",
+     "name": "star_tiny_twinkle_blue_8",
+     "id": "sky/star/tiny_twinkle_blue_8",
+     "label": "Petite étoile bleue qui scintille (scène)",
+     "kind": "anim",
+     "w": 5,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "shape": "twinkle",
+      "color": "blue"
+     },
+     "tags": [
+      "starfield",
+      "particle",
+      "animated"
+     ],
+     "png": "library/png/sky/star/tiny_twinkle_blue_8.png",
+     "gif": "library/png/sky/star/tiny_twinkle_blue_8.gif",
+     "frameCount": 6,
+     "loopMs": 1000
+    },
+    "streak_24": {
+     "key": "streak_24",
+     "name": "star_streak_24",
+     "id": "sky/star/streak_24",
+     "label": "Étoile filante de scène (animée)",
+     "kind": "anim",
+     "w": 22,
+     "h": 10,
+     "size": 24,
+     "props": {
+      "shape": "shooting",
+      "color": "white"
+     },
+     "tags": [
+      "meteor",
+      "wish",
+      "trail",
+      "animated",
+      "night"
+     ],
+     "png": "library/png/sky/star/streak_24.png",
+     "gif": "library/png/sky/star/streak_24.gif",
+     "frameCount": 6,
+     "loopMs": 600
     }
    }
   },
@@ -3537,6 +3706,540 @@
       "partly-cloudy"
      ],
      "png": "library/png/sky/sun/cloudy_32.png"
+    }
+   }
+  },
+  "fauna/bird": {
+   "id": "fauna/bird",
+   "slug": "bird",
+   "category": "fauna",
+   "title": "Oiseau",
+   "description": "Oiseaux en vol pour animer les ciels : silhouette lointaine sombre ou claire (8 px), vol de cinq oiseaux en V (32 px), et oiseaux proches vus de profil (16 px) : hirondelle, corbeau, mouette. Battements d'ailes animés en 4 images de 100 ms ; le moteur de scène les fait traverser le ciel. Silhouettes lointaines sans contour, oiseaux proches au contour sombre.",
+   "tags": [
+    "bird",
+    "flying",
+    "sky",
+    "wings",
+    "flock",
+    "ambient",
+    "animated",
+    "fauna"
+   ],
+   "order": 0,
+   "source": "assets/fauna/bird.px.js",
+   "module": "library/js/fauna/bird.js",
+   "sheet": {
+    "png": "library/sheets/fauna/bird.png",
+    "json": "library/sheets/fauna/bird.json"
+   },
+   "axes": {
+    "species": [
+     "silhouette",
+     "swallow",
+     "crow",
+     "gull"
+    ],
+    "distance": [
+     "far",
+     "near"
+    ],
+    "group": [
+     "single",
+     "flock"
+    ]
+   },
+   "sizes": [
+    8,
+    16,
+    32
+   ],
+   "variantCount": 6,
+   "variants": {
+    "far_8": {
+     "key": "far_8",
+     "name": "bird_far_8",
+     "id": "fauna/bird/far_8",
+     "label": "Silhouette lointaine sombre",
+     "kind": "anim",
+     "w": 7,
+     "h": 4,
+     "size": 8,
+     "props": {
+      "species": "silhouette",
+      "distance": "far",
+      "group": "single"
+     },
+     "tags": [
+      "particle"
+     ],
+     "png": "library/png/fauna/bird/far_8.png",
+     "gif": "library/png/fauna/bird/far_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "far_light_8": {
+     "key": "far_light_8",
+     "name": "bird_far_light_8",
+     "id": "fauna/bird/far_light_8",
+     "label": "Silhouette lointaine claire",
+     "kind": "anim",
+     "w": 7,
+     "h": 4,
+     "size": 8,
+     "props": {
+      "species": "silhouette",
+      "distance": "far",
+      "group": "single"
+     },
+     "tags": [
+      "particle",
+      "gull"
+     ],
+     "png": "library/png/fauna/bird/far_light_8.png",
+     "gif": "library/png/fauna/bird/far_light_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "flock_32": {
+     "key": "flock_32",
+     "name": "bird_flock_32",
+     "id": "fauna/bird/flock_32",
+     "label": "Vol en V (5 oiseaux)",
+     "kind": "anim",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "species": "silhouette",
+      "distance": "far",
+      "group": "flock"
+     },
+     "tags": [
+      "migration"
+     ],
+     "png": "library/png/fauna/bird/flock_32.png",
+     "gif": "library/png/fauna/bird/flock_32.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "swallow_16": {
+     "key": "swallow_16",
+     "name": "bird_swallow_16",
+     "id": "fauna/bird/swallow_16",
+     "label": "Hirondelle",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "swallow",
+      "distance": "near",
+      "group": "single"
+     },
+     "tags": [
+      "spring",
+      "summer"
+     ],
+     "png": "library/png/fauna/bird/swallow_16.png",
+     "gif": "library/png/fauna/bird/swallow_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "crow_16": {
+     "key": "crow_16",
+     "name": "bird_crow_16",
+     "id": "fauna/bird/crow_16",
+     "label": "Corbeau",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "crow",
+      "distance": "near",
+      "group": "single"
+     },
+     "tags": [
+      "dark",
+      "spooky"
+     ],
+     "png": "library/png/fauna/bird/crow_16.png",
+     "gif": "library/png/fauna/bird/crow_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "gull_16": {
+     "key": "gull_16",
+     "name": "bird_gull_16",
+     "id": "fauna/bird/gull_16",
+     "label": "Mouette",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "gull",
+      "distance": "near",
+      "group": "single"
+     },
+     "tags": [
+      "sea",
+      "coast"
+     ],
+     "png": "library/png/fauna/bird/gull_16.png",
+     "gif": "library/png/fauna/bird/gull_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    }
+   }
+  },
+  "fauna/butterfly": {
+   "id": "fauna/butterfly",
+   "slug": "butterfly",
+   "category": "fauna",
+   "title": "Papillon",
+   "description": "Papillons qui battent des ailes, pour prairies et jardins : petits papillons vus de face à l'échelle d'une scène (8 px) – piéride blanche, citron jaune, azuré bleu, monarque orange – et grands papillons vus de dessus (16 px), monarque et azuré, ailes ouvertes puis repliées. Animés en 4 images de 100 ms. Lumière en haut à gauche, contour sombre.",
+   "tags": [
+    "butterfly",
+    "insect",
+    "wings",
+    "meadow",
+    "garden",
+    "summer",
+    "spring",
+    "ambient",
+    "animated",
+    "fauna"
+   ],
+   "order": 0,
+   "source": "assets/fauna/butterfly.px.js",
+   "module": "library/js/fauna/butterfly.js",
+   "sheet": {
+    "png": "library/sheets/fauna/butterfly.png",
+    "json": "library/sheets/fauna/butterfly.json"
+   },
+   "axes": {
+    "species": [
+     "cabbage-white",
+     "brimstone",
+     "common-blue",
+     "monarch"
+    ],
+    "color": [
+     "white",
+     "yellow",
+     "blue",
+     "orange"
+    ],
+    "view": [
+     "front",
+     "top"
+    ]
+   },
+   "sizes": [
+    8,
+    16
+   ],
+   "variantCount": 6,
+   "variants": {
+    "white_8": {
+     "key": "white_8",
+     "name": "butterfly_white_8",
+     "id": "fauna/butterfly/white_8",
+     "label": "Piéride blanche (scène)",
+     "kind": "anim",
+     "w": 7,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "species": "cabbage-white",
+      "color": "white",
+      "view": "front"
+     },
+     "tags": [],
+     "png": "library/png/fauna/butterfly/white_8.png",
+     "gif": "library/png/fauna/butterfly/white_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "yellow_8": {
+     "key": "yellow_8",
+     "name": "butterfly_yellow_8",
+     "id": "fauna/butterfly/yellow_8",
+     "label": "Citron jaune (scène)",
+     "kind": "anim",
+     "w": 7,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "species": "brimstone",
+      "color": "yellow",
+      "view": "front"
+     },
+     "tags": [],
+     "png": "library/png/fauna/butterfly/yellow_8.png",
+     "gif": "library/png/fauna/butterfly/yellow_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "blue_8": {
+     "key": "blue_8",
+     "name": "butterfly_blue_8",
+     "id": "fauna/butterfly/blue_8",
+     "label": "Azuré bleu (scène)",
+     "kind": "anim",
+     "w": 7,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "species": "common-blue",
+      "color": "blue",
+      "view": "front"
+     },
+     "tags": [],
+     "png": "library/png/fauna/butterfly/blue_8.png",
+     "gif": "library/png/fauna/butterfly/blue_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "monarch_8": {
+     "key": "monarch_8",
+     "name": "butterfly_monarch_8",
+     "id": "fauna/butterfly/monarch_8",
+     "label": "Monarque (scène)",
+     "kind": "anim",
+     "w": 7,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "species": "monarch",
+      "color": "orange",
+      "view": "front"
+     },
+     "tags": [],
+     "png": "library/png/fauna/butterfly/monarch_8.png",
+     "gif": "library/png/fauna/butterfly/monarch_8.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "monarch_16": {
+     "key": "monarch_16",
+     "name": "butterfly_monarch_16",
+     "id": "fauna/butterfly/monarch_16",
+     "label": "Monarque vu de dessus (16 px)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "monarch",
+      "color": "orange",
+      "view": "top"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/fauna/butterfly/monarch_16.png",
+     "gif": "library/png/fauna/butterfly/monarch_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    },
+    "blue_16": {
+     "key": "blue_16",
+     "name": "butterfly_blue_16",
+     "id": "fauna/butterfly/blue_16",
+     "label": "Azuré vu de dessus (16 px)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "common-blue",
+      "color": "blue",
+      "view": "top"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/fauna/butterfly/blue_16.png",
+     "gif": "library/png/fauna/butterfly/blue_16.gif",
+     "frameCount": 4,
+     "loopMs": 400
+    }
+   }
+  },
+  "fauna/firefly": {
+   "id": "fauna/firefly",
+   "slug": "firefly",
+   "category": "fauna",
+   "title": "Luciole",
+   "description": "Lucioles pour les nuits d'été : petite lueur clignotante à l'échelle d'une scène (8 px) en jaune-vert, ambre ou bleu féerique, essaim de cinq lueurs désynchronisées (16 px), et luciole en vol vue de profil (16 px) dont l'abdomen s'allume, en jaune-vert ou bleu. Toutes animées. Les lueurs n'ont pas de contour (ce sont des lumières) ; l'insecte a le contour sombre de la maison.",
+   "tags": [
+    "firefly",
+    "insect",
+    "bug",
+    "glow",
+    "night",
+    "light",
+    "summer",
+    "ambient",
+    "animated",
+    "fauna"
+   ],
+   "order": 0,
+   "source": "assets/fauna/firefly.px.js",
+   "module": "library/js/fauna/firefly.js",
+   "sheet": {
+    "png": "library/sheets/fauna/firefly.png",
+    "json": "library/sheets/fauna/firefly.json"
+   },
+   "axes": {
+    "form": [
+     "glow",
+     "swarm",
+     "insect"
+    ],
+    "color": [
+     "yellow",
+     "amber",
+     "blue"
+    ]
+   },
+   "sizes": [
+    8,
+    16
+   ],
+   "variantCount": 6,
+   "variants": {
+    "glow_8": {
+     "key": "glow_8",
+     "name": "firefly_glow_8",
+     "id": "fauna/firefly/glow_8",
+     "label": "Lueur jaune-vert (scène)",
+     "kind": "anim",
+     "w": 5,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "form": "glow",
+      "color": "yellow"
+     },
+     "tags": [
+      "particle"
+     ],
+     "png": "library/png/fauna/firefly/glow_8.png",
+     "gif": "library/png/fauna/firefly/glow_8.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "glow_amber_8": {
+     "key": "glow_amber_8",
+     "name": "firefly_glow_amber_8",
+     "id": "fauna/firefly/glow_amber_8",
+     "label": "Lueur ambre (scène)",
+     "kind": "anim",
+     "w": 5,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "form": "glow",
+      "color": "amber"
+     },
+     "tags": [
+      "particle",
+      "warm"
+     ],
+     "png": "library/png/fauna/firefly/glow_amber_8.png",
+     "gif": "library/png/fauna/firefly/glow_amber_8.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "glow_blue_8": {
+     "key": "glow_blue_8",
+     "name": "firefly_glow_blue_8",
+     "id": "fauna/firefly/glow_blue_8",
+     "label": "Lueur bleue féerique (scène)",
+     "kind": "anim",
+     "w": 5,
+     "h": 5,
+     "size": 8,
+     "props": {
+      "form": "glow",
+      "color": "blue"
+     },
+     "tags": [
+      "particle",
+      "magic",
+      "fantasy"
+     ],
+     "png": "library/png/fauna/firefly/glow_blue_8.png",
+     "gif": "library/png/fauna/firefly/glow_blue_8.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "swarm_16": {
+     "key": "swarm_16",
+     "name": "firefly_swarm_16",
+     "id": "fauna/firefly/swarm_16",
+     "label": "Essaim de lucioles",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "form": "swarm",
+      "color": "yellow"
+     },
+     "tags": [
+      "group"
+     ],
+     "png": "library/png/fauna/firefly/swarm_16.png",
+     "gif": "library/png/fauna/firefly/swarm_16.gif",
+     "frameCount": 12,
+     "loopMs": 1200
+    },
+    "bug_16": {
+     "key": "bug_16",
+     "name": "firefly_bug_16",
+     "id": "fauna/firefly/bug_16",
+     "label": "Luciole en vol (16 px)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "form": "insect",
+      "color": "yellow"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/fauna/firefly/bug_16.png",
+     "gif": "library/png/fauna/firefly/bug_16.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    },
+    "bug_blue_16": {
+     "key": "bug_blue_16",
+     "name": "firefly_bug_blue_16",
+     "id": "fauna/firefly/bug_blue_16",
+     "label": "Luciole bleue en vol (16 px)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "form": "insect",
+      "color": "blue"
+     },
+     "tags": [
+      "icon",
+      "magic"
+     ],
+     "png": "library/png/fauna/firefly/bug_blue_16.png",
+     "gif": "library/png/fauna/firefly/bug_blue_16.gif",
+     "frameCount": 8,
+     "loopMs": 800
     }
    }
   },

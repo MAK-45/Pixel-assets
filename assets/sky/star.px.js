@@ -2,7 +2,7 @@ include("../_palette.px.js")
 
 const meta = {
   title: "Étoile",
-  description: "Étoiles pour ciels de nuit, butin ou interface : étoile à cinq branches en relief (16, 32 px) dorée, argentée ou souriante, scintillement à quatre branches (16, 32 px) doré ou bleu, scintillement animé, étoile filante à traîne et petit amas d'étoiles. Facettes éclairées en haut à gauche.",
+  description: "Étoiles pour ciels de nuit, butin ou interface : étoile à cinq branches en relief (16, 32 px) dorée, argentée ou souriante, scintillement à quatre branches (16, 32 px) doré ou bleu, scintillement animé, étoile filante à traîne et petit amas d'étoiles. Facettes éclairées en haut à gauche. Pour les ciels de scène (8 px, sans contour) : point d'étoile, petite croix, scintillement animé blanc ou bleu, et étoile filante animée à traîne fondue (24 px) que le moteur de scène fait traverser le ciel.",
   tags: ["star", "sky", "night", "sparkle", "twinkle", "icon", "collectible"],
   variants: {
     five_16: { label: "Étoile dorée (16 px)", props: { shape: "five", color: "gold" }, tags: ["icon", "rating"] },
@@ -15,6 +15,11 @@ const meta = {
     twinkle_16: { label: "Scintillement animé (16 px)", props: { shape: "sparkle", color: "gold" }, tags: ["animated", "shine"] },
     shooting_32: { label: "Étoile filante", props: { shape: "shooting", color: "gold" }, tags: ["comet", "wish", "trail"] },
     cluster_32: { label: "Amas d'étoiles", props: { shape: "cluster", color: "white" }, tags: ["night", "background", "starfield"] },
+    tiny_dot_8: { label: "Point d'étoile (ciel de scène)", props: { shape: "dot", color: "white" }, tags: ["starfield", "particle"] },
+    tiny_plus_8: { label: "Petite croix (ciel de scène)", props: { shape: "plus", color: "white" }, tags: ["starfield", "particle"] },
+    tiny_twinkle_8: { label: "Petite étoile qui scintille (scène)", props: { shape: "twinkle", color: "white" }, tags: ["starfield", "particle", "animated"] },
+    tiny_twinkle_blue_8: { label: "Petite étoile bleue qui scintille (scène)", props: { shape: "twinkle", color: "blue" }, tags: ["starfield", "particle", "animated"] },
+    streak_24: { label: "Étoile filante de scène (animée)", props: { shape: "shooting", color: "white" }, tags: ["meteor", "wish", "trail", "animated", "night"] },
   },
 }
 
@@ -120,5 +125,34 @@ sprite("star_cluster_32", { w: 30, h: 30, outline: "k" },
   stamp("_sp_l", 2, 3), shadeBR(8, 9), stamp("_sp_m", 18, 15, { swap: { Y: "I", y: "i" } }), shadeBR(22, 19),
   stamp("_tiny", 20, 3), stamp("_tiny", 6, 21), stamp("_tiny", 26, 26),
   stamp("_dot", 15, 6), stamp("_dot", 3, 16), stamp("_dot", 12, 26), stamp("_dot", 27, 10), stamp("_dot", 13, 16))
+
+// ---------------------------------------------------------------- ciel de scène (sans contour)
+// Petites étoiles pour les fonds : w cœur, s bras, S pointes (lueur qui s'éteint dans la nuit).
+sprite("star_tiny_dot_8", { w: 1, h: 1 }, px(0, 0, "w"))
+sprite("star_tiny_plus_8", { w: 3, h: 3 }, px(1, 1, "w"), px(0, 1, "s"), px(2, 1, "s"), px(1, 0, "s"), px(1, 2, "s"))
+const tinyStar = (level) => (c) => {
+  if (level === 0) return c.px(2, 2, "S")
+  c.px(2, 2, "w")
+  if (level >= 2) for (const [x, y] of [[1, 2], [3, 2], [2, 1], [2, 3]]) c.px(x, y, "s")
+  if (level >= 3) for (const [x, y] of [[0, 2], [4, 2], [2, 0], [2, 4]]) c.px(x, y, "S")
+}
+const TWINKLE = [[0, 400], [1, 100], [2, 100], [3, 200], [2, 100], [1, 100]]
+anim("star_tiny_twinkle_8", { w: 5, h: 5 }, ...TWINKLE.map(([l, ms]) => frame({ ms }, tinyStar(l))))
+anim("star_tiny_twinkle_blue_8", { w: 5, h: 5, swap: { s: "I", S: "i" } }, ...TWINKLE.map(([l, ms]) => frame({ ms }, tinyStar(l))))
+
+// Étoile filante : tête en bas à gauche, traîne en escalier 2:1 vers le haut à droite qui
+// s'allonge, puis tout s'éteint. Le moteur de scène déplace le sprite vers le bas à gauche.
+const TRAIL = ["w", "Y", "Y", "s", "s", "S", "S", "i", "i", "u"]
+const streak = (len, fade = 0) => (c) => {
+  for (let i = Math.min(len, TRAIL.length) - 1; i >= 0; i--) {
+    const k = TRAIL[Math.min(TRAIL.length - 1, i + fade * 3)]
+    if (i + fade * 3 >= TRAIL.length + 1) continue
+    c.px(1 + 2 * i, 9 - i, k); c.px(2 + 2 * i, 9 - i, k)
+  }
+  if (fade < 2) { c.px(1, 9, fade ? "s" : "w"); c.px(0, 9, "S"); c.px(1, 8, "S") }
+}
+anim("star_streak_24", { w: 22, h: 10 },
+  frame({ ms: 100 }, streak(2)), frame({ ms: 100 }, streak(5)), frame({ ms: 100 }, streak(8)),
+  frame({ ms: 100 }, streak(10)), frame({ ms: 100 }, streak(10, 1)), frame({ ms: 100 }, streak(10, 2)))
 
 sheet("stars", ["star_*"], { pad: 2 })
