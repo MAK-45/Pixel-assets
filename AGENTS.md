@@ -12,5 +12,5 @@ Instructions pour les agents IA (Codex, Cursor, Gemini, Claude…) qui travaille
      palette commune `assets/_palette.px.js`.
   3. Regardez les aperçus `assets/<cat>/out/_preview/*.png` avant de valider un dessin.
   4. `npm run check` puis `npm run build` ; ne modifiez jamais `library/` ni `docs/index.html` à la main.
-- **Vous voulez construire une scène de jeu** (décor 16:9 en parallaxe ou statique) : suivez
-  `.claude/skills/scene/SKILL.md` (kit `assets/scenes/_kit.px.js`, modèles, test, recettes par biome).
+- **Vous voulez construire une scène de jeu dynamique** (décor 16:9 en parallaxe qui défile) : suivez
+  `.claude/skills/scene-dynamique/SKILL.md` (kit `assets/scenes/_kit.px.js`, modèle, test, recettes par biome).

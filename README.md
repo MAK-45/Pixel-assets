@@ -37,10 +37,11 @@ Dans Claude Code, à la racine du dépôt :
 ou simplement « dessine un buisson avec des variantes ». Pour un décor de jeu complet :
 
 ```
-/scene une plage au coucher du soleil, dynamique, avec des mouettes
+/scene-dynamique une plage au coucher du soleil, avec des mouettes
 ```
 
-(skill `scene` : cadrage court, sélection d'assets, plans en parallaxe, 4 périodes, effets, test et publication). Claude suit `CLAUDE.md` : il dessine avec
+(skill `scene-dynamique` : cadrage court, sélection d'assets, plans en parallaxe, 4 périodes, effets, test et
+publication ; les scènes statiques auront leur propre skill). Claude suit `CLAUDE.md` : il dessine avec
 claude-pxl, regarde chaque aperçu, crée plusieurs variantes, reconstruit la bibliothèque, commit, puis
 publie la galerie en artefact.
 
@@ -84,7 +85,7 @@ library/                bibliothèque générée : catalog.json, index.js, js/, 
 web/                    interface de la galerie
 docs/index.html         galerie autonome générée
 scripts/                build, validation, serveur de dev, création d'asset
-.claude/                configuration Claude Code : skills (claude-pxl, draw, scene, grill-me, grilling), agent relecteur, hook
+.claude/                configuration Claude Code : skills (claude-pxl, draw, scene-dynamique, grill-me, grilling), agent relecteur, hook
 CLAUDE.md, AGENTS.md    règles pour les agents qui dessinent
 ```
 

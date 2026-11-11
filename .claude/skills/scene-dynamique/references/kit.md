@@ -115,7 +115,7 @@ Le sol (`ground`) reste propre à chaque biome (herbe et terre, neige, sable…)
 
 ```js
 scene: {
-  type: "parallax",                 // "parallax" = dynamique, "static" = statique (badge de la galerie)
+  type: "parallax",                 // scène dynamique (badge ⇄ Dynamique de la galerie)
   w: 320, h: 180, groundY: 150,     // base 16:9 et ligne des pieds
   periods: PERIOD_LABELS,           // variantes de la scène = ses périodes
   defaultPeriod: "day",
@@ -135,8 +135,8 @@ scene: {
 Champs d'un plan : `id` (unique), `label` (fr), `factor` (0 fixe, 1 sol, > 1 devant), `y` (haut du plan dans la
 vue de base), `image` (modèle de nom avec `{period}`), `periods` (sous-liste, sinon toutes), `kind: "sky"` (tuile
 répétée, haut de vue prolongé), `body`, `front: true` (dessiné après le personnage), `optional: true` (désactivable
-par `createScene({ foreground: false })`), `drift` (px/s, `driftBy` par période), `loop` (défaut : vrai en dynamique,
-faux en statique ; mettre `loop: true` + `drift` pour faire dériver les nuages d'une scène statique), `actors`.
+par `createScene({ foreground: false })`), `drift` (px/s, `driftBy` par période), `loop` (vrai par défaut : la
+bande se répète), `actors`.
 
 Les positions calculées (acteurs, ancres des papillons) s'injectent après coup, `meta` restant en haut du fichier :
 `meta.scene.planes.find((p) => p.id === "ground").actors = actorsAt(...)`.

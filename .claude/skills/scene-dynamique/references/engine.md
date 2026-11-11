@@ -11,7 +11,7 @@ on **ajoute** (nouvel effet, nouvelle option avec une valeur par défaut), on ne
 | `scripts/templates/scene-runtime.js` | `EFFECTS.<type>(cfg, S)` pour un effet ; `drawPlane` pour une option de plan |
 | `scripts/lib/scene.js` | validation (`EFFECT_TYPES`, `PLANE_KEYS`, `SCENE_KEYS`) ; `previewOf` doit dessiner une nouvelle option de plan comme le moteur à la caméra 0 |
 | `scripts/templates/index.d.ts` | types si de nouveaux champs apparaissent |
-| `library/README.md` (section Scènes), `.claude/skills/scene/references/kit.md` | documentation des paramètres |
+| `library/README.md` (section Scènes), `.claude/skills/scene-dynamique/references/kit.md` | documentation des paramètres |
 | `web/app.js` | seulement si l'effet a besoin d'une commande dans la visionneuse (rare) |
 
 `SCENE_FORMAT` reste à 1 tant que les anciennes données marchent avec le nouveau moteur.
@@ -65,6 +65,6 @@ l'effet dans `meta.scene.effects.overcast` de la scène.
 
 1. `npm run build` : **tous** les modules `library/scenes/*/<asset>.js` changent (ils embarquent le moteur), c'est
    normal ; leurs PNG et `scene.json` ne doivent pas bouger (`git status library/scenes/`).
-2. `node .claude/skills/scene/scripts/test-scene.cjs <asset> --gallery` sur la nouvelle scène **et** sur
+2. `node .claude/skills/scene-dynamique/scripts/test-scene.cjs <asset> --gallery` sur la nouvelle scène **et** sur
    `summer_plain` : aucune erreur, captures identiques à avant pour l'ancienne scène.
 3. Mettre à jour la documentation (tableau des effets, `library/README.md`, types) dans le même commit.

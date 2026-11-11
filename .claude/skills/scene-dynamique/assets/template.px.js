@@ -1,7 +1,7 @@
 include("../_palette.px.js")
 include("_kit.px.js")
 
-// Scène __TITLE__ : squelette généré par le skill /scene. Il se construit tel quel ; remplacer
+// Scène dynamique __TITLE__ : squelette généré par le skill /scene-dynamique. Il se construit tel quel ; remplacer
 // chaque « À FAIRE » plan par plan, en regardant les aperçus (npm run scene -- <ce fichier> --planes).
 // Modèle complet : assets/scenes/summer_plain.px.js ; outils : assets/scenes/_kit.px.js.
 

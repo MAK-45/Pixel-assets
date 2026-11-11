@@ -4,7 +4,7 @@
 //   include("_kit.px.js")
 // Modifier le kit touche toutes les scènes : après `npm run build`, vérifier avec
 // `git status library/scenes/` que les scènes qu'on ne voulait pas changer n'ont pas bougé.
-// API détaillée : .claude/skills/scene/references/kit.md
+// API détaillée : .claude/skills/scene-dynamique/references/kit.md
 
 // ================================================================ périodes
 

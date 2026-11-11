@@ -14,7 +14,6 @@ near, ground, front).
 4. Plage
 5. Forêt
 6. Désert
-7. Scène statique (écran titre, arène, intérieur)
 
 ## 1. Plaine d'été — `assets/scenes/summer_plain.px.js` (référence validée)
 
@@ -98,11 +97,3 @@ Même structure que la Plaine d'été ; on change surtout les imports (nouveau f
   sable** : surcharger les cartes vers les ocres (`N n b B`) au lieu des gris, ciel `skySprites({ ...SKY, overcast: "bnNN" })`.
 - Manques : `nature/cactus` (saguaro, raquette, tonneau, en fleurs, sec ; 16/32/48), virevoltant animé (effet ou
   acteur), vautour.
-
-## 7. Scène statique (écran titre, menu, arène, intérieur)
-
-- `new-scene.mjs <asset> "<Titre>" --static` : plans en `factor: 0`, images de 320 px, `loop: false` par défaut.
-- Composer comme un tableau : héros au tiers, sol à 150, rien ne flotte (`base = hauteur du plan − h`).
-- Les nuages peuvent dériver : `loop: true` + `drift` sur le plan `clouds`. Les effets marchent comme ailleurs
-  (zones `area` en coordonnées d'écran).
-- La galerie masque les commandes de déplacement et affiche ▣ Statique.

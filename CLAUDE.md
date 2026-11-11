@@ -36,8 +36,8 @@ se cherchent toi-même, sans les demander. Une fois l'idée arrêtée, enchaîne
 npm run pxl -- build assets/nature/tree.px.js --only tree_oak_autumn_32   # aperçus d'un asset en cours
 npm run pxl -- ascii assets/nature/tree.px.js tree_oak_autumn_32          # pixels en texte + règles x/y
 npm run scene -- assets/scenes/summer_plain.px.js --planes                # aperçus d'une scène (périodes + plans)
-node .claude/skills/scene/scripts/new-scene.mjs <asset> "<Titre>" [--static]   # squelette d'une nouvelle scène
-node .claude/skills/scene/scripts/test-scene.cjs <asset> --gallery             # test navigateur d'une scène construite
+node .claude/skills/scene-dynamique/scripts/new-scene.mjs <asset> "<Titre>"     # squelette d'une scène dynamique
+node .claude/skills/scene-dynamique/scripts/test-scene.cjs <asset> --gallery    # test navigateur d'une scène construite
 npm run new -- <catégorie> <asset> "<Titre>"   # squelette d'une nouvelle famille
 npm run check                                 # valide tous les assets sans écrire
 npm run build                                 # library/ + docs/index.html + dist/gallery.html
@@ -61,7 +61,7 @@ docs/index.html              GÉNÉRÉ : galerie autonome (GitHub Pages / ouvert
 scripts/                     build.js, check.js, dev.js, new-asset.js, scene-preview.js, lib/ (library.js, scene.js),
                              templates/ (runtime.js, index.d.ts, scene-runtime.js = moteur des scènes exporté)
 .claude/skills/claude-pxl/   moteur de dessin (vendored, voir VENDORED.md) ; draw/ = workflow d'un asset ;
-                             scene/ = workflow d'une scène (kit, modèles, test, recettes par biome)
+                             scene-dynamique/ = workflow d'une scène dynamique (kit, modèle, test, recettes par biome)
 ```
 
 ## Conventions d'un asset
@@ -94,8 +94,10 @@ scripts/                     build.js, check.js, dev.js, new-asset.js, scene-pre
 
 ## Scènes (décors de jeu 16:9)
 
-**Workflow complet : skill `/scene`** (`.claude/skills/scene/SKILL.md`), à suivre pour toute scène, décor, fond ou
-niveau. Référence validée par l'utilisateur : `assets/scenes/summer_plain.px.js`.
+**Scène dynamique** (décor qui défile en parallaxe, fond ou niveau de platformer/runner) : workflow complet dans le
+skill **`/scene-dynamique`** (`.claude/skills/scene-dynamique/SKILL.md`). Référence validée par l'utilisateur :
+`assets/scenes/summer_plain.px.js`. **Scène statique** (écran fixe) : un skill dédié est prévu, pas encore écrit ;
+en attendant, demander à l'utilisateur comment procéder.
 
 Une scène = `assets/scenes/<asset>.px.js` (inclut `../_palette.px.js` puis `_kit.px.js`). Elle ne définit que des **parties privées** (`_nom`) et se décrit dans
 `meta.scene` ; ses **variantes sont ses périodes** (`day`, `dusk`, `night`, `overcast`…). Toujours dire si elle est :

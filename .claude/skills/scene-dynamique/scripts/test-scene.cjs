@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Teste une scène construite (après `npm run build`) dans Chromium (Playwright) :
+// Teste une scène dynamique construite (après `npm run build`) dans Chromium (Playwright) :
 //   1. le module exporté library/scenes/<asset>/<asset>.js seul : chaque période après une marche
 //      (événements accélérés), un fondu, une vue élargie 1366×768 ;
 //   2. avec --gallery : la galerie autonome docs/index.html (visionneuse, périodes, export .js
 //      identique au fichier de la bibliothèque, archive .zip valide).
-// Usage : node .claude/skills/scene/scripts/test-scene.cjs <asset> [--gallery] [--out <dossier>]
+// Usage : node .claude/skills/scene-dynamique/scripts/test-scene.cjs <asset> [--gallery] [--out <dossier>]
 // Captures dans assets/scenes/out/_test/<asset>/ (ignoré par git) : les regarder.
 // Code de sortie 1 s'il y a des erreurs (console, exceptions, export différent…).
 const fs = require("fs");
@@ -17,7 +17,7 @@ const withGallery = args.includes("--gallery");
 const OUT = args.includes("--out") ? path.resolve(args[args.indexOf("--out") + 1]) : path.join(ROOT, "assets/scenes/out/_test", slug ?? "");
 
 if (!slug) {
-  console.error("Usage : node .claude/skills/scene/scripts/test-scene.cjs <asset> [--gallery] [--out <dossier>]");
+  console.error("Usage : node .claude/skills/scene-dynamique/scripts/test-scene.cjs <asset> [--gallery] [--out <dossier>]");
   process.exit(1);
 }
 const bundlePath = path.join(ROOT, "library/scenes", slug, `${slug}.js`);
@@ -35,7 +35,10 @@ try {
 }
 const scene = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 const periods = scene.periods.map((p) => p.id);
-const dynamic = scene.type === "parallax";
+if (scene.type !== "parallax") {
+  console.error(`${slug} est une scène « ${scene.type} » : ce test ne vise que les scènes dynamiques (parallax).`);
+  process.exit(1);
+}
 fs.mkdirSync(OUT, { recursive: true });
 
 const PAGE = `<!doctype html><html><body style="margin:0;background:#000"><canvas id="c"></canvas>
@@ -81,9 +84,10 @@ const watch = (page, where) => {
   });
   await page.goto("http://scene.test/");
   await page.waitForFunction(() => window.ready, null, { timeout: 15000 });
-  const shots = periods.map((p, i) => [`${p}`, { W: 960, H: 540, period: p, cam: dynamic ? (i % 2 ? -900 : 900) : 0, ms: 15000 }]);
-  if (periods.length > 1) shots.push([`fade_${periods[0]}_${periods[periods.length - 1]}`, { W: 960, H: 540, period: periods[0], cam: dynamic ? 300 : 0, ms: 4000, fadeTo: periods[periods.length - 1], fadeAt: 3000 }]);
-  shots.push(["wide_1366x768", { W: 1366, H: 768, period: periods[0], cam: dynamic ? 500 : 0, ms: 6000 }]);
+  // marche vers la droite puis vers la gauche selon la période (900 px en 15 s), fondu, vue élargie
+  const shots = periods.map((p, i) => [`${p}`, { W: 960, H: 540, period: p, cam: i % 2 ? -900 : 900, ms: 15000 }]);
+  if (periods.length > 1) shots.push([`fade_${periods[0]}_${periods[periods.length - 1]}`, { W: 960, H: 540, period: periods[0], cam: 300, ms: 4000, fadeTo: periods[periods.length - 1], fadeAt: 3000 }]);
+  shots.push(["wide_1366x768", { W: 1366, H: 768, period: periods[0], cam: 500, ms: 6000 }]);
   for (const [name, a] of shots) {
     try {
       const info = await page.evaluate((x) => window.run(x), a);
@@ -106,9 +110,8 @@ const watch = (page, where) => {
       await g.waitForSelector("#viewer[open]", { timeout: 15000 });
       await g.waitForTimeout(800);
       const badge = await g.textContent("#v-title .badge");
-      const moveHidden = await g.isHidden("#v-move-group");
-      if (dynamic === moveHidden) problems.push(`galerie : commandes de déplacement ${moveHidden ? "masquées" : "visibles"} pour une scène ${scene.type}`);
-      if (!badge.includes(dynamic ? "Dynamique" : "Statique")) problems.push(`galerie : badge « ${badge} » au lieu de ${dynamic ? "Dynamique" : "Statique"}`);
+      if (await g.isHidden("#v-move-group")) problems.push("galerie : commandes de déplacement masquées pour une scène dynamique");
+      if (!badge.includes("Dynamique")) problems.push(`galerie : badge « ${badge} » au lieu de ⇄ Dynamique`);
       for (const p of periods) {
         await g.click(`#v-periods button[data-period="${p}"]`);
         await g.waitForTimeout(1600);

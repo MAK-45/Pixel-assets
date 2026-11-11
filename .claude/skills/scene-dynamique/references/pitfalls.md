@@ -45,4 +45,4 @@ Tout ce qui suit a coûté une itération sur la Plaine d'été. Lire avant de c
 - [ ] Les quatre périodes sont reconnaissables même en vignette (jour, crépuscule chaud, nuit bleue, sombre gris).
 - [ ] Les effets se voient dans les captures de `test-scene.cjs` (oiseaux, étoiles filantes, lucioles…).
 - [ ] `npm run build` sans avertissement ; `git status library/scenes/` ne touche que la scène voulue.
-- [ ] La galerie affiche le bon badge (⇄ Dynamique / ▣ Statique) et l'export `.js` est identique à la bibliothèque.
+- [ ] La galerie affiche le badge ⇄ Dynamique et l'export `.js` est identique à la bibliothèque.

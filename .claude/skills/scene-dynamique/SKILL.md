@@ -1,17 +1,22 @@
 ---
-name: scene
-description: "Construire une scène de jeu 16:9 pour Pixel Assets — panorama dynamique en parallaxe qui défile à l'infini, ou écran statique — avec ses périodes (jour, crépuscule, nuit, sombre), ses animations d'ambiance et l'export de son code pour un jeu. À utiliser dès que l'utilisateur demande une scène, un décor, un fond, un niveau, une map ou carte, un panorama, un background ou un biome (plaine, montagne enneigée, plage, forêt, désert, marais, grotte, village…), même sans dire « scène », et aussi pour modifier une scène existante (période, effet, plan, ambiance). Pas pour un sprite isolé : c'est /draw."
-argument-hint: "<la scène à construire>"
+name: scene-dynamique
+description: "Construire une scène de jeu DYNAMIQUE pour Pixel Assets : un panorama 16:9 en plans de parallaxe qui défilent à l'infini derrière le personnage quand il marche ou court, avec ses périodes (jour, crépuscule, nuit, sombre), ses animations d'ambiance et l'export de son code pour le jeu. À utiliser dès que l'utilisateur demande une scène, un décor, un fond, un niveau, une map ou carte, un panorama, un background ou un biome (plaine, montagne enneigée, plage, forêt, désert, marais, village…) qui défile, pour un platformer ou un runner, même sans dire « scène » ni « dynamique », et aussi pour modifier une scène dynamique existante (période, effet, plan, ambiance). Pas pour une scène statique (écran fixe, écran titre, menu, arène) : un autre skill est prévu. Pas pour un sprite isolé : c'est /draw."
+argument-hint: "<la scène dynamique à construire>"
 ---
 
-# /scene — construire une scène de jeu
+# /scene-dynamique — construire une scène qui défile
 
 Demande : $ARGUMENTS
 
+Ce skill ne fait que des **scènes dynamiques** (`type: "parallax"`, badge ⇄ Dynamique dans la galerie). Si la demande
+est une **scène statique** (écran fixe qui ne défile pas : écran titre, menu, arène, intérieur), ne la traite pas
+ici : dis à l'utilisateur qu'un skill dédié aux scènes statiques est prévu et demande-lui comment il veut procéder.
+En cas de doute (« un décor pour mon jeu »), demande si le décor doit défiler.
+
 Tout le reste existe déjà : le moteur (`scripts/templates/scene-runtime.js`), le rendu des plans et le paquet
-`library/scenes/<asset>/` (`scripts/lib/scene.js`), la galerie (vignettes animées, badges ⇄ Dynamique / ▣ Statique,
-visionneuse, bouton « Exporter le code »). Une nouvelle scène, c'est **un fichier `assets/scenes/<asset>.px.js`**
-plus les assets qui manquent dans la bibliothèque. Ne recode rien d'autre sans raison.
+`library/scenes/<asset>/` (`scripts/lib/scene.js`), la galerie (vignettes animées, badge, visionneuse, bouton
+« Exporter le code »). Une nouvelle scène, c'est **un fichier `assets/scenes/<asset>.px.js`** plus les assets qui
+manquent dans la bibliothèque. Ne recode rien d'autre sans raison.
 
 - Scène de référence, validée par l'utilisateur (« c'est exactement ça ») : `assets/scenes/summer_plain.px.js`.
   Relis-la avant d'écrire : c'est le meilleur exemple de tout ce qui suit.
@@ -22,8 +27,9 @@ plus les assets qui manquent dans la bibliothèque. Ne recode rien d'autre sans 
 
 - **16:9, base 320 × 180**, agrandie d'un facteur entier par le moteur (×4 720p, ×6 1080p, ×12 4K) ; vue élargie
   plutôt que bandes noires. Personnage d'environ **32 px**, **sol plat**, ligne des pieds `groundY = 150`.
-- **Dynamique** (défaut) : plans en bandes qui bouclent sans couture, défilement infini dans les deux sens, caméra
-  horizontale seulement. **Statique** : un écran fixe. Toujours dire lequel des deux : la galerie l'affiche.
+- **Plusieurs plans** en bandes qui bouclent sans couture, chacun à sa vitesse : le décor défile à l'infini dans les
+  deux sens quand le personnage marche ou court, s'arrête quand il s'arrête (les animations continuent). Caméra
+  horizontale seulement. Toujours présentée comme **⇄ Dynamique**.
 - **4 périodes** : jour, crépuscule, nuit, sombre. « Sombre » = la météo grise du biome **sans la précipitation**
   (l'utilisateur ajoute lui-même pluie, etc.). Couleurs fixes par période, fondu entre elles dans le jeu.
 - **Animations d'ambiance** propres à chaque période, déclenchées au hasard (étoiles filantes, oiseaux…).
@@ -37,11 +43,10 @@ Lis la demande, `library/catalog.json` et la recette du biome dans [references/r
 Puis pose **une ronde** de questions numérotées, chacune avec ta recommandation (format `/grill-me` : « oui » valide
 la recommandation), seulement sur ce qui reste ouvert :
 
-1. dynamique ou statique (recommande dynamique sauf écran titre, menu, arène, intérieur fixe) ;
-2. l'élément « héros » visible dès le premier écran (grand pic, mer, mesa…) et l'ambiance ;
-3. ce que devient « sombre » dans ce biome (neige, tempête de sable…) et qui fait les précipitations ;
-4. les animations par période (propose celles de la recette) ;
-5. **les assets nouveaux à dessiner** (liste courte) : c'est le plus long, fais-le valider.
+1. l'élément « héros » visible dès le premier écran (grand pic, mer, mesa…) et l'ambiance ;
+2. ce que devient « sombre » dans ce biome (neige, tempête de sable…) et qui fait les précipitations ;
+3. les animations par période (propose celles de la recette) ;
+4. **les assets nouveaux à dessiner** (liste courte) : c'est le plus long, fais-le valider.
 
 Si la demande est déjà précise et qu'aucun asset nouveau n'est nécessaire, annonce ton plan en quelques lignes et
 enchaîne sans attendre. Les faits du dépôt, tu les cherches toi-même.
@@ -59,12 +64,12 @@ enchaîne sans attendre. Les faits du dépôt, tu les cherches toi-même.
 ### 3. Le squelette
 
 ```bash
-node .claude/skills/scene/scripts/new-scene.mjs <asset> "<Titre>" [--static]
+node .claude/skills/scene-dynamique/scripts/new-scene.mjs <asset> "<Titre>"
 ```
 
-Il crée `assets/scenes/<asset>.px.js` qui se construit tel quel (8 plans standard, ou 6 en statique). Remplis
-`meta` tout de suite : `title` et `description` en français (ce qu'on voit, les plans, chaque période et ses
-animations, la ligne de sol), `tags` en anglais, un `label` et des `tags` par période.
+Il crée `assets/scenes/<asset>.px.js` qui se construit tel quel (les 8 plans standard). Remplis `meta` tout de suite :
+`title` et `description` en français (ce qu'on voit, les plans, chaque période et ses animations, la ligne de sol),
+`tags` en anglais, un `label` et des `tags` par période.
 
 ### 4. Les plans, du fond vers l'avant
 
@@ -115,18 +120,18 @@ réécrire. Lis les quatre aperçus côte à côte et passe la liste de contrôl
 ```bash
 npm run check && npm run build          # sans erreur ni avertissement
 git status library/scenes/              # seule ta scène a bougé (sauf changement voulu du kit ou du moteur)
-node .claude/skills/scene/scripts/test-scene.cjs <asset> --gallery
+node .claude/skills/scene-dynamique/scripts/test-scene.cjs <asset> --gallery
 ```
 
 Le script teste le module exporté seul (chaque période après une marche, un fondu, la vue 1366 × 768) puis la
-galerie (visionneuse, badge, export `.js` identique à la bibliothèque, `.zip` valide). **Lis les captures** de
-`assets/scenes/out/_test/<asset>/` : effets visibles, rien qui flotte, rien de coupé au raccord.
+galerie (visionneuse, badge ⇄ Dynamique, export `.js` identique à la bibliothèque, `.zip` valide). **Lis les
+captures** de `assets/scenes/out/_test/<asset>/` : effets visibles, rien qui flotte, rien de coupé au raccord.
 
 ### 8. Livrer (règle 5 de `CLAUDE.md`)
 
 Commit (« Ajoute la scène <Titre> : … »), push, publication de `dist/gallery.html` sur l'artefact noté dans
-`CLAUDE.md` (le lire avec `action: "read"` d'abord). Réponds avec le lien, le type (⇄ Dynamique / ▣ Statique), un
-tableau période → animations, les assets créés, et l'utilisation dans un jeu :
+`CLAUDE.md` (le lire avec `action: "read"` d'abord). Réponds avec le lien, « ⇄ Dynamique », un tableau
+période → animations, les assets créés, et l'utilisation dans un jeu :
 
 ```js
 import { createScene, fitCanvas } from "./<asset>.js";   // bouton « Exporter le code » de la galerie
