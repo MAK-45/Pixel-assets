@@ -25,3 +25,4 @@ https://raw.githubusercontent.com/mak-45/pixel-assets/main/<chemin> (remplacer `
 - [CLAUDE.md](CLAUDE.md) : règles du projet, conventions d'un asset, style maison
 - [.claude/skills/draw/SKILL.md](.claude/skills/draw/SKILL.md) : workflow complet pour ajouter un dessin
 - [.claude/skills/claude-pxl/SKILL.md](.claude/skills/claude-pxl/SKILL.md) : le DSL de dessin pxl ; API dans reference.md
+- [.claude/skills/grilling/SKILL.md](.claude/skills/grilling/SKILL.md) : interview `/grill-me` (Matt Pocock) pour affiner une idée avant de dessiner

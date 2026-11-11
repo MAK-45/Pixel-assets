@@ -62,7 +62,7 @@ library/                bibliothèque générée : catalog.json, index.js, js/, 
 web/                    interface de la galerie
 docs/index.html         galerie autonome générée
 scripts/                build, validation, serveur de dev, création d'asset
-.claude/                configuration Claude Code : skills (claude-pxl, draw), agent relecteur, hook
+.claude/                configuration Claude Code : skills (claude-pxl, draw, grill-me, grilling), agent relecteur, hook
 CLAUDE.md, AGENTS.md    règles pour les agents qui dessinent
 ```
 
@@ -71,3 +71,7 @@ CLAUDE.md, AGENTS.md    règles pour les agents qui dessinent
 Moteur de dessin : [crsolver/claude-pxl](https://github.com/crsolver/claude-pxl) (MIT), copie intégrée
 dans `.claude/skills/claude-pxl/` (voir `VENDORED.md`). La licence des dessins de ce dépôt reste à choisir
 par son propriétaire.
+
+Skills `grill-me` / `grilling` : [mattpocock/skills](https://github.com/mattpocock/skills) (MIT), copie intégrée
+dans `.claude/skills/grill-me/` et `.claude/skills/grilling/` (voir `VENDORED.md`). Tape `/grill-me` pour
+te faire interviewer sur une idée avant de la dessiner.

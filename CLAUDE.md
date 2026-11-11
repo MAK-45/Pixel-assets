@@ -21,6 +21,15 @@ assets via `library/` : garde ce dossier propre, cohérent et bien décrit.
 
 Le workflow complet est dans le skill `/draw` (`.claude/skills/draw/SKILL.md`).
 
+## Cuisiner une idée (`/grill-me`)
+
+Quand l'utilisateur tape `/grill-me`, ou demande de le « cuisiner », « challenger », « grill » sur une idée,
+un plan ou une nouvelle famille d'assets, utilise le skill **`grilling`** (Matt Pocock, copie intégrée dans
+`.claude/skills/grill-me/` et `.claude/skills/grilling/`, voir `VENDORED.md`) : interview par *rounds*,
+questions numérotées avec ta réponse recommandée, et **aucune action** (dessin, build, commit) avant que
+l'utilisateur confirme que vous êtes alignés. Les faits du dépôt (catalogue, palette, familles existantes)
+se cherchent toi-même, sans les demander. Une fois l'idée arrêtée, enchaîne avec `/draw` si c'est un dessin.
+
 ## Commandes
 
 ```bash
