@@ -11,7 +11,7 @@ const pxl = await import(join(ROOT, ".claude/skills/claude-pxl/src/index.ts"));
 const { Img, PxError, encodePng, packSheet, toHex } = pxl;
 export const RUNTIME_FILE = join(ROOT, "scripts/templates/scene-runtime.js");
 const runtime = await import(RUNTIME_FILE);
-export const { SCENE_FORMAT, bundleScene, packScene, sceneUsage } = runtime;
+export const { SCENE_FORMAT, bundleScene, packScene, sceneUsage, sceneReadme } = runtime;
 
 const ID_RE = /^[a-z][a-z0-9_]*$/;
 const PLANE_RE = /^[a-z][a-z0-9_-]*$/;
@@ -242,7 +242,7 @@ export function renderScene({ info, project }) {
   files.push({ path: `${dir}/scene.json`, data: JSON.stringify(pack.json, null, 1) + "\n" });
   const runtimeSource = readFileSync(RUNTIME_FILE, "utf8");
   files.push({ path: `${dir}/${slug}.js`, data: bundleScene(runtimeSource, data, `${slug}.js`) });
-  files.push({ path: `${dir}/README.md`, data: `# ${meta.title}\n\n${meta.description}\n\n\`\`\`\n${sceneUsage(data, `${slug}.js`).join("\n")}\n\`\`\`\n\nFichiers : \`${slug}.js\` (module autonome, images incluses), \`scene.json\` + PNG (plans par période, sprites d'effets) pour un autre moteur.\n` });
+  files.push({ path: `${dir}/README.md`, data: sceneReadme(data, meta.description, `${slug}.js`) });
 
   const summary = {
     type: sc.type, dynamic: sc.type === "parallax", w: sc.w, h: sc.h, groundY: sc.groundY,

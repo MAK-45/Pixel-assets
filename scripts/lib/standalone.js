@@ -18,7 +18,7 @@ export function standaloneGallery({ catalog, modules, sources, sceneRuntime }, {
   const noClose = (code) => code.replace(/<\/script/gi, "<\\/script");
   const data = `<script>window.__PIXEL_LIBRARY__ = ${safeJson({ catalog, modules, sources, sceneRuntime })};</script>`;
   // Moteur des scènes exécuté avant la galerie (les modules s'exécutent dans l'ordre du document).
-  const runtime = `<script type="module">\n${noClose(sceneRuntime)}\nwindow.__PIXEL_SCENE_RUNTIME__ = { createSceneFrom, fitCanvas, bundleScene, packScene, sceneUsage };\n</script>`;
+  const runtime = `<script type="module">\n${noClose(sceneRuntime)}\nwindow.__PIXEL_SCENE_RUNTIME__ = { createSceneFrom, fitCanvas, bundleScene, packScene, sceneUsage, sceneReadme };\n</script>`;
   html = html.replace(/<link rel="stylesheet" href="style.css">/, () => `<style>\n${css}\n</style>`);
   html = html.replace(/<script type="module" src="app.js"><\/script>/, () => `${data}\n${runtime}\n<script type="module">\n${noClose(js)}\n</script>`);
   if (!html.includes("__PIXEL_LIBRARY__") || html.includes('href="style.css"')) throw new Error("standalone: balises style.css/app.js introuvables dans web/index.html");

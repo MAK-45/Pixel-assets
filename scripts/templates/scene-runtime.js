@@ -527,6 +527,12 @@ export function sceneUsage(data, file) {
   ];
 }
 
+/** README du paquet d'une scène (dossier library/scenes/<asset>/ et archive .zip de la galerie). */
+export function sceneReadme(data, description, file = `${data.id.split("/").pop()}.js`) {
+  return `# ${data.title}\n\n${description}\n\n\`\`\`\n${sceneUsage(data, file).join("\n")}\n\`\`\`\n\n` +
+    `Fichiers : \`${file}\` (module autonome, images incluses), \`scene.json\` + PNG (plans par période, sprites d'effets) pour un autre moteur.\n`;
+}
+
 /**
  * Texte du module autonome d'une scène : le moteur (sans ces outils) + les données (images en data URL).
  * runtimeSource = texte de ce fichier.
