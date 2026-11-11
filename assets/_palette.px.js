@@ -25,6 +25,16 @@ pal({
   d: "#2f2d3c", m: "#575670", c: "#8b8aa3", C: "#c3c2d4",
   // neige / blanc : S ombre bleutée -> s -> w blanc
   S: "#8fa3c7", s: "#d3e0f2", w: "#fbfbff",
+
+  // Ambiances des scènes (périodes de la journée), utilisées par recoloration (swap) :
+  // crépuscule, terres à contre-jour : D sombre -> a -> A -> f -> F lumière chaude
+  D: "#211a33", a: "#3b2b4b", A: "#5e3a5a", f: "#8f4f5f", F: "#d0745f",
+  // nuit, terres au clair de lune : q sombre -> j -> J -> t -> T clair
+  q: "#0c1224", j: "#14213a", J: "#1d3247", t: "#2a4752", T: "#3f6466",
+  // nuit, ciel : Q zénith -> O -> M horizon (puis U, u des bleus)
+  Q: "#070a1c", O: "#0f1634", M: "#1b2652",
+  // temps couvert, terres sous la pluie : h sombre -> H -> X -> W clair
+  h: "#1b2723", H: "#2b3c33", X: "#415646", W: "#62735a",
 })
 
 ramps(
@@ -37,4 +47,8 @@ ramps(
   "RzZ",    // roses
   "kdmcC",  // pierre
   "dSsw",   // neige
+  "kDaAfF", // crépuscule
+  "qjJtT",  // nuit, terres
+  "QOMU",   // nuit, ciel
+  "khHXW",  // temps couvert
 )

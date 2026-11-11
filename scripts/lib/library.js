@@ -13,7 +13,8 @@ export const PXL_DIR = join(ROOT, ".claude/skills/claude-pxl");
 
 const pxl = await import(join(PXL_DIR, "src/index.ts"));
 const { encodeGif } = await import(join(PXL_DIR, "src/node/gif.ts"));
-export const { Project, PxError, wrap, encodePng, packSheet, sheetJson, toHex } = pxl;
+export const { Project, PxError, wrap, encodePng, packSheet, sheetJson, toHex, preview, previewScale } = pxl;
+const scenes = await import("./scene.js");
 
 /** Tailles nominales : `size` d'une variante = la plus petite qui contient max(w, h). */
 export const STANDARD_SIZES = [8, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512];
@@ -21,7 +22,7 @@ export const STANDARD_SIZES = [8, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 51
 const SLUG_RE = /^[a-z][a-z0-9_]*$/;
 const CATEGORY_RE = /^[a-z][a-z0-9-]*$/;
 const TAG_RE = /^[a-z0-9][a-z0-9-]*$/;
-const META_KEYS = new Set(["title", "description", "tags", "variants", "order", "license", "author"]);
+const META_KEYS = new Set(["title", "description", "tags", "variants", "order", "license", "author", "scene"]);
 const VARIANT_KEYS = new Set(["label", "props", "tags", "description"]);
 
 /** Posix-style path relative to the repo root (stable across OSes, used in the catalog). */
@@ -56,7 +57,11 @@ export function listAssetFiles() {
 export function loadArt(file) {
   const abs = resolve(file);
   const p = new Project();
-  const ctx = vm.createContext({ ...p.env(), console });
+  const env = p.env();
+  // importAssets("nature/tree", ["oak_summer_48"]) : copie des variantes d'une autre famille en
+  // parties privées "_tree_oak_summer_48" (pixels en clés de palette, donc swap/recolor marchent).
+  env.importAssets = (id, keys) => importAssets(p, env, abs, id, keys);
+  const ctx = vm.createContext({ ...env, console });
   const stack = [];
   const run = (path, isMain) => {
     if (stack.includes(path)) throw new PxError(`include cycle: ${[...stack, path].join(" -> ")}`);
@@ -81,6 +86,84 @@ export function loadArt(file) {
   // The meta object was created inside the sandbox: copy it out as plain JSON data.
   const meta = ctx.__meta__ === undefined ? undefined : JSON.parse(JSON.stringify(ctx.__meta__));
   return { project: p, meta };
+}
+
+// ---------------------------------------------------------------- imports entre familles
+
+// Familles déjà chargées (une scène en importe beaucoup) ; `loading` détecte les cycles.
+const families = new Map();
+const loading = new Set();
+
+function familyProject(id) {
+  const file = join(ASSETS_DIR, `${id}.px.js`);
+  if (families.has(file)) return families.get(file);
+  if (!existsSync(file)) throw new PxError(`importAssets: famille '${id}' introuvable (${rel(file)})`);
+  if (loading.has(file)) throw new PxError(`importAssets: cycle d'imports via '${id}'`);
+  loading.add(file);
+  try {
+    const { project } = loadArt(file);
+    families.set(file, project);
+    return project;
+  } finally {
+    loading.delete(file);
+  }
+}
+
+/** Pixels d'une image en lignes de clés de palette ("." = transparent). */
+function keyRows(img, reverse, where) {
+  const rows = [];
+  for (let y = 0; y < img.h; y++) {
+    let s = "";
+    for (let x = 0; x < img.w; x++) {
+      const c = img.data[y * img.w + x];
+      if ((c & 255) === 0) { s += "."; continue; }
+      const k = reverse.get(c);
+      if (k === undefined) throw new PxError(`importAssets: ${where} utilise la couleur ${toHex(c)} absente de la palette commune`);
+      s += k;
+    }
+    rows.push(s);
+  }
+  return rows;
+}
+
+const painter = (rows) => (c) => {
+  for (let y = 0; y < rows.length; y++)
+    for (let x = 0; x < rows[y].length; x++) if (rows[y][x] !== ".") c.px(x, y, rows[y][x]);
+};
+
+/**
+ * Définit dans le projet `p` une partie privée par variante importée et renvoie
+ * { <variante>: { name, w, h, frames, ms } } (ms = durée de chaque image pour une animation).
+ */
+function importAssets(p, env, from, id, keys) {
+  if (typeof id !== "string" || !/^[a-z][a-z0-9-]*\/[a-z][a-z0-9_]*$/.test(id))
+    throw new PxError(`importAssets("<catégorie>/<asset>", ["variante", ...]) : identifiant '${id}' invalide`);
+  const slug = id.split("/")[1];
+  if (join(ASSETS_DIR, `${id}.px.js`) === from) throw new PxError(`importAssets: une famille ne s'importe pas elle-même`);
+  const fp = familyProject(id);
+  const all = fp.exported().map((n) => variantKey(slug, n));
+  const wanted = keys ?? all;
+  if (!Array.isArray(wanted)) throw new PxError(`importAssets("${id}", [...]) : liste de variantes attendue`);
+  const reverse = p.pal.reverse();
+  const out = {};
+  for (const key of wanted) {
+    if (!all.includes(key)) throw new PxError(`importAssets: '${id}' n'a pas de variante '${key}' (variantes : ${all.join(", ")})`);
+    const src = key === "default" ? slug : `${slug}_${key}`;
+    const name = `_${slug}_${key}`;
+    if (p.assets.has(name)) { out[key] = p.__imports[name]; continue; }
+    const built = fp.build(src);
+    const frames = built.anim ? fp.frames(src) : [];
+    const { w, h } = built.img;
+    if (frames.length > 1) {
+      env.anim(name, { w, h }, ...frames.map((f) => env.frame({ ms: f.ms }, painter(keyRows(f.img, reverse, `${id}/${key}`)))));
+    } else {
+      env.sprite(name, { w, h }, painter(keyRows(built.img, reverse, `${id}/${key}`)));
+    }
+    const info = { name, w, h, frames: Math.max(1, frames.length), ms: frames.map((f) => f.ms) };
+    (p.__imports ??= {})[name] = info;
+    out[key] = info;
+  }
+  return out;
 }
 
 // ---------------------------------------------------------------- validation
@@ -122,6 +205,18 @@ export function inspectAsset(file) {
 
   const names = project.exported();
   info.names = names;
+  if (meta.scene !== undefined) {
+    // Scène : uniquement des parties privées ; ses variantes sont ses périodes (meta.scene.periods).
+    if (names.length) errors.push(`${where}: une scène ne définit que des parties privées ("_nom") ; sprites exportés en trop : ${names.join(", ")}`);
+    errors.push(...scenes.validateScene(meta.scene, (n) => project.assets.has(n), where));
+    const periods = Object.keys(meta.scene?.periods ?? {});
+    for (const [k, v] of Object.entries(meta.variants ?? {})) {
+      if (!periods.includes(k)) errors.push(`${where}: meta.variants.${k} n'est pas une période de meta.scene.periods (${periods.join(", ")})`);
+      for (const kk of Object.keys(v ?? {})) if (!VARIANT_KEYS.has(kk)) errors.push(`${where}: meta.variants.${k}.${kk} inconnu (autorisés : ${[...VARIANT_KEYS].join(", ")})`);
+    }
+    info.names = periods.map((p) => `${slug}_${p}`);
+    return { info, project, errors, warnings };
+  }
   if (!names.length) errors.push(`${where}: aucun sprite exporté (les noms qui commencent par "_" sont des parties privées)`);
   const prefix = slug + "_";
   for (const n of names) if (n !== slug && !n.startsWith(prefix)) errors.push(`${where}: le sprite '${n}' doit s'appeler '${prefix}<variante>'`);
@@ -201,6 +296,7 @@ const autoLabel = (key) => key.replace(/_/g, " ").replace(/^./, (c) => c.toUpper
  */
 export function renderAsset({ info, project }) {
   const { slug, category, id, meta } = info;
+  if (meta.scene) return renderSceneAsset({ info, project });
   const variants = {}, files = [], sheetItems = [], tags = [];
   for (const name of info.names) {
     const key = variantKey(slug, name);
@@ -277,6 +373,45 @@ export function renderAsset({ info, project }) {
       axes, sizes,
       variantCount: Object.keys(variants).length,
       variants,
+    },
+    files,
+  };
+}
+
+/** Scène : variantes = périodes (aperçus composés), plus les données du moteur et le paquet. */
+function renderSceneAsset({ info, project }) {
+  const { slug, category, id, meta } = info;
+  const out = scenes.renderScene({ info, project });
+  for (const v of Object.values(out.variants)) v.size = sizeOf(v.w, v.h);
+  const sheetBase = `library/sheets/${category}/${slug}`;
+  const { sheet, frames } = packSheet(out.sheetItems, undefined, 1);
+  const files = [
+    ...out.files,
+    { path: sheetBase + ".png", data: encodePng(sheet) },
+    { path: sheetBase + ".json", data: sheetJson(slug + ".png", sheet, frames, []) },
+  ];
+  const axes = {};
+  for (const v of Object.values(out.variants))
+    for (const [a, val] of Object.entries(v.props)) {
+      axes[a] ??= [];
+      if (!axes[a].includes(val)) axes[a].push(val);
+    }
+  return {
+    record: {
+      id, slug, category,
+      title: meta.title, description: meta.description, tags: meta.tags,
+      ...(meta.license ? { license: meta.license } : {}),
+      ...(meta.author ? { author: meta.author } : {}),
+      order: meta.order ?? 0,
+      source: info.source,
+      module: `library/js/${category}/${slug}.js`,
+      sheet: { png: sheetBase + ".png", json: sheetBase + ".json" },
+      axes,
+      sizes: [...new Set(Object.values(out.variants).map((v) => v.size))],
+      variantCount: Object.keys(out.variants).length,
+      variants: out.variants,
+      scene: out.summary,
+      sceneData: out.data,
     },
     files,
   };
