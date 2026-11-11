@@ -116,7 +116,7 @@ export interface SceneData {
   }[];
   /** Sprites des acteurs et des effets, par période ("*" = toutes). */
   sprites: Record<string, Record<string, SceneImage>>;
-  /** Effets d'ambiance par période (twinkle, shooting, birds, butterflies, fireflies). */
+  /** Effets d'ambiance par période (twinkle, shooting, birds, butterflies, fireflies, crossing). */
   effects: Record<string, ({ type: string; after: string } & Record<string, unknown>)[]>;
   speed: Record<string, number>;
 }

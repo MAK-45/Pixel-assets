@@ -17,7 +17,7 @@ const ID_RE = /^[a-z][a-z0-9_]*$/;
 const PLANE_RE = /^[a-z][a-z0-9_-]*$/;
 const SCENE_KEYS = new Set(["type", "w", "h", "groundY", "periods", "defaultPeriod", "planes", "sprites", "effects", "speed"]);
 const PLANE_KEYS = new Set(["id", "label", "kind", "factor", "y", "image", "periods", "front", "optional", "drift", "driftBy", "loop", "actors", "body"]);
-const EFFECT_TYPES = new Set(["twinkle", "shooting", "birds", "butterflies", "fireflies"]);
+const EFFECT_TYPES = new Set(["twinkle", "shooting", "birds", "butterflies", "fireflies", "crossing"]);
 const TYPES = new Set(["parallax", "static"]);
 
 const isInt = (v) => Number.isInteger(v);
@@ -89,6 +89,7 @@ export function validateScene(scene, has, where) {
       if (!EFFECT_TYPES.has(fx?.type)) err(`${at}.type : ${[...EFFECT_TYPES].join(", ")}`);
       for (const s of [fx.sprite, ...(fx.sprites ?? [])].filter(Boolean)) if (!sprites[s]) err(`${at} : sprite '${s}' absent de .sprites`);
       if (fx.plane && !ids.has(fx.plane)) err(`${at}.plane '${fx.plane}' inconnu`);
+      if (fx.type === "crossing" && !fx.plane) err(`${at}.plane : plan que l'objet traverse`);
       if (!ids.has(fx.after)) err(`${at}.after : id du plan après lequel dessiner l'effet`);
     });
   }

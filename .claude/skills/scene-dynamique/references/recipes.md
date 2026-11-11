@@ -87,13 +87,19 @@ Même structure que la Plaine d'été ; on change surtout les imports (nouveau f
   (`mushroom/magic_blue_16`) qui brillent ; rayons de lumière (manque : effet ou plan semi-transparent).
 - Manques possibles : tronc géant 64 px, souche, bûche, canopée en haut de l'écran.
 
-## 6. Désert
+## 6. Désert — `assets/scenes/desert.px.js`
 
-- Identité : mesas rouges, dunes, chaleur ; une nuit très étoilée.
-- Far : `mountain/mesa_red_48`, `mesa_48` (plusieurs, en `FAR`/`FAR2`), ou une grande mesa 128 à dessiner.
-- Mid : `hill/dunes_64`, `dune_32` ; Near : `rock/boulder_sand_32`, `spire_sand_32`, `arch_sand_48`, cactus (à créer).
-- Sol : sable et terre craquelée ; `grass/tuft_dry_16` ; premier plan `grass/tall_dry_32`.
-- Périodes : crépuscule très orange ; nuit avec beaucoup d'étoiles (`starField(200, 104, …)`) ; sombre = **tempête de
-  sable** : surcharger les cartes vers les ocres (`N n b B`) au lieu des gris, ciel `skySprites({ ...SKY, overcast: "bnNN" })`.
-- Manques : `nature/cactus` (saguaro, raquette, tonneau, en fleurs, sec ; 16/32/48), virevoltant animé (effet ou
-  acteur), vautour.
+- Identité : mesas rouges, dunes, cactus, chaleur ; une nuit très étoilée.
+- Far : héros `mountain/mesa_red_128` au premier écran ; `butte_red_48` et `mesa_red_48` en `FAR` ; `mesa_48`,
+  `butte_48` en `FAR2` (lilas au jour). Cartes `FAR_D`/`FAR2_D` propres à la scène (les cartes du kit grisent le grès).
+- Mid : dunes dessinées en vagues (versant gauche au soleil), pas `hill/dunes_64` (lu comme des pyramides) ;
+  `cactus/saguaro_16`, `barrel_16`.
+- Near : bande de sable `field(…, { rim: "Y", lit: "N", body: "N", deep: "n" })` ; `cactus/*_32/48`,
+  `rock/boulder_sand_32`, `spire_sand_32`, `arch_sand_48`, `bones/skull_sand_32`, oasis `palm/date_48`, `date_32`, `young_16`.
+- Sol : sable ridé, terre craquelée ; décor 16 px (`grass/tuft_dry_16`, `cactus/barrel_16`, `bones/bone_16`, `skull_16`,
+  `tumbleweed/dry_16`) ; acteurs `grass/tuft_wind_16` recolorés en herbe sèche. Premier plan : cactus et `grass/tall_dry_32`.
+- Périodes : nuit avec `starField(210, 106, …)` et croissant de lune ; sombre = **tempête de sable** : ciel `bnnN`,
+  plafond `overcastCeiling` recoloré en ocres, poussière au pied des mesas, terres vers les ocres.
+- Effets : `crossing` (virevoltant `tumbleweed/roll_16` qui roule et rebondit, en rafales par tempête ; scorpion
+  `fauna/scorpion/sand_walk_16` la nuit), vautours lointains (`birds`), étoiles filantes.
+- Manques possibles : vautour qui plane, mirage / chaleur qui ondule, serpent, oasis avec plan d'eau.

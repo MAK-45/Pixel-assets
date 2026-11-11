@@ -110,7 +110,7 @@ réécrire. Lis les quatre aperçus côte à côte et passe la liste de contrôl
 - **Acteurs** : animations posées dans un plan (herbe au vent, vagues…), recolorées par période avec
   `periodActor`, placées avec `actorsAt` (phases décalées, une sur deux retournée). `speed` accélère le vent par
   période (« sombre » : 2).
-- **Effets** par période dans `meta.scene.effects` : `twinkle`, `shooting`, `birds`, `butterflies`, `fireflies`
+- **Effets** par période dans `meta.scene.effects` : `twinkle`, `shooting`, `birds`, `butterflies`, `fireflies`, `crossing`
   (paramètres dans [references/kit.md](references/kit.md)). Chaque effet se dessine après le plan `after`.
 - Il manque un effet (neige qui tombe, vagues, aurore…) ? Ajoute-le au moteur en suivant
   [references/engine.md](references/engine.md), sans changer le comportement des scènes existantes.

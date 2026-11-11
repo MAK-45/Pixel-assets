@@ -227,6 +227,45 @@ const EFFECTS = {
       hasFront: (cfg.front ?? 0) > 0,
     };
   },
+
+  // De temps en temps, un objet traverse un plan au ras du sol (virevoltant qui roule en rebondissant,
+  // bestiole qui marche) et défile avec lui. Le sprite regarde vers la droite ; vers la gauche, il est
+  // retourné. cfg.y = ligne du sol dans le plan ; hop = hauteur des rebonds ; bounce = durée d'un rebond.
+  crossing(cfg, S) {
+    const r = S.random, plane = S.plane(cfg.plane), factor = plane.factor;
+    const imgs = (cfg.sprites ?? [cfg.sprite]).map((n) => S.sprite(n));
+    const live = [];
+    let wait = between(r, cfg.every ?? [8000, 16000]) * (0.1 + 0.4 * r());
+    return {
+      update(dt, dCam) {
+        wait -= dt * S.frequency;
+        if (wait <= 0) {
+          wait = between(r, cfg.every ?? [8000, 16000]);
+          const dir = cfg.dir ?? (r() < 0.5 ? -1 : 1), n = Math.round(between(r, cfg.count ?? [1, 1]));
+          for (let i = 0, gap = 0; i < n; i++, gap += between(r, [24, 70])) {
+            const img = pick(r, imgs);
+            live.push({ img, dir, x: dir > 0 ? -img.w - gap : S.view.width + gap, t: r() * img.loop, p: r(),
+              speed: between(r, cfg.speed ?? [20, 40]), hop: between(r, cfg.hop ?? [0, 0]), bounce: between(r, cfg.bounce ?? [500, 700]) });
+          }
+        }
+        for (let i = live.length - 1; i >= 0; i--) {
+          const s = live[i];
+          s.t += dt;
+          s.x += s.dir * s.speed * dt / 1000 - dCam * factor;
+          const out = s.dir > 0 ? s.x > S.view.width + 80 : s.x + s.img.w < -80;
+          if (out || Math.abs(s.x) > S.view.width * 4) live.splice(i, 1);
+        }
+      },
+      draw(ctx, v) {
+        for (const s of live) {
+          // rebonds qui s'amortissent puis repartent (une grande, deux petites)
+          const k = s.t / s.bounce + s.p, amp = [1, 0.45, 0.25][Math.floor(k) % 3];
+          const h = Math.round(s.hop * amp * Math.abs(Math.sin(k * Math.PI)));
+          blit(ctx, s.img, frameAt(s.img, s.t), Math.round(s.x), plane.y + (cfg.y ?? 0) - s.img.h - h + v.dy, s.dir < 0);
+        }
+      },
+    };
+  },
 };
 
 // ================================================================ scène

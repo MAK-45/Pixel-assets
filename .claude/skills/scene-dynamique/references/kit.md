@@ -155,6 +155,7 @@ Coordonnées en pixels de base. `area` = `[x, y, w, h]`. `after` = id du plan ap
 | `birds` | `sprite`, `every`, `count: [min, max]`, `y: [min, max]`, `speed`, `factor` (parallaxe, ≈ 0,12) | petit vol qui traverse le ciel (`bird_far_8`, `far_light_8` pour des mouettes) ; `after: "far"` ou `"mountains"` |
 | `butterflies` | `sprites: [...]`, `plane`, `count`, `anchors: [[x, y], …]` (coordonnées du plan) | voltigent autour de points d'ancrage (au-dessus des fleurs) et défilent avec leur plan |
 | `fireflies` | `sprites` ou `sprite`, `plane`, `count`, `area` (coordonnées du plan, `w` = largeur de la bande), `front` (part 0..1 dessinée devant le personnage) | lucioles qui flottent et clignotent |
+| `crossing` | `sprite` ou `sprites`, `plane`, `y` (ligne du sol dans le plan), `every`, `count: [min, max]`, `speed`, `hop: [min, max]` (hauteur des rebonds, 0 = marche), `bounce` (ms par rebond), `dir` (1 ou -1, sinon au hasard) | un objet traverse le sol de temps en temps et défile avec son plan : virevoltant qui roule (`tumbleweed_roll_16`, avec `hop`), bestiole qui marche (`scorpion_sand_walk_16`). Le sprite regarde vers la droite. |
 
 Fréquences typiques : étoile filante toutes les 6 à 15 s, vol d'oiseaux toutes les 14 à 28 s. Le jeu peut tout
 accélérer ou couper (`createScene({ frequency, effects: false })`).

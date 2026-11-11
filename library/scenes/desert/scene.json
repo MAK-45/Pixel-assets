@@ -1,0 +1,775 @@
+{
+ "format": 1,
+ "id": "scenes/desert",
+ "title": "Désert",
+ "type": "parallax",
+ "w": 320,
+ "h": 180,
+ "groundY": 150,
+ "defaultPeriod": "day",
+ "periods": [
+  {
+   "id": "day",
+   "label": "Jour"
+  },
+  {
+   "id": "dusk",
+   "label": "Crépuscule"
+  },
+  {
+   "id": "night",
+   "label": "Nuit"
+  },
+  {
+   "id": "overcast",
+   "label": "Sombre (tempête de sable)"
+  }
+ ],
+ "planes": [
+  {
+   "id": "sky",
+   "label": "Ciel",
+   "factor": 0,
+   "y": 0,
+   "images": {
+    "day": {
+     "w": 8,
+     "h": 180,
+     "fill": "#2f4fb3",
+     "png": "day/sky.png"
+    },
+    "dusk": {
+     "w": 8,
+     "h": 180,
+     "fill": "#3f1f63",
+     "png": "dusk/sky.png"
+    },
+    "night": {
+     "w": 8,
+     "h": 180,
+     "fill": "#070a1c",
+     "png": "night/sky.png"
+    },
+    "overcast": {
+     "w": 8,
+     "h": 180,
+     "fill": "#6a4128",
+     "png": "overcast/sky.png"
+    }
+   },
+   "kind": "sky",
+   "body": {
+    "x": 30,
+    "y": 12,
+    "images": {
+     "day": {
+      "w": 112,
+      "h": 112,
+      "png": "day/sky_body.png"
+     },
+     "dusk": {
+      "w": 112,
+      "h": 112,
+      "png": "dusk/sky_body.png"
+     },
+     "night": {
+      "w": 112,
+      "h": 112,
+      "png": "night/sky_body.png"
+     }
+    }
+   }
+  },
+  {
+   "id": "stars",
+   "label": "Étoiles",
+   "factor": 0,
+   "y": 0,
+   "images": {
+    "dusk": {
+     "w": 320,
+     "h": 110,
+     "png": "dusk/stars.png"
+    },
+    "night": {
+     "w": 320,
+     "h": 110,
+     "png": "night/stars.png"
+    }
+   }
+  },
+  {
+   "id": "clouds",
+   "label": "Nuages",
+   "factor": 0.05,
+   "y": 4,
+   "images": {
+    "day": {
+     "w": 960,
+     "h": 64,
+     "png": "day/clouds.png"
+    },
+    "dusk": {
+     "w": 960,
+     "h": 64,
+     "png": "dusk/clouds.png"
+    },
+    "night": {
+     "w": 960,
+     "h": 64,
+     "png": "night/clouds.png"
+    },
+    "overcast": {
+     "w": 960,
+     "h": 64,
+     "png": "overcast/clouds.png"
+    }
+   },
+   "drift": -3,
+   "driftBy": {
+    "overcast": -14
+   }
+  },
+  {
+   "id": "far",
+   "label": "Mesas",
+   "factor": 0.1,
+   "y": 58,
+   "images": {
+    "day": {
+     "w": 640,
+     "h": 82,
+     "png": "day/far.png"
+    },
+    "dusk": {
+     "w": 640,
+     "h": 82,
+     "png": "dusk/far.png"
+    },
+    "night": {
+     "w": 640,
+     "h": 82,
+     "png": "night/far.png"
+    },
+    "overcast": {
+     "w": 640,
+     "h": 82,
+     "png": "overcast/far.png"
+    }
+   }
+  },
+  {
+   "id": "mid",
+   "label": "Dunes",
+   "factor": 0.3,
+   "y": 98,
+   "images": {
+    "day": {
+     "w": 960,
+     "h": 52,
+     "png": "day/mid.png"
+    },
+    "dusk": {
+     "w": 960,
+     "h": 52,
+     "png": "dusk/mid.png"
+    },
+    "night": {
+     "w": 960,
+     "h": 52,
+     "png": "night/mid.png"
+    },
+    "overcast": {
+     "w": 960,
+     "h": 52,
+     "png": "overcast/mid.png"
+    }
+   }
+  },
+  {
+   "id": "near",
+   "label": "Sable et cactus",
+   "factor": 0.6,
+   "y": 92,
+   "images": {
+    "day": {
+     "w": 1280,
+     "h": 60,
+     "png": "day/near.png"
+    },
+    "dusk": {
+     "w": 1280,
+     "h": 60,
+     "png": "dusk/near.png"
+    },
+    "night": {
+     "w": 1280,
+     "h": 60,
+     "png": "night/near.png"
+    },
+    "overcast": {
+     "w": 1280,
+     "h": 60,
+     "png": "overcast/near.png"
+    }
+   }
+  },
+  {
+   "id": "ground",
+   "label": "Sol",
+   "factor": 1,
+   "y": 132,
+   "images": {
+    "day": {
+     "w": 640,
+     "h": 48,
+     "png": "day/ground.png"
+    },
+    "dusk": {
+     "w": 640,
+     "h": 48,
+     "png": "dusk/ground.png"
+    },
+    "night": {
+     "w": 640,
+     "h": 48,
+     "png": "night/ground.png"
+    },
+    "overcast": {
+     "w": 640,
+     "h": 48,
+     "png": "overcast/ground.png"
+    }
+   },
+   "actors": [
+    {
+     "sprite": "tuft",
+     "x": 110,
+     "y": 9,
+     "phase": 0
+    },
+    {
+     "sprite": "tuft",
+     "x": 186,
+     "y": 9,
+     "phase": 337,
+     "flip": true
+    },
+    {
+     "sprite": "tuft",
+     "x": 290,
+     "y": 9,
+     "phase": 674
+    },
+    {
+     "sprite": "tuft",
+     "x": 366,
+     "y": 9,
+     "phase": 211,
+     "flip": true
+    },
+    {
+     "sprite": "tuft",
+     "x": 426,
+     "y": 9,
+     "phase": 548
+    },
+    {
+     "sprite": "tuft",
+     "x": 530,
+     "y": 9,
+     "phase": 85,
+     "flip": true
+    },
+    {
+     "sprite": "tuft",
+     "x": 584,
+     "y": 9,
+     "phase": 422
+    }
+   ]
+  },
+  {
+   "id": "front",
+   "label": "Premier plan",
+   "factor": 1.3,
+   "y": 150,
+   "images": {
+    "day": {
+     "w": 960,
+     "h": 30,
+     "png": "day/front.png"
+    },
+    "dusk": {
+     "w": 960,
+     "h": 30,
+     "png": "dusk/front.png"
+    },
+    "night": {
+     "w": 960,
+     "h": 30,
+     "png": "night/front.png"
+    },
+    "overcast": {
+     "w": 960,
+     "h": 30,
+     "png": "overcast/front.png"
+    }
+   },
+   "front": true,
+   "optional": true
+  }
+ ],
+ "sprites": {
+  "tuft": {
+   "day": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/tuft_day.png"
+   },
+   "dusk": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/tuft_dusk.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/tuft_night.png"
+   },
+   "overcast": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/tuft_overcast.png"
+   }
+  },
+  "roll": {
+   "day": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_day.png"
+   },
+   "dusk": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_dusk.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_night.png"
+   },
+   "overcast": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_overcast.png"
+   }
+  },
+  "roll_near": {
+   "day": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_near_day.png"
+   },
+   "dusk": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_near_dusk.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_near_night.png"
+   },
+   "overcast": {
+    "w": 16,
+    "h": 16,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/roll_near_overcast.png"
+   }
+  },
+  "scorpion": {
+   "day": {
+    "w": 16,
+    "h": 12,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/scorpion_day.png"
+   },
+   "dusk": {
+    "w": 16,
+    "h": 12,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/scorpion_dusk.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 12,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/scorpion_night.png"
+   },
+   "overcast": {
+    "w": 16,
+    "h": 12,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/scorpion_overcast.png"
+   }
+  },
+  "bird": {
+   "*": {
+    "w": 7,
+    "h": 4,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/bird.png"
+   }
+  },
+  "twinkle": {
+   "*": {
+    "w": 5,
+    "h": 5,
+    "ms": [
+     400,
+     100,
+     100,
+     200,
+     100,
+     100
+    ],
+    "png": "sprites/twinkle.png"
+   }
+  },
+  "streak": {
+   "*": {
+    "w": 22,
+    "h": 10,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/streak.png"
+   }
+  }
+ },
+ "effects": {
+  "day": [
+   {
+    "type": "birds",
+    "sprite": "bird",
+    "every": [
+     16000,
+     30000
+    ],
+    "count": [
+     2,
+     3
+    ],
+    "y": [
+     20,
+     56
+    ],
+    "speed": [
+     10,
+     16
+    ],
+    "factor": 0.12,
+    "after": "far"
+   },
+   {
+    "type": "crossing",
+    "sprite": "roll",
+    "plane": "ground",
+    "y": 21,
+    "every": [
+     9000,
+     18000
+    ],
+    "speed": [
+     34,
+     52
+    ],
+    "hop": [
+     5,
+     9
+    ],
+    "bounce": [
+     450,
+     600
+    ],
+    "dir": 1,
+    "after": "ground"
+   }
+  ],
+  "dusk": [
+   {
+    "type": "twinkle",
+    "sprite": "twinkle",
+    "count": 6,
+    "area": [
+     84,
+     2,
+     236,
+     36
+    ],
+    "after": "stars"
+   },
+   {
+    "type": "birds",
+    "sprite": "bird",
+    "every": [
+     11000,
+     22000
+    ],
+    "count": [
+     3,
+     6
+    ],
+    "y": [
+     24,
+     66
+    ],
+    "speed": [
+     16,
+     24
+    ],
+    "factor": 0.12,
+    "after": "far"
+   },
+   {
+    "type": "crossing",
+    "sprite": "roll",
+    "plane": "ground",
+    "y": 21,
+    "every": [
+     14000,
+     26000
+    ],
+    "speed": [
+     30,
+     44
+    ],
+    "hop": [
+     4,
+     8
+    ],
+    "bounce": [
+     450,
+     600
+    ],
+    "dir": 1,
+    "after": "ground"
+   }
+  ],
+  "night": [
+   {
+    "type": "twinkle",
+    "sprite": "twinkle",
+    "count": 22,
+    "area": [
+     84,
+     2,
+     236,
+     96
+    ],
+    "after": "stars"
+   },
+   {
+    "type": "shooting",
+    "sprite": "streak",
+    "every": [
+     5000,
+     12000
+    ],
+    "area": [
+     110,
+     4,
+     190,
+     34
+    ],
+    "speed": [
+     140,
+     190
+    ],
+    "head": [
+     1,
+     9
+    ],
+    "after": "stars"
+   },
+   {
+    "type": "crossing",
+    "sprite": "scorpion",
+    "plane": "ground",
+    "y": 21,
+    "every": [
+     12000,
+     24000
+    ],
+    "speed": [
+     7,
+     12
+    ],
+    "after": "ground"
+   }
+  ],
+  "overcast": [
+   {
+    "type": "crossing",
+    "sprite": "roll_near",
+    "plane": "near",
+    "y": 50,
+    "every": [
+     5000,
+     9000
+    ],
+    "count": [
+     1,
+     2
+    ],
+    "speed": [
+     50,
+     70
+    ],
+    "hop": [
+     2,
+     5
+    ],
+    "bounce": [
+     400,
+     500
+    ],
+    "dir": 1,
+    "after": "near"
+   },
+   {
+    "type": "crossing",
+    "sprite": "roll",
+    "plane": "ground",
+    "y": 21,
+    "every": [
+     2500,
+     6000
+    ],
+    "count": [
+     1,
+     3
+    ],
+    "speed": [
+     80,
+     115
+    ],
+    "hop": [
+     6,
+     12
+    ],
+    "bounce": [
+     380,
+     480
+    ],
+    "dir": 1,
+    "after": "ground"
+   }
+  ]
+ },
+ "speed": {
+  "overcast": 2
+ }
+}

@@ -2,7 +2,7 @@ include("../_palette.px.js")
 
 const meta = {
   title: "Montagne",
-  description: "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+  description: "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge (48 px, et grande mesa à deux étages de 128 px pour les fonds de scène) ; butte étroite en cheminée de roche (48 px). Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
   tags: ["mountain", "peak", "landscape", "background", "scenery", "terrain", "parallax", "relief"],
   variants: {
     peak_snow_16: { label: "Pic enneigé (16 px)", props: { shape: "peak", cover: "snowcap", tone: "day", material: "granite" }, tags: ["icon", "snow"] },
@@ -24,6 +24,10 @@ const meta = {
     volcano_active_48: { label: "Volcan en éruption, animé (48 px)", props: { shape: "volcano", cover: "lava", tone: "day", material: "basalt" }, tags: ["volcano", "lava", "smoke", "eruption", "animated", "fire"] },
     mesa_48: { label: "Mesa de grès (48 × 32)", props: { shape: "mesa", cover: "bare", tone: "day", material: "sandstone" }, tags: ["desert", "butte", "cliff"] },
     mesa_red_48: { label: "Mesa de roche rouge (48 × 32)", props: { shape: "mesa", cover: "bare", tone: "day", material: "redstone" }, tags: ["desert", "butte", "cliff", "canyon"] },
+    mesa_128: { label: "Grande mesa de grès, fond de scène (128 × 64)", props: { shape: "mesa", cover: "bare", tone: "day", material: "sandstone" }, tags: ["desert", "plateau", "cliff", "backdrop"] },
+    mesa_red_128: { label: "Grande mesa de roche rouge, fond de scène (128 × 64)", props: { shape: "mesa", cover: "bare", tone: "day", material: "redstone" }, tags: ["desert", "plateau", "cliff", "canyon", "backdrop"] },
+    butte_48: { label: "Butte de grès, cheminée de roche (24 × 48)", props: { shape: "butte", cover: "bare", tone: "day", material: "sandstone" }, tags: ["desert", "butte", "pillar", "cliff"] },
+    butte_red_48: { label: "Butte de roche rouge, cheminée de roche (24 × 48)", props: { shape: "butte", cover: "bare", tone: "day", material: "redstone" }, tags: ["desert", "butte", "pillar", "canyon"] },
   },
 }
 
@@ -316,5 +320,88 @@ const MESA = [
 ]
 sprite("mountain_mesa_48", { w: WM, h: HM, outline: "k" }, ...MESA)
 sprite("mountain_mesa_red_48", { base: "mountain_mesa_48", swap: { Y: "y", N: "o", n: "r", b: "R", B: "B" } })
+
+// ================================================================ grande mesa (128 px, fond de scène)
+
+// Plateau à deux étages : chapeau de roche dure (dessus plat, banc clair), falaise haute cannelée
+// par l'érosion, corniche, falaise basse un peu évasée, éboulis en pente jusqu'au sol.
+// Mêmes clés que la petite mesa (grès), recolorée en rouge par swap.
+const WB = 126, HB = 62
+const J = [0, 1, 0, 0, -1, 0, 1, 1, 0, -1, 0, 0, 1, 0, -1, -1, 0, 1, 0, 0, 0, -1, 0, 1] // aspérités des falaises
+const jit = (y, k) => J[(Math.floor(y / 3) * 7 + k * 5) % J.length]
+// Bords gauche et droit de la silhouette, ligne par ligne.
+const mesaEdges = (y) => {
+  if (y < 9) return null
+  if (y === 9) return [33, 40]                                   // petite bosse sur le chapeau
+  if (y < 31) return [26 + (y > 14 ? jit(y, 1) : 0) + (y > 26 ? 1 : 0), 98 + (y > 14 ? jit(y, 2) : 0) - (y > 25 ? 1 : 0)]
+  if (y < 44) return [15 - Math.floor((y - 31) / 5) + jit(y, 3), 110 + Math.floor((y - 31) / 5) + jit(y, 4)]
+  const t = (y - 44) / 17
+  return [Math.round(12 * (1 - Math.pow(t, 0.7))), Math.round(113 + 12 * Math.pow(t, 0.8))]
+}
+const inMesa = (x, y) => { const e = mesaEdges(y); return !!e && x >= e[0] && x <= e[1] }
+// Cannelures : [x, y du haut, longueur] (traînées sombres qui pendent sous les bancs).
+const FLUTES = [[31, 15, 13], [37, 16, 8], [43, 15, 14], [49, 18, 9], [54, 15, 13], [61, 16, 10], [67, 15, 14],
+  [73, 17, 7], [78, 15, 12], [84, 16, 10], [90, 15, 13],
+  [19, 33, 10], [25, 34, 6], [33, 32, 11], [41, 34, 8], [50, 32, 11], [58, 33, 9], [66, 32, 11], [75, 34, 7],
+  [83, 32, 11], [92, 33, 9], [101, 32, 11], [106, 34, 7]]
+const BIG_MESA = (c) => {
+  for (let y = 9; y < HB; y++) { const [l, r] = mesaEdges(y); c.hline(l, y, r - l + 1, "n") }
+  // chapeau : dessus éclairé, banc clair, joint sombre
+  for (let y = 9; y <= 14; y++) for (let x = 0; x < WB; x++) if (inMesa(x, y)) c.px(x, y, y === 14 ? "b" : y <= 10 && !inMesa(x, y - 1) ? "Y" : "N")
+  // bancs des falaises, interrompus par endroits
+  for (const [y, k] of [[20, "b"], [23, "N"], [31, "b"], [32, "N"], [38, "b"], [41, "N"]])
+    for (let x = 0; x < WB; x++) if (inMesa(x, y) && (x * 13 + y * 7) % 23 > 2) c.px(x, y, k)
+  // corniches : rebord éclairé
+  for (let x = 0; x < WB; x++) if (inMesa(x, 30) && !inMesa(x, 29)) { c.px(x, 30, "N"); c.px(x, 29, "k") }
+  // cannelures : creux sombre, arête claire à gauche
+  for (const [x, y, n] of FLUTES) for (let i = 0; i < n; i++) {
+    const xx = x + (i > n * 0.65 ? 1 : 0)
+    if (inMesa(xx, y + i)) c.px(xx, y + i, i > n - 3 && i % 2 ? "n" : "b")
+    if (i > 1 && i < n - 3 && inMesa(xx - 1, y + i)) c.px(xx - 1, y + i, "N")
+  }
+  // pied des falaises : ombre portée sur l'éboulis
+  for (let x = 13; x <= 112; x++) { c.px(x, 44, "b"); if (x > 16 && x < 109 && (x * 5) % 7) c.px(x, 45, "b") }
+  // éboulis : ravines en éventail, blocs tombés
+  for (const [x0, x1] of [[19, 13], [41, 37], [66, 67], [92, 97], [107, 115]])
+    for (let y = 46; y < 60; y++) c.px(Math.round(x0 + ((x1 - x0) * (y - 46)) / 14), y, "b")
+  for (const [x, y, w] of [[26, 50, 3], [55, 54, 4], [79, 49, 3], [101, 55, 3], [6, 56, 2]]) {
+    c.rect(x, y, w, 2, "n"); c.hline(x, y, w - 1, "N"); c.hline(x, y + 2, w, "b"); c.px(x + w, y + 1, "b")
+  }
+}
+const LIT = { n: "N", b: "n", N: "Y" }
+const edgeOf = (y, i) => mesaEdges(y)?.[i] ?? -99
+const BIG_MESA_SHADE = [
+  // faces gauches éclairées (falaises et éboulis), faces droites à l'ombre
+  clip((x, y) => y > 10 && y < 44 && x <= edgeOf(y, 0) + 4, recolor(LIT)),
+  clip((x, y) => y >= 44 && x < 13 - (y - 44) * 0.3, recolor(LIT)),
+  clip((x, y) => y > 14 && y < 45 && x >= edgeOf(y, 1) - 6, recolor(DARKER)),
+  clip((x, y) => y > 14 && y < 45 && x >= edgeOf(y, 1) - 2, recolor(DARKER)),
+  clip((x, y) => y >= 45 && x > 108 + (y - 44) * 0.3, recolor(DARKER)),
+]
+sprite("mountain_mesa_128", { w: WB, h: HB, outline: "k" }, BIG_MESA, ...BIG_MESA_SHADE)
+sprite("mountain_mesa_red_128", { base: "mountain_mesa_128", swap: { Y: "y", N: "o", n: "r", b: "R", B: "B" } })
+
+// ================================================================ butte (cheminée de roche, 48 px)
+
+// Butte étroite et haute : chapeau plat, colonne cannelée un peu évasée, éboulis court.
+const butteEdges = (y) => (y < 3 ? null : y < 34 ? [7 - (y > 6 ? 1 : 0) - (y > 22 ? 1 : 0) + (y > 14 && y < 19 ? 1 : 0), 15 + (y > 6 ? 1 : 0) + (y > 26 ? 1 : 0)]
+  : [Math.round(5 - 5 * Math.pow((y - 34) / 11, 0.8)), Math.round(17 + 4 * Math.pow((y - 34) / 11, 0.8))])
+const inButte = (x, y) => { const e = butteEdges(y); return !!e && x >= e[0] && x <= e[1] }
+const BUTTE = (c) => {
+  for (let y = 3; y < 46; y++) { const [l, r] = butteEdges(y); c.hline(l, y, r - l + 1, "n") }
+  for (let x = 0; x < 22; x++) {
+    if (inButte(x, 3)) c.px(x, 3, "Y")
+    for (const [y, k] of [[4, "N"], [5, "N"], [6, "b"], [13, "b"], [19, "N"], [26, "b"], [34, "b"]]) if (inButte(x, y)) c.px(x, y, k)
+  }
+  for (const [x, y, n] of [[9, 7, 6], [12, 8, 10], [14, 14, 9], [8, 20, 9], [11, 27, 7], [15, 27, 6]])
+    for (let i = 0; i < n; i++) { c.px(x, y + i, "b"); if (i > 0 && i < n - 2) c.px(x - 1, y + i, "N") }
+  for (let y = 36; y < 45; y++) { c.px(Math.round(9 - (y - 36) * 0.4), y, "b"); c.px(Math.round(14 + (y - 36) * 0.3), y, "b") }
+}
+sprite("mountain_butte_48", { w: 22, h: 46, outline: "k" }, BUTTE,
+  clip((x, y) => y > 3 && y < 34 && x <= (butteEdges(y)?.[0] ?? 0) + 1, recolor(LIT)),
+  clip((x, y) => y >= 34 && x < 4, recolor(LIT)),
+  clip((x, y) => y > 6 && y < 35 && x >= (butteEdges(y)?.[1] ?? 99) - 3, recolor(DARKER)),
+  clip((x, y) => y >= 35 && x > 17, recolor(DARKER)))
+sprite("mountain_butte_red_48", { base: "mountain_butte_48", swap: { Y: "y", N: "o", n: "r", b: "R", B: "B" } })
 
 sheet("mountains", ["mountain_*"], { pad: 2 })

@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 24,
-  "variants": 235
+  "assets": 25,
+  "variants": 243
  },
  "categories": [
   {
@@ -14,6 +14,7 @@
    "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
    "icon": "scenes/summer_plain/day",
    "assets": [
+    "scenes/desert",
     "scenes/summer_plain"
    ]
   },
@@ -90,6 +91,208 @@
   }
  ],
  "assets": {
+  "scenes/desert": {
+   "id": "scenes/desert",
+   "slug": "desert",
+   "category": "scenes",
+   "title": "Désert",
+   "description": "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner : un désert de roche rouge dominé par une grande mesa à deux étages, en 8 plans de parallaxe qui bouclent sans couture (ciel, étoiles, nuages, mesas et buttes lointaines, dunes semées de petits cactus, bande de sable avec saguaros, figuiers de Barbarie, rochers, arche, ossements et une oasis de dattiers, sol de sable ridé où marche le personnage, cactus sombres au premier plan). Quatre périodes : jour (soleil écrasant, rares nuages, vautours, virevoltants qui roulent en rebondissant, herbe sèche au vent), crépuscule (disque couchant derrière les mesas, nuages roses, premières étoiles, vols d'oiseaux, un virevoltant de temps en temps), nuit (croissant de lune, ciel très étoilé qui scintille, étoiles filantes, scorpions qui traversent le sable) et sombre (tempête de sable sans précipitation : ciel ocre, plafond de poussière, mesas noyées dans la brume, vent fort, virevoltants en rafales). Ligne de sol à y = 150.",
+   "tags": [
+    "scene",
+    "parallax",
+    "panorama",
+    "background",
+    "desert",
+    "mesa",
+    "canyon",
+    "dunes",
+    "cactus",
+    "oasis",
+    "day-night",
+    "endless",
+    "platformer",
+    "runner"
+   ],
+   "order": 0,
+   "source": "assets/scenes/desert.px.js",
+   "module": "library/js/scenes/desert.js",
+   "sheet": {
+    "png": "library/sheets/scenes/desert.png",
+    "json": "library/sheets/scenes/desert.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "dusk",
+     "night",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 4,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "desert_day",
+     "id": "scenes/desert/day",
+     "label": "Jour",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "sun",
+      "heat",
+      "vultures",
+      "tumbleweed",
+      "wind"
+     ],
+     "png": "library/png/scenes/desert/day.png"
+    },
+    "dusk": {
+     "key": "dusk",
+     "name": "desert_dusk",
+     "id": "scenes/desert/dusk",
+     "label": "Crépuscule",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "dusk"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "birds",
+      "tumbleweed"
+     ],
+     "png": "library/png/scenes/desert/dusk.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "desert_night",
+     "id": "scenes/desert/night",
+     "label": "Nuit",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "moon",
+      "crescent",
+      "stars",
+      "shooting-star",
+      "scorpion"
+     ],
+     "png": "library/png/scenes/desert/night.png"
+    },
+    "overcast": {
+     "key": "overcast",
+     "name": "desert_overcast",
+     "id": "scenes/desert/overcast",
+     "label": "Sombre (tempête de sable)",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "overcast"
+     },
+     "tags": [
+      "sandstorm",
+      "dust",
+      "haze",
+      "wind",
+      "tumbleweed"
+     ],
+     "png": "library/png/scenes/desert/overcast.png"
+    }
+   },
+   "scene": {
+    "type": "parallax",
+    "dynamic": true,
+    "w": 320,
+    "h": 180,
+    "groundY": 150,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Jour"
+     },
+     {
+      "id": "dusk",
+      "label": "Crépuscule"
+     },
+     {
+      "id": "night",
+      "label": "Nuit"
+     },
+     {
+      "id": "overcast",
+      "label": "Sombre (tempête de sable)"
+     }
+    ],
+    "planes": [
+     {
+      "id": "sky",
+      "label": "Ciel",
+      "factor": 0
+     },
+     {
+      "id": "stars",
+      "label": "Étoiles",
+      "factor": 0
+     },
+     {
+      "id": "clouds",
+      "label": "Nuages",
+      "factor": 0.05
+     },
+     {
+      "id": "far",
+      "label": "Mesas",
+      "factor": 0.1
+     },
+     {
+      "id": "mid",
+      "label": "Dunes",
+      "factor": 0.3
+     },
+     {
+      "id": "near",
+      "label": "Sable et cactus",
+      "factor": 0.6
+     },
+     {
+      "id": "ground",
+      "label": "Sol",
+      "factor": 1
+     },
+     {
+      "id": "front",
+      "label": "Premier plan",
+      "factor": 1.3,
+      "front": true,
+      "optional": true
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/desert/",
+    "json": "library/scenes/desert/scene.json",
+    "bundle": "library/scenes/desert/desert.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
   "scenes/summer_plain": {
    "id": "scenes/summer_plain",
    "slug": "summer_plain",
@@ -3185,7 +3388,7 @@
    "slug": "mountain",
    "category": "landscape",
    "title": "Montagne",
-   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge. Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
+   "description": "Montagnes vues de face pour décors 2D et arrière-plans : pic à deux sommets (16, 32, 64 px, et 128 px pour les fonds de scène) enneigé, alpin avec forêt de sapins au pied ou tout blanc en hiver ; chaîne de trois sommets (64 × 32) en versions jour, alpine, lointaine bleutée et crépuscule pour les couches de parallaxe ; volcan endormi au sommet enneigé et volcan en éruption animé (lave, fumée) ; mesa du désert en grès ou en roche rouge (48 px, et grande mesa à deux étages de 128 px pour les fonds de scène) ; butte étroite en cheminée de roche (48 px). Lumière en haut à gauche, contour sombre, sol en bas du canevas.",
    "tags": [
     "mountain",
     "peak",
@@ -3208,7 +3411,8 @@
      "peak",
      "range",
      "volcano",
-     "mesa"
+     "mesa",
+     "butte"
     ],
     "cover": [
      "snowcap",
@@ -3236,7 +3440,7 @@
     64,
     128
    ],
-   "variantCount": 19,
+   "variantCount": 23,
    "variants": {
     "peak_snow_64": {
      "key": "peak_snow_64",
@@ -3651,6 +3855,99 @@
       "canyon"
      ],
      "png": "library/png/landscape/mountain/mesa_red_48.png"
+    },
+    "mesa_128": {
+     "key": "mesa_128",
+     "name": "mountain_mesa_128",
+     "id": "landscape/mountain/mesa_128",
+     "label": "Grande mesa de grès, fond de scène (128 × 64)",
+     "kind": "sprite",
+     "w": 128,
+     "h": 64,
+     "size": 128,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert",
+      "plateau",
+      "cliff",
+      "backdrop"
+     ],
+     "png": "library/png/landscape/mountain/mesa_128.png"
+    },
+    "mesa_red_128": {
+     "key": "mesa_red_128",
+     "name": "mountain_mesa_red_128",
+     "id": "landscape/mountain/mesa_red_128",
+     "label": "Grande mesa de roche rouge, fond de scène (128 × 64)",
+     "kind": "sprite",
+     "w": 128,
+     "h": 64,
+     "size": 128,
+     "props": {
+      "shape": "mesa",
+      "cover": "bare",
+      "tone": "day",
+      "material": "redstone"
+     },
+     "tags": [
+      "desert",
+      "plateau",
+      "cliff",
+      "canyon",
+      "backdrop"
+     ],
+     "png": "library/png/landscape/mountain/mesa_red_128.png"
+    },
+    "butte_48": {
+     "key": "butte_48",
+     "name": "mountain_butte_48",
+     "id": "landscape/mountain/butte_48",
+     "label": "Butte de grès, cheminée de roche (24 × 48)",
+     "kind": "sprite",
+     "w": 24,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "butte",
+      "cover": "bare",
+      "tone": "day",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "pillar",
+      "cliff"
+     ],
+     "png": "library/png/landscape/mountain/butte_48.png"
+    },
+    "butte_red_48": {
+     "key": "butte_red_48",
+     "name": "mountain_butte_red_48",
+     "id": "landscape/mountain/butte_red_48",
+     "label": "Butte de roche rouge, cheminée de roche (24 × 48)",
+     "kind": "sprite",
+     "w": 24,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "butte",
+      "cover": "bare",
+      "tone": "day",
+      "material": "redstone"
+     },
+     "tags": [
+      "desert",
+      "butte",
+      "pillar",
+      "canyon"
+     ],
+     "png": "library/png/landscape/mountain/butte_red_48.png"
     }
    }
   },
