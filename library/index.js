@@ -14,8 +14,8 @@ export const catalog = {
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 24,
-  "variants": 235
+  "assets": 25,
+  "variants": 248
  },
  "categories": [
   {
@@ -38,6 +38,7 @@ export const catalog = {
     "nature/cactus",
     "nature/fern",
     "nature/flower",
+    "nature/fxtree",
     "nature/grass",
     "nature/mushroom",
     "nature/palm",
@@ -1373,6 +1374,311 @@ export const catalog = {
       "garden"
      ],
      "png": "library/png/nature/flower/bed_32.png"
+    }
+   }
+  },
+  "nature/fxtree": {
+   "id": "nature/fxtree",
+   "slug": "fxtree",
+   "category": "nature",
+   "title": "Arbre (style pixelfx)",
+   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, pétales, feuilles, neige scintillante). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+   "tags": [
+    "tree",
+    "plant",
+    "forest",
+    "nature",
+    "decoration",
+    "scenery",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/nature/fxtree.px.js",
+   "module": "library/js/nature/fxtree.js",
+   "sheet": {
+    "png": "library/sheets/nature/fxtree.png",
+    "json": "library/sheets/nature/fxtree.json"
+   },
+   "axes": {
+    "species": [
+     "oak",
+     "cherry",
+     "pine",
+     "spirit"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "spring",
+     "winter"
+    ],
+    "effect": [
+     "none",
+     "leaves",
+     "fireflies",
+     "petals",
+     "snow",
+     "glow"
+    ]
+   },
+   "sizes": [
+    32,
+    64
+   ],
+   "variantCount": 13,
+   "variants": {
+    "oak_summer_64": {
+     "key": "oak_summer_64",
+     "name": "fxtree_oak_summer_64",
+     "id": "nature/fxtree/oak_summer_64",
+     "label": "Chêne – été (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxtree/oak_summer_64.png"
+    },
+    "oak_autumn_64": {
+     "key": "oak_autumn_64",
+     "name": "fxtree_oak_autumn_64",
+     "id": "nature/fxtree/oak_autumn_64",
+     "label": "Chêne – automne, feuilles qui tombent (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "effect": "leaves"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxtree/oak_autumn_64.png"
+    },
+    "oak_night_64": {
+     "key": "oak_night_64",
+     "name": "fxtree_oak_night_64",
+     "id": "nature/fxtree/oak_night_64",
+     "label": "Chêne – nuit d'été, lucioles (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "effect": "fireflies"
+     },
+     "tags": [
+      "night",
+      "glow"
+     ],
+     "png": "library/png/nature/fxtree/oak_night_64.png"
+    },
+    "cherry_64": {
+     "key": "cherry_64",
+     "name": "fxtree_cherry_64",
+     "id": "nature/fxtree/cherry_64",
+     "label": "Cerisier en fleurs, pétales au vent (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "cherry",
+      "season": "spring",
+      "effect": "petals"
+     },
+     "tags": [
+      "blossom",
+      "sakura"
+     ],
+     "png": "library/png/nature/fxtree/cherry_64.png"
+    },
+    "pine_64": {
+     "key": "pine_64",
+     "name": "fxtree_pine_64",
+     "id": "nature/fxtree/pine_64",
+     "label": "Sapin (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "conifer",
+      "fir"
+     ],
+     "png": "library/png/nature/fxtree/pine_64.png"
+    },
+    "pine_snow_64": {
+     "key": "pine_snow_64",
+     "name": "fxtree_pine_snow_64",
+     "id": "nature/fxtree/pine_snow_64",
+     "label": "Sapin enneigé, scintillements (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "pine",
+      "season": "winter",
+      "effect": "snow"
+     },
+     "tags": [
+      "conifer",
+      "fir",
+      "snow"
+     ],
+     "png": "library/png/nature/fxtree/pine_snow_64.png"
+    },
+    "spirit_64": {
+     "key": "spirit_64",
+     "name": "fxtree_spirit_64",
+     "id": "nature/fxtree/spirit_64",
+     "label": "Arbre-esprit luminescent (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "species": "spirit",
+      "season": "summer",
+      "effect": "glow"
+     },
+     "tags": [
+      "magic",
+      "fantasy",
+      "glow"
+     ],
+     "png": "library/png/nature/fxtree/spirit_64.png"
+    },
+    "oak_summer_32": {
+     "key": "oak_summer_32",
+     "name": "fxtree_oak_summer_32",
+     "id": "nature/fxtree/oak_summer_32",
+     "label": "Chêne – été (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxtree/oak_summer_32.png"
+    },
+    "oak_autumn_32": {
+     "key": "oak_autumn_32",
+     "name": "fxtree_oak_autumn_32",
+     "id": "nature/fxtree/oak_autumn_32",
+     "label": "Chêne – automne (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "oak",
+      "season": "autumn",
+      "effect": "leaves"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxtree/oak_autumn_32.png"
+    },
+    "cherry_32": {
+     "key": "cherry_32",
+     "name": "fxtree_cherry_32",
+     "id": "nature/fxtree/cherry_32",
+     "label": "Cerisier en fleurs (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "cherry",
+      "season": "spring",
+      "effect": "petals"
+     },
+     "tags": [
+      "blossom",
+      "sakura"
+     ],
+     "png": "library/png/nature/fxtree/cherry_32.png"
+    },
+    "pine_32": {
+     "key": "pine_32",
+     "name": "fxtree_pine_32",
+     "id": "nature/fxtree/pine_32",
+     "label": "Sapin (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "conifer",
+      "fir"
+     ],
+     "png": "library/png/nature/fxtree/pine_32.png"
+    },
+    "pine_snow_32": {
+     "key": "pine_snow_32",
+     "name": "fxtree_pine_snow_32",
+     "id": "nature/fxtree/pine_snow_32",
+     "label": "Sapin enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "pine",
+      "season": "winter",
+      "effect": "snow"
+     },
+     "tags": [
+      "conifer",
+      "fir",
+      "snow"
+     ],
+     "png": "library/png/nature/fxtree/pine_snow_32.png"
+    },
+    "spirit_32": {
+     "key": "spirit_32",
+     "name": "fxtree_spirit_32",
+     "id": "nature/fxtree/spirit_32",
+     "label": "Arbre-esprit luminescent (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "spirit",
+      "season": "summer",
+      "effect": "glow"
+     },
+     "tags": [
+      "magic",
+      "fantasy",
+      "glow"
+     ],
+     "png": "library/png/nature/fxtree/spirit_32.png"
     }
    }
   },
@@ -5830,6 +6136,7 @@ const loaders = {
   "nature/cactus": () => import("./js/nature/cactus.js"),
   "nature/fern": () => import("./js/nature/fern.js"),
   "nature/flower": () => import("./js/nature/flower.js"),
+  "nature/fxtree": () => import("./js/nature/fxtree.js"),
   "nature/grass": () => import("./js/nature/grass.js"),
   "nature/mushroom": () => import("./js/nature/mushroom.js"),
   "nature/palm": () => import("./js/nature/palm.js"),

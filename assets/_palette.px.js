@@ -35,6 +35,21 @@ pal({
   Q: "#070a1c", O: "#0f1634", M: "#1b2652",
   // temps couvert, terres sous la pluie : h sombre -> H -> X -> W clair
   h: "#1b2723", H: "#2b3c33", X: "#415646", W: "#62735a",
+
+  // Rendu riche « style pixelfx » (arbres fxtree…) : prolonge les rampes ci-dessus d'un cran
+  // plus sombre (bord sélectif, sans contour noir) et d'un reflet pâle, plus des tons lumineux.
+  "1": "#12301f", // vert feuillu le plus sombre (sous G), ombre bleutée
+  "2": "#dcf28c", // reflet pâle des feuilles (au-dessus de L), soleil jaune
+  "3": "#22140f", // écorce la plus sombre (sous B)
+  "4": "#0b2228", // conifère le plus sombre (sous P)
+  // cerisier : 5 sombre -> 6 -> z -> Z -> 7 pâle
+  "5": "#63204a", "6": "#ad4677", "7": "#ffe3ef",
+  // turquoise luminescent (magie, esprits) : 8 sombre -> 9 -> 0 -> + pâle
+  "8": "#0e3b45", "9": "#1b7f7a", "0": "#3fd0ae", "+": "#b2ffe4",
+  // halos et ombres translucides (posés sur le vide, jamais par-dessus un pixel opaque)
+  "%": "#1a142366", // ombre portée au sol (k à 40 %)
+  ":": "#3fd0ae4a", ";": "#3fd0ae1f", // halo turquoise fort / faible
+  "^": "#ffe07a4a", "~": "#ffe07a1f", // halo chaud (lucioles, lanternes) fort / faible
 })
 
 ramps(
@@ -51,4 +66,9 @@ ramps(
   "qjJtT",  // nuit, terres
   "QOMU",   // nuit, ciel
   "khHXW",  // temps couvert
+  "1GglL2", // feuillus, rampe riche (style pixelfx)
+  "3Bbn",   // bois, cran sombre
+  "4Ppe",   // conifères, cran sombre
+  "56zZ7",  // cerisier
+  "890+",   // turquoise luminescent
 )
