@@ -56,6 +56,8 @@ assets/<cat>/<asset>.px.js   SOURCE : une famille d'assets = un fichier, chaque 
 assets/scenes/<asset>.px.js  SOURCE d'une scène : parties privées + meta.scene (variantes = périodes)
 assets/scenes/_kit.px.js     outils communs des scènes (placement en boucle, couleurs des périodes, ciel, nuages)
 library/                     GÉNÉRÉ, consommé par les agents : catalog.json, index.js, js/, png/, sheets/
+maps/<carte>/                cartes 2,5D pour Couveuse (hors build, voir maps/plaine_ete/README.md) : map.js + assets
+                             convertis depuis library/ ; `npm run map` = conversion, aperçu, planches, vérifications
 web/                         interface de la galerie (index.html, style.css, app.js) — à modifier ici
 docs/index.html              GÉNÉRÉ : galerie autonome (GitHub Pages / ouverture directe)
 scripts/                     build.js, check.js, dev.js, new-asset.js, scene-preview.js, lib/ (library.js, scene.js),

@@ -13,6 +13,7 @@
     "check": "node scripts/check.js",
     "pxl": "node .claude/skills/claude-pxl/bin/pxl.js",
     "new": "node scripts/new-asset.js",
-    "scene": "node scripts/scene-preview.js"
+    "scene": "node scripts/scene-preview.js",
+    "map": "node maps/plaine_ete/tools/convert.mjs && node maps/plaine_ete/tools/bundle.mjs && node maps/plaine_ete/tools/shots.mjs && node maps/plaine_ete/check.mjs"
   }
 }
