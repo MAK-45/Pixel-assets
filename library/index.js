@@ -1382,7 +1382,7 @@ export const catalog = {
    "slug": "fxtree",
    "category": "nature",
    "title": "Arbre (style pixelfx)",
-   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
    "tags": [
     "tree",
     "plant",
@@ -1415,7 +1415,6 @@ export const catalog = {
     ],
     "effect": [
      "none",
-     "fireflies",
      "snow",
      "glow"
     ]
@@ -1464,7 +1463,7 @@ export const catalog = {
      "key": "oak_night_64",
      "name": "fxtree_oak_night_64",
      "id": "nature/fxtree/oak_night_64",
-     "label": "Chêne – nuit d'été, lucioles (64 px)",
+     "label": "Chêne – nuit d'été (64 px)",
      "kind": "sprite",
      "w": 64,
      "h": 64,
@@ -1472,11 +1471,10 @@ export const catalog = {
      "props": {
       "species": "oak",
       "season": "summer",
-      "effect": "fireflies"
+      "effect": "none"
      },
      "tags": [
-      "night",
-      "glow"
+      "night"
      ],
      "png": "library/png/nature/fxtree/oak_night_64.png"
     },

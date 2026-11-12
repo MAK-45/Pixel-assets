@@ -8,7 +8,7 @@ export const asset = {
  "slug": "fxtree",
  "category": "nature",
  "title": "Arbre (style pixelfx)",
- "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+ "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
  "tags": [
   "tree",
   "plant",
@@ -41,7 +41,6 @@ export const asset = {
   ],
   "effect": [
    "none",
-   "fireflies",
    "snow",
    "glow"
   ]
@@ -68,7 +67,7 @@ export const asset = {
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_summer_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAJ1BMVEUAAAAuejofSixarkWl11oSMB/c8oycazxqQSg7IhkiFA/JmlsaFCOTfcimAAAADXRSTlMA//////////////9mpNdqTQAAA0hJREFUeNrVVmuTGjEMi/xIvMv+/9/bkZ0scFM44Prhmmm54WFFkmVDa08PWgOkfXzUVE2lNX+zUMCHZr13M1UXfZOFdVWA9QmgcBXxtwBYNwGIIAq8DOBmebFp/iWAAPoigJr1KZ21kCIAyKsAdakVC1OUBwSAv2IDuhlv7dNACCRRSOEFErwXqroATFnZO1mIQ7/lkMT7fOjTQJ0AgH/bC1rAf7ZO6kfawGr4UwCp1nXDDUD2kAAC/85GV2P81Dqwykt78vDvCJCCmJEHT9WLu7Aa4nmeM4CKmkGrE3m/A8IOiud/bw+HQtEcUmrNlnNwV4iIZxr5BI/GwhTpFIwoIpwfXikJ0yhEEoHa5KsWzcZPw/IySc2TRbZAmEoXz4R/1eG9dzdTFzrOdhGLilBzwFJWU0y15m5LwRhX0HP1cswd55GcpALwEseO+tl97Rxc5NBKJQ6rXsuKKck1r8lXTgCY9dUwp3han6wpNkeAEZLkxCWrSUnOWCJdIYBLGsUDhlplbgSmOO+cAGnOCoRkYGreUqfwajvXCWdDp4AaC1pQylb8GNtixg/JdR2j2psj5SLqM57sNhYF4dKmhpkwRufc54w2ARgdXpQPmkQrKtkESWVr9NRt7pQkxdmYe8ErFZNo/UkTvRSsjwn03AWQYVjv1Ij48mMSoATNNswS9ALjs6WkIi2imr2oMwlwhJGfWAu8A/OZlBf0Oze7iK5A+bkdqCbFTYMpeD0pM7NhmtMxhd8jNMcMbhEARevcSdnCTB1cGUiJGxFrFjzHVWr0OG293MbaitM5cY+QGxHtiuA1flIrw3oNnCxZMj3L+nv+dwj13hyiWgNn48UjIq707xbKWT8RzsAsAL46Rmxf7bsCtNu3JO3MTPlYyRsR0R7U38moVTCDI0AEX4sR60Pt4ZeDV0jF11fJRgbJe4yIW8seAUwprXZ4xDYBsv69X3qpJWIDAVj//m/MiTBiu+f/HkbEiC0+/6XrYxux758DXMY2tp8CxP8OMOIXAGy/AGD/IcD23wPsn3sw/hnApwhx4T7Z9zdNOPLYccTlElEA+6GHHarHeZ7V5tFjxLjElgDbvuPgt9Vxf54BsLoAtn0jws7vmb8A/AGhpyIQH5RC3AAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAJ1BMVEUAAAAuejofSixarkWl11oSMB/c8oycazxqQSg7IhkiFA/JmlsaFCOTfcimAAAADXRSTlMA//////////////9mpNdqTQAAAzpJREFUeNrVVtlyI0EIGwR0M+P8//duCeiJnYrjI/uw25U45QO1JATxtv14ZNtEsL191FRNsW3+YiGED5uNMcxUHfoiCxuqIqxPABVXwF8CYF0DEAEq8jSAm+XFpvmXABDRJwHUbLR01gqKgAieBahLrViYSnlAAPFnbJBhxltHGygQJAopPEGC94qqLgBTVo5BFnDRhxyS+OiH0QZqA4j4w17QAv7YOqlf0gZWi/8IgGrdMLkCyB4SAOKPbHQ1xk9tiKzy0p48/BEBUoAZefBUPdzBaoHn+ZmBKNRMtDqR97sI2EF4/vp2dyhUNheUWrPlnLirAPBMI5/IvbEwlXRKjCgA54dXImE2CkEiUBu+atFsfBuWlyE1N4tsAZhKh2fCv+rwMYabqYOOs13EoiKpOWApqymmWnOzpcQYV6Hn6uWYu5wHOUkF4CWOHfWz+zo4uJJDi0qcrHotK1qSa16Tr5wAYjZWw5ziaX2yptgcAUYIyYlLVpMSzlhKukIARxrFIwy1ojcCU5x3NkCaswKBDEzNW+oEr7ZznXA2tAXUWNCCUrbix9gWM34In+tYqr05Ug6odzzZbVkUwKVNDZ0wRufc54w2ARgdXpQPmkQrKtkEpLI1eurWOyVJcTZ6L3iloonWnzTRS8H6GETPXSCYJuudGhFffjQBStBsQ5fIKDA+W0oq0oBq9qJOE+AIS35iLfAh0s9QXtDv3OyArkD5uR2oJsW1wRS8npSZ2TDN6WjhtwibSwe3CAhFa++kbGGmTlwZSMSViDULnuOKGj1O2yi3ZW3Fdg7uEbgSsX0ieI0famXYqIHDkoX2LOtv+d8g1Hs9RLUGzsbDIyI+6d8slLO+Ec7ALAC+OmfsX+37BNiu30LamZnyuZI3I2K7U38jo1ZBBwciEXwtZqwPbXf/OXiFFL7+lexkkLznjLi27B5AS9lqh0fsDZD1r33TSy0RuxCA9a9/x2yEGfst/9cwImbs8f43XZ/7jON4H+Ay97n/FiD+d4AZ/wDA/g8AHL8E2P97gON9D+ZfA3gXIS7cJ8fxogkf68TlElEAx8fX86CWZ8a8xJ4A3yF8i3L1HqsLYD92Ihx3AP4A1QgiopzSS3cAAAAASUVORK5CYII=",
    "palette": {
     "1": "#12301f",
     "2": "#dcf28c",
@@ -145,9 +144,9 @@ export const asset = {
     "...........................nNnnbb333............................",
     "...........................nNnnbb3333...........................",
     "...........................bNbnbB33B3...........................",
-    ".................%%%%%%L%%bNNbbbB33B33%l%L%ll%%%%%%%%%%.........",
-    "............%%%%%%%%%%%l%nbnNbBbB33BB33g%lggg%%%%%%%%%%%%%%%....",
-    "............%%%%%%%%%%%bnNbnNbBbBB3BBB333gGGG%%%%%%%%%%%%%%%...."
+    ".................%%%%%%%%%bNNbbbB33B33%%%%%%%%%%%%%%%%%.........",
+    "............%%%%%%%%%%%%%nbnNbBbB33BB33%%%%%%%%%%%%%%%%%%%%%....",
+    "............%%%%%%%%%%%bnNbnNbBbBB3BBB333%%%%%%%%%%%%%%%%%%%...."
    ]
   },
   "oak_autumn_64": {
@@ -166,19 +165,15 @@ export const asset = {
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_autumn_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAACyOixuHyQ7IhngeCrzw0r/8KicazxqQSgiFA/JmlsaFCOl11parkUuejofSiyrv9NmAAAADHRSTlMA/////////////2aAF3vGAAADTUlEQVR42tWW63biMAyEM7rEDlno+7/tnhnZXNqlBbo/Wh8KhVifpdElWZZPF5YF5svLKzIi4MvyLMPAtyXXdc0E3MKeA+QaAdB+zQwAHvZUJEm7GIAEYAE8DPBMHZyhTwIMiAcBkblW6CFbUwjG14OAOjTLiwwoAhgZ/ogMWDN56joFlCmTafAHnOC53D4BKctUOZgjvvRBjq/jrQCGGAAiviJQAr5yLgIqBNAa/inAKnVr4goAHwAz/0pGj2T5Ra7ANKcd+An4Vw7QBcu0SHk97N0ZhP7h+twDhEUmojJRx9IHxa8/X+6GAVscXtGO8i2/A2bmFNP05V5bREBSIy0izGy4berGhYGYCIztQywKOatYWLNcjLjicLWCqRLMufFDc/NX7i7BmC6yYKVDOWO0ZjBy0G+mFEJdF2EeXoq547zIolcEuJvRHpcoPKJK3qrrHOOlNVNZIXnomKqpCUBWrbuOknqV+/MsoJQ0qPLgYUrJ1EEAbqOb9IELLOoKTD3tgvgAMN2YQppqpvpNcRoo6RwnbGyJJsRoLCqJ2Zmkxuh85d3O45iTOQWgvG6hDAiH6pLyAB5KQVUYN05AsLRXDuiolnIMT1kVVolgkXKH9tM5BXA1jgKjLysxo8YugIUO6DYwtmkE5UiNtcS8whaRSKXHtDd1YIxtAaylCb9NKUaPMVofbX1ubrYwpM6wxwqMbyYtpLdawpTj9wD3ymqMEaBbUX2RB5WwUPGOwG8JalTHHJ3Wc5rrLlU/usHZw7B+FcTsBVe7mqnI2ThrlNoxvYKPSuzdroJYLoShqy5Gz9VrjE+AlXnZ3/p/S9C77OYYOM9T8957v8rBzTiZ9oNQ9uq5y0BurX+Q7wJYri+Z5FRNeUONQm+99+WO/U0Yl5bTaGhd5/bW56bl7s3B/SyQjYnOg4f7/Vqye4ARSpWGSTIBZP/ck578IIEA2j//jDkIrb/z/zlG7617f/1J15u3vm2vAw7Nm38X0H87oPUfAPAfANi+CfBfD9he16D9N8CrhH7gPNm2J0XYtf7sez8cei/Ath/3P/vxuJ/XZ7Zax731dugugG/baT+eTqdxMfT6B2XfA3UdaIceRoBvfEDdttPbG6wMgT1sAP4C49QfFUxd+ecAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAJFBMVEUAAACyOixuHyQ7IhngeCrzw0r/8KicazxqQSgiFA/JmlsaFCOCyUZYAAAADHRSTlMA/////////////2aAF3vGAAADKElEQVR42tWW2XYiMQxEXVpsN/n//51TJZslCWHJPMz4EEjT1rVUWprWflxoDebt7RUZEfDWXmUY+Nay954JuIW9BsgeAdC+ZwYAD3spkqRdLEACsACeBnimDs7QJwEGxJOAyOwVesjWFILx9SSgDs3yIgOKAEaGPyMDeiZP7VtAmTKZBn/CCZ7L7RuQskyVgznioQ9yvK+3AhhiAYh4RKAEfOVeBFQIoDX8R4BV6nriCgBfADN/JKNHsvwiO7DNaQd+Av7IAbpgmRYpr5e9O4PQP1w/e4CwyERUJupY+qD49eftbhiw5vCKdpVv+R0wM6eYpot7bREBSY20iDCz5bapGxsDMREY25dYFHJWsbBmuRhxxeFqBVMlmHPjl+bmt9xdgjFdZMFKh3LGaM1g5KDfTCmEui7CPLwUc8d5kUWvCHA3oz0uUXhElbxV1znWS2unskLy0DFVUxuArFp3HSX1KvfnWUApaVDlwcOUkq2DANxGN+kDF1jUFZh62gXxBWC6sYU01Uz1m+I0UNI9TtjYEk2I1VhUErszSY3V+cq7nccxJ3MKQHndQhkQDtUl5QE8lIKqMG7cgGBpdw7oqJZyLE9ZFVaJYJFyh/bTOQVwNY4Cqy8rMavGLoBGB/QYWNs0gnKlxkZi32GLSKTSY9ubOjDWtgB6acKrLcXqMUbrq63Pzc0WhtRZ9ujAujJpIb3VEqYcfwa4V1ZjjQA9iupCHlTCQsW7Ar8lqFEde3TazG2up1R96QZnD8PmVRC7F1ztaqYiZ+P0KLVjewVflTinXQXRLoSlq27GzO41xjfAyrzsb/2/JehddnsMnOep+ZxzXuXgZpxs+0Uoe/XcZSCPMb/IdwG061smOVVTPlCj0Mecs92xvwnj0nIaDWPq3Dnm3tTuPhzczwLZmug8eLk/ryW7B1ihVGmYJBNA9q/90pMfJBBA+9d/Yy7CmJ/8f40x55g+3/+l68PHPI73Aafhw38LmP87YMx/AOD/AOD4JcD/e8DxvgbjrwHeJcwT58lxvCjCx17zdJqzAMfH5/XAlmvMcZouwHeEbylX92hdAD+chOMO4A/pRh9304VeSwAAAABJRU5ErkJggg==",
    "palette": {
     "3": "#22140f",
     "%": "#1a142366",
     "B": "#3b2219",
-    "G": "#1f4a2c",
-    "L": "#a5d75a",
     "N": "#c99a5b",
     "R": "#6e1f24",
     "Y": "#fff0a8",
     "b": "#6a4128",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "n": "#9c6b3c",
     "o": "#e0782a",
     "r": "#b23a2c",
@@ -246,16 +241,16 @@ export const asset = {
     "...........................nNnnbb333............................",
     "...........................nNnnbb3333...........................",
     "...........................bNbnbB33B3...........................",
-    ".................%%%%%%L%%bNNbbbB33B33%l%L%ll%%%%%%%%%%.........",
-    "............%%%%%%%%%%%l%nbnNbBbB33BB33g%lggg%%%%%%%o%%o%%%%....",
-    "............%%or%%%o%%rrnNboRbBbBB3BBBo33gGGrR%o%%%%rr%oR%%%...."
+    ".................%%%%%%%%%bNNbbbB33B33%%%%%%%%%%%%%%%%%.........",
+    "............%%%%%%%%%%%%%nbnNbBbB33BB33%%%%%%%%%%%%%%%%%%%%%....",
+    "............%%%%%%%%%%%bnNbnNbBbBB3BBB333%%%%%%%%%%%%%%%%%%%...."
    ]
   },
   "oak_night_64": {
    "key": "oak_night_64",
    "name": "fxtree_oak_night_64",
    "id": "nature/fxtree/oak_night_64",
-   "label": "Chêne – nuit d'été, lucioles (64 px)",
+   "label": "Chêne – nuit d'été (64 px)",
    "kind": "sprite",
    "w": 64,
    "h": 64,
@@ -263,32 +258,23 @@ export const asset = {
    "props": {
     "species": "oak",
     "season": "summer",
-    "effect": "fireflies"
+    "effect": "none"
    },
    "tags": [
-    "night",
-    "glow"
+    "night"
    ],
    "png": "library/png/nature/fxtree/oak_night_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEUAAAAUIToMEiQdMkcqR1I/ZGb/4Hr/4Hr/8Kg7K0shGjNeOlrzw0oaFCOl11parkUuejofSiw7TeOTAAAADnRSTlMA//////8fSv//////Zi8EtZIAAANjSURBVHjapVaLkqMwDMOPpDUs2+7//+yNZSdAoQ96aWfoLrEiy5ZhGF4uGgYiHr5eoiIqPAxnMUhwupZSVEWYlM4BKOI8Hj9ESM9lEkeXAFAAiHwMwBGqJWAcgFKKT87OgwvCi1AQ8C9/Sr4hAEVCA2DwJzJIKYUWEBUCf/Uf/AEJD/TtHQCReWXRtxw2AoSE5OUMIOTxPoOVApoK4MpQkl83YFZQWniWIGtJ77qJFaFaCmLyfKIsBb8jMAykVAppCdZBn4jiylivGXjPKmqvq/qTV5CIgfHc3kIDRXy2XwKwInclkIC/j0vhx4Zi1Il7pPtIeGBQcYToCX6cHBp9x4lCWByZRAG9J4mJ4XCiWjfZewerKlPITb635wIyjOgOKhepmwESxkGuHsypfRYiQBkf4Em5CvXqo20oehUXxjebsOfjCwUKg3UA752rWz944jik4q5MH7sEzMBzCby3pNdTunF9I8V5gqRaV3gLMiBUSit0A6AwL4qDPMmP7uMk7mUC1I0FFM72a7tQZwfoZhRp4OrIyovBIA0HAyHN2eX/YKb9NChKUJXDV4RiULSTF853hPuJhZeB5tmnQ3UpDCJDK1AQ7o+Btm01z0yl3ckJnRXt8YQdbZuKy9yeKRGpzWNR4PQ1U5gbzQ912lMopgm0b1K6JcNg1OPbdEA2oXessvpjBRBekG18eJLTLn2ct3G2sPJQ9mYSsuC+nk4M3wkRHshXNFvzQas7MidmM1ol0b2cK71TRAvFFG4AlJohfst/gxAukDYQabGzx5mZLfQ3E6nXJW5Ln8frzjGz8VG+BWBY3yJQwKsNWzQu4m14Er9JY2U55BO0bZpqbhqePhyyySgxREYmCt42TdMyAp8DZCpDzHCzMQHMpukq9cxrGnIxG8UBzGyql1rPveklAr5mXLfx9SO4kH60/Z16QOgIk/34I8nq5Xqpj/E/e4TJRtfwIwb15/qzw5yeMTjgu2dQ62WangF8glkv11MAR3lOnsMXAEnGNbBvGCwSA2A8D9CL/C3AIwM+28J91w7gsN1erD3Avt3eAoz/y2Dk8xq0ZXuAc6sD8NcAsMJZgBnrd57H9BKPzPNt/p1vt7mvV7FYt9lH8TgmAN/n2/1+n7frFcA4TWYOMDKP0OH+9/d3APAP9xsjQSAHthIAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAHlBMVEUAAAAUIToMEiQdMkcqR1I/ZGY7K0shGjNeOloaFCOe+s/iAAAACnRSTlMA//////////9m91o/tgAAAvNJREFUeNrVVlty4zAME0BKSu9/4R2ClB/ppomT/dgqmXFaixAIkLRb+3GhNYDt7WVu5sbWrmLAdLr33t3NCMc1AFdcxOuHGfxaJnl0TwAXgNnLAMxQ7wkTACgpXjm7Du4K74YkEF++Sn4hCMVSA2HwFRms944dxA3i7/GDL5CIwNi+ASiyrjR/yuEkQEqIsDOBlMfzDA4KeCmgK6Ukfy7ActBWeFlQXuJZNdEV6r0rps4Hygo+I9AaHL3De7JO+gDySq2fGUTNurz3g/8IBwEK43F7GxoyvsqvAOjK3SES6u+/WxHHpmLYiEdk9JGxUVQCIWuC95PDs+5YKNBiZpIGRk2CoDr8Pg9GBbs7kXIj9m65iAwVvUDB05SysC/IKdcIZmlfRiQo9Uk82x2J/vfqGuSF+lYRbvnEkkFRUtxlsL7XOlM9KpXoyurjkIAUng7T3qWDAJIVkAULWNSjr6oQYUG49WX0KgioZpOD8kQcvY2TnGuVALbGOjjBbZd8DoCtGa3sja4m4NwbTNIwGRi8Zlf8g8T3adAdUpXZV5AZSB3DuNiR3Q8a94EW2VeH+m6MIlMrUTBuj4G17TDPhtu6UxO6HN3ioR1rm1vIvJ4pGemrx9Lg6msiS0nFL3XWUyinibRfUkZLZoNhi1/TQdmk3qmw73/4ASB7wc7xWYysdllDxBfWzipCGcVkGMn9OJ2ovjMgpwhDhdUHy3dlDnIMHJLYerlWORR6IqfwAkBppvgz/xNCGbxywd7OcWeMMXb6p4Gy+ZK3bZvHx8oZY8x7+XaAdrwFUdCrDUcWruJHexB/SuPQchoNSTuia1N7+HCoIkNhmE0CyVvpHwk/AKhUWs7wMWYBKP7am55yGWNaAIxKoF2GGGPqe+R/DSNi53j/TZdxPD94Vb6NGRp+BjB+O8CYnwKMzwHmfwDAXw4wPwbg+wDjnwHwbQC1wlWAr7XmrQAm+XW/nsTGGuN2m7MAviP8FeVwb95uYwTAJKd0eADwB0quHDsXuM1ZAAAAAElFTkSuQmCC",
    "palette": {
     "%": "#1a142366",
     "A": "#5e3a5a",
     "D": "#211a33",
-    "G": "#1f4a2c",
     "J": "#1d3247",
-    "L": "#a5d75a",
     "T": "#3f6466",
-    "Y": "#fff0a8",
-    "^": "#ffe07a4a",
     "a": "#3b2b4b",
-    "g": "#2e7a3a",
     "j": "#14213a",
-    "l": "#5aae45",
     "q": "#0c1224",
-    "t": "#2a4752",
-    "y": "#f3c34a",
-    "~": "#ffe07a1f"
+    "t": "#2a4752"
    },
    "rows": [
     "..............................j..jjq............................",
@@ -309,52 +295,52 @@ export const asset = {
     "............qJJjtttJttJtttJJJJJJjJJjjJqJjjqJjqqq.jjq............",
     ".........Jj.jJjtttJJjttJJJJJJJJJjqtJjjjqtjJJjqqtJJtJJq..........",
     ".........ttJtJJjJJtjJJJjjjJJJjjjqjtJJJq.qjJJjjqqtJtttJjqq.......",
-    "......JttTTTtJjqJtJJjJJjjjjjjqtttJJJqJJjJqjJjJjqjqTttJJjj~~.....",
-    "......qTTTjtttqjJJJJqjjjJjqJJjttJJJJjJJJjqJjqjqjjqtttJJJJ^J~....",
-    ".....tTtTTtJttjqtjJjJjqqjjJJJJJJJJJJjjJJqjjjqjqjqjJjJJJJTYJj....",
-    "..qtTTTTtjJjJJjJjJjJJqJJqJJJJJJJttJJjjjjjjqqqqqttJttjJjJJtJj....",
-    "..JTTTYTTJjJJjqJjjjJJqqjJJJjTTtJJjJJqjjJqjqqJJJttTttJjjJtJjjq...",
-    "..JTTTTTtJjJqjjJjJjjjjjJTtTTtjtttJttJjJqqqqjqqJtJTttJJjttJjjq...",
-    ".jtttTTTtttJjjjjqjjJjTTTTTTTtJtttTTTttjjqqqqqjJJJtttJJqttJJjq...",
+    "......JttTTTtJjqJtJJjJJjjjjjjqtttJJJqJJjJqjJjJjqjqTttJJjq.......",
+    "......qTTTjtttqjJJJJqjjjJjqJJjttJJJJjJJJjqJjqjqjjqtttJJjq.q.....",
+    ".....JtJTTtJttjqtjJjJjqqjjJJJJJJJJJJjjJJqjjjqjqjqjJjJJJjJqqq....",
+    "..qttTttJjJjJJjJjJjJJqJJqJJJJJJJttJJjjjjjjqqqqqttJttjJjjqjqq....",
+    "..JTTTtttJjJJjqJjjjJJqqjJJJjTTtJJjJJqjjJqjqqJJJttTttJjjJJjqjq...",
+    "..JTTTtJJJjJqjjJjJjjjjjJTtTTtjtttJttJjJqqqqjqqJtJTttJJjttJjjq...",
+    ".jtttttTtttJjjjjqjjJjTTTTTTTtJtttTTTttjjqqqqqjJJJtttJJqttJJjq...",
     ".qJtttTTTttJjjqqqjjJTTTTTTTttJJttTTTttttjqjjtqtttttJJJjJtJJjjq..",
     ".jtJjtTtJttJJq...qqjtTTTTTTttttjJtTTttTtjqJJJJqJttJJJjjqjJjjjqq.",
     ".qtjJttTtTttttJjqJqTtTTTTTTTttJjJttJTTTttJJqJJJJJJJjjjqqjJjjjjq.",
     "..JqtTTTttTTTttJJqJJJTTTTTTtttJjatJtTTTttJJjttJJJjjjjqqqqjjjjq..",
     ".jtJtTTtJtTTTtttJJTtttTTTTTttTTTttJtJjtttJJjjJJqqjjqqqqqqqjqqq..",
     "qJtJJtqtttTTtttJJJTJJtttTTttjTTTTttJJjqtJJJjjjJjjjqqqqqqqqqqqq..",
-    "qqjJjttJJttttttttTttJJtttttttTTTTttJJjqtjqJjqjJjjqqqqqqqqqqqqqq.",
-    "..qJJJjJJJJttttTTTTJttttttJtttTTtttJJjqjJqJqqqJjaqqjqqqqqqqq....",
-    "..qjqJJjJjjtJJtTYJtJTtJJJJJJtttttttJJJqjjqqjqqaajjjjqqqqqqqq....",
-    "...qqqqqqqqJJJJttJTJtTjtJJjJjttttttJJjqqqjqqqaajjjqqqqqqqqqq....",
-    "....qqqqqqqqjjjjjJJJtttJJJJjJJJJJJJJjjjjjqaaaaqjqqqqqqqqq.......",
+    "qqjJjttJJttttttJJtttJJtttttttTTTTttJJjqtjqJjqjJjjqqqqqqqqqqqqqq.",
+    "..qJJJjJJJJtttJJJJtJttttttJtttTTtttJJjqjJqJqqqJjaqqjqqqqqqqq....",
+    "..qjqJJjJjjtJJJJJqJJTtJJJJJJtttttttJJJqjjqqjqqaajjjjqqqqqqqq....",
+    "...qqqqqqqqJJJjjjqtJtTjtJJjJjttttttJJjqqqjqqqaajjjqqqqqqqqqq....",
+    "....qqqqqqqqjjjqqjJJtttJJJJjJJJJJJJJjjjjjqaaaaqjqqqqqqqqq.......",
     "....qqqqqqqjqjqqqqqJttJJJJJjjJJJJJJJjjjqqaaaDqqqqqqqqqqqq.......",
     "....qq.qqqqqqqqqqqqjJtttJtJJqjqaJJJjjqqqaaaa.qqqqqqqqqqq........",
-    "........qqqqqqqqqqjJJJtttJJjjjJJaaqjqqaAA~...qqqq.qqq...........",
-    "..........qqjjqqqjqqqjJJJJJDqjjaaDqqqaAAAJ~........qq...........",
-    "..........qqqq.qqqq..qjJJjaaDjjaaDqqaaAAYJ~.....................",
-    "......................qqqqqaaDJaaDqaaaA~^~~.....................",
-    "........................qqqqaaDaaDaaaaq~~~............~~~.......",
-    "...........................qqaaaaDa..................~~^~~......",
-    "........~~~.................qaDaaqq..................~^Y^~......",
-    ".......~~y~~................AaDaDqq..................~~^~~......",
-    ".......~yYy~..............~~AaDaaqq...................~~~.......",
-    ".......~~y~~.............~~^AADaaqq.............................",
-    "........~~~..............~^YAADaaqq.............................",
-    ".........................~~^AAaDaqq.............................",
-    "...................~~~....~~Aaaaaqq.............................",
-    "..................~~^~~.....AaaaaDq.............................",
-    "..................~^Y^~.....AaaaaDq.............................",
-    "..................~~^~~.....AaaaaDqq..........~~~...............",
-    "...................~~~......AaaaaDqq.........~~y~~..............",
-    "............................AaaaaDqq.........~yYy~..............",
-    "............................AaaaDDqq.........~~y~~..............",
-    "............................AaaaDqqq..........~~~...............",
+    "........qqqqqqqqqqjJJJtttJJjjjJJaaqjqqaaa....qqqq.qqq...........",
+    "..........qqjjqqqjqqqjJJJJJDqjjaaDqqqaaaaq.........qq...........",
+    "..........qqqq.qqqq..qjJJjaaDjjaaDqqaaaaqq......................",
+    "......................qqqqqaaDJaaDqaaaa.........................",
+    "........................qqqqaaDaaDaaaaq.........................",
+    "...........................qqaaaaDa.............................",
+    "............................qaDaaqq.............................",
+    "............................AaDaDqq.............................",
+    "............................AaDaaqq.............................",
+    "............................AaDaaqq.............................",
+    "............................AaDaaqq.............................",
+    "............................AaaDaqq.............................",
+    "............................Aaaaaqq.............................",
+    "............................AaaaaDq.............................",
+    "............................AaaaaDq.............................",
+    "............................AaaaaDqq............................",
+    "............................AaaaaDqq............................",
+    "............................AaaaaDqq............................",
+    "............................AaaaDDqq............................",
+    "............................AaaaDqqq............................",
     "...........................aAaaaDqqq............................",
     "...........................aAaaaDqqqq...........................",
     "...........................aADaaqqqqq...........................",
-    ".................%%%%%%L%%DAADaaqqqDqq%l%L%ll%%%%%%%%%%.........",
-    "............%%%%%%%%%%%l%aaAADDaqqqDqqqg%lggg%%%%%%%%%%%%%%%....",
-    "............%%%%%%%%%%%DAAaaADDaDqqDDqqqqgGGG%%%%%%%%%%%%%%%...."
+    ".................%%%%%%%%%DAADaaqqqDqq%%%%%%%%%%%%%%%%%.........",
+    "............%%%%%%%%%%%%%aaAADDaqqqDqqq%%%%%%%%%%%%%%%%%%%%%....",
+    "............%%%%%%%%%%%DAAaaADDaDqqDDqqqq%%%%%%%%%%%%%%%%%%%...."
    ]
   },
   "cherry_64": {
@@ -376,7 +362,7 @@ export const asset = {
     "sakura"
    ],
    "png": "library/png/nature/fxtree/cherry_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAADkapqtRnf/s89jIEr/4+/7+/87IhkiFA9eOlqPT18aFCOl11parkUuejofSiy0uF/CAAAADHRSTlMA/////////////2aAF3vGAAADC0lEQVR42u2W3XacMAyErZEEODTJ+79tz4zMAi1tGvZib+qTbBbb+jT646S1/+tPy3B+dj67RYuvbd1a87TTXqa1aJbp+JqQkxuvmsW+NaV7TNMXBKPz5C3jhweihae75SRjQ+aBe+G77qSbS4K8ZSamfwJ4lq3TJT/hcAGsAOkwMxiuw0hL6TY3s3LobqWFcfEQNLdrETkZw0UL+KaYLH3LLIAHzMKuFEQy1Ul2YOTMEfoG2+wREWHXEpAjzGitDJhEAQwSx8IilIUrwJApyLDn/fHNy94QkIqrJpA5VUyTu9PKQL0FAEDvCNlfEFxeJHiaDEz1lB7qCmlHuOQPxO9JdINTgbtcsvRqBygkGnqFj2sFJZZdJ49u0+SsDQGMS9nTUiFwQijDZJsKVeqdAPaRQ/W1qBpEVdJhcRq2JAB8DQQkn+lwtREnK8dgjBwao3v0U+WefKi+oekV1esoKwk6lH5jdqxSEVbT7iqwnNjeC1kd6YcChliuLd13Vd2tAuSPO+enABwpzQ8BCGWYV5mt8qiCafhtXJuSx2wLpYDq6dNQ8CqFP8rJea0ysFTc1fgAPhqL2bKo+lUhOQsYMTXqHQBzuAdnUR0HjBeRgq0RgPqVLL1WKAAEaNPGoI1BVOdsjTwvI4GhQIMxoeoSGjSvpFbTw7Mecpwg5rYDlJFNU9sIJlvX0KDidV59NO9jYavmYya2JteRjtlPs9I2KnNeJWefqQIg4nixzePldzDv29kjnm0OKx/7WsoD+BI+bPf+i5TYR/kscamBizO2974XI6IdXwpnQJ+XZVnOIfV56fPCq3X94p144JIgb32ukFrvc9n/ZSk324PuL0WKWLrkf+8/DMUhANV/23wQWoV+y36TcFtAG6nsj/zfIiiZd+2L0Ofltv2WwvuAdj+BvzTU/fXWORavBPRXA/r8JGB+OWB5OaA/D5ifBPQnAXNJeELACwDrtn6sa38bgOWdz+/v63FdGtt+/i77AVj4/PHB/e2KXUDWFWv9Wqwfs8l+EIDPTwseYdVfDMBPk2khBrbekokAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAJFBMVEUAAADkapqtRnf/s89jIEr/4+/7+/87IhkiFA9eOlqPT18aFCOjcAqfAAAADHRSTlMA/////////////2aAF3vGAAAC7ElEQVR42u2WwXLbMAxECSwgisn//2+7C0qWEjVu5YMv5WQ8tkg8LhaAJq39X39a5uff4G9YtHgeC2sNaadnmdaiWSb8OSEXGI+axePRkkAsyxOC8fLkKeMHwqMFErBcFGyeeeBe3F1nEgZJ0G2Z6ctfAZAVC17JT4dDACtAws3Mza/TSEvpNphZXQhYaWFe3HSG27WIXIzpegvHppgsfcssAMLNwq4URNLqJDt8egYPfXPb4j0iwq4leM40o7UKoIkCmEscC+shF64AU6YgM57n5zdUvHm4VFw1gcKpYlkAMMqcegvg7rzdQ/EXBOgWCV4Wc1q9JEJdIe0ekPyJ+G4izEEFgK5k6dUOrpQYiErfrxWUWHadboQtC1gbApiX3NNSIfyEkMNkmwpV6kEA+wiu+lpUDaIqCbc4DVsS4HwNhEs+7YDaiJOVczCmh8bs9n4q78l31Tc0vaKitrJM0Kb0G92xsiKsph0qsC6xRy9kdSQOBQyxoEc6D1UdVgnyD+D8FIAjpfkhwEMO8yjdqhtVMA2/zWNLcpttIQuonneaF7xKgb2cnNcqA0vFpxofd8zGolsWVb8qJGfBZ06NeifA4EBwFtVx7vNFpGRrBFz9SpZeKxTgBOihzUGbg6jO2Rq5r9PAUKLBnLzqEho0lKnV9I6sHzl3PHp7AOTIpqltBFMsNDRe+YJH9+bdl2/V3Gdia3JtaZv91GXbrMx5lZzHTBXAI44HW58vv0P42Pb2fLY5LD8ea60bnC/hw+MxvkiJxyifJa41cHHGjjEexYhox5fCGTD6uq7rOaXR19FXHq3jF+/EA5cE3TZ6pdTG6BX/w5I32w+dX4sUsQ7J/7f/MJSHAFT/z+GT0Cr1W/GbhNsC2rRy7P7fIsjMu/FFGH29Hb9ZeB/Q7hv4paHur4/BsXgnYLwbMPqLgP52wPp2wHgd0F8EjBcBvSS8IOANgM/DGh8TsH5erCfBM34CLgnfIefNXvE/En5H/QKhWiGDqchC5AAAAABJRU5ErkJggg==",
    "palette": {
     "3": "#22140f",
     "5": "#63204a",
@@ -385,12 +371,8 @@ export const asset = {
     "%": "#1a142366",
     "A": "#5e3a5a",
     "B": "#3b2219",
-    "G": "#1f4a2c",
-    "L": "#a5d75a",
     "Z": "#ffb3cf",
     "f": "#8f4f5f",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "w": "#fbfbff",
     "z": "#e46a9a"
    },
@@ -456,9 +438,9 @@ export const asset = {
     ".............................BABB333............................",
     "............................AAABB333............................",
     "............................AAABB333............................",
-    "...............%%%%%%%%%L%%AfAABB3333l%%L%ll%%%%%%%%%%%%%.......",
-    "...........%%z%%%%%%%%%%l%AfAAABB33333%%l%gg%%%%z%%%%%%%z%%%%...",
-    "...........%%6%%%6%%%z5%gBzAAABBBB3333366GGz5%%%z6%z5%%%6%%%%..."
+    "...............%%%%%%%%%%%%AfAABB3333%%%%%%%%%%%%%%%%%%%%.......",
+    "...........%%%%%%%%%%%%%%%AfAAABB33333%%%%%%%%%%%%%%%%%%%%%%%...",
+    "...........%%%%%%%%%%%%%%BfAAABBBB33333%%%%%%%%%%%%%%%%%%%%%%..."
    ]
   },
   "pine_64": {
@@ -480,19 +462,16 @@ export const asset = {
     "fir"
    ],
    "png": "library/png/nature/fxtree/pine_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAKlBMVEUAAAA0hGghXk9irXwWOjcLIig7IhlqQSicazwiFA8aFCNarkUuejofSiyBdohQAAAAC3RSTlMA////////////ZvSlVjUAAAI3SURBVHja1ZaNjqMwDISxM4aWwvu/7smx80MLJUl1Op1V1O6yM0ziL95O018u4h/1FH5yYCL6JUPUE2HcIAT6ZREULMHoInwBaiBjelYLZmJgxAGiclI5y4ABY4I+n+MKBiKAdA1aYJaRNcA3gQigMX0g4yAQDSRIcooW/Y0sEMRWcq+Drd9BYO1knwNnORkIEYah/FyVdEDEjKKFintwVPIShxz0JLBM0o4j4gRh3z2KGxCf3swjnEPknfAtlK5dVIwyiRoHPQepyP1MqwWGKKT+PsIHURxGSpCD1DqYkOUJg8pCWvOjCu6fhZsy6CnQfqNoYUNpgg6mOxwhTp2wCMNiCycWbx30rtgHQSn9wYRif/PFwX2ggxBQBpG20ZUt+xhCAskGQxrvaMTI5bmRxQJobSNfldxTWLizqyZJmyDf9Z/yYuHduHbIAmGl4Bhdtbmrl48XziRZGiCfIuVI8Yivcwhhyqg+gARPLsXnTF84nES5iQT69wupORI5w1FqoCnyj8JBzF2rvvQCuISgaR6A8zhKc6XMp/t5AHzImYs8Hu5pKP2hIZfydwyjYUEwXxccnMrt/9r7deJQpRcboPrmAqM4wSxWHxQqyJxHovjbvMjxF1XV5CRZHot+Vw0yOTXMB56re+8re8zLfMLs8SmTXJN5ZnCvajNoqkUNnv+5wfKPDebHsjy7DNZjWYJ1XV9+1XUjfm3b9ogG8/O1betr3dbP+mKw7fvDDebnvu/bvu9nBn8AMFEWHcmpC0EAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAIVBMVEUAAAA0hGghXk9irXwWOjcLIig7IhlqQSicazwiFA8aFCOvDziaAAAAC3RSTlMA////////////ZvSlVjUAAAIgSURBVHja1ZaJbuMwDERFahin/v8PLnjocGLHkoLFokSMpHVnPBKf2KT0j4v4Sz3lrxyYiL7JYHoirBvkTN8sgrInWF1ELEANZE3PasFMDKw4QFROKmdZMGAk6PPZVrAQAaRr0AKzrKwBsQlEAK3pMzkHmWghQZGTWcw3skFgreRZB19/gMDayTkHrnJyEAyGpfzclUxAxIymhYpncFTyCoec9SSwJBnHETZBOHaPbAPs6cM8IjhE3YnYQpnaRcWokqhxMHOQmjzOtFpgiUKa7yNiENkwUoICpNHBhCovGHQWMpofXfD4LDyUQU+B9htNCx9KCTqY7nCEBHXCIgyPLVxYvHXQu+IfBK30BxeK/80Hh/CBDkJAGUTZxlCO7GPOBSQfDGW8YxCjkNdGNgtgtI18VXJPYePOr54kbYJ81r/Lm0V049qhCoSVgmN01dauXj5euJLkaYB6ipQjxcNe5xDClaY+gIRILs3nTN84TKLcGIHx/UJ6jkTOcJQeaDL+0Tiw3L3qQy+ASwiG5gG4jqMyV9p8up8HwJucucntcKel9IeGXMpfMTTDhmC9Ljg4lfv/tdfrxKFLLz5A9S0ETnGBWbzeKFSQuY5EibfHJsdfdNWTU2R1LMZdNajk9DAfeO7uva7s+dgeJ8wen5Lkmswzg3vVmMFQbWrw88cNtv9s8Hhu28+UwX4sT7Cf15143/enGVw6vJq868Pgg0NKvyZhFfDSOCwGAAAAAElFTkSuQmCC",
    "palette": {
     "3": "#22140f",
     "4": "#0b2228",
     "%": "#1a142366",
     "B": "#3b2219",
     "E": "#62ad7c",
-    "G": "#1f4a2c",
     "P": "#163a37",
     "b": "#6a4128",
     "e": "#348468",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "n": "#9c6b3c",
     "p": "#215e4f"
    },
@@ -558,9 +537,9 @@ export const asset = {
     ".............................bnbbB3.............................",
     ".............................bnbbB3.............................",
     ".............................Bnbb33.............................",
-    "..............%%%%%%%%%%%%%%%bnbbB3%%%l%%%l%%%%%%%%%%%%%%%......",
-    "..........%%%%%%%%%%%%%%lgggnbnbbBB3lgg%l%g%%%%%%%%%%%%%%%%%%%..",
-    "..........%%%%%%%%%%%%%%gGGnnbnbbBBB3GGGgGGG%%%%%%%%%%%%%%%%%%.."
+    "..............%%%%%%%%%%%%%%%bnbbB3%%%%%%%%%%%%%%%%%%%%%%%......",
+    "..........%%%%%%%%%%%%%%%%%%nbnbbBB3%%%%%%%%%%%%%%%%%%%%%%%%%%..",
+    "..........%%%%%%%%%%%%%%%%%nnbnbbBBB3%%%%%%%%%%%%%%%%%%%%%%%%%.."
    ]
   },
   "pine_snow_64": {
@@ -583,7 +562,7 @@ export const asset = {
     "snow"
    ],
    "png": "library/png/nature/fxtree/pine_snow_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAKlBMVEUAAAD7+//T4PKPo8chXk80hGgWOjcLIihirXw7IhlqQSicazwiFA8aFCMmbhmdAAAADnRSTlMA////////////////Zt6Z8PQAAAJrSURBVHja1ZYJkqMwDEWtby0J3X3/605JstmaEENqampUSYAYfbQ8BKX8ZSN86l/xmT8+UnB/og8UQGH1dgAZARi3ExABEfO9JAiVRMDKrLcUUAEwM6uy3SgD1aLsAmZsRa+HACHE5VXNoDdCUJCqCHxT7UYKzESPhwsQ850U3CT9ibjeoTgFOA1X/Znd1znQ6OQ1FBxfl8iLp8QVhYyfd3ZBAcpsceG8uuN0BUeyYlaUzSl6sKqzaFYMwwmEioYhChC+NpoECIUgzqH3UeYS2oVJhPp4iDiJLBIk4VoXKmTpRMBYx7tAoPpJH4OCxl/89P1Blggyu3QQ2/GQQowRtuY7/3BS8V6B4AA5RqyLgJNZTE3fokDo1Pks1Ajdd1zTQuNcwZ/FljQ3EDWHYmPRF88VbH4kOcRRulY/6yTZYB8l+EmK/IBllCRq00SkAwSklgzhTL8J5BmI90H4XdS5m2FKktSgSyVO7qK9e0r444lg50F49rVxaLYN3juJbOrLIAiwwCaYKRl3B6EER2amZi+CICRt6U2kGwPaSugcKRByPQ/cIeJmJo/KarWZI7MjHLGphVXnf+HAbNeAev5qdYxBHQWpUSwdRx8REp0YAyldXQayamQ28zwISpB+Eby2kzwi+apbktswWH/phUTUbu06z5SthB2XIpNP6uPTNmabP7rtg4jk2/nWoM3Nc7LtH11hI+F3QS6XjmMbXC4wD7s1zGWdBy1r+8y+ntPzYG62c7FQ/GpSHgksOgOvLCcCQza5wPd/LjD9Y4Hn1zR9XxL46UYbi1df/Gzt3Bl7q7W+E5n9cWQ1DXuBPyw5HGS1I0hNAAAAAElFTkSuQmCC",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAKlBMVEUAAAD7+//T4PKPo8chXk80hGgWOjcLIihirXw7IhlqQSicazwiFA8aFCMmbhmdAAAADnRSTlMA////////////////Zt6Z8PQAAAJrSURBVHja1ZaJkupACEUbGrgax///3SmgsxpjJ9arV0OpWVpuWE5ISvnHRvytf+Xv/PkrBfcn+kKBKaxeDiAjYOHLCagykci1JIgrqbKYiF1S4MrMIiJmggtloFpMXAAQFDsfAitxXN4MYLsQgjGZqbJvKi6kIEJ0u7kAiVxJwU3Tn0jqFYpTQNL4rL+I+zoHFp08h4Lj6xJ58ZQ4o5Dxy8ZOKLCJIC6cV3eczuBIKEAxgVN0EzNnESjg7gRCxcI4ChC+6E2CiQuxOofeR51KiBOTiOvtpuokimqQxOe6UFnnTgSMtb8LxFS/6WNQ0PiLn3G/kyVinVxGENtxl0KMEUHznX4kqfisQOwAOUZis4CTWWCwjygQj9T5LLQI3XdcE6FxrODPYiTNDUTLodhY9MVjBUyPJIc4Stfqh5EkdPZRg5+kyA9Ee0miNk1UR4CYU0u7cKZXAmUC4nMQfheN3E0wJUkGtrkSB3fR1j0l/PFEjOMgPPvaOATWwXsnOZv6NghiRmATzJSMewShBEcADHgTBHHSlt5EtjLmthI6ewrEuZ4H7hBxi5BHhVoxcQTs4cirWqA6/zMHwKYB9fjVah+D2gtSo1hHHH1EaHSiD6R0dRnWRSOzmcdBUIL0QvDSDvKI5KutSW7DYPmlNxJRu6XrNFPWEtgvRSaf1MenbYDVidG2QUTy7f9o0ObmPmB9YlRYSfhdkMtlxLENLheYht0S5rLMg+a1bWaP+3DfmZvtvzxT/G5S7gnMOh2vLAcCXTa4wM8fFxj+s8D9MQw/pwSea8sInvv2yfn5fD5C4K3CVuTVvwkcKJTyC0b8H4XFBTVMAAAAAElFTkSuQmCC",
    "palette": {
     "3": "#22140f",
     "4": "#0b2228",
@@ -661,9 +640,9 @@ export const asset = {
     ".............................bnbbB3.............................",
     ".............................bnbbB3.............................",
     ".............................Bnbb33.............................",
-    "..............%%%%%%%%%wwwwwwwwwwwwwwssssss%%%%%%%%%%%%%%%......",
-    "..........%%%%%%%%%wwwwsssssssssssssssssSSSssss%%%%%%%%%%%%%%%..",
-    "..........%%%%%%%%wsssssssssssssssssssssSSSSSSSs%%%%%%%%%%%%%%.."
+    "..............%%%%%%%%%%%%%%%bnbbB3%%%%%%%%%%%%%%%%%%%%%%%......",
+    "..........%%%%%%%%%%%%%%%%%%nbnbbBB3%%%%%%%%%%%%%%%%%%%%%%%%%%..",
+    "..........%%%%%%%%%%%%%%%%%nnbnbbBBB3%%%%%%%%%%%%%%%%%%%%%%%%%.."
    ]
   },
   "spirit_64": {
@@ -686,7 +665,7 @@ export const asset = {
     "glow"
    ],
    "png": "library/png/nature/fxtree/spirit_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAKlBMVEUAAAA/0K4/0K4/0K4OO0Wy/+Qbf3r7+/9XVnCLiqMvLTwHChzDwtQaFCNubCOvAAAADnRSTlMAH0r/////////////ZpxNIUkAAAM/SURBVHjanZfnloMgEIXDNECz7/+6e6YAarAk/HA1er+plH29DiPZAEgAgIhEBAQJiCCl15PhYiJgFmG9CBIQKiA906MAMlLOzIiEkpk5M4ES0hMAq4I5G4H0j98Z4l6fgMNozoyIKMzEklHoQR5Uj5lRLRqDOZNFkhV1nwe1bwORWhSMLGrdADeElECyx46IBvBAhITMBQ/iFGIZCLMaPBnCle6CEdK0HE4GDKuKEMVYJkUkE2kkoFFMIgksII/QCUiyigktCWQXZdBnNp0KQOKRex4JzREFhFiE/P7QVWrbyEJWPo4e9kjc+SAQsV5h25jhvBALuooRswLQW0loAOzeHiFFX6Wks0e8d/QtYsj6TR8o4xmAwQHAOnvQ3Dcrlna1ddRrNqKoGsTwgK1bOGdrGYnRbjYAEsHx7ICUgCJsD4FoyA7y8G4PsAY2pw1zEOzVQrQNqXsglhv3I94zMtmUwi1g004doCVULSHGFDB5tmZAwcxy7pUStP/U+aiZr6NjQmhzNKxWYQIAsuixEbQT8uhn1LcByBMHFGCLhzUeRgfsAN7PMg0gAKFseuQx1HT8Ps2AAZzQ+ycLd4RHdA3QSRy5aw3kLeFFFSpypbcy0u4DvXWCA4uTj/K+pihgN9zrPiEc0F6WowOfgFJwzCehrZpKoRPAllH68iV7m3P92I+3H46ga1n6r66HXQbGiYA+EDtAKaXoGtJWkt2qHGcK8CXbTJRmOAC1LC4DmG8s7VzSE1K2HpRaSt+Tzo4J7Z2fbqD5oIAa+raDXWyuA2NRLER1raqHhyecQQEAJZRSFbA817edIiWoZVmWrn99MXSnaITa8v+RsVsPnFDLss70cEOI5daiWD8/Tm1bu/SoEWaAgwcp4fTQAlrBGeBoMSHjHFBqA1ym7dyDDrhJ20kOoJYWwkfanvXTBpC+bCYHvDvglb7WHwA/jDnguSdRhHUPmBdsSj8BTFtm2qA/eLCv9RxwmYMnHtz+y3MowpeAzyr+AuiLP9S3zmZfka52hJl4B9gRrpMYC7qPGoBlhTEuESb+a3bq2wDmwrD+pyOd6f/G/gbL27akxQDrOqwH5AZQq21JKl+WdXHCDPAP7e0pI1jj3cgAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAKlBMVEUAAAA/0K4/0K4/0K4OO0Wy/+Qbf3r7+/9XVnCLiqMvLTwHChzDwtQaFCNubCOvAAAADnRSTlMAH0r/////////////ZpxNIUkAAALSSURBVHja7ZbZkuIwDEUT6UpegP//3SlJXpIQ6Aw8dE3V+CEEzD1avSzLYaw+iFYiYmYABFoJoHVdrowQAySiKvZQBkENsF7TsxILIyURZrAmYWUFGWG9ApAkNpITEB+sCkf8rF9JzGgAmJlVBAon/JwH03MSNqPOEEkQYYWxLuTB7PtgRo9CWNw69zy812tqQTM7IAJRC8I+IoiXEM9AM2vBwxGhDBecsJ6WI8jEzapn3jCeSVVNQFSCvFOOhIYllhm6tU/yAkYJ4A9j4DmbQSWCRuSRR7A7YoAmVoXqiGTff05WePmk9XBEEs43AiD2pF1XhfMKUQ6VMCcDcLSSYgL83b9OgunNd5PaLHOTjZcxWOf3kQfTa8Qq4lY87WbrqLdstKJugnC9Vy0lbxlto79sAFDl+T0I5n9kK0UIwJQd5M27PcA9cKc9ewfBXq3ANqThgXpuEICYFxb4kuItYNNOA+AphAiY2xJwefJmYOUk+torI1j/mfOtZrGPzgVhzdGxVoUTAMGj506wTkizn1m1tSOQThwwgG8e3njcOmAHkL4nngTQAE3Z9SxzmOn2+2kGHBCE0T9JZSAiovcAW8Qtd72BoiWiqIqs7/SxknZ/sNcgBDAH+SjfrCXaT4XXY0EEoE/mowPPgJx5rifFVo2c8QKwZeSxfene5rl+nsfbP86gS67j19DTLgPzRoAnxA6Qc85EviPT00Hd7hQUW7abyN1wA5RcQ0Z0frD0e8lISN56kEvO40x6dU3oc3G7oe6DAUrT9xPszeE6MR5FBcqtmJ4u3nAmhYiMkHMxQL2un/FQybXWoV/+cnRC6flfPiSUXG8f6acPDliWLwhfAMgq+B0gl18H5F8G3P9tQCvC7T/gO8D9VwEWwd1W84eAdQO4fbqnNkBsipcRjz7K3QHuwmM/fhY/Ho969yOpOuAJ8QIyp0vxI8nktd7qCaFJ/gA3HirNANN+yAAAAABJRU5ErkJggg==",
    "palette": {
     "0": "#3fd0ae",
     "8": "#0e3b45",
@@ -704,23 +683,23 @@ export const asset = {
    },
    "rows": [
     "................;;;;;;::;:::000888:8:;:88:;;....................",
-    "................;;::;:88:++99+++99908:808:;;;...................",
-    "...............;;:09:0+08ww++00809w+++w+8::;;;;.................",
-    "...............;;:+w+++++www++08www+ww++088::;;.................",
-    "..............;;;:+09w+++www+00009++8+9w09888:;;................",
-    ".............;;;:0w+0w++0+++ww++w8++008w00098:;;;...............",
+    "................;;::;:88:++99+++99908:898:;;;...................",
+    "...............;;:09:0+08ww++00809w+09098::;;;;.................",
+    "...............;;:+w+++++www++08www++009988::;;.................",
+    "..............;;;:+09w+++www+00009++898099888:;;................",
+    ".............;;;:0w+0w++0+++ww++w8++098+00098:;;;...............",
     ".............;;:++++++008+++www+++0+998880098::;;;..............",
     "............;;:9wwww++0000++wwwwww+009898000988:;;..;;..........",
     "............;;;:+www+++0009+8+wwww00098888009888:;;;;;;;........",
     "........;;..;;:0wwwwww+++009+000w+000999w889988:::;;::;;;.......",
     "......;;;;;;;:0++++www+++08:89w0099809988889888888::88:;;;......",
     "......;;::;;::89++wwww+++00880++00980999888888998999888:;;;;....",
-    ".....;;:08::88980+++w++++9990+++009889988888888988+8898:::;;;;..",
-    "...;;;;:0+98+90990++++00w99900+000099898888888899898898888:;:;;.",
-    "..;;:;:89++0+++9889000000998000000998888888888090099888888::+:;.",
-    "..;:+:0+00980++888890099999890000998888888888809900988888::::;;.",
-    "..;;:+w+009+ww0989899999999899999998888888888889909888888888:;;.",
-    ".;;:8++++00w+++988889999988888999888888888888889009988888888:;;.",
+    ".....;;:08::88980+++w++++9990+++009889988888888988+8898:::;;....",
+    "....;;;:0+98+90990++++00w99900+000099898888888899898898888:;;...",
+    "...;;;:89++0+++9889000000998000000998888888888090099888888:;;;..",
+    "..;;;:9+00980++888890099999890000998888888888809900988888:::;;..",
+    "..;;:9++009+ww0989899999999899999998888888888889909888888888:;;.",
+    ".;;:80+++00w+++988889999988888999888888888888889009988888888:;;.",
     "..;;:900999++++098888888888888888888888888889988099888888888:;;.",
     ".;;:9090098++++09988888+0+8+008+0888888888889888898888888888:;;.",
     ";;;:98++800+++0009888+0w+w+++090w+909888888888888888888888888:;;",
@@ -741,32 +720,32 @@ export const asset = {
     ".........;;;;;;;;::;::::8mmd8888cmd8ccmm8:;;....;;..............",
     "............;;.;;;;;;;;:88mmdd88cQcccmm::;;;....................",
     ".................;;.;;;;:::mmddmmccccmd:;;;.....................",
-    "....................;;:;;;:cmdddccccmd:;;.......................",
-    "....................;:+:;;;:cmddccmd::;;;..............;;;......",
-    "....................;;:;;;;;:cmdcmdQ:;;;..............;;:;;.....",
-    ".....................;;;..;;;:cmdddQ:;;...............;:+:;.....",
-    "......;;;..................;;;:cmddQ:;;...............;;:;;.....",
-    ".....;;0;;.................;;:ccmmdQ:;;................;;;......",
-    ".....;0+0;.................;;:cmcmdQ:;;..;;;....................",
-    ".....;;0;;.................;;:cmcmdQ:;;.;;:;;...................",
-    "......;;;..................;;:cmmmdQ:;;.;:+:;...................",
-    "...........................;;:cmmmdQ:;;.;;:;;...................",
-    "...........................;;:CmmmdQ:;;..;;;....................",
+    "......................;;;;:cmdddccccmd:;;.......................",
+    "........................;;;:cmddccmd::;;;.......................",
+    ".........................;;;:cmdcmdQ:;;;........................",
+    "..........................;;;:cmdddQ:;;.........................",
+    "...........................;;;:cmddQ:;;.........................",
+    "...........................;;:ccmmdQ:;;.........................",
+    "...........................;;:cmcmdQ:;;.........................",
+    "...........................;;:cmcmdQ:;;.........................",
+    "...........................;;:cmmmdQ:;;.........................",
+    "...........................;;:cmmmdQ:;;.........................",
     "...........................;;:CmmmdQ:;;.........................",
-    "...........................;;:CmmmdQ:;;..........;;;............",
-    "..........................;;:cmcmQdQ:;;.........;;0;;...........",
-    ".............;;;..........;;:cmcmQdQ:;;.........;0+0;...........",
-    "............;;:;;.........;;:cmcmQdQ:;;.........;;0;;...........",
-    "............;:+:;.........;;:cmcmQdQ:;;..........;;;............",
-    "............;;:;;.........;;:cmcmQdQ:;;.........................",
-    ".............;;;..........;;:CmcmQdQ:;;.........................",
+    "...........................;;:CmmmdQ:;;.........................",
+    "...........................;;:CmmmdQ:;;.........................",
+    "..........................;;:cmcmQdQ:;;.........................",
+    "..........................;;:cmcmQdQ:;;.........................",
+    "..........................;;:cmcmQdQ:;;.........................",
+    "..........................;;:cmcmQdQ:;;.........................",
+    "..........................;;:cmcmQdQ:;;.........................",
     "..........................;;:CmcmQdQ:;;.........................",
-    "..................;;;;;;;;;:cCcmmddQ:;;;;;;;;;;;................",
-    "..............;;;;;;;;;;;;;:cCcmmddQQ:;;;;;;;;;;;;;;............",
-    "............;;;;;;:::::::::ccCcmmdddQ:::::::::::;;;;;;..........",
-    "............;;:::%;;;;;;;;cCcCcmmmddQQ;;;;;;;;;;%%%%%;..........",
-    "...........;;%;;;;;;;;:::dCcccmmdmddQQQQ::::;;;;;;;;%%%%%.......",
-    "...........;;%;;;;;;;;:ccmccccdmddddQdQQQ:::;;;;;;;;%%%%%......."
+    "..........................;;:CmcmQdQ:;;.........................",
+    ".........................;;:cCcmmddQ:;;.........................",
+    "........................;;;:cCcmmddQQ:;;........................",
+    ".......................;;;:ccCcmmdddQ:;;;;......................",
+    ".................%%%%%%%%%cCcCcmmmddQQ%%%%%%%%%%%%%%%...........",
+    ".............%%%%%%%%%%%%dCcccmmdmddQQQQ%%%%%%%%%%%%%%%%%.......",
+    ".............%%%%%%%%%%ccmccccdmddddQdQQQ%%%%%%%%%%%%%%%%......."
    ]
   },
   "oak_summer_32": {
@@ -785,7 +764,7 @@ export const asset = {
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_summer_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJ1BMVEUAAAASMB+l11parkUfSizc8owuejpqQSicazw7IhkiFA/JmlsaFCNaYjyPAAAADXRSTlMA//////////////9mpNdqTQAAAQxJREFUeNrFk8FuwzAMQy2RopK0//+9A+2sw9ouuwyYbgkfSMpxxvjTid+ABC9J1CQSegtoKCcA4B2QKdE6AenVA5mIwRhIKefDt2FVcgiVlRAT7sEHBGVVIgtZBcgpjEcVG9q1UJWJKU79JMKvJdHuHokRETaaIZpo2BZuqBMgKZpQVYFhoaoqC9ICRANOt3WwXHXlRZweET6XNQmjBpIrJKyPWL3QcwUzdmD0svEWTg9qmvtA3YFNfgIj7EjZXjy36NXiPKmV5xYLeNYnMmK2Xb4d7763S896P+jzokV3RF/dyq3362u79X78P3BcAehbH7v/jFft7tF2630/JN3XPAHb1lvvfRwHv4AP/yAIN3X0AX4AAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJ1BMVEUAAAASMB+l11parkUfSizc8owuejpqQSicazw7IhkiFA/JmlsaFCNaYjyPAAAADXRSTlMA//////////////9mpNdqTQAAAQhJREFUeNrFksFuwzAMQy1RohK3//+9A+Us2Lo0uwyYbgkfSMr2GH869hvgiFsS2YSDlwAHvQEAV4A7GdIDIH96wB02wgac9P74NpHpMYj0dDAc6hEnBHqmwxOeCVApYWcVGco1kemOFls/CNNvkiF3DRlmZjLqEDZqsoUa8gAigiGCmYkwCZmZniAXwBCgdFlbpKquPLPDw0znssYhVIDHCjHpw1YvVK8gRg5htWy0hdIt2OY6UHWIivgEhskxKHvGsUWtFsdJrTy1WMCr3siwbrt8y67uW6W73hu9H5pVmdXdq9xqv3+2W+3z/4F5C9Sj5ps1nj3bo/Z9Ps95AbatttprzvkF+AABHAhOU2m8bQAAAABJRU5ErkJggg==",
    "palette": {
     "1": "#12301f",
     "2": "#dcf28c",
@@ -830,9 +809,9 @@ export const asset = {
     "..............nbB3..............",
     "..............nbB3..............",
     "..............nb33..............",
-    "............lbNb3B..ll..........",
-    ".......%%%%%gnNbBB3ggg%%%%%%%...",
-    ".......%%%%nnbnbBb333G%%%%%%%..."
+    ".............bNb3B..............",
+    ".......%%%%%%nNbBB3%%%%%%%%%%...",
+    ".......%%%%nnbnbBb333%%%%%%%%..."
    ]
   },
   "oak_autumn_32": {
@@ -851,7 +830,7 @@ export const asset = {
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_autumn_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA7Ihnzw0rgeCpuHyT/8KiyOixqQSicazwiFA9arkXJmlsaFCMuejqhFUKQAAAADXRSTlMA//////////////9mpNdqTQAAARRJREFUeNrFk8luxDAMQ01SSzzj/P/vFpKnezq9FKiAHGy+UJTjjPGnhd8Ayp6S8iakuARiBBsI6QogI6x0kyK+e4gUhmGIFuzFpzJ32gg5XQqjZI2/tje6U3TRWUA9eIuifod0uUu9QgCKxzQgdyxRWw8DgAiLbhK1B5StxKhqwMzCiujMhhLcvVJabCCsgNLLG/BgE9xAewB1LruoQguQ7SYofWDnUrbEnRiG3DY1RXWH1VExepIIILfHnrOsrEZg2GOKxLteBHpMagNf9UYGOu02Tlx97+rU8X7Q+6IhE8hnt/LIXy7ukZj/D8xnwC3vOTHG7XbxV6211nncE5jnea61aufjfxVr6cgjkXPOEmUNvACwpgfJQhFV3AAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJFBMVEUAAAA7Ihnzw0rgeCpuHyT/8KiyOixqQSicazwiFA/JmlsaFCPnpubRAAAADHRSTlMA/////////////2aAF3vGAAABBElEQVR42sWSS27DQAxDh6Q+nuT+9y0kpWmbJs6mQAV4YfOZIu1Z608H7wDKTkl5E1I8BWIFGwjpGUBGWOkmRfz2ECkswxIt2Dc/xtxpK+R0KYySNf653uhO0UVnAXXhHkX9Dulyl/oOAShubUBOLFGjhwFAhEUviXoGlK3EqGnAzMKK6MyGEty9UloMEFZA6eUNeLAJDtAeQH2XGarQAmSzBKUvTC5lS5zEMOTYVIvaDqtPxegmEUCOx/QsK6sKDLu1SHzpRaBrUgM86o0sdNoxTjz737Wp473Q+6AhE8izU3nkm4N7JPb/A/sUyEvuFzWuPcclgX29zwNwHHkkcu/9DfgAqEYHxogVUFwAAAAASUVORK5CYII=",
    "palette": {
     "3": "#22140f",
     "%": "#1a142366",
@@ -860,8 +839,6 @@ export const asset = {
     "R": "#6e1f24",
     "Y": "#fff0a8",
     "b": "#6a4128",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "n": "#9c6b3c",
     "o": "#e0782a",
     "r": "#b23a2c",
@@ -897,9 +874,9 @@ export const asset = {
     "..............nbB3..............",
     "..............nbB3..............",
     "..............nb33..............",
-    "............lbNb3B..ll..........",
-    ".......o%%%%gnNbBB3ggg%%%o%%%...",
-    ".......rr%%onbnbBb333o%%%oR%%..."
+    ".............bNb3B..............",
+    ".......%%%%%%nNbBB3%%%%%%%%%%...",
+    ".......%%%%nnbnbBb333%%%%%%%%..."
    ]
   },
   "cherry_32": {
@@ -921,7 +898,7 @@ export const asset = {
     "sakura"
    ],
    "png": "library/png/nature/fxtree/cherry_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAAD/s8+tRnf/4+/7+//kappjIEo7IhleOloiFA+l11parkUaFCMuejofSizmJ54RAAAADXRSTlMA//////////////9mpNdqTQAAASRJREFUeNqlkuFuxDAIg7GJodlle//HnaC323W39scWVVWFP2yCavaXA/5aflR9uBQvurt7t2K4DwePiOA+hiMccocDB49qhuguDicQcczAGNVNFzSGi2FxSGDbe1kQlWMEfxLuEIWahgyREU9E1GByOuqSwxV1HnNKEkPDMVBDDA+z0u8pDrUdUL2osDCjeB+jb1yAq7W6sNgGO4FyAIghAbTowJCLnUGUBdhbUqQpSq9VqYHykpNk15NoOYJt1HeM4F4UI/vbMmuX36voz8xy6CVn7sWnTdWrypkZlqe/Uu7PKbDlzJxbznOHnLldAVvOuZ0ntMW1bpbzWrdtzmuDfwPzEngz2xq4vWpraa3b2jLnnOt9fZ0ngGu9cwfmh6I7CvgEyQIJUoqCDPYAAAAASUVORK5CYII=",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAIVBMVEUAAAD/s8+tRnf/4+/7+//kappjIEo7IhleOloiFA8aFCOhakDDAAAAC3RSTlMA////////////ZvSlVjUAAAESSURBVHjapZKBbsNACEPP9hnu+v8fPEGqtumWTtpQFEXwsAFljL8E+GP6kdWUHd/qktStmNIUeEYMaU4hBEsQcNKoZpiSOUUg4uyBOaubMjynzBhxcmDLqySI8hkE3wkJplHTkGEy4oWIGsyiUEtOOSoec9o2w1OYqCGmYoyq310EtxxQvSizGIPmfYzeuAC5a7Ww2QIHgVIAiGkDHNGGYZntQZQE2Fdy5HBUvU7lBkrLIsnOJ9HlCLZQ7xjBI2lG9vfIrFs+T9GfmaXQR848ki+XqlelMzNGXv5KeTyXwMqduVfua4XcuT4BK/de1w4t8bk+Ru7P9bH2/izwb2D/Bqwr4HbEytx7357xBqwD2K/AF72JCSFOyL9QAAAAAElFTkSuQmCC",
    "palette": {
     "3": "#22140f",
     "5": "#63204a",
@@ -930,11 +907,7 @@ export const asset = {
     "%": "#1a142366",
     "A": "#5e3a5a",
     "B": "#3b2219",
-    "G": "#1f4a2c",
-    "L": "#a5d75a",
     "Z": "#ffb3cf",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "w": "#fbfbff",
     "z": "#e46a9a"
    },
@@ -968,9 +941,9 @@ export const asset = {
     "..............BA33..............",
     "..............BA33..............",
     "..............3A33..............",
-    "...........L..AA33..l...........",
-    "......%%z%%l%ABB333%g%%%%%%%%%..",
-    "......%%6%%g6ABB3333Gz5%%z%%%%.."
+    "..............AA33..............",
+    "......%%%%%%%ABB333%%%%%%%%%%%..",
+    "......%%%%%%AABB3333%%%%%%%%%%.."
    ]
   },
   "pine_32": {
@@ -992,19 +965,16 @@ export const asset = {
     "fir"
    ],
    "png": "library/png/nature/fxtree/pine_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA0hGghXk9irXwWOjcLIihqQSgiFA87IhmcazwaFCNarkUuejofSix3/UYGAAAAC3RSTlMA////////////ZvSlVjUAAAD0SURBVHjalZOBjsQgCEQBZ7S19v9/9wJue1tPd3OThjTlCQOmIv+U2ue8abIvgOJL/iNhaqoGroHQGjCNPIzrAimppiUAC5PLHqbQaMJ5CVMIHKBwVgOg94C6R3BWAyEF5mkRUmHJPc5dAkixCZpNSviEFi4i/EF8wbwAGolnG9BPUMi4Cn/nowb7wz4IeX15B4R+TQYP/fTggrBYtIfwO09bIL3KcI/XAmKAbuX9POjrIyUXj+y6ZxTepnO5x+qfO/Dr+AXcjIzj5E2G8Qft2/qvqK5983gcteuRPlpred9Kra21Wkek1naeOW+5lHae5w38AEFuBwBSdfqLAAAAAElFTkSuQmCC",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAIVBMVEUAAAA0hGghXk9irXwWOjcLIihqQSgiFA87IhmcazwaFCOyd0NVAAAAC3RSTlMA////////////ZvSlVjUAAADiSURBVHjalZOBjoMwDEMT1y6F///gKengoNduWoQiRF4dJxVmP4bjcx1e8AVwfql/JOBwB7UGMtYAPOuE1gKluJclQKTJZQ84PZtoLgGnMQCZZhqkogc9PFIzDWY4OS+bSU6U8Dh3SbLkJgRMJGJCpItM/5BYsE5AkPhsQ8UJmZRXEe96aKg/6oNI55c7YIprAiP104MLEbnoSOl3XkYiXWW4x3MBOUC3cj9Pxfokq1tk9bhmNF2m63aN1T934M/xG7gYG8epzYbxh9jb+q84IvZ23GMsH3Vv2zFHer22uj2JFz00Bt6BvKDsAAAAAElFTkSuQmCC",
    "palette": {
     "3": "#22140f",
     "4": "#0b2228",
     "%": "#1a142366",
     "B": "#3b2219",
     "E": "#62ad7c",
-    "G": "#1f4a2c",
     "P": "#163a37",
     "b": "#6a4128",
     "e": "#348468",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "n": "#9c6b3c",
     "p": "#215e4f"
    },
@@ -1038,9 +1008,9 @@ export const asset = {
     "..P4..4........b3........4..44..",
     "..4............bB............4..",
     "...............nB...............",
-    "..........%%%%%nB%%%%ll%%%%%%%..",
-    "........%%lgggbnB3%%ggg%%%%%%%%%",
-    "........%%gGGbbBb33gGGG%%%%%%%%%"
+    "..........%%%%%nB%%%%%%%%%%%%%..",
+    "........%%%%%%bnB3%%%%%%%%%%%%%%",
+    "........%%%%%bbBb33%%%%%%%%%%%%%"
    ]
   },
   "pine_snow_32": {
@@ -1063,7 +1033,7 @@ export const asset = {
     "snow"
    ],
    "png": "library/png/nature/fxtree/pine_snow_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAMFBMVEUAAAD7+//T4PKPo8chXk8WOjdirXw0hGgLIihqQSgiFA87IhmcazwaFCNarkUuejqcWXN4AAAADnRSTlMA////////////////Zt6Z8PQAAAD+SURBVHjalVPZjsQwDLIxTJmjs///t6s0rdR7tTxETUA2OGnEP5H4i697BYC6LwDcNUkQ4E0TkKR02SQb23BVAtLjgUxelSgSA0j5yqKymaCJCz5MiQ6fBUlkJCWIOFeEEi2BVDg3YZQ4eaxTQapS3SN97JAJ0qG+qIDDLZUXgWXX1mbCFeFIk0I4wtsgiOlwitFCZNuuB+7JhVoEmeXJgY9vZSDZLmOow6AyMRQXSNzFSGAegG3Jzcm6SEKNCTuer5g+vIqR2c5mT8/X4tqOuQ2wcjwLuqZ60s0De75jF3+Hz/v6rxgbPu+2fr9jx4bOGQDwM457SSc6qoBF8AteUwe4HKZrCwAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAD7+//T4PKPo8chXk8WOjdirXw0hGgLIihqQSgiFA87IhmcazwaFCPpzxY6AAAADnRSTlMA////////////////Zt6Z8PQAAAD6SURBVHjalZPbjoQwDEMTxx4MDP//u6tykbiPNg8Iais5bkvEPyvxS693B4B6bwC8DUkQ4MsQkKT0OCSb2uqpBaTPB5l8alEkOpDyE6KyQdDEgx6mRIfvgiQykhJE3DtCiZZAKtxDGCXOjHVrSFVqYaSvEzJBOrQ8VMDllMqbwbLriJlwRTjSpBCO8DEIYl6cY7QQ2T73G+6ZQi2CzPJM4Otd6Ui2w+jqslGZ6IpbSTzFSGDdANuSG8m+SUJNCTv6IeYX72JktrWVqR82ajvWMcCOeDUsnlqSHi5YP8Yp/qm+4/NfMbX6jtO+zvLUf8dhurcsej/2w9HxB4C5CNIvctRDAAAAAElFTkSuQmCC",
    "palette": {
     "3": "#22140f",
     "4": "#0b2228",
@@ -1074,8 +1044,6 @@ export const asset = {
     "S": "#8fa3c7",
     "b": "#6a4128",
     "e": "#348468",
-    "g": "#2e7a3a",
-    "l": "#5aae45",
     "n": "#9c6b3c",
     "p": "#215e4f",
     "s": "#d3e0f2",
@@ -1111,9 +1079,9 @@ export const asset = {
     "..ss..4........b3........4..SS..",
     "..S............bB............4..",
     "...............nB...............",
-    "..........%%%%%nB%%%%ll%%%%%%%..",
-    "........%%wwwwwwwwssssg%%%%%%%%%",
-    "........wwssssssssssSSss%%%%%%%%"
+    "..........%%%%%nB%%%%%%%%%%%%%..",
+    "........%%%%%%bnB3%%%%%%%%%%%%%%",
+    "........%%%%%bbBb33%%%%%%%%%%%%%"
    ]
   },
   "spirit_32": {
@@ -1136,7 +1104,7 @@ export const asset = {
     "glow"
    ],
    "png": "library/png/nature/fxtree/spirit_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA/0K4/0K4/0K4OO0Wy/+T7+/8bf3pXVnCLiqMHChwvLTzDwtQaFCPfjroJAAAADnRSTlMAH0r/////////////ZpxNIUkAAAFSSURBVHjadZOLlsIgDETJJNOA1f//3T0TaK1d5Wi15OY1gdZuy6z9XmZmgJ4/zADgoec3wgB6cNs8I/4TZkiQntvGb4TcGSQ5gbwRBk+WJ0lfwKVWM3BLj0Ck7AIutar6XKUhIjPjWEUYEEgyy0tAFJH0AgyppO5eLoUs/9mMQWk9SI+VJG5AeGb6DAHEu4LMABqqaM/5IfkGlDpazJ2UyEumEkQtq+6mGqu+Mkqn6TlTBBqkXkR0MhlqVwkj+lKiZCiUG32japQQ/VTKVi4poYanYdoxhTqa8uo13/Y1USv19K0gWXZNSgM9TqIOIuIYVI8aNmwRNidfhGL3NWcD5+8JKmxX/MNx/jnA2hn98TgPm32CxY5xAdoneAM+b4/e6lpNoJZfiMqi1idQy+kXAJxXcozx2G1FwC2CYjzH2PcKoffX6xJCG/05xuj7riwn8AelYAt8+K7J1gAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA/0K4/0K4/0K4OO0Wy/+T7+/8bf3pXVnCLiqMHChwvLTwaFCPDwtSBWFiQAAAADXRSTlMAH0r///////////9mwp67ZAAAASpJREFUeNrFk9GygzAIRGXZlUTb///dO5DYOlafL6M+lENYlnRZLmG2PIeZGZDfhzQAOPN7Rxggp9bVg/wlzBCQPNZVd0SWi5I0gLgQBg9VpSSfwEmrGbSGk2BkPoGT1lQfUxrIiOARRRhAhBRVlQCLCHkBhsim7l4lhcz6MYwh2zol52zCC0CPCB9HAPwqiCCwoER7jEfSF8jWXDh+iTR52lSG5Mipe0mNpa+S6dOoHC2IBekeySaFmONmQ7JNJ8qGQrXKV6XGNKJ9nLLZK53IgUdi5DGMOobymjW++blRK/fyrUOi8rmpz8bnRQSPRTXWss83wo5eeXabe7abSwm2PP/p6puht23D8z/D0Ps/A5nv234/xKvi3fu+b69PXID27r23fd+2E/AHa74L82dzA/IAAAAASUVORK5CYII=",
    "palette": {
     "0": "#3fd0ae",
     "8": "#0e3b45",
@@ -1173,18 +1141,18 @@ export const asset = {
     ";::89988:+w+0w+89889898m888888:;",
     ";:89998880009+00888888m88888::;.",
     ";:8888888909000098888m888888:;..",
-    ".;:::88::88800099888m8::::8:;;..",
-    "..;;;::;;:888999888m88:;;;:;:;;.",
-    "..;;;;;..;:888m888m:::;...;:+:;.",
-    ".;;:;;....;:::8m8m8:;;....;;:;;.",
-    ".;:+:;.....;;:cmQQ:;.......;;;..",
-    ".;;:;;......;:ccQQ:;............",
-    "..;;;.......;:ccQQ:;....;;;.....",
-    ".....;;;.;;;;:ccQQ:;;;;;;0;;....",
-    "....;;:;;:::::ccQQ::::::0+0;....",
-    "....;:+::;;;;cccQd;;;;;;;0:;....",
-    "....;;:;;;;::CccddQ::::;;;;%%...",
-    ".....;:;;;;mCcccmddQQ::;;;;%%..."
+    ".;:::88::88800099888m8::::8:;...",
+    "..;;;::;;:888999888m88:;;;:;....",
+    ".....;;..;:888m888m:::;...;.....",
+    "..........;:::8m8m8:;;..........",
+    "...........;;:cmQQ:;............",
+    "............;:ccQQ:;............",
+    "............;:ccQQ:;............",
+    "............;:ccQQ:;............",
+    "............;:ccQQ:;............",
+    "...........;:cccQd:;;...........",
+    ".......%%%%%%CccddQ%%%%%%%%%%...",
+    ".......%%%%mCcccmddQQ%%%%%%%%..."
    ]
   }
  }

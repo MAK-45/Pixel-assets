@@ -2,7 +2,7 @@ include("../_palette.px.js")
 
 const meta = {
   title: "Arbre (style pixelfx)",
-  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
   tags: ["tree", "plant", "forest", "nature", "decoration", "scenery", "realistic", "pixelfx"],
   variants: {
     oak_summer_64: { label: "Chêne – été (64 px)", props: { species: "oak", season: "summer", effect: "none" } },
@@ -17,7 +17,7 @@ const meta = {
     pine_32: { label: "Sapin (32 px)", props: { species: "pine", season: "summer", effect: "none" }, tags: ["conifer", "fir"] },
     pine_snow_32: { label: "Sapin enneigé (32 px)", props: { species: "pine", season: "winter", effect: "snow" }, tags: ["conifer", "fir", "snow"] },
     spirit_32: { label: "Arbre-esprit luminescent (32 px)", props: { species: "spirit", season: "summer", effect: "glow" }, tags: ["magic", "fantasy", "glow"] },
-    oak_night_64: { label: "Chêne – nuit d'été, lucioles (64 px)", props: { species: "oak", season: "summer", effect: "fireflies" }, tags: ["night", "glow"] },
+    oak_night_64: { label: "Chêne – nuit d'été (64 px)", props: { species: "oak", season: "summer", effect: "none" }, tags: ["night"] },
   },
 }
 
@@ -183,16 +183,6 @@ function crown(B, clumps, masses, { ramp = LEAF, seed = 1, bias = 0, leafAmp = 0
   return selout(B, idx, ramp)
 }
 
-// Touffes d'herbe au pied (brins de 1 px, plus clairs au sommet).
-function tufts(B, gy, xs, seed = 3, ramp = LEAF) {
-  const r = rng(seed)
-  for (const x0 of xs)
-    for (let j = 0; j < 4; j++) {
-      const x = x0 + j - 1, h = 1 + Math.floor(r() * 3)
-      for (let k = 0; k < h; k++) if (B.get(x, gy - k) === "." || B.get(x, gy - k) === "%") B.set(x, gy - k, ramp[clamp(1 + k + (j === 0 ? 1 : 0), 0, 4)])
-    }
-}
-
 // ================================================================ effets (statiques)
 // Chaque effet est une fonction (B, cr, R) appelée après la couronne ; R = générateur seedé.
 
@@ -218,36 +208,11 @@ const aura = (strong, weak, reach = 3) => (B) => {
   for (const [x, y, k] of d) if (B.get(x, y) === ".") B.set(x, y, k)
 }
 
-// Points lumineux (lucioles, spores) : cœur, halo translucide dans l'air, lumière sur les feuilles.
-const lights = (pts, { core = "Y", ring = "y", strong = "^", weak = "~", ramps = [] } = {}) => (B) => {
-  for (const [x, y, big] of pts) {
-    for (let dy = -3; dy <= 3; dy++)
-      for (let dx = -3; dx <= 3; dx++) {
-        const d = Math.hypot(dx, dy), X = x + dx, Y = y + dy
-        if (d > 2.9 || (dx === 0 && dy === 0)) continue
-        if (isAir(B, X, Y)) { if (d <= 1.01) B.set(X, Y, strong); else if (d <= 2.3 && B.get(X, Y) !== strong) B.set(X, Y, weak) }
-        else if (d <= 2.3) brighten(B, X, Y, d <= 1.5 ? 2 : 1, ramps)
-      }
-    B.set(x, y, core)
-    if (big) for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) B.set(x + dx, y + dy, ring)
-  }
-}
-
 // Étincelles en croix (neige, rosée, magie) : cœur + bras d'un pixel.
 const glints = (pts, core = "w", arm = "s") => (B) => {
   for (const [x, y, big] of pts) {
     B.set(x, y, core)
     if (big) for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) B.set(x + dx, y + dy, arm)
-  }
-}
-
-// Litière au sol : quelques feuilles/pétales tombés sur la ligne de sol et autour.
-const litter = (xs, colors) => (B, cr, R) => {
-  const gy = B.h - 1
-  for (const x of xs) {
-    B.set(x, gy, colors[1 + Math.floor(R() * 2)])
-    if (R() < 0.6) B.set(x + 1, gy, colors[Math.floor(R() * 2)])
-    if (R() < 0.3 && isAir(B, x, gy - 1)) B.set(x, gy - 1, colors[2])
   }
 }
 
@@ -270,33 +235,11 @@ const snow = (ramps, { cover = 0 } = {}) => (B) => {
     if (i >= r.length - cover && vnoise(x, y, 2.5, 77) > 0.36) B.set(x, y, vnoise(x, y, 2.5, 77) > 0.62 ? "w" : "s")
   }
 }
-// Flaque de lumière au sol (sous un arbre lumineux) : halo translucide fort au centre, faible autour.
-const pool = (cx, rx, strong, weak) => (B) => {
-  const gy = B.h - 1
-  for (let y = gy - 2; y <= gy; y++)
-    for (let x = Math.floor(cx - rx); x <= cx + rx; x++) {
-      const dx = (x + 0.5 - cx) / rx, dy = (y + 0.5 - gy) / 2.5
-      const d = dx * dx + dy * dy
-      if (d <= 1 && isAir(B, x, y)) B.set(x, y, d < 0.35 ? strong : weak)
-    }
-}
-// Congère au pied : dôme blanc ombré à droite, recouvre le bas du tronc.
-const drift = (cx, rx, ry = 3) => (B) => {
-  const gy = B.h - 1
-  for (let y = gy - ry; y <= gy; y++)
-    for (let x = Math.floor(cx - rx); x <= cx + rx; x++) {
-      const dx = (x + 0.5 - cx) / rx, dy = (y + 0.5 - (gy + 1)) / (ry + 0.5)
-      if (dx * dx + dy * dy > 1) continue
-      const top = (x + 0.5 - cx) ** 2 / rx ** 2 + (y - 0.5 - (gy + 1)) ** 2 / (ry + 0.5) ** 2 > 1
-      B.set(x, y, top ? (dx < 0.3 ? "w" : "s") : dx > 0.45 ? "S" : "s")
-    }
-}
-
 // ================================================================ constructeur d'arbre
 // spec : masses de feuillage, tronc, branches (avant la couronne), branches visibles dans l'ombre,
 // touffes, ombre au sol. opt : rampes, décalage de valeur, effets.
 
-function tree(spec, { ramp = LEAF, bark = BARK, bias = 0, barkDark = 0, fx = [], seed = spec.seed ?? 1, clump = {}, grass = true } = {}) {
+function tree(spec, { ramp = LEAF, bark = BARK, bias = 0, barkDark = 0, fx = [], seed = spec.seed ?? 1, clump = {} } = {}) {
   return (c) => {
     const B = Buf(c.w, c.h), gy = c.h - 1, R = rng(seed * 31 + 7)
     const [sx, srx] = spec.shadow
@@ -307,7 +250,6 @@ function tree(spec, { ramp = LEAF, bark = BARK, bias = 0, barkDark = 0, fx = [],
     const cr = crown(B, clumps, spec.masses, { ramp, seed, bias, holes: spec.holes ?? [], leafAmp: spec.leafAmp ?? 0.42 })
     const dark = (x, y) => cr.at(x, y) >= 0 && cr.at(x, y) <= 1
     for (const [pts, w] of spec.peeks ?? []) branch(B, pts, w, { ramp: bark, only: dark })
-    if (grass) tufts(B, gy, spec.tufts ?? [], seed + 2)
     for (const f of fx) f(B, cr, R)
     B.flush(c)
   }
@@ -337,7 +279,6 @@ const OAK64 = {
   trunk: { x: 32, top: 36, wTop: 6, wBot: 9, flare: 4, lean: -1 },
   limbs: [[[31, 42, 25, 37, 19, 33], 2], [[33, 42, 39, 37, 44, 33], 2]],
   peeks: [[[31, 44, 24, 37, 17, 32], 1.6], [[33, 44, 41, 37, 48, 32], 1.6], [[32, 44, 33, 30, 35, 22], 1.8]],
-  tufts: [24, 28, 38, 42],
   shadow: [36, 24],
 }
 
@@ -346,13 +287,11 @@ sprite("fxtree_oak_summer_64", { w: 64, h: 64 }, tree(OAK64))
 sprite("fxtree_oak_autumn_64", { w: 64, h: 64 }, tree(OAK64, {
   ramp: AUTUMN, bias: -0.02,
   fx: [
-    litter([14, 19, 22, 27, 38, 44, 47, 52, 55], ["R", "r", "o", "y"]),
   ],
 }))
 
 sprite("fxtree_oak_night_64", { w: 64, h: 64 }, tree(OAK64, {
   ramp: NIGHT, bark: NIGHT_BARK, bias: 0.07,
-  fx: [lights([[9, 46, 1], [55, 44], [20, 52], [47, 55, 1], [40, 40], [16, 33], [57, 20], [6, 22], [27, 48]], { ramps: [NIGHT, NIGHT_BARK] })],
 }))
 
 // ================================================================ cerisier en fleurs
@@ -367,15 +306,12 @@ const CHERRY64 = {
   ],
   holes: [[17, 22, 1.6], [46, 21, 1.6], [29, 19, 1.3], [39, 28, 1.3], [24, 31, 1.4], [52, 31, 1.1], [33, 9, 1.1]],
   clump: { rmin: 3, rmax: 5.5 },
-  tufts: [25, 29, 37, 41],
   shadow: [36, 26],
 }
-const PETALS = ["6", "z", "Z"]
 
 sprite("fxtree_cherry_64", { w: 64, h: 64 }, tree(CHERRY64, {
   ramp: BLOSSOM, bark: CHERRY_BARK, bias: 0.02, seed: 4,
   fx: [
-    litter([13, 17, 21, 26, 39, 43, 48, 51, 56], ["5", "6", "z", "Z"]),
   ],
 }))
 
@@ -459,7 +395,7 @@ function pineSpec({ x = 32, top = 1, base = 53, tiers = 5, w0 = 8, w1 = 29, trun
     const yA = i === 0 ? top : Math.round(top + (base - top) * ((i - 0.55) / tiers))
     T.push([yA, yb, w0 + (w1 - w0) * (i / (tiers - 1))])
   }
-  return { x, tiers: T, trunk, tufts: [x - 7, x - 3, x + 5, x + 9], shadow: [x + 4, w1 - 2] }
+  return { x, tiers: T, trunk, shadow: [x + 4, w1 - 2] }
 }
 
 function conifer(spec, { ramp = PINE, bark = BARK, bias = 0, fx = [], seed = 5 } = {}) {
@@ -468,7 +404,6 @@ function conifer(spec, { ramp = PINE, bark = BARK, bias = 0, fx = [], seed = 5 }
     groundShadow(B, spec.shadow[0], gy, spec.shadow[1], 2)
     trunk(B, { ...spec.trunk, bot: gy, seed, ramp: bark })
     const cr = firCrown(B, { x: spec.x, tiers: spec.tiers, ramp, seed, bias })
-    tufts(B, gy, spec.tufts, seed + 2)
     for (const f of fx) f(B, cr, R)
     B.flush(c)
   }
@@ -482,7 +417,6 @@ sprite("fxtree_pine_snow_64", { w: 64, h: 64 }, conifer(PINE64, {
   bias: 0.02,
   fx: [
     snow([PINE], { cover: 2 }),
-    drift(33, 15, 3),
     glints([[20, 22, 1], [43, 37, 1], [28, 8], [12, 46], [50, 47]], "w", "s"),
   ],
 }))
@@ -495,18 +429,14 @@ const SPIRIT64 = {
   trunk: { x: 32, top: 34, wTop: 5, wBot: 8, flare: 5, lean: 2 },
   limbs: [[[31, 40, 24, 33, 17, 28], 2], [[33, 39, 40, 33, 47, 27], 2]],
   peeks: [[[31, 40, 24, 33, 17, 29], 1.5], [[33, 39, 40, 33, 47, 28], 1.5], [[32, 40, 34, 26], 1.6]],
-  tufts: [],
   shadow: [35, 22],
   seed: 8,
 }
 
 sprite("fxtree_spirit_64", { w: 64, h: 64 }, tree(SPIRIT64, {
-  ramp: SPIRIT, bark: SPIRIT_BARK, bias: -0.03, grass: false,
+  ramp: SPIRIT, bark: SPIRIT_BARK, bias: -0.03,
   fx: [
-    pool(33, 19, ":", ";"),
     aura(":", ";", 3),
-    lights([[7, 44, 1], [56, 41], [14, 54], [50, 52, 1], [42, 46], [22, 39], [60, 14], [4, 15], [38, 3]],
-      { core: "+", ring: "0", strong: ":", weak: ";", ramps: [SPIRIT, SPIRIT_BARK] }),
     glints([[24, 13], [40, 9], [18, 25], [44, 22]], "w", "+"),
   ],
 }))
@@ -521,7 +451,6 @@ const OAK32 = {
   peeks: [[[15, 23, 11, 19, 8, 16], 0.9], [[17, 23, 21, 19, 24, 16], 0.9]],
   clump: { rmin: 2.2, rmax: 3.6 },
   leafAmp: 0.3,
-  tufts: [12, 19],
   shadow: [18, 12],
   shadowRy: 1,
   seed: 3,
@@ -530,7 +459,6 @@ sprite("fxtree_oak_summer_32", { w: 32, h: 32 }, tree(OAK32))
 sprite("fxtree_oak_autumn_32", { w: 32, h: 32 }, tree(OAK32, {
   ramp: AUTUMN, bias: -0.02,
   fx: [
-    litter([7, 11, 21, 25], ["R", "r", "o", "y"]),
   ],
 }))
 
@@ -544,31 +472,26 @@ const CHERRY32 = {
   holes: [[9, 12, 0.9], [23, 11, 0.9], [16, 9, 0.8]],
   clump: { rmin: 1.8, rmax: 3 },
   leafAmp: 0.3,
-  tufts: [12, 19],
   shadow: [18, 13],
   shadowRy: 1,
 }
 sprite("fxtree_cherry_32", { w: 32, h: 32 }, tree(CHERRY32, {
   ramp: BLOSSOM, bark: CHERRY_BARK, bias: 0.02, seed: 4,
   fx: [
-    litter([8, 12, 21, 25], ["5", "6", "z", "Z"]),
   ],
 }))
 
 const PINE32 = pineSpec({ x: 16, top: 1, base: 27, tiers: 4, w0: 4.5, w1: 14, trunk: { x: 16, top: 24, wTop: 2, wBot: 3, flare: 1 } })
-PINE32.tufts = [11, 20]
 sprite("fxtree_pine_32", { w: 32, h: 32 }, conifer(PINE32, { bias: 0.06 }))
 sprite("fxtree_pine_snow_32", { w: 32, h: 32 }, conifer(PINE32, {
   bias: 0.02,
-  fx: [snow([PINE], { cover: 2 }), drift(16, 8, 2), glints([[10, 12], [21, 19]], "w", "s")],
+  fx: [snow([PINE], { cover: 2 }), glints([[10, 12], [21, 19]], "w", "s")],
 }))
 
-sprite("fxtree_spirit_32", { w: 32, h: 32 }, tree({ ...OAK32, seed: 8, tufts: [] }, {
-  ramp: SPIRIT, bark: SPIRIT_BARK, bias: -0.03, grass: false,
+sprite("fxtree_spirit_32", { w: 32, h: 32 }, tree({ ...OAK32, seed: 8 }, {
+  ramp: SPIRIT, bark: SPIRIT_BARK, bias: -0.03,
   fx: [
-    pool(17, 10, ":", ";"),
     aura(":", ";", 2),
-    lights([[3, 24], [28, 22], [25, 28, 1], [6, 29]], { core: "+", ring: "0", strong: ":", weak: ";", ramps: [SPIRIT, SPIRIT_BARK] }),
   ],
 }))
 
