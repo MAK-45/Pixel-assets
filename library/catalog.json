@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 24,
-  "variants": 235
+  "assets": 27,
+  "variants": 247
  },
  "categories": [
   {
@@ -14,7 +14,10 @@
    "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
    "icon": "scenes/summer_plain/day",
    "assets": [
-    "scenes/summer_plain"
+    "scenes/brook_ford",
+    "scenes/glade_pond",
+    "scenes/summer_plain",
+    "scenes/wheat_edge"
    ]
   },
   {
@@ -90,6 +93,344 @@
   }
  ],
  "assets": {
+  "scenes/brook_ford": {
+   "id": "scenes/brook_ford",
+   "slug": "brook_ford",
+   "category": "scenes",
+   "title": "Gué du ruisseau",
+   "description": "Scène statique 16:9 (base 320 × 180) vue de dessus en 3/4, façon RPG : un ruisseau d'été traverse le haut de l'écran de gauche à droite, sorti d'une petite cascade au pied d'un rocher moussu ; un chemin de terre le franchit sur des pierres de gué. Au-delà, la rive boisée ; en deçà, une prairie fleurie bordée d'arbres. Le centre et le bas de l'écran restent dégagés pour un personnage (ligne des pieds conseillée y = 140) ; hautes herbes et buissons du premier plan passent devant lui. Animations : courant qui file, écume autour des pierres et au pied de la cascade, éclats de soleil, herbe au vent, papillons, ombres de nuages, aigrettes et oiseaux le jour ; poussière dorée au crépuscule ; lucioles au-dessus de l'eau la nuit ; vent fort par temps sombre.",
+   "tags": [
+    "scene",
+    "static",
+    "top-down",
+    "rpg",
+    "stream",
+    "brook",
+    "river",
+    "ford",
+    "waterfall",
+    "meadow",
+    "summer",
+    "day-night",
+    "arena"
+   ],
+   "order": 0,
+   "source": "assets/scenes/brook_ford.px.js",
+   "module": "library/js/scenes/brook_ford.js",
+   "sheet": {
+    "png": "library/sheets/scenes/brook_ford.png",
+    "json": "library/sheets/scenes/brook_ford.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "dusk",
+     "night",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 4,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "brook_ford_day",
+     "id": "scenes/brook_ford/day",
+     "label": "Jour",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "butterflies",
+      "cloud-shadows",
+      "pollen",
+      "birds",
+      "water"
+     ],
+     "png": "library/png/scenes/brook_ford/day.png"
+    },
+    "dusk": {
+     "key": "dusk",
+     "name": "brook_ford_dusk",
+     "id": "scenes/brook_ford/dusk",
+     "label": "Crépuscule",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "dusk"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "dust"
+     ],
+     "png": "library/png/scenes/brook_ford/dusk.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "brook_ford_night",
+     "id": "scenes/brook_ford/night",
+     "label": "Nuit",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "moonlight",
+      "fireflies"
+     ],
+     "png": "library/png/scenes/brook_ford/night.png"
+    },
+    "overcast": {
+     "key": "overcast",
+     "name": "brook_ford_overcast",
+     "id": "scenes/brook_ford/overcast",
+     "label": "Sombre",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "overcast"
+     },
+     "tags": [
+      "dark",
+      "wind",
+      "cloudy"
+     ],
+     "png": "library/png/scenes/brook_ford/overcast.png"
+    }
+   },
+   "scene": {
+    "type": "static",
+    "dynamic": false,
+    "w": 320,
+    "h": 180,
+    "groundY": 140,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Jour"
+     },
+     {
+      "id": "dusk",
+      "label": "Crépuscule"
+     },
+     {
+      "id": "night",
+      "label": "Nuit"
+     },
+     {
+      "id": "overcast",
+      "label": "Sombre"
+     }
+    ],
+    "planes": [
+     {
+      "id": "backdrop",
+      "label": "Bords (vue élargie)",
+      "factor": 0
+     },
+     {
+      "id": "ground",
+      "label": "Ruisseau et prairie",
+      "factor": 0
+     },
+     {
+      "id": "front",
+      "label": "Premier plan",
+      "factor": 0,
+      "front": true,
+      "optional": true
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/brook_ford/",
+    "json": "library/scenes/brook_ford/scene.json",
+    "bundle": "library/scenes/brook_ford/brook_ford.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
+  "scenes/glade_pond": {
+   "id": "scenes/glade_pond",
+   "slug": "glade_pond",
+   "category": "scenes",
+   "title": "Clairière de la mare",
+   "description": "Scène statique 16:9 (base 320 × 180) vue de dessus en 3/4, façon RPG : une clairière d'été bordée par la lisière d'une forêt (chênes, sapins, bouleau), une mare aux nénuphars et aux roseaux en haut à droite, un chemin de terre qui monte vers la forêt. Le centre et le bas de l'écran restent dégagés pour un personnage (ligne des pieds conseillée y = 140) ; buissons et hautes herbes du premier plan passent devant lui. Animations : herbe au vent, ronds dans l'eau, éclats de soleil, poisson qui saute, papillons, ombres de nuages, pollen et oiseaux le jour ; poussière dorée et ronds dans l'eau au crépuscule ; lucioles la nuit ; vent fort par temps sombre.",
+   "tags": [
+    "scene",
+    "static",
+    "top-down",
+    "rpg",
+    "glade",
+    "pond",
+    "forest",
+    "meadow",
+    "summer",
+    "day-night",
+    "arena"
+   ],
+   "order": 0,
+   "source": "assets/scenes/glade_pond.px.js",
+   "module": "library/js/scenes/glade_pond.js",
+   "sheet": {
+    "png": "library/sheets/scenes/glade_pond.png",
+    "json": "library/sheets/scenes/glade_pond.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "dusk",
+     "night",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 4,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "glade_pond_day",
+     "id": "scenes/glade_pond/day",
+     "label": "Jour",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "butterflies",
+      "cloud-shadows",
+      "pollen",
+      "birds",
+      "fish"
+     ],
+     "png": "library/png/scenes/glade_pond/day.png"
+    },
+    "dusk": {
+     "key": "dusk",
+     "name": "glade_pond_dusk",
+     "id": "scenes/glade_pond/dusk",
+     "label": "Crépuscule",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "dusk"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "dust"
+     ],
+     "png": "library/png/scenes/glade_pond/dusk.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "glade_pond_night",
+     "id": "scenes/glade_pond/night",
+     "label": "Nuit",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "moonlight",
+      "fireflies"
+     ],
+     "png": "library/png/scenes/glade_pond/night.png"
+    },
+    "overcast": {
+     "key": "overcast",
+     "name": "glade_pond_overcast",
+     "id": "scenes/glade_pond/overcast",
+     "label": "Sombre",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "overcast"
+     },
+     "tags": [
+      "dark",
+      "wind",
+      "cloudy"
+     ],
+     "png": "library/png/scenes/glade_pond/overcast.png"
+    }
+   },
+   "scene": {
+    "type": "static",
+    "dynamic": false,
+    "w": 320,
+    "h": 180,
+    "groundY": 140,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Jour"
+     },
+     {
+      "id": "dusk",
+      "label": "Crépuscule"
+     },
+     {
+      "id": "night",
+      "label": "Nuit"
+     },
+     {
+      "id": "overcast",
+      "label": "Sombre"
+     }
+    ],
+    "planes": [
+     {
+      "id": "backdrop",
+      "label": "Bords (vue élargie)",
+      "factor": 0
+     },
+     {
+      "id": "ground",
+      "label": "Clairière",
+      "factor": 0
+     },
+     {
+      "id": "front",
+      "label": "Premier plan",
+      "factor": 0,
+      "front": true,
+      "optional": true
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/glade_pond/",
+    "json": "library/scenes/glade_pond/scene.json",
+    "bundle": "library/scenes/glade_pond/glade_pond.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
   "scenes/summer_plain": {
    "id": "scenes/summer_plain",
    "slug": "summer_plain",
@@ -283,6 +624,176 @@
     "pack": "library/scenes/summer_plain/",
     "json": "library/scenes/summer_plain/scene.json",
     "bundle": "library/scenes/summer_plain/summer_plain.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
+  "scenes/wheat_edge": {
+   "id": "scenes/wheat_edge",
+   "slug": "wheat_edge",
+   "category": "scenes",
+   "title": "Lisière du champ de blé",
+   "description": "Scène statique 16:9 (base 320 × 180) vue de dessus en 3/4, façon RPG : en haut, un champ de blé mûr semé de coquelicots, fermé par une clôture de bois ouverte au milieu sur un chemin de terre ; à droite, un grand chêne et son ombre ; à gauche, une haie fleurie et des tournesols le long de la clôture. Le centre et le bas de l'écran restent un pré dégagé pour un personnage (ligne des pieds conseillée y = 140) ; hautes herbes et buissons du premier plan passent devant lui. Animations : vagues de vent qui courent sur le blé, herbe au vent, papillons, grandes ombres de nuages, pollen et oiseaux le jour ; poussière dorée au crépuscule ; lucioles la nuit ; vent fort par temps sombre.",
+   "tags": [
+    "scene",
+    "static",
+    "top-down",
+    "rpg",
+    "wheat",
+    "field",
+    "farm",
+    "fence",
+    "oak",
+    "meadow",
+    "summer",
+    "day-night",
+    "arena"
+   ],
+   "order": 0,
+   "source": "assets/scenes/wheat_edge.px.js",
+   "module": "library/js/scenes/wheat_edge.js",
+   "sheet": {
+    "png": "library/sheets/scenes/wheat_edge.png",
+    "json": "library/sheets/scenes/wheat_edge.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "dusk",
+     "night",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 4,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "wheat_edge_day",
+     "id": "scenes/wheat_edge/day",
+     "label": "Jour",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "butterflies",
+      "cloud-shadows",
+      "pollen",
+      "birds",
+      "wind"
+     ],
+     "png": "library/png/scenes/wheat_edge/day.png"
+    },
+    "dusk": {
+     "key": "dusk",
+     "name": "wheat_edge_dusk",
+     "id": "scenes/wheat_edge/dusk",
+     "label": "Crépuscule",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "dusk"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "dust"
+     ],
+     "png": "library/png/scenes/wheat_edge/dusk.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "wheat_edge_night",
+     "id": "scenes/wheat_edge/night",
+     "label": "Nuit",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "moonlight",
+      "fireflies"
+     ],
+     "png": "library/png/scenes/wheat_edge/night.png"
+    },
+    "overcast": {
+     "key": "overcast",
+     "name": "wheat_edge_overcast",
+     "id": "scenes/wheat_edge/overcast",
+     "label": "Sombre",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "overcast"
+     },
+     "tags": [
+      "dark",
+      "wind",
+      "cloudy"
+     ],
+     "png": "library/png/scenes/wheat_edge/overcast.png"
+    }
+   },
+   "scene": {
+    "type": "static",
+    "dynamic": false,
+    "w": 320,
+    "h": 180,
+    "groundY": 140,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Jour"
+     },
+     {
+      "id": "dusk",
+      "label": "Crépuscule"
+     },
+     {
+      "id": "night",
+      "label": "Nuit"
+     },
+     {
+      "id": "overcast",
+      "label": "Sombre"
+     }
+    ],
+    "planes": [
+     {
+      "id": "backdrop",
+      "label": "Bords (vue élargie)",
+      "factor": 0
+     },
+     {
+      "id": "ground",
+      "label": "Champ et pré",
+      "factor": 0
+     },
+     {
+      "id": "front",
+      "label": "Premier plan",
+      "factor": 0,
+      "front": true,
+      "optional": true
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/wheat_edge/",
+    "json": "library/scenes/wheat_edge/scene.json",
+    "bundle": "library/scenes/wheat_edge/wheat_edge.js",
     "runtime": "library/scene-runtime.js"
    }
   },

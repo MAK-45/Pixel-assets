@@ -97,7 +97,10 @@ scripts/                     build.js, check.js, dev.js, new-asset.js, scene-pre
 **Scène dynamique** (décor qui défile en parallaxe, fond ou niveau de platformer/runner) : workflow complet dans le
 skill **`/scene-dynamique`** (`.claude/skills/scene-dynamique/SKILL.md`). Référence validée par l'utilisateur :
 `assets/scenes/summer_plain.px.js`. **Scène statique** (écran fixe) : un skill dédié est prévu, pas encore écrit ;
-en attendant, demander à l'utilisateur comment procéder.
+en attendant, demander à l'utilisateur comment procéder. Premières propositions en vue de dessus 3/4 (centre libre pour
+le personnage, en attente de validation) : `glade_pond`, `brook_ford`, `wheat_edge`, avec leur kit
+`assets/scenes/_topdown.px.js` (sol d'herbe, chemin, mare, ombres au sol, objets triés par profondeur, eau animée,
+cartes de couleurs `TD`/`NEAR_W`) ; `test-scene.cjs` teste aussi les scènes statiques.
 
 Une scène = `assets/scenes/<asset>.px.js` (inclut `../_palette.px.js` puis `_kit.px.js`). Elle ne définit que des **parties privées** (`_nom`) et se décrit dans
 `meta.scene` ; ses **variantes sont ses périodes** (`day`, `dusk`, `night`, `overcast`…). Toujours dire si elle est :

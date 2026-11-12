@@ -1,0 +1,909 @@
+{
+ "format": 1,
+ "id": "scenes/wheat_edge",
+ "title": "Lisière du champ de blé",
+ "type": "static",
+ "w": 320,
+ "h": 180,
+ "groundY": 140,
+ "defaultPeriod": "day",
+ "periods": [
+  {
+   "id": "day",
+   "label": "Jour"
+  },
+  {
+   "id": "dusk",
+   "label": "Crépuscule"
+  },
+  {
+   "id": "night",
+   "label": "Nuit"
+  },
+  {
+   "id": "overcast",
+   "label": "Sombre"
+  }
+ ],
+ "planes": [
+  {
+   "id": "backdrop",
+   "label": "Bords (vue élargie)",
+   "factor": 0,
+   "y": -60,
+   "images": {
+    "day": {
+     "w": 14,
+     "h": 240,
+     "fill": "#f3c34a",
+     "png": "day/backdrop.png"
+    },
+    "dusk": {
+     "w": 14,
+     "h": 240,
+     "fill": "#e0782a",
+     "png": "dusk/backdrop.png"
+    },
+    "night": {
+     "w": 14,
+     "h": 240,
+     "fill": "#2a4752",
+     "png": "night/backdrop.png"
+    },
+    "overcast": {
+     "w": 14,
+     "h": 240,
+     "fill": "#c99a5b",
+     "png": "overcast/backdrop.png"
+    }
+   },
+   "kind": "sky"
+  },
+  {
+   "id": "ground",
+   "label": "Champ et pré",
+   "factor": 0,
+   "y": 0,
+   "images": {
+    "day": {
+     "w": 320,
+     "h": 180,
+     "png": "day/ground.png"
+    },
+    "dusk": {
+     "w": 320,
+     "h": 180,
+     "png": "dusk/ground.png"
+    },
+    "night": {
+     "w": 320,
+     "h": 180,
+     "png": "night/ground.png"
+    },
+    "overcast": {
+     "w": 320,
+     "h": 180,
+     "png": "overcast/ground.png"
+    }
+   },
+   "actors": [
+    {
+     "sprite": "wave",
+     "x": 0,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 30,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 60,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 90,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 120,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 180,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 210,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 240,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 270,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 300,
+     "y": 0,
+     "phase": 0
+    },
+    {
+     "sprite": "wave",
+     "x": 0,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 30,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 60,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 90,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 120,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 180,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 210,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 240,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 270,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 300,
+     "y": 12,
+     "phase": 520
+    },
+    {
+     "sprite": "wave",
+     "x": 0,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 30,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 60,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 90,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 120,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 180,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 210,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 240,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 270,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 300,
+     "y": 24,
+     "phase": 40
+    },
+    {
+     "sprite": "wave",
+     "x": 0,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 30,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 60,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 90,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 120,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 180,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 210,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 240,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 270,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "wave",
+     "x": 300,
+     "y": 36,
+     "phase": 560
+    },
+    {
+     "sprite": "grass",
+     "x": 48,
+     "y": 140,
+     "phase": 0
+    },
+    {
+     "sprite": "grass",
+     "x": 116,
+     "y": 112,
+     "phase": 337,
+     "flip": true
+    },
+    {
+     "sprite": "grass",
+     "x": 204,
+     "y": 120,
+     "phase": 674
+    },
+    {
+     "sprite": "grass",
+     "x": 270,
+     "y": 150,
+     "phase": 211,
+     "flip": true
+    },
+    {
+     "sprite": "grass",
+     "x": 80,
+     "y": 160,
+     "phase": 548
+    }
+   ]
+  },
+  {
+   "id": "front",
+   "label": "Premier plan",
+   "factor": 0,
+   "y": 0,
+   "images": {
+    "day": {
+     "w": 320,
+     "h": 180,
+     "png": "day/front.png"
+    },
+    "dusk": {
+     "w": 320,
+     "h": 180,
+     "png": "dusk/front.png"
+    },
+    "night": {
+     "w": 320,
+     "h": 180,
+     "png": "night/front.png"
+    },
+    "overcast": {
+     "w": 320,
+     "h": 180,
+     "png": "overcast/front.png"
+    }
+   },
+   "front": true,
+   "optional": true,
+   "actors": [
+    {
+     "sprite": "tall",
+     "x": 44,
+     "y": 156,
+     "phase": 0
+    },
+    {
+     "sprite": "tall",
+     "x": 256,
+     "y": 158,
+     "phase": 400,
+     "flip": true
+    }
+   ]
+  }
+ ],
+ "sprites": {
+  "grass": {
+   "day": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/grass_day.png"
+   },
+   "dusk": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/grass_dusk.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/grass_night.png"
+   },
+   "overcast": {
+    "w": 16,
+    "h": 13,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/grass_overcast.png"
+   }
+  },
+  "tall": {
+   "day": {
+    "w": 32,
+    "h": 30,
+    "ms": [
+     167,
+     167,
+     167,
+     167,
+     167,
+     167
+    ],
+    "png": "sprites/tall_day.png"
+   },
+   "dusk": {
+    "w": 32,
+    "h": 30,
+    "ms": [
+     167,
+     167,
+     167,
+     167,
+     167,
+     167
+    ],
+    "png": "sprites/tall_dusk.png"
+   },
+   "night": {
+    "w": 32,
+    "h": 30,
+    "ms": [
+     167,
+     167,
+     167,
+     167,
+     167,
+     167
+    ],
+    "png": "sprites/tall_night.png"
+   },
+   "overcast": {
+    "w": 32,
+    "h": 30,
+    "ms": [
+     167,
+     167,
+     167,
+     167,
+     167,
+     167
+    ],
+    "png": "sprites/tall_overcast.png"
+   }
+  },
+  "wave": {
+   "day": {
+    "w": 30,
+    "h": 12,
+    "ms": [
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125
+    ],
+    "png": "sprites/wave_day.png"
+   },
+   "dusk": {
+    "w": 30,
+    "h": 12,
+    "ms": [
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125
+    ],
+    "png": "sprites/wave_dusk.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 12,
+    "ms": [
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125
+    ],
+    "png": "sprites/wave_night.png"
+   },
+   "overcast": {
+    "w": 30,
+    "h": 12,
+    "ms": [
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125
+    ],
+    "png": "sprites/wave_overcast.png"
+   }
+  },
+  "bfly_white": {
+   "*": {
+    "w": 7,
+    "h": 5,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/bfly_white.png"
+   }
+  },
+  "bfly_yellow": {
+   "*": {
+    "w": 7,
+    "h": 5,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/bfly_yellow.png"
+   }
+  },
+  "bfly_monarch": {
+   "*": {
+    "w": 7,
+    "h": 5,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/bfly_monarch.png"
+   }
+  },
+  "glow": {
+   "*": {
+    "w": 5,
+    "h": 5,
+    "ms": [
+     600,
+     100,
+     100,
+     200,
+     100,
+     100
+    ],
+    "png": "sprites/glow.png"
+   }
+  },
+  "glow_amber": {
+   "*": {
+    "w": 5,
+    "h": 5,
+    "ms": [
+     600,
+     100,
+     100,
+     200,
+     100,
+     100
+    ],
+    "png": "sprites/glow_amber.png"
+   }
+  },
+  "bird": {
+   "*": {
+    "w": 7,
+    "h": 4,
+    "ms": [
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/bird.png"
+   }
+  },
+  "cloud_a": {
+   "*": {
+    "w": 130,
+    "h": 52,
+    "png": "sprites/cloud_a.png"
+   }
+  },
+  "cloud_b": {
+   "*": {
+    "w": 96,
+    "h": 40,
+    "png": "sprites/cloud_b.png"
+   }
+  },
+  "pollen": {
+   "*": {
+    "w": 1,
+    "h": 1,
+    "png": "sprites/pollen.png"
+   }
+  },
+  "fluff": {
+   "*": {
+    "w": 3,
+    "h": 3,
+    "png": "sprites/fluff.png"
+   }
+  },
+  "gold": {
+   "*": {
+    "w": 1,
+    "h": 1,
+    "png": "sprites/gold.png"
+   }
+  }
+ },
+ "effects": {
+  "day": [
+   {
+    "type": "butterflies",
+    "sprites": [
+     "bfly_white",
+     "bfly_yellow",
+     "bfly_monarch"
+    ],
+    "plane": "ground",
+    "count": 6,
+    "anchors": [
+     [
+      42,
+      56
+     ],
+     [
+      64,
+      54
+     ],
+     [
+      88,
+      57
+     ],
+     [
+      10,
+      82
+     ],
+     [
+      129,
+      58
+     ],
+     [
+      46,
+      108
+     ],
+     [
+      77,
+      94
+     ],
+     [
+      91,
+      118
+     ],
+     [
+      29,
+      136
+     ],
+     [
+      233,
+      132
+     ],
+     [
+      259,
+      142
+     ]
+    ],
+    "after": "ground"
+   },
+   {
+    "type": "motes",
+    "sprites": [
+     "pollen",
+     "pollen",
+     "fluff"
+    ],
+    "count": 14,
+    "area": [
+     0,
+     20,
+     320,
+     160
+    ],
+    "wind": [
+     4,
+     9
+    ],
+    "after": "front"
+   },
+   {
+    "type": "shadows",
+    "sprites": [
+     "cloud_a",
+     "cloud_b"
+    ],
+    "count": 2,
+    "every": [
+     9000,
+     16000
+    ],
+    "speed": [
+     6,
+     10
+    ],
+    "alpha": 0.16,
+    "y": [
+     -60,
+     120
+    ],
+    "after": "front"
+   },
+   {
+    "type": "birds",
+    "sprite": "bird",
+    "every": [
+     14000,
+     26000
+    ],
+    "count": [
+     3,
+     6
+    ],
+    "y": [
+     6,
+     50
+    ],
+    "speed": [
+     18,
+     26
+    ],
+    "factor": 0,
+    "after": "front"
+   }
+  ],
+  "dusk": [
+   {
+    "type": "motes",
+    "sprites": [
+     "gold"
+    ],
+    "count": 22,
+    "area": [
+     0,
+     10,
+     320,
+     170
+    ],
+    "wind": [
+     1,
+     4
+    ],
+    "fall": [
+     -2,
+     1
+    ],
+    "after": "front"
+   },
+   {
+    "type": "birds",
+    "sprite": "bird",
+    "every": [
+     10000,
+     20000
+    ],
+    "count": [
+     4,
+     7
+    ],
+    "y": [
+     6,
+     40
+    ],
+    "speed": [
+     16,
+     22
+    ],
+    "factor": 0,
+    "after": "front"
+   }
+  ],
+  "night": [
+   {
+    "type": "fireflies",
+    "sprites": [
+     "glow",
+     "glow",
+     "glow_amber"
+    ],
+    "plane": "ground",
+    "count": 18,
+    "area": [
+     0,
+     50,
+     320,
+     120
+    ],
+    "front": 0.3,
+    "after": "ground"
+   }
+  ],
+  "overcast": [
+   {
+    "type": "motes",
+    "sprites": [
+     "fluff"
+    ],
+    "count": 8,
+    "area": [
+     0,
+     20,
+     320,
+     160
+    ],
+    "wind": [
+     14,
+     24
+    ],
+    "fall": [
+     0,
+     3
+    ],
+    "after": "front"
+   }
+  ]
+ },
+ "speed": {
+  "overcast": 2
+ }
+}

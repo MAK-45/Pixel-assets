@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Teste une scène dynamique construite (après `npm run build`) dans Chromium (Playwright) :
+// Teste une scène construite (dynamique ou statique) (après `npm run build`) dans Chromium (Playwright) :
 //   1. le module exporté library/scenes/<asset>/<asset>.js seul : chaque période après une marche
 //      (événements accélérés), un fondu, une vue élargie 1366×768 ;
 //   2. avec --gallery : la galerie autonome docs/index.html (visionneuse, périodes, export .js
@@ -35,10 +35,7 @@ try {
 }
 const scene = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 const periods = scene.periods.map((p) => p.id);
-if (scene.type !== "parallax") {
-  console.error(`${slug} est une scène « ${scene.type} » : ce test ne vise que les scènes dynamiques (parallax).`);
-  process.exit(1);
-}
+const dynamic = scene.type === "parallax"; // les scènes statiques passent les mêmes tests (sans défilement)
 fs.mkdirSync(OUT, { recursive: true });
 
 const PAGE = `<!doctype html><html><body style="margin:0;background:#000"><canvas id="c"></canvas>
@@ -88,6 +85,7 @@ const watch = (page, where) => {
   const shots = periods.map((p, i) => [`${p}`, { W: 960, H: 540, period: p, cam: i % 2 ? -900 : 900, ms: 15000 }]);
   if (periods.length > 1) shots.push([`fade_${periods[0]}_${periods[periods.length - 1]}`, { W: 960, H: 540, period: periods[0], cam: 300, ms: 4000, fadeTo: periods[periods.length - 1], fadeAt: 3000 }]);
   shots.push(["wide_1366x768", { W: 1366, H: 768, period: periods[0], cam: 500, ms: 6000 }]);
+  shots.push(["wide_1440x900", { W: 1440, H: 900, period: periods[0], cam: 500, ms: 6000 }]);
   for (const [name, a] of shots) {
     try {
       const info = await page.evaluate((x) => window.run(x), a);
@@ -110,8 +108,9 @@ const watch = (page, where) => {
       await g.waitForSelector("#viewer[open]", { timeout: 15000 });
       await g.waitForTimeout(800);
       const badge = await g.textContent("#v-title .badge");
-      if (await g.isHidden("#v-move-group")) problems.push("galerie : commandes de déplacement masquées pour une scène dynamique");
-      if (!badge.includes("Dynamique")) problems.push(`galerie : badge « ${badge} » au lieu de ⇄ Dynamique`);
+      if (dynamic && await g.isHidden("#v-move-group")) problems.push("galerie : commandes de déplacement masquées pour une scène dynamique");
+      const want = dynamic ? "Dynamique" : "Statique";
+      if (!badge.includes(want)) problems.push(`galerie : badge « ${badge} » au lieu de ${want}`);
       for (const p of periods) {
         await g.click(`#v-periods button[data-period="${p}"]`);
         await g.waitForTimeout(1600);

@@ -155,6 +155,11 @@ Coordonnées en pixels de base. `area` = `[x, y, w, h]`. `after` = id du plan ap
 | `birds` | `sprite`, `every`, `count: [min, max]`, `y: [min, max]`, `speed`, `factor` (parallaxe, ≈ 0,12) | petit vol qui traverse le ciel (`bird_far_8`, `far_light_8` pour des mouettes) ; `after: "far"` ou `"mountains"` |
 | `butterflies` | `sprites: [...]`, `plane`, `count`, `anchors: [[x, y], …]` (coordonnées du plan) | voltigent autour de points d'ancrage (au-dessus des fleurs) et défilent avec leur plan |
 | `fireflies` | `sprites` ou `sprite`, `plane`, `count`, `area` (coordonnées du plan, `w` = largeur de la bande), `front` (part 0..1 dessinée devant le personnage) | lucioles qui flottent et clignotent |
+| `shadows` | `sprites` ou `sprite`, `count` (présentes au départ), `every: [min, max]` ms, `speed: [min, max]` px/s, `alpha` (≈ 0,16), `y: [min, max]`, `dir` (1 = vers la droite), `slope` | ombres de nuages qui glissent sur le sol, en transparence (scènes vues de dessus) ; `after: "front"` pour passer aussi sur le personnage |
+| `motes` | `sprites` ou `sprite`, `count`, `area` (écran), `wind: [min, max]` px/s, `fall: [min, max]` px/s | pollen, aigrettes, poussière dorée qui flottent et reviennent par l'autre bord |
+
+Les effets `butterflies` et `fireflies` marchent aussi sur un plan fixe (scène statique) : leurs coordonnées sont
+alors celles de l'image, centrée dans la vue comme le plan.
 
 Fréquences typiques : étoile filante toutes les 6 à 15 s, vol d'oiseaux toutes les 14 à 28 s. Le jeu peut tout
 accélérer ou couper (`createScene({ frequency, effects: false })`).

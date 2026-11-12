@@ -68,6 +68,11 @@ function wrapX(px, off, W, width, margin) {
   return x;
 }
 
+/** Position à l'écran d'un point d'un plan : bande bouclée, ou plan fixe centré dans la vue. */
+function planeX(plane, px, off, width, margin) {
+  return plane.loop ? wrapX(px, off, plane.W, width, margin) : px + Math.round((width - plane.W) / 2);
+}
+
 // ================================================================ effets d'ambiance
 
 // Chaque effet : { update(dt, dCam, camX), draw(ctx, view, front) } ; `after` = id du plan après
@@ -174,7 +179,7 @@ const EFFECTS = {
           const s = f.t / 1000;
           const px = f.x + Math.sin(s * f.a + f.p) * f.rx + Math.sin(s * 2.3 + f.p) * 2;
           const py = f.y + Math.sin(s * f.b + f.p * 2) * f.ry - Math.abs(Math.sin(s * 3 + f.p)) * 2;
-          const x = wrapX(px, off, W, v.width, f.img.w);
+          const x = planeX(plane, px, off, v.width, f.img.w);
           blit(ctx, f.img, frameAt(f.img, f.t), x - f.img.w / 2, plane.y + py + v.dy - f.img.h / 2, Math.cos(s * f.a + f.p) < 0);
         }
       },
@@ -199,7 +204,7 @@ const EFFECTS = {
           const s = f.t / 1000 * f.sp;
           const px = f.x + Math.sin(s + f.p) * 10 + Math.sin(s * 2.7 + f.p) * 3;
           const py = f.y + Math.sin(s * 1.3 + f.p * 2) * 4;
-          const x = wrapX(px, off, W, v.width, f.img.w);
+          const x = planeX(plane, px, off, v.width, f.img.w);
           blit(ctx, f.img, frameAt(f.img, f.t), x - f.img.w / 2, plane.y + py + v.dy - f.img.h / 2);
         }
       },
@@ -207,6 +212,76 @@ const EFFECTS = {
     };
   },
 };
+
+EFFECTS.shadows = shadows;
+EFFECTS.motes = motes;
+
+// Ombres de nuages qui glissent sur le sol (vue de dessus) : sprites sombres dessinés en transparence.
+function shadows(cfg, S) {
+  const r = S.random, imgs = (cfg.sprites ?? [cfg.sprite]).map((n) => S.sprite(n));
+  const alpha = cfg.alpha ?? 0.18, dir = cfg.dir ?? 1, slope = cfg.slope ?? 0.3;
+  const live = [];
+  const spawn = (x) => {
+    const img = pick(r, imgs);
+    const y = between(r, cfg.y ?? [-40, S.h]);
+    live.push({ img, x: x ?? (dir > 0 ? -img.w : S.view.width), y, speed: between(r, cfg.speed ?? [5, 9]) });
+  };
+  // quelques ombres déjà présentes au départ
+  for (let i = 0; i < (cfg.count ?? 2); i++) spawn(r() * S.view.width - 40);
+  let wait = between(r, cfg.every ?? [9000, 18000]) * r();
+  return {
+    update(dt) {
+      wait -= dt * S.frequency;
+      if (wait <= 0) { wait = between(r, cfg.every ?? [9000, 18000]); spawn(); }
+      for (let i = live.length - 1; i >= 0; i--) {
+        const s = live[i];
+        s.x += (dir * s.speed * dt) / 1000;
+        s.y += (slope * s.speed * dt) / 1000;
+        if (s.x > S.view.width + 20 || s.x < -s.img.w - 20 || s.y > S.view.height + 20) live.splice(i, 1);
+      }
+    },
+    draw(ctx, v) {
+      const a = ctx.globalAlpha;
+      ctx.globalAlpha = a * alpha;
+      for (const s of live) blit(ctx, s.img, frameAt(s.img, 0), s.x, s.y + v.dy);
+      ctx.globalAlpha = a;
+    },
+  };
+}
+
+// Petites particules qui flottent et dérivent au vent (pollen, aigrettes, poussière dorée du soir).
+// area = zone d'apparition à l'écran [x, y, w, h] ; elles traversent la vue et reviennent de l'autre côté.
+function motes(cfg, S) {
+  const r = S.random, imgs = (cfg.sprites ?? [cfg.sprite]).map((n) => S.sprite(n));
+  const [ax, ay, aw, ah] = cfg.area ?? [0, 0, S.w, S.h];
+  const wind = cfg.wind ?? [3, 7];
+  const list = Array.from({ length: cfg.count ?? 12 }, () => ({
+    x: ax + r() * aw, y: ay + r() * ah, img: pick(r, imgs), vx: between(r, wind), vy: between(r, cfg.fall ?? [-1, 1]),
+    p: r() * 6, a: 0.4 + r() * 0.6, t: r() * 10000,
+  }));
+  return {
+    update(dt) {
+      for (const m of list) {
+        m.t += dt;
+        m.x += (m.vx * dt) / 1000;
+        m.y += (m.vy * dt) / 1000;
+        if (m.x > ax + aw + 6) m.x = ax - 6;
+        if (m.x < ax - 6) m.x = ax + aw + 6;
+        if (m.y > ay + ah + 6) m.y = ay - 6;
+        if (m.y < ay - 6) m.y = ay + ah + 6;
+      }
+    },
+    draw(ctx, v) {
+      const cx = Math.round((v.width - S.w) / 2);
+      for (const m of list) {
+        const s = m.t / 1000;
+        const x = cx + m.x + Math.sin(s * m.a + m.p) * 4;
+        const y = m.y + Math.sin(s * m.a * 1.7 + m.p * 2) * 3;
+        blit(ctx, m.img, frameAt(m.img, m.t), x - m.img.w / 2, y + v.dy - m.img.h / 2);
+      }
+    },
+  };
+}
 
 // ================================================================ scène
 
@@ -293,22 +368,28 @@ export async function createSceneFrom(data, opts = {}) {
     }
     const y = p.y + v.dy;
     if (!p.loop) {
-      blit(ctx, img, frameAt(img, time), Math.round((v.width - img.w) / 2), y);
+      // plan fixe (scène statique) : centré dans la vue, acteurs posés à leur place
+      const x0 = Math.round((v.width - img.w) / 2);
+      blit(ctx, img, frameAt(img, time), x0, y);
+      drawActors(ctx, p, st, y, (a) => x0 + a.x);
       return;
     }
     const off = Math.round(camX * p.factor + (time / 1000) * (p.driftBy?.[st.id] ?? p.drift ?? 0));
     const x0 = -mod(off, img.w);
     for (let x = x0; x < v.width; x += img.w) blit(ctx, img, frameAt(img, time), x, y);
     // acteurs animés (herbe au vent…) posés sur la bande, désynchronisés
-    if (p.actors) {
-      const t = time * speedOf(st.id);
-      for (const a of p.actors) {
-        const s = sprites[a.sprite];
-        const ai = s && (s[st.id] ?? s["*"]);
-        if (!ai) continue;
-        const ax = wrapX(a.x, off, img.w, v.width, ai.w);
-        if (ax > -ai.w && ax < v.width) blit(ctx, ai, frameAt(ai, t + (a.phase ?? 0)), ax, y + a.y, !!a.flip);
-      }
+    drawActors(ctx, p, st, y, (a, ai) => wrapX(a.x, off, img.w, v.width, ai.w), v.width);
+  }
+
+  function drawActors(ctx, p, st, y, xOf, width = Infinity) {
+    if (!p.actors) return;
+    const t = time * speedOf(st.id);
+    for (const a of p.actors) {
+      const s = sprites[a.sprite];
+      const ai = s && (s[st.id] ?? s["*"]);
+      if (!ai) continue;
+      const ax = xOf(a, ai);
+      if (ax > -ai.w && ax < width) blit(ctx, ai, frameAt(ai, t + (a.phase ?? 0)), ax, y + a.y, !!a.flip);
     }
   }
 

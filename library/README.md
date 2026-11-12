@@ -116,7 +116,12 @@ porte un résumé `scene` :
 
 - `type: "parallax"` (**dynamique**) : plusieurs plans (bandes qui bouclent sans couture) défilent chacun à sa vitesse
   (`factor` : 0 = fixe, 1 = vitesse du sol) quand la caméra bouge, à l'infini dans les deux sens ;
-  `type: "static"` (**statique**) : un écran fixe. Le `kind` des variantes vaut `"parallax"` ou `"scene"`.
+  `type: "static"` (**statique**) : un écran fixe, centré dans la vue (plans en `factor: 0`, acteurs animés posés à
+  leur place ; ex. les scènes vues de dessus en 3/4 `glade_pond`, `brook_ford`, `wheat_edge`, dont le centre est libre
+  pour le personnage). La caméra n'a pas d'effet : appeler `scene.update(dt)`. Le `kind` des variantes vaut
+  `"parallax"` ou `"scene"`.
+- Effets d'ambiance (gérés par le moteur) : `twinkle`, `shooting`, `birds`, `butterflies`, `fireflies`, `shadows`
+  (ombres de nuages qui glissent sur le sol, en transparence) et `motes` (pollen, aigrettes ou poussière qui flottent).
 - `groundY` : ligne de sol (y des pieds du personnage) ; `planes` : plans du fond vers l'avant, `front: true` =
   dessiné devant le personnage.
 - Les variantes n'ont pas de `rows` (images trop grandes) : `src` est l'aperçu de la période (caméra à 0).
