@@ -1382,7 +1382,7 @@ export const catalog = {
    "slug": "fxtree",
    "category": "nature",
    "title": "Arbre (style pixelfx)",
-   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, pétales, feuilles, neige scintillante). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
    "tags": [
     "tree",
     "plant",
@@ -1415,9 +1415,7 @@ export const catalog = {
     ],
     "effect": [
      "none",
-     "leaves",
      "fireflies",
-     "petals",
      "snow",
      "glow"
     ]
@@ -1449,7 +1447,7 @@ export const catalog = {
      "key": "oak_autumn_64",
      "name": "fxtree_oak_autumn_64",
      "id": "nature/fxtree/oak_autumn_64",
-     "label": "Chêne – automne, feuilles qui tombent (64 px)",
+     "label": "Chêne – automne (64 px)",
      "kind": "sprite",
      "w": 64,
      "h": 64,
@@ -1457,7 +1455,7 @@ export const catalog = {
      "props": {
       "species": "oak",
       "season": "autumn",
-      "effect": "leaves"
+      "effect": "none"
      },
      "tags": [],
      "png": "library/png/nature/fxtree/oak_autumn_64.png"
@@ -1486,7 +1484,7 @@ export const catalog = {
      "key": "cherry_64",
      "name": "fxtree_cherry_64",
      "id": "nature/fxtree/cherry_64",
-     "label": "Cerisier en fleurs, pétales au vent (64 px)",
+     "label": "Cerisier en fleurs (64 px)",
      "kind": "sprite",
      "w": 64,
      "h": 64,
@@ -1494,7 +1492,7 @@ export const catalog = {
      "props": {
       "species": "cherry",
       "season": "spring",
-      "effect": "petals"
+      "effect": "none"
      },
      "tags": [
       "blossom",
@@ -1593,7 +1591,7 @@ export const catalog = {
      "props": {
       "species": "oak",
       "season": "autumn",
-      "effect": "leaves"
+      "effect": "none"
      },
      "tags": [],
      "png": "library/png/nature/fxtree/oak_autumn_32.png"
@@ -1610,7 +1608,7 @@ export const catalog = {
      "props": {
       "species": "cherry",
       "season": "spring",
-      "effect": "petals"
+      "effect": "none"
      },
      "tags": [
       "blossom",

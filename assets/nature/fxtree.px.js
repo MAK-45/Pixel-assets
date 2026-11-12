@@ -2,18 +2,18 @@ include("../_palette.px.js")
 
 const meta = {
   title: "Arbre (style pixelfx)",
-  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, pétales, feuilles, neige scintillante). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
   tags: ["tree", "plant", "forest", "nature", "decoration", "scenery", "realistic", "pixelfx"],
   variants: {
     oak_summer_64: { label: "Chêne – été (64 px)", props: { species: "oak", season: "summer", effect: "none" } },
-    oak_autumn_64: { label: "Chêne – automne, feuilles qui tombent (64 px)", props: { species: "oak", season: "autumn", effect: "leaves" } },
-    cherry_64: { label: "Cerisier en fleurs, pétales au vent (64 px)", props: { species: "cherry", season: "spring", effect: "petals" }, tags: ["blossom", "sakura"] },
+    oak_autumn_64: { label: "Chêne – automne (64 px)", props: { species: "oak", season: "autumn", effect: "none" } },
+    cherry_64: { label: "Cerisier en fleurs (64 px)", props: { species: "cherry", season: "spring", effect: "none" }, tags: ["blossom", "sakura"] },
     pine_64: { label: "Sapin (64 px)", props: { species: "pine", season: "summer", effect: "none" }, tags: ["conifer", "fir"] },
     pine_snow_64: { label: "Sapin enneigé, scintillements (64 px)", props: { species: "pine", season: "winter", effect: "snow" }, tags: ["conifer", "fir", "snow"] },
     spirit_64: { label: "Arbre-esprit luminescent (64 px)", props: { species: "spirit", season: "summer", effect: "glow" }, tags: ["magic", "fantasy", "glow"] },
     oak_summer_32: { label: "Chêne – été (32 px)", props: { species: "oak", season: "summer", effect: "none" } },
-    oak_autumn_32: { label: "Chêne – automne (32 px)", props: { species: "oak", season: "autumn", effect: "leaves" } },
-    cherry_32: { label: "Cerisier en fleurs (32 px)", props: { species: "cherry", season: "spring", effect: "petals" }, tags: ["blossom", "sakura"] },
+    oak_autumn_32: { label: "Chêne – automne (32 px)", props: { species: "oak", season: "autumn", effect: "none" } },
+    cherry_32: { label: "Cerisier en fleurs (32 px)", props: { species: "cherry", season: "spring", effect: "none" }, tags: ["blossom", "sakura"] },
     pine_32: { label: "Sapin (32 px)", props: { species: "pine", season: "summer", effect: "none" }, tags: ["conifer", "fir"] },
     pine_snow_32: { label: "Sapin enneigé (32 px)", props: { species: "pine", season: "winter", effect: "snow" }, tags: ["conifer", "fir", "snow"] },
     spirit_32: { label: "Arbre-esprit luminescent (32 px)", props: { species: "spirit", season: "summer", effect: "glow" }, tags: ["magic", "fantasy", "glow"] },
@@ -241,18 +241,6 @@ const glints = (pts, core = "w", arm = "s") => (B) => {
   }
 }
 
-// Petites formes qui flottent dans l'air (feuilles, pétales) : liste de motifs [dx, dy, palier].
-const LEAF_SHAPES = [
-  [[0, 0, 2], [1, 0, 1], [1, 1, 0]], [[0, 0, 2], [1, 0, 2], [2, 0, 1], [1, 1, 0]], [[1, 0, 2], [0, 1, 1], [1, 1, 1], [2, 1, 0]],
-  [[0, 0, 1], [1, 1, 2], [2, 1, 1]], [[0, 0, 2], [0, 1, 1]],
-]
-const PETAL_SHAPES = [[[0, 0, 2]], [[0, 0, 2], [1, 0, 1]], [[0, 0, 2], [1, 1, 1]], [[0, 0, 1], [0, 1, 2]]]
-const floaters = (pts, colors, shapes) => (B, cr, R) => {
-  for (const [x, y] of pts) {
-    const sh = shapes[Math.floor(R() * shapes.length)], flip = R() < 0.5
-    for (const [dx, dy, t] of sh) { const X = x + (flip ? -dx : dx), Y = y + dy; if (isAir(B, X, Y)) B.set(X, Y, colors[t]) }
-  }
-}
 // Litière au sol : quelques feuilles/pétales tombés sur la ligne de sol et autour.
 const litter = (xs, colors) => (B, cr, R) => {
   const gy = B.h - 1
@@ -358,7 +346,6 @@ sprite("fxtree_oak_summer_64", { w: 64, h: 64 }, tree(OAK64))
 sprite("fxtree_oak_autumn_64", { w: 64, h: 64 }, tree(OAK64, {
   ramp: AUTUMN, bias: -0.02,
   fx: [
-    floaters([[6, 50], [13, 44], [56, 47], [50, 54], [9, 58], [60, 40], [18, 54], [45, 49]], ["R", "r", "o"], LEAF_SHAPES),
     litter([14, 19, 22, 27, 38, 44, 47, 52, 55], ["R", "r", "o", "y"]),
   ],
 }))
@@ -388,7 +375,6 @@ const PETALS = ["6", "z", "Z"]
 sprite("fxtree_cherry_64", { w: 64, h: 64 }, tree(CHERRY64, {
   ramp: BLOSSOM, bark: CHERRY_BARK, bias: 0.02, seed: 4,
   fx: [
-    floaters([[5, 42], [12, 48], [58, 45], [52, 52], [8, 56], [60, 36], [20, 52], [46, 47], [3, 30], [61, 54], [15, 39]], PETALS, PETAL_SHAPES),
     litter([13, 17, 21, 26, 39, 43, 48, 51, 56], ["5", "6", "z", "Z"]),
   ],
 }))
@@ -544,7 +530,6 @@ sprite("fxtree_oak_summer_32", { w: 32, h: 32 }, tree(OAK32))
 sprite("fxtree_oak_autumn_32", { w: 32, h: 32 }, tree(OAK32, {
   ramp: AUTUMN, bias: -0.02,
   fx: [
-    floaters([[3, 26], [28, 24], [26, 29], [5, 30]], ["R", "r", "o"], LEAF_SHAPES.slice(3)),
     litter([7, 11, 21, 25], ["R", "r", "o", "y"]),
   ],
 }))
@@ -566,7 +551,6 @@ const CHERRY32 = {
 sprite("fxtree_cherry_32", { w: 32, h: 32 }, tree(CHERRY32, {
   ramp: BLOSSOM, bark: CHERRY_BARK, bias: 0.02, seed: 4,
   fx: [
-    floaters([[3, 22], [29, 21], [27, 27], [4, 28], [24, 25]], PETALS, PETAL_SHAPES),
     litter([8, 12, 21, 25], ["5", "6", "z", "Z"]),
   ],
 }))

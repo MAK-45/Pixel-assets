@@ -8,7 +8,7 @@ export const asset = {
  "slug": "fxtree",
  "category": "nature",
  "title": "Arbre (style pixelfx)",
- "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, pétales, feuilles, neige scintillante). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+ "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, effets figés (halos, lucioles, neige scintillante, feuilles et pétales tombés au sol). Variantes : chêne été / automne / nuit à lucioles, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
  "tags": [
   "tree",
   "plant",
@@ -41,9 +41,7 @@ export const asset = {
   ],
   "effect": [
    "none",
-   "leaves",
    "fireflies",
-   "petals",
    "snow",
    "glow"
   ]
@@ -156,7 +154,7 @@ export const asset = {
    "key": "oak_autumn_64",
    "name": "fxtree_oak_autumn_64",
    "id": "nature/fxtree/oak_autumn_64",
-   "label": "Chêne – automne, feuilles qui tombent (64 px)",
+   "label": "Chêne – automne (64 px)",
    "kind": "sprite",
    "w": 64,
    "h": 64,
@@ -164,11 +162,11 @@ export const asset = {
    "props": {
     "species": "oak",
     "season": "autumn",
-    "effect": "leaves"
+    "effect": "none"
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_autumn_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAACyOixuHyQ7IhngeCrzw0r/8KicazxqQSgiFA/JmlsaFCOl11parkUuejofSiyrv9NmAAAADHRSTlMA/////////////2aAF3vGAAADfklEQVR42q2Wi3biMAxEM3okhhT2//92z4xsINAUsl2fFAqxrqXRI0zTjwvTBPPpn1dkRMCn6SjDwJcp53nOBNzCjgFyjgBoP2cGAA87FEnSLjogAVgAHwM8Uwdn6J0AA+JDQGTOFXrI1hSC8foQUIdmeZEBRQAjwz+RAXMmT52HgDJlMg3+gRM8l9sHIGWZKgdzxFsf5PjcXwpgiA4g4h2BEvDKsQioEEBr+I8Aq9TNiQcAvAPM/J2MHsnyi5yBYU478B3wdw7QBcu0SHnd7d0ZhP7h+tkDhEUmojJRx9IHxa8/n3bDgE0Or2h7+ZbfATNzimn6sNcWEZDUSIsIM+tum7pxYiAmAmN7iUUhZxULa5aLEVccrlYwVYI5N740N7/l7hKM6SILVjqUM0ZrBiMHfTOlEOq6CPPwUswdt0UWvSLA3Yz2uEfhEVXyVl3n6JfWSGWF5KFjqqYGAFm17jpK6lXub7OAUtKgyoOHKSVDBwG4jW7SBy6wqCsw9bQL4h3AdGMIaaqZ6jfFaaCkY5ywsSWaEL2xqCRGZ5IavfOVd7uNY07mFIDyuoUyIByqS8oDeCgFVWHcOADB0p45oKNaytE9ZVVYJYJFyh3aT+cUwMM4CvS+rMT0GrsDJjqgx0DfphGUPTW2JMYdtohEKj2GvakDo28LYC5N+GlI0XuM0Xpv61tzs4Uhdbo9ZqB/MmkhvdUSphw/A9wrq9FHgB5F9UEeVMJCxdsD3xLUqI4xOq3lMNdTqr50g7OHYe0hiNELrnY1U5GzceYotWN4Be+V2Jo9BDHdCV1X3YyWs9cYHwAr87Lf+r8l6FV2Ywzc5ql5a6095GAzToZ9J5S9eu4+kJelvch3B0yPt0xyqqZ8QY1CX1pr0479Jox7y2k0LE3ntqWNTdPuw8H9JpD1ic6Du/vtUbI9QA+lSsMkmQCy929/Re4+o+R3cyOA9jsP8zeI1ujB1v8ji4SleTv023ZLWHxpp9MBe2Dzk/a8+OKHAE/rfNiDI4D4JeAp2j3A0raA+Ez9XcD+sdgH+K9E/D+AYwREPAGeXXiXP5veAHA0hF+I0NP4ISBepsNyDDC91MgN8K8xtDPnyel0UIRV62td2/ncWgFO62X9Wi+X9bZ+suWKy7q05dxcAD+druvler2Ou7q+ofTvgTVsObcAAX7S8/J0/fOHNwTAigH4C6xOH0p2gPTNAAAAAElFTkSuQmCC",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAACyOixuHyQ7IhngeCrzw0r/8KicazxqQSgiFA/JmlsaFCOl11parkUuejofSiyrv9NmAAAADHRSTlMA/////////////2aAF3vGAAADTUlEQVR42tWW63biMAyEM7rEDlno+7/tnhnZXNqlBbo/Wh8KhVifpdElWZZPF5YF5svLKzIi4MvyLMPAtyXXdc0E3MKeA+QaAdB+zQwAHvZUJEm7GIAEYAE8DPBMHZyhTwIMiAcBkblW6CFbUwjG14OAOjTLiwwoAhgZ/ogMWDN56joFlCmTafAHnOC53D4BKctUOZgjvvRBjq/jrQCGGAAiviJQAr5yLgIqBNAa/inAKnVr4goAHwAz/0pGj2T5Ra7ANKcd+An4Vw7QBcu0SHk97N0ZhP7h+twDhEUmojJRx9IHxa8/X+6GAVscXtGO8i2/A2bmFNP05V5bREBSIy0izGy4berGhYGYCIztQywKOatYWLNcjLjicLWCqRLMufFDc/NX7i7BmC6yYKVDOWO0ZjBy0G+mFEJdF2EeXoq547zIolcEuJvRHpcoPKJK3qrrHOOlNVNZIXnomKqpCUBWrbuOknqV+/MsoJQ0qPLgYUrJ1EEAbqOb9IELLOoKTD3tgvgAMN2YQppqpvpNcRoo6RwnbGyJJsRoLCqJ2Zmkxuh85d3O45iTOQWgvG6hDAiH6pLyAB5KQVUYN05AsLRXDuiolnIMT1kVVolgkXKH9tM5BXA1jgKjLysxo8YugIUO6DYwtmkE5UiNtcS8whaRSKXHtDd1YIxtAaylCb9NKUaPMVofbX1ubrYwpM6wxwqMbyYtpLdawpTj9wD3ymqMEaBbUX2RB5WwUPGOwG8JalTHHJ3Wc5rrLlU/usHZw7B+FcTsBVe7mqnI2ThrlNoxvYKPSuzdroJYLoShqy5Gz9VrjE+AlXnZ3/p/S9C77OYYOM9T8957v8rBzTiZ9oNQ9uq5y0BurX+Q7wJYri+Z5FRNeUONQm+99+WO/U0Yl5bTaGhd5/bW56bl7s3B/SyQjYnOg4f7/Vqye4ARSpWGSTIBZP/ck578IIEA2j//jDkIrb/z/zlG7617f/1J15u3vm2vAw7Nm38X0H87oPUfAPAfANi+CfBfD9he16D9N8CrhH7gPNm2J0XYtf7sez8cei/Ath/3P/vxuJ/XZ7Zax731dugugG/baT+eTqdxMfT6B2XfA3UdaIceRoBvfEDdttPbG6wMgT1sAP4C49QfFUxd+ecAAAAASUVORK5CYII=",
    "palette": {
     "3": "#22140f",
     "%": "#1a142366",
@@ -227,30 +225,30 @@ export const asset = {
     "....BB.BBBBBBBBBBBBRrooororrBRBnrrrRRBBBnbbb.BBBBBBBBBBB........",
     "........BBBBBBBBBBRrrrooorrRRRrnbbBBBBbnb....BBBB.BBB...........",
     "..........BBRRBBBBBBBRrrrrrBBBBnbBBBBnnbbB.........BB...........",
-    "..........BBBB.BBBB..BRrrRbbBRBnbBBBnnbbBB..................r...",
-    "......................BBBBBbbBRnbBBnnbb......................or.",
+    "..........BBBB.BBBB..BRrrRbbBRBnbBBBnnbbBB......................",
+    "......................BBBBBbbBRnbBBnnbb.........................",
     "........................BBBBbbBnbBnnbbB.........................",
     "...........................BBbbnbBb.............................",
-    "..............o.............BnBnb33.............................",
-    ".............rrR............NnBnB33.............................",
+    "............................BnBnb33.............................",
+    "............................NnBnB33.............................",
     "............................NnBnb33.............................",
-    "............................NnBnb33......................o......",
-    "............................NnBnb33.....................rrR.....",
-    "............................Nnnbb33...........o.................",
-    "......o.....................Nnnbb33..........rrR................",
-    "......r.....................NnnbbB3.............................",
+    "............................NnBnb33.............................",
+    "............................NnBnb33.............................",
+    "............................Nnnbb33.............................",
+    "............................Nnnbb33.............................",
+    "............................NnnbbB3.............................",
     "............................NnnbbB3.............................",
     "............................NnnbbB33............................",
-    "................roo.........NnnbbBB3..............o.............",
-    ".................R..........NnnbbBB3..............r.............",
+    "............................NnnbbBB3............................",
+    "............................NnnbbBB3............................",
     "............................NnnbbBB3............................",
     "............................Nnnbb333............................",
-    ".........oor...............nNnnbb333............................",
-    "..........R................nNnnbb3333...........................",
+    "...........................nNnnbb333............................",
+    "...........................nNnnbb3333...........................",
     "...........................bNbnbB33B3...........................",
     ".................%%%%%%L%%bNNbbbB33B33%l%L%ll%%%%%%%%%%.........",
-    "............%%%%%%%%%%ol%nbnNbBbB33BB33g%lggg%%%%%%%o%%o%%%%....",
-    "............%%o%%%%rr%oRnNborbBbBB3BBBrR3gGGrr%o%%%%or%r%%%%...."
+    "............%%%%%%%%%%%l%nbnNbBbB33BB33g%lggg%%%%%%%o%%o%%%%....",
+    "............%%or%%%o%%rrnNboRbBbBB3BBBo33gGGrR%o%%%%rr%oR%%%...."
    ]
   },
   "oak_night_64": {
@@ -363,7 +361,7 @@ export const asset = {
    "key": "cherry_64",
    "name": "fxtree_cherry_64",
    "id": "nature/fxtree/cherry_64",
-   "label": "Cerisier en fleurs, pétales au vent (64 px)",
+   "label": "Cerisier en fleurs (64 px)",
    "kind": "sprite",
    "w": 64,
    "h": 64,
@@ -371,14 +369,14 @@ export const asset = {
    "props": {
     "species": "cherry",
     "season": "spring",
-    "effect": "petals"
+    "effect": "none"
    },
    "tags": [
     "blossom",
     "sakura"
    ],
    "png": "library/png/nature/fxtree/cherry_64.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAADkapqtRnf/s89jIEr/4+/7+/87IhkiFA9eOlqPT18aFCOl11parkUuejofSiy0uF/CAAAADHRSTlMA/////////////2aAF3vGAAADMUlEQVR42u2WbW/bMAyERR5pW/PS/v9/O9xRTuzWbdJkwL5MKNLYEh8e34S09n99tcyPz+AzLFrct4W1hrTDu0xr0SwTfp+QE4xHzeL2akogpukOweg8ecr4gfBogQQsJxmbZ+64J77rTMIgCfKWmT49BECWLeiSnw6HAFaAhJuZm5+HkZbSbTCzcghYaWFc3HSa27mInIzhegvHppgsfcssAMLNws4URDLVSXb4yBk89M1ts/eICDuX4DnCjNbKgEkUwFziWFgPZeEMMGQKMux5fnxD2ZuHS8VZE8icKqYJAK3MqbcA7k7vHrI/IUBeJHiazJnqKRHqCmn3gOQPxOckwhxUAMglS692cIVEQ1T4fq6gxLLr5BE2TWBtCGBcyp6WCuEHhDJMtqlQpR4EsI/gqq9F1SCqknCLw7AlAc5rIFzymQ6ojThZOQZj5NAY3bWfKvfku+obml5RUVtZSdCm9BuzY5WKsJp2qMByYrdeyOpI7AoYYkGvdB6qOqwC5B/A+SkAR0rzQ4CHMsyjzFZ5VME0/DaOTclttoVSQPX0aV7wKgWu5eS8VhlYKr7V+LhjNBazZVH1q0JyFnzE1Kh3AAwOBGdRHec+LiIFWyPg6leydK1QgBOglzYGbQyiOmdr5HkZCQwFGozJqy6hQUMltZrekfWQY8djbjeAMrJpahvBZAsNjVe84NFr816Xb9W8zsTW5NrSNvtpVtpGZY6r5NxmqgAesT/Y5nH57cz7tneNZ5vDysdtLeXBeQnvXvf+QUrcRvkocamBiyO2934rRkTbXwpHQJ+XZVmOIfV56fPCo3X85E7ccUmQtz5XSK33uey/WcrN9qDzS5Eili75n+/h73iKQwCqP3ePdo/QKvR+V/4ZdEjoPwR8kDAAT9m30v+YPb4m9Hl50v8m4ekAdhJe+L05GuoncR/Xr86x+OpX4RMA2A+L0b9T8FAOXgT0+UXA/CTA7gDs4c5ezgF4WMryfQiGv5lEnAPmF8vYXwTMJeEFAf8AsG7r97r2XwOwXPh8uaz7dWpsY9PW9SL7AVhWu6xvb+vH9QngNA79f5td9oPg8f7OHW6ZjnkB/gAkACErBfKmFgAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAMFBMVEUAAADkapqtRnf/s89jIEr/4+/7+/87IhkiFA9eOlqPT18aFCOl11parkUuejofSiy0uF/CAAAADHRSTlMA/////////////2aAF3vGAAADC0lEQVR42u2W3XacMAyErZEEODTJ+79tz4zMAi1tGvZib+qTbBbb+jT646S1/+tPy3B+dj67RYuvbd1a87TTXqa1aJbp+JqQkxuvmsW+NaV7TNMXBKPz5C3jhweihae75SRjQ+aBe+G77qSbS4K8ZSamfwJ4lq3TJT/hcAGsAOkwMxiuw0hL6TY3s3LobqWFcfEQNLdrETkZw0UL+KaYLH3LLIAHzMKuFEQy1Ul2YOTMEfoG2+wREWHXEpAjzGitDJhEAQwSx8IilIUrwJApyLDn/fHNy94QkIqrJpA5VUyTu9PKQL0FAEDvCNlfEFxeJHiaDEz1lB7qCmlHuOQPxO9JdINTgbtcsvRqBygkGnqFj2sFJZZdJ49u0+SsDQGMS9nTUiFwQijDZJsKVeqdAPaRQ/W1qBpEVdJhcRq2JAB8DQQkn+lwtREnK8dgjBwao3v0U+WefKi+oekV1esoKwk6lH5jdqxSEVbT7iqwnNjeC1kd6YcChliuLd13Vd2tAuSPO+enABwpzQ8BCGWYV5mt8qiCafhtXJuSx2wLpYDq6dNQ8CqFP8rJea0ysFTc1fgAPhqL2bKo+lUhOQsYMTXqHQBzuAdnUR0HjBeRgq0RgPqVLL1WKAAEaNPGoI1BVOdsjTwvI4GhQIMxoeoSGjSvpFbTw7Mecpwg5rYDlJFNU9sIJlvX0KDidV59NO9jYavmYya2JteRjtlPs9I2KnNeJWefqQIg4nixzePldzDv29kjnm0OKx/7WsoD+BI+bPf+i5TYR/kscamBizO2974XI6IdXwpnQJ+XZVnOIfV56fPCq3X94p144JIgb32ukFrvc9n/ZSk324PuL0WKWLrkf+8/DMUhANV/23wQWoV+y36TcFtAG6nsj/zfIiiZd+2L0Ofltv2WwvuAdj+BvzTU/fXWORavBPRXA/r8JGB+OWB5OaA/D5ifBPQnAXNJeELACwDrtn6sa38bgOWdz+/v63FdGtt+/i77AVj4/PHB/e2KXUDWFWv9Wqwfs8l+EIDPTwseYdVfDMBPk2khBrbekokAAAAASUVORK5CYII=",
    "palette": {
     "3": "#22140f",
     "5": "#63204a",
@@ -433,34 +431,34 @@ export const asset = {
     "....555555555555555B35555zz566555555555555AAAB35555555555.555...",
     ".....55555555555555AB333355655555555555AB3AB3...5...555.........",
     ".........555555.555.AB33AB355AB555553.AABAB3....................",
-    ".........5..55........ABAB33.AB33A553AAAAB3.................z...",
-    "........................AB333AB33AAB3AAB3...................Z...",
+    ".........5..55........ABAB33.AB33A553AAAAB3.....................",
+    "........................AB333AB33AAB3AAB3.......................",
     ".........................AB33.AB3AB3AAB3........................",
-    "...............Z.........AB333ABAAB3AAB3........................",
+    ".........................AB333ABAAB3AAB3........................",
     "..........................AB33ABAAB3AB3.........................",
     "...........................AB3ABAB3AB3..........................",
-    ".....Z......................AB3AAB3B3...........................",
+    "............................AB3AAB3B3...........................",
     "............................AB3AB3AB3...........................",
     ".............................AB3AAB3............................",
-    "..............................ABAB33......................Z.....",
-    "..............................fA3333.......................z....",
-    "..............................fA3333..........Zz................",
-    "............Z.................AA3333............................",
+    "..............................ABAB33............................",
+    "..............................fA3333............................",
+    "..............................fA3333............................",
+    "..............................AA3333............................",
     "..............................AA3333............................",
     ".............................ABA3333............................",
     ".............................BBA3333............................",
-    "....................z........BBA3333................z...........",
-    "....................Z........3BA3333................Z...........",
-    ".............................3BA3333........................zZ..",
+    ".............................BBA3333............................",
+    ".............................3BA3333............................",
+    ".............................3BA3333............................",
     ".............................ABA3333............................",
-    "........Z....................ABB3333............................",
+    ".............................ABB3333............................",
     ".............................AAB3333............................",
     ".............................BABB333............................",
     "............................AAABB333............................",
     "............................AAABB333............................",
     "...............%%%%%%%%%L%%AfAABB3333l%%L%ll%%%%%%%%%%%%%.......",
-    "...........%%z%%%%%%%z%%l%AfAAABB33333%zl%gg%%%%%%%%%%%%%%%%%...",
-    "...........%%6%%%z5%%6%%gB6AAABBBB3333365GGz5%%%6%%z6%%%z6%%%..."
+    "...........%%z%%%%%%%%%%l%AfAAABB33333%%l%gg%%%%z%%%%%%%z%%%%...",
+    "...........%%6%%%6%%%z5%gBzAAABBBB3333366GGz5%%%z6%z5%%%6%%%%..."
    ]
   },
   "pine_64": {
@@ -849,11 +847,11 @@ export const asset = {
    "props": {
     "species": "oak",
     "season": "autumn",
-    "effect": "leaves"
+    "effect": "none"
    },
    "tags": [],
    "png": "library/png/nature/fxtree/oak_autumn_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA7Ihnzw0rgeCpuHyT/8KiyOixqQSicazwiFA9arkXJmlsaFCMuejqhFUKQAAAADXRSTlMA//////////////9mpNdqTQAAASBJREFUeNqtkuFug0AMg89x4kB7vP/rTsl1W8c6+meREDr8kdiQMf618A4w+iXJaILUS0BD1oDIV4CZ5KU7Kf3uQTNiOAbNZX34UR5hPsSwIOVGeuOf490ijBa0sALqwpcV9jtmwQiyTxBAPdLAbNmicelyAJBcPUT1DKi2pKmqAXeXF9GeHSVERLl0LUBeQOnVGwhZE7aA7gHUd1llLLQA+hqC0geWL2ZLthzDkatNpajp8PpUpk4iAbl6rJzVyiuCyR8pEt96EeiYxgWc9UYG2u1qnHj1v2tS2/tD70VDJpBXW7nlm8XdEvvTFr0DdLr/Ah4yxzVwGrFfAbe8544xbrezRY1ZdWz3BPbjOOac1JxPgTjnlOeWyH3f1acGPgDGfwf4QRp+QwAAAABJRU5ErkJggg==",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAKlBMVEUAAAA7Ihnzw0rgeCpuHyT/8KiyOixqQSicazwiFA9arkXJmlsaFCMuejqhFUKQAAAADXRSTlMA//////////////9mpNdqTQAAARRJREFUeNrFk8luxDAMQ01SSzzj/P/vFpKnezq9FKiAHGy+UJTjjPGnhd8Ayp6S8iakuARiBBsI6QogI6x0kyK+e4gUhmGIFuzFpzJ32gg5XQqjZI2/tje6U3TRWUA9eIuifod0uUu9QgCKxzQgdyxRWw8DgAiLbhK1B5StxKhqwMzCiujMhhLcvVJabCCsgNLLG/BgE9xAewB1LruoQguQ7SYofWDnUrbEnRiG3DY1RXWH1VExepIIILfHnrOsrEZg2GOKxLteBHpMagNf9UYGOu02Tlx97+rU8X7Q+6IhE8hnt/LIXy7ukZj/D8xnwC3vOTHG7XbxV6211nncE5jnea61aufjfxVr6cgjkXPOEmUNvACwpgfJQhFV3AAAAABJRU5ErkJggg==",
    "palette": {
     "3": "#22140f",
     "%": "#1a142366",
@@ -894,14 +892,14 @@ export const asset = {
     ".........BBRBrrBRBBbBB..........",
     "...........B.BbbBBb.............",
     "..............nbB...............",
-    "..............nbB3..........o...",
-    "..............nbB3..........r...",
-    "...r..........nbB3..............",
-    ".ro...........nbB3..............",
+    "..............nbB3..............",
+    "..............nbB3..............",
+    "..............nbB3..............",
+    "..............nbB3..............",
     "..............nb33..............",
-    "............lbNb3B..ll....o.....",
-    ".....r.%%%%%gnNbBB3ggg%%%or%%...",
-    "......oo%%%rRbnbBb333r%%%rR%%..."
+    "............lbNb3B..ll..........",
+    ".......o%%%%gnNbBB3ggg%%%o%%%...",
+    ".......rr%%onbnbBb333o%%%oR%%..."
    ]
   },
   "cherry_32": {
@@ -916,14 +914,14 @@ export const asset = {
    "props": {
     "species": "cherry",
     "season": "spring",
-    "effect": "petals"
+    "effect": "none"
    },
    "tags": [
     "blossom",
     "sakura"
    ],
    "png": "library/png/nature/fxtree/cherry_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAAD/s8+tRnf/4+/7+//kappjIEo7IhleOloiFA+l11parkUaFCMuejofSizmJ54RAAAADXRSTlMA//////////////9mpNdqTQAAATFJREFUeNqdkoFuwzAIRLnDB/Hq7v8/d4JUadOu1TQraS043gGK2X8O+Gv4iPpwKV7y7u5diuE+HDxLBPcxHOGQOxw4MaoYors4nEDE2QNjVDVd0BguhsXJgY33QhDlYwSfFe4QheqGDJERD4qoxuR01JDDFXWOPiWJoeEYqCaGh1nlby4ONQ6oWpRZmFG8tdETl8DVuRpYbMCuQBEAYkgALdow5GJ7EIUAe0uKNEXla1VqQbHkJNnxJDodwQb1jBHcg2Jk3y2zdnlfRV8zi9BLztyDD5uqnwpnZli+/ZRyf94KtpyZc8v5npAztwcBTn87Ym7vHRrxOW+W83Petjmffc+AQ2B/ENwhOm7zRNCT9Mtsa8HlFb3qXNaWOedcV6216l0PAq11JVswvxVriS34AdClCU1lzdDfAAAAAElFTkSuQmCC",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAAD/s8+tRnf/4+/7+//kappjIEo7IhleOloiFA+l11parkUaFCMuejofSizmJ54RAAAADXRSTlMA//////////////9mpNdqTQAAASRJREFUeNqlkuFuxDAIg7GJodlle//HnaC323W39scWVVWFP2yCavaXA/5aflR9uBQvurt7t2K4DwePiOA+hiMccocDB49qhuguDicQcczAGNVNFzSGi2FxSGDbe1kQlWMEfxLuEIWahgyREU9E1GByOuqSwxV1HnNKEkPDMVBDDA+z0u8pDrUdUL2osDCjeB+jb1yAq7W6sNgGO4FyAIghAbTowJCLnUGUBdhbUqQpSq9VqYHykpNk15NoOYJt1HeM4F4UI/vbMmuX36voz8xy6CVn7sWnTdWrypkZlqe/Uu7PKbDlzJxbznOHnLldAVvOuZ0ntMW1bpbzWrdtzmuDfwPzEngz2xq4vWpraa3b2jLnnOt9fZ0ngGu9cwfmh6I7CvgEyQIJUoqCDPYAAAAASUVORK5CYII=",
    "palette": {
     "3": "#22140f",
     "5": "#63204a",
@@ -962,17 +960,17 @@ export const asset = {
     "......5....BB..BBB5.B...........",
     ".............B..B..BB...........",
     "............AB3BB3AB3...........",
-    ".............BB3BAAB3........Z..",
-    "...Z.........AB33ABB............",
+    ".............BB3BAAB3...........",
+    ".............AB33ABB............",
     "..............BBABB.............",
     "...............B3B..............",
-    "...............A33......Z.......",
+    "...............A33..............",
     "..............BA33..............",
-    "..............BA33.........Z....",
-    "....z.........3A33..........z...",
-    "....Z......L..AA33..l...........",
-    "......%%%%%l%ABB333%gz%%%z%%%%..",
-    "......%%z%%g66BB3333Gz5%%z6%%%.."
+    "..............BA33..............",
+    "..............3A33..............",
+    "...........L..AA33..l...........",
+    "......%%z%%l%ABB333%g%%%%%%%%%..",
+    "......%%6%%g6ABB3333Gz5%%z%%%%.."
    ]
   },
   "pine_32": {
