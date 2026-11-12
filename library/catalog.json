@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 25,
-  "variants": 248
+  "assets": 27,
+  "variants": 264
  },
  "categories": [
   {
@@ -28,6 +28,8 @@
     "nature/cactus",
     "nature/fern",
     "nature/flower",
+    "nature/fxgrass",
+    "nature/fxrock",
     "nature/fxtree",
     "nature/grass",
     "nature/mushroom",
@@ -1364,6 +1366,392 @@
       "garden"
      ],
      "png": "library/png/nature/flower/bed_32.png"
+    }
+   }
+  },
+  "nature/fxgrass": {
+   "id": "nature/fxgrass",
+   "slug": "fxgrass",
+   "category": "nature",
+   "title": "Herbe (style pixelfx)",
+   "description": "Herbes vues de face au rendu inspiré de la prairie de l'effet « lucioles » de pixelfx : brins d'un pixel de large qui se courbent vers l'extérieur, sombres et serrés à la base, pointes claires (plus claires sur les brins penchés vers la lumière, en haut à gauche), deux rangées de profondeur. Variantes : touffe (16, 32 px), hautes herbes à épis, herbe sèche d'automne, herbe givrée, roseaux à massettes, bande de pelouse (48 px). Herbe seule, sans décor autour.",
+   "tags": [
+    "grass",
+    "plant",
+    "vegetation",
+    "ground",
+    "nature",
+    "decoration",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/nature/fxgrass.px.js",
+   "module": "library/js/nature/fxgrass.js",
+   "sheet": {
+    "png": "library/sheets/nature/fxgrass.png",
+    "json": "library/sheets/nature/fxgrass.json"
+   },
+   "axes": {
+    "shape": [
+     "tuft",
+     "tall",
+     "reed",
+     "patch"
+    ],
+    "season": [
+     "summer",
+     "autumn",
+     "winter"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 7,
+   "variants": {
+    "tuft_32": {
+     "key": "tuft_32",
+     "name": "fxgrass_tuft_32",
+     "id": "nature/fxgrass/tuft_32",
+     "label": "Touffe d'herbe (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tuft",
+      "season": "summer"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxgrass/tuft_32.png"
+    },
+    "tuft_16": {
+     "key": "tuft_16",
+     "name": "fxgrass_tuft_16",
+     "id": "nature/fxgrass/tuft_16",
+     "label": "Touffe d'herbe (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "summer"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxgrass/tuft_16.png"
+    },
+    "tall_32": {
+     "key": "tall_32",
+     "name": "fxgrass_tall_32",
+     "id": "nature/fxgrass/tall_32",
+     "label": "Hautes herbes à épis (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "summer"
+     },
+     "tags": [
+      "seed",
+      "meadow"
+     ],
+     "png": "library/png/nature/fxgrass/tall_32.png"
+    },
+    "dry_32": {
+     "key": "dry_32",
+     "name": "fxgrass_dry_32",
+     "id": "nature/fxgrass/dry_32",
+     "label": "Herbe sèche d'automne (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "autumn"
+     },
+     "tags": [
+      "straw",
+      "savanna"
+     ],
+     "png": "library/png/nature/fxgrass/dry_32.png"
+    },
+    "frost_32": {
+     "key": "frost_32",
+     "name": "fxgrass_frost_32",
+     "id": "nature/fxgrass/frost_32",
+     "label": "Herbe givrée (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tuft",
+      "season": "winter"
+     },
+     "tags": [
+      "frost",
+      "snow"
+     ],
+     "png": "library/png/nature/fxgrass/frost_32.png"
+    },
+    "reed_32": {
+     "key": "reed_32",
+     "name": "fxgrass_reed_32",
+     "id": "nature/fxgrass/reed_32",
+     "label": "Roseaux à massettes (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "reed",
+      "season": "summer"
+     },
+     "tags": [
+      "cattail",
+      "pond",
+      "marsh"
+     ],
+     "png": "library/png/nature/fxgrass/reed_32.png"
+    },
+    "patch_48": {
+     "key": "patch_48",
+     "name": "fxgrass_patch_48",
+     "id": "nature/fxgrass/patch_48",
+     "label": "Bande de pelouse (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 16,
+     "size": 48,
+     "props": {
+      "shape": "patch",
+      "season": "summer"
+     },
+     "tags": [
+      "lawn",
+      "meadow",
+      "border"
+     ],
+     "png": "library/png/nature/fxgrass/patch_48.png"
+    }
+   }
+  },
+  "nature/fxrock": {
+   "id": "nature/fxrock",
+   "slug": "fxrock",
+   "category": "nature",
+   "title": "Roche (style pixelfx)",
+   "description": "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px). Roche seule, sans décor autour.",
+   "tags": [
+    "rock",
+    "stone",
+    "boulder",
+    "nature",
+    "decoration",
+    "obstacle",
+    "terrain",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/nature/fxrock.px.js",
+   "module": "library/js/nature/fxrock.js",
+   "sheet": {
+    "png": "library/sheets/nature/fxrock.png",
+    "json": "library/sheets/nature/fxrock.json"
+   },
+   "axes": {
+    "form": [
+     "boulder",
+     "pile",
+     "spire",
+     "stone",
+     "pebbles"
+    ],
+    "surface": [
+     "bare",
+     "mossy",
+     "snow"
+    ],
+    "material": [
+     "granite",
+     "sandstone"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 9,
+   "variants": {
+    "boulder_48": {
+     "key": "boulder_48",
+     "name": "fxrock_boulder_48",
+     "id": "nature/fxrock/boulder_48",
+     "label": "Grand rocher (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "form": "boulder",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/boulder_48.png"
+    },
+    "boulder_32": {
+     "key": "boulder_32",
+     "name": "fxrock_boulder_32",
+     "id": "nature/fxrock/boulder_32",
+     "label": "Rocher (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/boulder_32.png"
+    },
+    "boulder_moss_32": {
+     "key": "boulder_moss_32",
+     "name": "fxrock_boulder_moss_32",
+     "id": "nature/fxrock/boulder_moss_32",
+     "label": "Rocher moussu (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/boulder_moss_32.png"
+    },
+    "boulder_snow_32": {
+     "key": "boulder_snow_32",
+     "name": "fxrock_boulder_snow_32",
+     "id": "nature/fxrock/boulder_snow_32",
+     "label": "Rocher enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "snow",
+      "material": "granite"
+     },
+     "tags": [
+      "winter",
+      "snow"
+     ],
+     "png": "library/png/nature/fxrock/boulder_snow_32.png"
+    },
+    "sandstone_32": {
+     "key": "sandstone_32",
+     "name": "fxrock_sandstone_32",
+     "id": "nature/fxrock/sandstone_32",
+     "label": "Rocher de grès (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "boulder",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert"
+     ],
+     "png": "library/png/nature/fxrock/sandstone_32.png"
+    },
+    "pile_32": {
+     "key": "pile_32",
+     "name": "fxrock_pile_32",
+     "id": "nature/fxrock/pile_32",
+     "label": "Tas de pierres (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "form": "pile",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/pile_32.png"
+    },
+    "spire_48": {
+     "key": "spire_48",
+     "name": "fxrock_spire_48",
+     "id": "nature/fxrock/spire_48",
+     "label": "Aiguille rocheuse à strates (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "form": "spire",
+      "surface": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "cliff",
+      "desert"
+     ],
+     "png": "library/png/nature/fxrock/spire_48.png"
+    },
+    "stone_16": {
+     "key": "stone_16",
+     "name": "fxrock_stone_16",
+     "id": "nature/fxrock/stone_16",
+     "label": "Caillou (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "form": "stone",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/stone_16.png"
+    },
+    "pebbles_16": {
+     "key": "pebbles_16",
+     "name": "fxrock_pebbles_16",
+     "id": "nature/fxrock/pebbles_16",
+     "label": "Galets (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "form": "pebbles",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxrock/pebbles_16.png"
     }
    }
   },

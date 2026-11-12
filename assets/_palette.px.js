@@ -50,6 +50,10 @@ pal({
   "%": "#1a142366", // ombre portée au sol (k à 40 %)
   ":": "#3fd0ae4a", ";": "#3fd0ae1f", // halo turquoise fort / faible
   "^": "#ffe07a4a", "~": "#ffe07a1f", // halo chaud (lucioles, lanternes) fort / faible
+  // pierre intermédiaire (rampe à 7 nuances k d < m > c C, comme la pierre de pixelfx)
+  "<": "#413f52", ">": "#71708a",
+  // grès intermédiaire (entre b et n)
+  "=": "#835632",
 })
 
 ramps(
@@ -71,4 +75,6 @@ ramps(
   "4Ppe",   // conifères, cran sombre
   "56zZ7",  // cerisier
   "890+",   // turquoise luminescent
+  "kd<m>cC", // pierre, rampe riche
+  "3Bb=nN",  // grès, rampe riche
 )
