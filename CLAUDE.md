@@ -21,6 +21,14 @@ assets via `library/` : garde ce dossier propre, cohérent et bien décrit.
 
 Le workflow complet est dans le skill `/draw` (`.claude/skills/draw/SKILL.md`).
 
+## Effets et animations VFX (`pixelfx`)
+
+Pour les **effets** pixel art (feu, explosions, magie, impacts, projectiles, météo, pickups, transitions… : 244 effets
+prêts) et leurs planches de sprites, utilise le skill **`pixelfx`** (bibliothèque patch-gg/pixelfx, copie intégrée dans
+`.claude/skills/pixelfx/`, voir `VENDORED.md`). Ses commandes se lancent **depuis ce dossier**
+(`cd .claude/skills/pixelfx && node tools/render.mjs fire/torch`) ; les rendus vont dans `records/` (ignoré par git).
+Mise à jour : `bash scripts/update-pixelfx.sh [<ref>]`.
+
 ## Cuisiner une idée (`/grill-me`)
 
 Quand l'utilisateur tape `/grill-me`, ou demande de le « cuisiner », « challenger », « grill » sur une idée,
@@ -61,7 +69,8 @@ docs/index.html              GÉNÉRÉ : galerie autonome (GitHub Pages / ouvert
 scripts/                     build.js, check.js, dev.js, new-asset.js, scene-preview.js, lib/ (library.js, scene.js),
                              templates/ (runtime.js, index.d.ts, scene-runtime.js = moteur des scènes exporté)
 .claude/skills/claude-pxl/   moteur de dessin (vendored, voir VENDORED.md) ; draw/ = workflow d'un asset ;
-                             scene-dynamique/ = workflow d'une scène dynamique (kit, modèle, test, recettes par biome)
+                             scene-dynamique/ = workflow d'une scène dynamique (kit, modèle, test, recettes par biome) ;
+                             pixelfx/ = bibliothèque d'effets VFX + son skill (vendored, voir VENDORED.md)
 ```
 
 ## Conventions d'un asset
