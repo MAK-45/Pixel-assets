@@ -54,6 +54,8 @@ pal({
   "<": "#413f52", ">": "#71708a",
   // grès intermédiaire (entre b et n)
   "=": "#835632",
+  // neige à l'ombre, deux crans bleutés sous S (rampe [ ] S s w, comme la neige de pixelfx)
+  "[": "#3e4b72", "]": "#62759f",
 })
 
 ramps(
@@ -77,4 +79,5 @@ ramps(
   "890+",   // turquoise luminescent
   "kd<m>cC", // pierre, rampe riche
   "3Bb=nN",  // grès, rampe riche
+  "[]Ssw",   // neige, rampe riche
 )

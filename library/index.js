@@ -14,8 +14,8 @@ export const catalog = {
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 27,
-  "variants": 264
+  "assets": 28,
+  "variants": 273
  },
  "categories": [
   {
@@ -55,6 +55,7 @@ export const catalog = {
    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
    "icon": "landscape/mountain/peak_snow_16",
    "assets": [
+    "landscape/fxmountain",
     "landscape/hill",
     "landscape/mountain"
    ]
@@ -3589,6 +3590,232 @@ export const catalog = {
     }
    }
   },
+  "landscape/fxmountain": {
+   "id": "landscape/fxmountain",
+   "slug": "fxmountain",
+   "category": "landscape",
+   "title": "Montagne (style pixelfx)",
+   "description": "Montagnes vues de face au rendu riche inspiré des pierres taillées et de la neige de la bibliothèque d'effets pixelfx (pic de terre, congère) : relief découpé en grandes facettes planes par les arêtes et les contreforts, chaque face éclairée selon son orientation (versant gauche clair, versant droit à l'ombre), arête vive, neige en paliers blanc, bleu pâle et bleu-gris qui coule dans les couloirs. Sans contour noir. Variantes : pic enneigé (16, 32, 48, 64 px), pic rocheux nu, pic tout blanc en hiver, double sommet, chaîne de sommets (64 × 32) et pic de grès du désert. Montagne seule, sans décor autour.",
+   "tags": [
+    "mountain",
+    "peak",
+    "landscape",
+    "background",
+    "scenery",
+    "terrain",
+    "relief",
+    "snow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/landscape/fxmountain.px.js",
+   "module": "library/js/landscape/fxmountain.js",
+   "sheet": {
+    "png": "library/sheets/landscape/fxmountain.png",
+    "json": "library/sheets/landscape/fxmountain.json"
+   },
+   "axes": {
+    "shape": [
+     "peak",
+     "twin",
+     "range"
+    ],
+    "cover": [
+     "snowcap",
+     "bare",
+     "snow"
+    ],
+    "material": [
+     "granite",
+     "sandstone"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48,
+    64
+   ],
+   "variantCount": 9,
+   "variants": {
+    "peak_snow_64": {
+     "key": "peak_snow_64",
+     "name": "fxmountain_peak_snow_64",
+     "id": "landscape/fxmountain/peak_snow_64",
+     "label": "Grand pic enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_snow_64.png"
+    },
+    "peak_snow_48": {
+     "key": "peak_snow_48",
+     "name": "fxmountain_peak_snow_48",
+     "id": "landscape/fxmountain/peak_snow_48",
+     "label": "Pic enneigé (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_snow_48.png"
+    },
+    "peak_snow_32": {
+     "key": "peak_snow_32",
+     "name": "fxmountain_peak_snow_32",
+     "id": "landscape/fxmountain/peak_snow_32",
+     "label": "Pic enneigé (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_snow_32.png"
+    },
+    "peak_snow_16": {
+     "key": "peak_snow_16",
+     "name": "fxmountain_peak_snow_16",
+     "id": "landscape/fxmountain/peak_snow_16",
+     "label": "Pic enneigé (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "icon"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_snow_16.png"
+    },
+    "peak_bare_48": {
+     "key": "peak_bare_48",
+     "name": "fxmountain_peak_bare_48",
+     "id": "landscape/fxmountain/peak_bare_48",
+     "label": "Pic rocheux nu (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "peak",
+      "cover": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "summer"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_bare_48.png"
+    },
+    "peak_winter_48": {
+     "key": "peak_winter_48",
+     "name": "fxmountain_peak_winter_48",
+     "id": "landscape/fxmountain/peak_winter_48",
+     "label": "Pic tout enneigé, hiver (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "peak",
+      "cover": "snow",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "winter"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_winter_48.png"
+    },
+    "twin_snow_64": {
+     "key": "twin_snow_64",
+     "name": "fxmountain_twin_snow_64",
+     "id": "landscape/fxmountain/twin_snow_64",
+     "label": "Double sommet enneigé (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "shape": "twin",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow"
+     ],
+     "png": "library/png/landscape/fxmountain/twin_snow_64.png"
+    },
+    "range_snow_64": {
+     "key": "range_snow_64",
+     "name": "fxmountain_range_snow_64",
+     "id": "landscape/fxmountain/range_snow_64",
+     "label": "Chaîne de sommets enneigés (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "range",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "range",
+      "parallax"
+     ],
+     "png": "library/png/landscape/fxmountain/range_snow_64.png"
+    },
+    "peak_sandstone_48": {
+     "key": "peak_sandstone_48",
+     "name": "fxmountain_peak_sandstone_48",
+     "id": "landscape/fxmountain/peak_sandstone_48",
+     "label": "Pic de grès du désert (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "peak",
+      "cover": "bare",
+      "material": "sandstone"
+     },
+     "tags": [
+      "desert"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_sandstone_48.png"
+    }
+   }
+  },
   "landscape/hill": {
    "id": "landscape/hill",
    "slug": "hill",
@@ -6529,6 +6756,7 @@ const loaders = {
   "nature/rock": () => import("./js/nature/rock.js"),
   "nature/tree": () => import("./js/nature/tree.js"),
   "nature/tumbleweed": () => import("./js/nature/tumbleweed.js"),
+  "landscape/fxmountain": () => import("./js/landscape/fxmountain.js"),
   "landscape/hill": () => import("./js/landscape/hill.js"),
   "landscape/mountain": () => import("./js/landscape/mountain.js"),
   "sky/cloud": () => import("./js/sky/cloud.js"),
