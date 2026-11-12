@@ -29,6 +29,15 @@ prêts) et leurs planches de sprites, utilise le skill **`pixelfx`** (bibliothè
 (`cd .claude/skills/pixelfx && node tools/render.mjs fire/torch`) ; les rendus vont dans `records/` (ignoré par git).
 Mise à jour : `bash scripts/update-pixelfx.sh [<ref>]`.
 
+## Dessiner dans le style pixelfx (`/draw-fx`)
+
+Pour un asset **statique** au rendu riche de pixelfx (sans contour noir, volumes modelés par la lumière, 5 à 7
+nuances franches), utilise le skill **`/draw-fx`** (`.claude/skills/draw-fx/SKILL.md`) : il dessine avec claude-pxl
+en prenant les effets pixelfx pour modèle, et compare chaque famille à sa référence avec
+`node .claude/skills/draw-fx/scripts/compare.mjs`. Familles faites ainsi : `nature/fxtree`, `nature/fxrock`,
+`nature/fxgrass` (outils communs : `assets/nature/_fx.px.js`). Règles de l'utilisateur pour ces assets : rien qui
+bouge figé dans un sprite fixe (feuilles qui tombent, lucioles…), rien autour de l'objet (herbe, feuilles au sol).
+
 ## Cuisiner une idée (`/grill-me`)
 
 Quand l'utilisateur tape `/grill-me`, ou demande de le « cuisiner », « challenger », « grill » sur une idée,
@@ -60,6 +69,7 @@ et renvoie les erreurs : corrige-les immédiatement.
 ```
 assets/_palette.px.js        palette commune (clés mnémotechniques + rampes) — incluse partout
 assets/categories.json       catégories : titre, description, icône (id d'une variante), ordre
+assets/nature/_fx.px.js      outils communs des familles fx* (style pixelfx) ; fichiers « _ » ignorés par le build
 assets/<cat>/<asset>.px.js   SOURCE : une famille d'assets = un fichier, chaque sprite exporté = une variante
 assets/scenes/<asset>.px.js  SOURCE d'une scène : parties privées + meta.scene (variantes = périodes)
 assets/scenes/_kit.px.js     outils communs des scènes (placement en boucle, couleurs des périodes, ciel, nuages)
@@ -70,7 +80,8 @@ scripts/                     build.js, check.js, dev.js, new-asset.js, scene-pre
                              templates/ (runtime.js, index.d.ts, scene-runtime.js = moteur des scènes exporté)
 .claude/skills/claude-pxl/   moteur de dessin (vendored, voir VENDORED.md) ; draw/ = workflow d'un asset ;
                              scene-dynamique/ = workflow d'une scène dynamique (kit, modèle, test, recettes par biome) ;
-                             pixelfx/ = bibliothèque d'effets VFX + son skill (vendored, voir VENDORED.md)
+                             pixelfx/ = bibliothèque d'effets VFX + son skill (vendored, voir VENDORED.md) ;
+                             draw-fx/ = workflow d'un asset statique au style pixelfx (+ scripts/compare.mjs)
 ```
 
 ## Conventions d'un asset
