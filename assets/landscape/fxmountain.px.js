@@ -47,38 +47,37 @@ function ridge(pts, { k = 1, sl = 1.2, sr = 1.2, z0 = 0, main = false } = {}) {
       return { z, dx: left ? sl : -sr, dy: left ? k - sl * d : k + sr * d, left }
     },
     main,
+    top: pts[0][1],
   }
 }
 
-// arête principale d'un pic qui descend en zigzag, plus des contreforts partis de ses coudes
-function peak(cx, top, base, { seed = 1, k = 1, sl = 2.1, sr = 2.5, spurs = 3, jag = 2.5, drift = 2 } = {}) {
-  const R = rng(seed), pts = [[cx, top]], n = Math.max(2, Math.round((base - top) / 7))
-  for (let i = 1; i <= n; i++) pts.push([cx + drift * (i / n) + (i < n ? (R() - 0.5) * jag * 2 : 0), top + ((base + 4 - top) * i) / n])
-  const out = [ridge(pts, { k, sl, sr, main: true })]
-  for (let s = 0; s < spurs; s++) {
-    // un contrefort part d'un coude de l'arête principale, à sa hauteur, et s'écarte en descendant :
-    // entre les deux, un couloir ; de chaque côté, de nouvelles facettes
-    const j = 1 + Math.floor(R() * (pts.length - 2)), [x0, y0] = pts[j], dir = s % 2 ? 1 : -1, spread = 0.4 + R() * 0.4
-    const yb = base + 4, mid = y0 + (yb - y0) * 0.5, zs = k * (y0 - top)
-    out.push(ridge([[x0, y0], [x0 + dir * (spread * (mid - y0) + (R() - 0.5) * 2), mid], [x0 + dir * spread * (yb - y0), yb]],
-      { k: k * (1.12 + R() * 0.15), sl: sl * (0.7 + R() * 0.6), sr: sr * (0.7 + R() * 0.6), z0: zs - 1 }))
+// Un pic : arête principale droite du sommet au pied (versants rectilignes, silhouette nette), plus des
+// contreforts droits partis de l'arête à une fraction de sa hauteur, qui s'écartent en descendant.
+// Les contreforts ne changent pas la silhouette (seules les arêtes principales la dessinent) : ils
+// découpent l'intérieur en facettes, avec un couloir à l'ombre entre eux et l'arête.
+// spurs : [[fraction de hauteur, côté -1/1, écart en px par px de descente], …]
+function peak(cx, top, base, { k = 1, sl = 2, sr = 2.2, lean = 0, spurs = [] } = {}) {
+  const yb = base + 4, X = (y) => cx + (lean * (y - top)) / (yb - top)
+  const out = [ridge([[cx, top], [X(yb), yb]], { k, sl, sr, main: true })]
+  for (const [f, dir, spread] of spurs) {
+    const y0 = Math.round(top + f * (base - top)), x0 = X(y0)
+    out.push(ridge([[x0, y0], [x0 + dir * spread * (yb - y0), yb]], { k: k * 1.15, sl: sl * 1.1, sr: sr * 1.1, z0: k * (y0 - top) - 0.6 }))
   }
   return out
 }
 
 // Peint les arêtes dans le tampon. snow : 0 = nu, sinon profondeur relative du manteau (0..1), 1 = tout blanc.
-function mountain(B, ridges, { ramp = GRANITE, snow = 0, seed = 1, base = B.h - 1, env = true } = {}) {
+function mountain(B, ridges, { ramp = GRANITE, snow = 0, seed = 1, base = B.h - 1 } = {}) {
   const W = B.w, H = B.h, info = new Array(W * H).fill(null)
   for (let y = 0; y <= base; y++)
     for (let x = 0; x < W; x++) {
+      // silhouette : arêtes principales seules, versants droits
+      let inside = false
+      for (const r of ridges) if (r.main) { const v = r.z(x + 0.5, y + 0.5); if (v && v.z > 0) inside = true }
+      if (!inside) continue
+      // facette : l'arête (principale ou contrefort) la plus en avant à cet endroit
       let best = null, bi = -1
       ridges.forEach((r, i) => { const v = r.z(x + 0.5, y + 0.5); if (v && (!best || v.z > best.z)) (best = v), (bi = i) })
-      if (!best) continue
-      // bord découpé au bruit lissé (silhouette rocheuse, pas de marches régulières)
-      if (best.z + (vnoise(x, y, 3, seed) - 0.5) * 2.4 <= 0.4) continue
-      // enveloppe : la montagne s'évase jusqu'au bas du canevas sans jamais toucher ses bords
-      const m = 1 + ((W / 2 - 1.5) * (y + 1)) / (base + 1) + (vnoise(x, y, 4, seed + 3) - 0.5) * 2
-      if (env && Math.abs(x + 0.5 - W / 2) > m) continue
       info[y * W + x] = { ...best, r: bi }
     }
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H ? null : info[y * W + x])
@@ -87,6 +86,24 @@ function mountain(B, ridges, { ramp = GRANITE, snow = 0, seed = 1, base = B.h - 
   let summit = H
   for (let x = 0; x < W; x++) for (let y = 0; y < H; y++) if (at(x, y)) { topY[x] = y; summit = Math.min(summit, y); break }
   const height = base - summit
+  // neige : un manteau depuis le haut, plus épais sur les faces qui regardent le ciel, en langues par colonne
+  const rawSnow = (x, y) => {
+    if (snow >= 1) return true
+    if (snow <= 0) return false
+    const p = at(x, y), ny = -p.dy * 0.8, l = Math.hypot(-p.dx * 0.5, ny, 1)
+    // altitude depuis le sommet le plus haut, ou depuis le sommet de son propre épaulement (petit chapeau)
+    let apex = H
+    for (const r of ridges) if (r.main) { const v = r.z(x + 0.5, y + 0.5); if (v && v.z > 0) apex = Math.min(apex, r.top) }
+    const d = Math.min((y - summit) / Math.max(1, height), ((y - apex) / Math.max(1, height)) * 2.2), up = clamp(-ny / l, 0, 1)
+    const streak = vnoise(x, 0, 3, seed + 7) - 0.5
+    return d < snow * (0.75 + up * 0.6) + streak * 0.25 * snow
+  }
+  const snowCut = new Array(W).fill(0)
+  for (let x = 0; x < W; x++) {
+    let y = topY[x]
+    while (y <= base && at(x, y) && rawSnow(x, y)) y++
+    snowCut[x] = y
+  }
   const mat = new Array(W * H).fill(-1), idx = new Int8Array(W * H).fill(-1)
   for (let y = 0; y <= base; y++)
     for (let x = 0; x < W; x++) {
@@ -94,14 +111,8 @@ function mountain(B, ridges, { ramp = GRANITE, snow = 0, seed = 1, base = B.h - 
       if (!p) continue
       const nx = -p.dx * 0.5, ny = -p.dy * 0.8, l = Math.hypot(nx, ny, 1)
       const L = (nx * LX + ny * LY + LZ) / l // éclairement de la facette
-      // neige : un manteau depuis le haut, plus épais sur les faces qui regardent le ciel, qui coule en couloirs
-      let isSnow = false
-      if (snow >= 1) isSnow = true
-      else if (snow > 0) {
-        const d = (y - summit) / Math.max(1, height), up = clamp(-ny / l, 0, 1)
-        const streak = vnoise(x, y / 5, 2, seed + 7) - 0.5
-        isSnow = d < snow * (0.75 + up * 0.6) + streak * 0.35 * snow
-      }
+      // neige : une seule coulée par colonne, du haut jusqu'à la première roche (pas d'îlots)
+      const isSnow = y < snowCut[x]
       let i
       if (isSnow) {
         i = L > 0.88 ? 4 : L > 0.65 ? 3 : L > 0.25 ? 2 : 1
@@ -144,27 +155,41 @@ function mountain(B, ridges, { ramp = GRANITE, snow = 0, seed = 1, base = B.h - 
 
 const draw = (fn) => (c) => { const B = Buf(c.w, c.h); fn(B, c.h - 1); B.flush(c) }
 
-sprite("fxmountain_peak_snow_64", { w: 64, h: 64 }, draw((B, g) =>
-  mountain(B, peak(31, 3, g, { seed: 3, spurs: 4, jag: 3 }), { snow: 0.4, seed: 3 })))
-sprite("fxmountain_peak_snow_48", { w: 48, h: 48 }, draw((B, g) =>
-  mountain(B, peak(22, 3, g, { seed: 5, spurs: 3 }), { snow: 0.42, seed: 5 })))
+// grand pic flanqué de deux épaulements qui dépassent de ses versants
+const big = (g) => [
+  ...peak(32, 3, g, { sl: 2.3, sr: 2.5, spurs: [[0.35, -1, 0.7], [0.5, 1, 0.6]] }),
+  ...peak(13, 31, g, { spurs: [[0.5, -1, 0.6]] }),
+  ...peak(50, 27, g, { spurs: [[0.5, 1, 0.6]] }),
+]
+// pic moyen à un épaulement à droite
+const mid = (g) => [
+  ...peak(21, 3, g, { sl: 2.2, sr: 2.5, spurs: [[0.35, -1, 0.7], [0.55, 1, 0.6]] }),
+  ...peak(37, 21, g, { spurs: [[0.5, 1, 0.6]] }),
+]
+sprite("fxmountain_peak_snow_64", { w: 64, h: 64 }, draw((B, g) => mountain(B, big(g), { snow: 0.42, seed: 3 })))
+sprite("fxmountain_peak_snow_48", { w: 48, h: 48 }, draw((B, g) => mountain(B, mid(g), { snow: 0.42, seed: 5 })))
 sprite("fxmountain_peak_snow_32", { w: 32, h: 32 }, draw((B, g) =>
-  mountain(B, peak(15, 2, g, { seed: 8, spurs: 2, jag: 1.5, drift: 1 }), { snow: 0.42, seed: 8 })))
+  mountain(B, peak(16, 2, g, { sl: 2, sr: 2.1, spurs: [[0.45, -1, 0.6], [0.55, 1, 0.5]] }), { snow: 0.42, seed: 8 })))
 sprite("fxmountain_peak_snow_16", { w: 16, h: 16 }, draw((B, g) =>
-  mountain(B, peak(7.5, 1, g, { seed: 2, spurs: 0, jag: 0.5, drift: 0.5, k: 1, sl: 1.9, sr: 2.1 }), { snow: 0.45, seed: 2 })))
-sprite("fxmountain_peak_bare_48", { w: 48, h: 48 }, draw((B, g) =>
-  mountain(B, peak(22, 3, g, { seed: 5, spurs: 3 }), { snow: 0, seed: 5 })))
-sprite("fxmountain_peak_winter_48", { w: 48, h: 48 }, draw((B, g) =>
-  mountain(B, peak(22, 3, g, { seed: 5, spurs: 3 }), { snow: 1, seed: 5 })))
-sprite("fxmountain_twin_snow_64", { w: 64, h: 64 }, draw((B, g) =>
-  mountain(B, [...peak(40, 14, g, { seed: 13, spurs: 2, sl: 2.4, sr: 2.8 }), ...peak(24, 4, g, { seed: 12, spurs: 3, sl: 2.4, sr: 2.8 })], { snow: 0.38, seed: 12 })))
-sprite("fxmountain_range_snow_64", { w: 64, h: 32 }, draw((B, g) =>
-  mountain(B, [
-    ...peak(51, 9, g, { seed: 22, spurs: 1, k: 1, sl: 2, sr: 2.4, jag: 1.5 }),
-    ...peak(12, 7, g, { seed: 21, spurs: 1, k: 1, sl: 2, sr: 2.4, jag: 1.5 }),
-    ...peak(30, 1, g, { seed: 23, spurs: 2, k: 1, sl: 2, sr: 2.4, jag: 1.5 }),
-  ], { snow: 0.55, seed: 21, env: false })))
-sprite("fxmountain_peak_sandstone_48", { w: 48, h: 48 }, draw((B, g) =>
-  mountain(B, peak(23, 6, g, { seed: 31, spurs: 5, k: 1, sl: 1.9, sr: 2.3 }), { ramp: SANDSTONE, seed: 31 })))
+  mountain(B, peak(8, 1, g, { sl: 1.9, sr: 2 }), { snow: 0.45, seed: 2 })))
+sprite("fxmountain_peak_bare_48", { w: 48, h: 48 }, draw((B, g) => mountain(B, [
+  ...peak(27, 4, g, { sl: 2.2, sr: 2.5, spurs: [[0.35, 1, 0.6], [0.5, -1, 0.7]] }),
+  ...peak(10, 24, g, { spurs: [[0.5, -1, 0.6]] }),
+], { seed: 5 })))
+sprite("fxmountain_peak_winter_48", { w: 48, h: 48 }, draw((B, g) => mountain(B, mid(g), { snow: 1, seed: 5 })))
+sprite("fxmountain_twin_snow_64", { w: 64, h: 64 }, draw((B, g) => mountain(B, [
+  ...peak(22, 5, g, { sl: 2.6, sr: 2.8, spurs: [[0.4, -1, 0.7]] }),
+  ...peak(44, 14, g, { sl: 2.6, sr: 2.8, spurs: [[0.45, 1, 0.6]] }),
+], { snow: 0.4, seed: 12 })))
+sprite("fxmountain_range_snow_64", { w: 64, h: 32 }, draw((B, g) => mountain(B, [
+  ...peak(12, 10, g, { spurs: [[0.5, -1, 0.6]] }),
+  ...peak(52, 8, g, { spurs: [[0.5, 1, 0.6]] }),
+  ...peak(32, 2, g, { spurs: [[0.45, -1, 0.6], [0.55, 1, 0.5]] }),
+], { snow: 0.5, seed: 21 })))
+sprite("fxmountain_peak_sandstone_48", { w: 48, h: 48 }, draw((B, g) => mountain(B, [
+  ...peak(24, 8, g, { sl: 1.9, sr: 2.1, spurs: [[0.4, -1, 0.7], [0.5, 1, 0.6]] }),
+  ...peak(11, 26, g, { sl: 1.9, sr: 2.1 }),
+  ...peak(37, 23, g, { sl: 1.9, sr: 2.1, spurs: [[0.5, 1, 0.5]] }),
+], { ramp: SANDSTONE, seed: 31 })))
 
 sheet("fxmountains", ["fxmountain_*"], { pad: 2 })
