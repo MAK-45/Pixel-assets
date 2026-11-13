@@ -14,8 +14,8 @@ export const catalog = {
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 28,
-  "variants": 273
+  "assets": 32,
+  "variants": 304
  },
  "categories": [
   {
@@ -67,6 +67,10 @@ export const catalog = {
    "icon": "sky/sun/rays_16",
    "assets": [
     "sky/cloud",
+    "sky/fxcloud",
+    "sky/fxmoon",
+    "sky/fxstar",
+    "sky/fxsun",
     "sky/moon",
     "sky/star",
     "sky/sun"
@@ -4866,6 +4870,759 @@ export const catalog = {
     }
    }
   },
+  "sky/fxcloud": {
+   "id": "sky/fxcloud",
+   "slug": "fxcloud",
+   "category": "sky",
+   "title": "Nuage (style pixelfx)",
+   "description": "Nuages au rendu riche inspiré des effets clouds et storm-cloud de la bibliothèque pixelfx : rangée de bouffées sur une base presque plate, crête éclairée en haut, paliers francs qui descendent vers un ventre sombre, lignes claires entre les lobes, côté droit des bouffées à l'ombre (lumière en haut à gauche). Sans contour noir. Variantes : cumulus blanc (64 × 32, 48 × 24), petit nuage (32 × 16, 16 px), nuage de nuit au clair de lune, nuage d'orage sombre, nuage rose du couchant et longue bande de stratus gris. Nuage seul, sans pluie ni éclair.",
+   "tags": [
+    "cloud",
+    "sky",
+    "weather",
+    "day",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/sky/fxcloud.px.js",
+   "module": "library/js/sky/fxcloud.js",
+   "sheet": {
+    "png": "library/sheets/sky/fxcloud.png",
+    "json": "library/sheets/sky/fxcloud.json"
+   },
+   "axes": {
+    "shape": [
+     "cumulus",
+     "puff",
+     "storm",
+     "stratus"
+    ],
+    "time": [
+     "day",
+     "night",
+     "storm",
+     "sunset",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48,
+    64
+   ],
+   "variantCount": 8,
+   "variants": {
+    "cumulus_64": {
+     "key": "cumulus_64",
+     "name": "fxcloud_cumulus_64",
+     "id": "sky/fxcloud/cumulus_64",
+     "label": "Cumulus (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "cumulus",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxcloud/cumulus_64.png"
+    },
+    "cumulus_48": {
+     "key": "cumulus_48",
+     "name": "fxcloud_cumulus_48",
+     "id": "sky/fxcloud/cumulus_48",
+     "label": "Cumulus (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "cumulus",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxcloud/cumulus_48.png"
+    },
+    "puff_32": {
+     "key": "puff_32",
+     "name": "fxcloud_puff_32",
+     "id": "sky/fxcloud/puff_32",
+     "label": "Petit nuage (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "shape": "puff",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxcloud/puff_32.png"
+    },
+    "puff_16": {
+     "key": "puff_16",
+     "name": "fxcloud_puff_16",
+     "id": "sky/fxcloud/puff_16",
+     "label": "Petit nuage (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "puff",
+      "time": "day"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/fxcloud/puff_16.png"
+    },
+    "night_48": {
+     "key": "night_48",
+     "name": "fxcloud_night_48",
+     "id": "sky/fxcloud/night_48",
+     "label": "Nuage de nuit (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "cumulus",
+      "time": "night"
+     },
+     "tags": [
+      "night",
+      "moonlit"
+     ],
+     "png": "library/png/sky/fxcloud/night_48.png"
+    },
+    "storm_64": {
+     "key": "storm_64",
+     "name": "fxcloud_storm_64",
+     "id": "sky/fxcloud/storm_64",
+     "label": "Nuage d'orage (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "storm",
+      "time": "storm"
+     },
+     "tags": [
+      "storm",
+      "dark",
+      "rain"
+     ],
+     "png": "library/png/sky/fxcloud/storm_64.png"
+    },
+    "sunset_48": {
+     "key": "sunset_48",
+     "name": "fxcloud_sunset_48",
+     "id": "sky/fxcloud/sunset_48",
+     "label": "Nuage du couchant (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "cumulus",
+      "time": "sunset"
+     },
+     "tags": [
+      "sunset",
+      "dusk",
+      "pink"
+     ],
+     "png": "library/png/sky/fxcloud/sunset_48.png"
+    },
+    "stratus_64": {
+     "key": "stratus_64",
+     "name": "fxcloud_stratus_64",
+     "id": "sky/fxcloud/stratus_64",
+     "label": "Bande de stratus (64 × 16)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 16,
+     "size": 64,
+     "props": {
+      "shape": "stratus",
+      "time": "overcast"
+     },
+     "tags": [
+      "overcast",
+      "grey",
+      "parallax"
+     ],
+     "png": "library/png/sky/fxcloud/stratus_64.png"
+    }
+   }
+  },
+  "sky/fxmoon": {
+   "id": "sky/fxmoon",
+   "slug": "fxmoon",
+   "category": "sky",
+   "title": "Lune (style pixelfx)",
+   "description": "Lunes au rendu riche inspiré de la lune de l'effet clouds de la bibliothèque pixelfx : disque pâle presque blanc modelé par la lumière en haut à gauche, mers plus sombres aux bords découpés, cratères à paroi d'ombre et rebord éclairé, limbe adouci côté ombre, halo de clair de lune translucide. Sans contour noir ; la partie non éclairée est transparente. Variantes : pleine lune (16, 32, 48 px), gibbeuse, premier quartier, croissant (16, 32 px), lune rousse des moissons et lune de sang. Les halos rendent mieux sur fond sombre.",
+   "tags": [
+    "moon",
+    "sky",
+    "night",
+    "lunar",
+    "phase",
+    "glow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/sky/fxmoon.px.js",
+   "module": "library/js/sky/fxmoon.js",
+   "sheet": {
+    "png": "library/sheets/sky/fxmoon.png",
+    "json": "library/sheets/sky/fxmoon.json"
+   },
+   "axes": {
+    "phase": [
+     "full",
+     "gibbous",
+     "quarter",
+     "crescent"
+    ],
+    "color": [
+     "silver",
+     "orange",
+     "red"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 9,
+   "variants": {
+    "full_48": {
+     "key": "full_48",
+     "name": "fxmoon_full_48",
+     "id": "sky/fxmoon/full_48",
+     "label": "Pleine lune (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "phase": "full",
+      "color": "silver"
+     },
+     "tags": [
+      "craters"
+     ],
+     "png": "library/png/sky/fxmoon/full_48.png"
+    },
+    "full_32": {
+     "key": "full_32",
+     "name": "fxmoon_full_32",
+     "id": "sky/fxmoon/full_32",
+     "label": "Pleine lune (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "silver"
+     },
+     "tags": [
+      "craters"
+     ],
+     "png": "library/png/sky/fxmoon/full_32.png"
+    },
+    "full_16": {
+     "key": "full_16",
+     "name": "fxmoon_full_16",
+     "id": "sky/fxmoon/full_16",
+     "label": "Pleine lune (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "phase": "full",
+      "color": "silver"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/fxmoon/full_16.png"
+    },
+    "gibbous_32": {
+     "key": "gibbous_32",
+     "name": "fxmoon_gibbous_32",
+     "id": "sky/fxmoon/gibbous_32",
+     "label": "Lune gibbeuse (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "gibbous",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxmoon/gibbous_32.png"
+    },
+    "quarter_32": {
+     "key": "quarter_32",
+     "name": "fxmoon_quarter_32",
+     "id": "sky/fxmoon/quarter_32",
+     "label": "Premier quartier (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "quarter",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxmoon/quarter_32.png"
+    },
+    "crescent_32": {
+     "key": "crescent_32",
+     "name": "fxmoon_crescent_32",
+     "id": "sky/fxmoon/crescent_32",
+     "label": "Croissant de lune (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "crescent",
+      "color": "silver"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxmoon/crescent_32.png"
+    },
+    "crescent_16": {
+     "key": "crescent_16",
+     "name": "fxmoon_crescent_16",
+     "id": "sky/fxmoon/crescent_16",
+     "label": "Croissant de lune (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "phase": "crescent",
+      "color": "silver"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/fxmoon/crescent_16.png"
+    },
+    "harvest_32": {
+     "key": "harvest_32",
+     "name": "fxmoon_harvest_32",
+     "id": "sky/fxmoon/harvest_32",
+     "label": "Lune rousse des moissons (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "orange"
+     },
+     "tags": [
+      "autumn",
+      "harvest"
+     ],
+     "png": "library/png/sky/fxmoon/harvest_32.png"
+    },
+    "blood_32": {
+     "key": "blood_32",
+     "name": "fxmoon_blood_32",
+     "id": "sky/fxmoon/blood_32",
+     "label": "Lune de sang (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "phase": "full",
+      "color": "red"
+     },
+     "tags": [
+      "eclipse",
+      "red",
+      "horror"
+     ],
+     "png": "library/png/sky/fxmoon/blood_32.png"
+    }
+   }
+  },
+  "sky/fxstar": {
+   "id": "sky/fxstar",
+   "slug": "fxstar",
+   "category": "sky",
+   "title": "Étoile (style pixelfx)",
+   "description": "Étoiles et ciel étoilé au rendu riche inspiré des effets shooting-stars et sunburst de la bibliothèque pixelfx : scintillements en croix au cœur blanc dont les branches refroidissent vers la pointe, halo translucide, étoile à cinq branches taillée en facettes dorées, et tuiles de ciel nocturne répétables (voie lactée en bande diagonale, poussière d'étoiles, étoiles fixes et scintillantes). Sans contour noir. Variantes : scintillement blanc à 4 branches, étoile dorée à 8 branches, étoile bleue, étoile à cinq branches (16, 32 px), ciel étoilé en tuile de 32 et 64 px. Les halos rendent mieux sur fond sombre.",
+   "tags": [
+    "star",
+    "sky",
+    "night",
+    "sparkle",
+    "twinkle",
+    "starfield",
+    "glow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/sky/fxstar.px.js",
+   "module": "library/js/sky/fxstar.js",
+   "sheet": {
+    "png": "library/sheets/sky/fxstar.png",
+    "json": "library/sheets/sky/fxstar.json"
+   },
+   "axes": {
+    "shape": [
+     "sparkle4",
+     "sparkle8",
+     "star5",
+     "starfield"
+    ],
+    "color": [
+     "white",
+     "gold",
+     "blue",
+     "night"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    64
+   ],
+   "variantCount": 7,
+   "variants": {
+    "sparkle4_16": {
+     "key": "sparkle4_16",
+     "name": "fxstar_sparkle4_16",
+     "id": "sky/fxstar/sparkle4_16",
+     "label": "Scintillement blanc (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "sparkle4",
+      "color": "white"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/fxstar/sparkle4_16.png"
+    },
+    "sparkle8_16": {
+     "key": "sparkle8_16",
+     "name": "fxstar_sparkle8_16",
+     "id": "sky/fxstar/sparkle8_16",
+     "label": "Étoile dorée à 8 branches (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "sparkle8",
+      "color": "gold"
+     },
+     "tags": [
+      "icon",
+      "magic"
+     ],
+     "png": "library/png/sky/fxstar/sparkle8_16.png"
+    },
+    "blue_16": {
+     "key": "blue_16",
+     "name": "fxstar_blue_16",
+     "id": "sky/fxstar/blue_16",
+     "label": "Étoile bleue (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "sparkle4",
+      "color": "blue"
+     },
+     "tags": [
+      "icon",
+      "cold"
+     ],
+     "png": "library/png/sky/fxstar/blue_16.png"
+    },
+    "star5_32": {
+     "key": "star5_32",
+     "name": "fxstar_star5_32",
+     "id": "sky/fxstar/star5_32",
+     "label": "Étoile à cinq branches (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "star5",
+      "color": "gold"
+     },
+     "tags": [
+      "pickup",
+      "reward"
+     ],
+     "png": "library/png/sky/fxstar/star5_32.png"
+    },
+    "star5_16": {
+     "key": "star5_16",
+     "name": "fxstar_star5_16",
+     "id": "sky/fxstar/star5_16",
+     "label": "Étoile à cinq branches (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "star5",
+      "color": "gold"
+     },
+     "tags": [
+      "icon",
+      "pickup",
+      "reward"
+     ],
+     "png": "library/png/sky/fxstar/star5_16.png"
+    },
+    "starfield_64": {
+     "key": "starfield_64",
+     "name": "fxstar_starfield_64",
+     "id": "sky/fxstar/starfield_64",
+     "label": "Ciel étoilé, tuile (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "shape": "starfield",
+      "color": "night"
+     },
+     "tags": [
+      "background",
+      "tile",
+      "seamless",
+      "milky-way"
+     ],
+     "png": "library/png/sky/fxstar/starfield_64.png"
+    },
+    "starfield_32": {
+     "key": "starfield_32",
+     "name": "fxstar_starfield_32",
+     "id": "sky/fxstar/starfield_32",
+     "label": "Ciel étoilé, tuile (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "starfield",
+      "color": "night"
+     },
+     "tags": [
+      "background",
+      "tile",
+      "seamless"
+     ],
+     "png": "library/png/sky/fxstar/starfield_32.png"
+    }
+   }
+  },
+  "sky/fxsun": {
+   "id": "sky/fxsun",
+   "slug": "fxsun",
+   "category": "sky",
+   "title": "Soleil (style pixelfx)",
+   "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
+   "tags": [
+    "sun",
+    "sky",
+    "day",
+    "light",
+    "sunny",
+    "weather",
+    "glow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/sky/fxsun.px.js",
+   "module": "library/js/sky/fxsun.js",
+   "sheet": {
+    "png": "library/sheets/sky/fxsun.png",
+    "json": "library/sheets/sky/fxsun.json"
+   },
+   "axes": {
+    "style": [
+     "rays",
+     "corona",
+     "disc"
+    ],
+    "time": [
+     "day",
+     "winter",
+     "sunset",
+     "eclipse"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48,
+    64
+   ],
+   "variantCount": 7,
+   "variants": {
+    "rays_64": {
+     "key": "rays_64",
+     "name": "fxsun_rays_64",
+     "id": "sky/fxsun/rays_64",
+     "label": "Soleil à rayons (64 px)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 64,
+     "size": 64,
+     "props": {
+      "style": "rays",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxsun/rays_64.png"
+    },
+    "rays_32": {
+     "key": "rays_32",
+     "name": "fxsun_rays_32",
+     "id": "sky/fxsun/rays_32",
+     "label": "Soleil à rayons (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "time": "day"
+     },
+     "tags": [],
+     "png": "library/png/sky/fxsun/rays_32.png"
+    },
+    "rays_16": {
+     "key": "rays_16",
+     "name": "fxsun_rays_16",
+     "id": "sky/fxsun/rays_16",
+     "label": "Soleil à rayons (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "style": "rays",
+      "time": "day"
+     },
+     "tags": [
+      "icon"
+     ],
+     "png": "library/png/sky/fxsun/rays_16.png"
+    },
+    "pale_32": {
+     "key": "pale_32",
+     "name": "fxsun_pale_32",
+     "id": "sky/fxsun/pale_32",
+     "label": "Soleil pâle d'hiver (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "rays",
+      "time": "winter"
+     },
+     "tags": [
+      "winter",
+      "cold"
+     ],
+     "png": "library/png/sky/fxsun/pale_32.png"
+    },
+    "glow_32": {
+     "key": "glow_32",
+     "name": "fxsun_glow_32",
+     "id": "sky/fxsun/glow_32",
+     "label": "Soleil doux à couronne (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "corona",
+      "time": "day"
+     },
+     "tags": [
+      "warm"
+     ],
+     "png": "library/png/sky/fxsun/glow_32.png"
+    },
+    "sunset_48": {
+     "key": "sunset_48",
+     "name": "fxsun_sunset_48",
+     "id": "sky/fxsun/sunset_48",
+     "label": "Soleil couchant sur l'horizon (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "style": "disc",
+      "time": "sunset"
+     },
+     "tags": [
+      "sunset",
+      "dusk",
+      "horizon",
+      "retro"
+     ],
+     "png": "library/png/sky/fxsun/sunset_48.png"
+    },
+    "eclipse_48": {
+     "key": "eclipse_48",
+     "name": "fxsun_eclipse_48",
+     "id": "sky/fxsun/eclipse_48",
+     "label": "Éclipse totale (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "style": "corona",
+      "time": "eclipse"
+     },
+     "tags": [
+      "eclipse",
+      "dark",
+      "night"
+     ],
+     "png": "library/png/sky/fxsun/eclipse_48.png"
+    }
+   }
+  },
   "sky/moon": {
    "id": "sky/moon",
    "slug": "moon",
@@ -6760,6 +7517,10 @@ const loaders = {
   "landscape/hill": () => import("./js/landscape/hill.js"),
   "landscape/mountain": () => import("./js/landscape/mountain.js"),
   "sky/cloud": () => import("./js/sky/cloud.js"),
+  "sky/fxcloud": () => import("./js/sky/fxcloud.js"),
+  "sky/fxmoon": () => import("./js/sky/fxmoon.js"),
+  "sky/fxstar": () => import("./js/sky/fxstar.js"),
+  "sky/fxsun": () => import("./js/sky/fxsun.js"),
   "sky/moon": () => import("./js/sky/moon.js"),
   "sky/star": () => import("./js/sky/star.js"),
   "sky/sun": () => import("./js/sky/sun.js"),

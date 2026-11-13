@@ -56,6 +56,8 @@ pal({
   "=": "#835632",
   // neige à l'ombre, deux crans bleutés sous S (rampe [ ] S s w, comme la neige de pixelfx)
   "[": "#3e4b72", "]": "#62759f",
+  // halo froid du clair de lune (fxmoon, fxstar), translucide, posé sur le vide : fort / faible
+  "{": "#c8d4ff40", "}": "#c8d4ff18",
 })
 
 ramps(

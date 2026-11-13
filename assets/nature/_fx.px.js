@@ -59,3 +59,20 @@ function selout(B, idx, ramp) {
   return { at: (x, y) => (x < 0 || y < 0 || x >= B.w || y >= B.h ? -1 : out[y * B.w + x]) }
 }
 
+
+// Halo de lumière émise (soleil, lune, étoiles…) : les pixels vides à moins de r1 px d'un pixel de `keys`
+// prennent la clé translucide forte k1, jusqu'à r2 px la faible k2 (halo rond, jamais sur un pixel opaque).
+function halo(B, keys, r1, r2, k1, k2) {
+  const src = []
+  for (let y = 0; y < B.h; y++) for (let x = 0; x < B.w; x++) if (keys.includes(B.get(x, y))) src.push([x, y])
+  const R = Math.ceil(r2), put = []
+  for (let y = 0; y < B.h; y++)
+    for (let x = 0; x < B.w; x++) {
+      if (B.get(x, y) !== ".") continue
+      let d = Infinity
+      for (const [sx, sy] of src) if (Math.abs(sx - x) <= R && Math.abs(sy - y) <= R) d = Math.min(d, Math.hypot(sx - x, sy - y))
+      if (d <= r1) put.push([x, y, k1])
+      else if (d <= r2) put.push([x, y, k2])
+    }
+  for (const [x, y, c] of put) B.set(x, y, c)
+}
