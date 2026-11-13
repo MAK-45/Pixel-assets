@@ -1,0 +1,1767 @@
+{
+ "format": 1,
+ "id": "scenes/scifi_room",
+ "title": "Salle de station spatiale",
+ "type": "static",
+ "w": 320,
+ "h": 180,
+ "groundY": 152,
+ "defaultPeriod": "day",
+ "periods": [
+  {
+   "id": "day",
+   "label": "Normal"
+  },
+  {
+   "id": "alert",
+   "label": "Alerte"
+  },
+  {
+   "id": "night",
+   "label": "Veille"
+  }
+ ],
+ "planes": [
+  {
+   "id": "space",
+   "label": "Espace",
+   "factor": 0,
+   "y": 0,
+   "images": {
+    "day": {
+     "w": 8,
+     "h": 180,
+     "fill": "#070a1c",
+     "png": "day/space.png"
+    },
+    "alert": {
+     "w": 8,
+     "h": 180,
+     "fill": "#070a1c",
+     "png": "alert/space.png"
+    },
+    "night": {
+     "w": 8,
+     "h": 180,
+     "fill": "#070a1c",
+     "png": "night/space.png"
+    }
+   },
+   "kind": "sky"
+  },
+  {
+   "id": "stars",
+   "label": "Étoiles et planète",
+   "factor": 0,
+   "y": -90,
+   "images": {
+    "day": {
+     "w": 480,
+     "h": 270,
+     "png": "night/stars.png"
+    },
+    "alert": {
+     "w": 480,
+     "h": 270,
+     "png": "night/stars.png"
+    },
+    "night": {
+     "w": 480,
+     "h": 270,
+     "png": "night/stars.png"
+    }
+   }
+  },
+  {
+   "id": "room",
+   "label": "Sol et murs",
+   "factor": 0,
+   "y": -90,
+   "images": {
+    "day": {
+     "w": 480,
+     "h": 270,
+     "png": "day/room.png"
+    },
+    "alert": {
+     "w": 480,
+     "h": 270,
+     "png": "alert/room.png"
+    },
+    "night": {
+     "w": 480,
+     "h": 270,
+     "png": "night/room.png"
+    }
+   },
+   "actors": [
+    {
+     "sprite": "pulse",
+     "x": 144,
+     "y": 212,
+     "phase": 1000
+    },
+    {
+     "sprite": "pulse",
+     "x": 160,
+     "y": 220,
+     "phase": 800
+    },
+    {
+     "sprite": "pulse",
+     "x": 176,
+     "y": 228,
+     "phase": 600
+    },
+    {
+     "sprite": "pulse",
+     "x": 208,
+     "y": 244,
+     "phase": 200
+    },
+    {
+     "sprite": "pulse",
+     "x": 224,
+     "y": 252,
+     "phase": 0
+    },
+    {
+     "sprite": "pulse",
+     "x": 240,
+     "y": 260,
+     "phase": 1000
+    },
+    {
+     "sprite": "pulse",
+     "x": 256,
+     "y": 268,
+     "phase": 800
+    },
+    {
+     "sprite": "pulse",
+     "x": 272,
+     "y": 276,
+     "phase": 600
+    },
+    {
+     "sprite": "pulse",
+     "x": 288,
+     "y": 284,
+     "phase": 400
+    },
+    {
+     "sprite": "pulse",
+     "x": 304,
+     "y": 292,
+     "phase": 200
+    },
+    {
+     "sprite": "pulse",
+     "x": 320,
+     "y": 300,
+     "phase": 0
+    },
+    {
+     "sprite": "pulse_up",
+     "x": 208,
+     "y": 228,
+     "phase": 600
+    },
+    {
+     "sprite": "door",
+     "x": 128,
+     "y": 140
+    },
+    {
+     "sprite": "screen",
+     "x": 256,
+     "y": 108
+    },
+    {
+     "sprite": "alarm_l",
+     "x": 112,
+     "y": 156
+    },
+    {
+     "sprite": "alarm_r",
+     "x": 288,
+     "y": 124
+    }
+   ]
+  },
+  {
+   "id": "props",
+   "label": "Mobilier et machines",
+   "factor": 0,
+   "y": -90,
+   "images": {
+    "day": {
+     "w": 480,
+     "h": 270,
+     "png": "night/props.png"
+    },
+    "alert": {
+     "w": 480,
+     "h": 270,
+     "png": "night/props.png"
+    },
+    "night": {
+     "w": 480,
+     "h": 270,
+     "png": "night/props.png"
+    }
+   },
+   "actors": [
+    {
+     "sprite": "plant_tall",
+     "x": 231,
+     "y": 128
+    },
+    {
+     "sprite": "crate_blue",
+     "x": 243,
+     "y": 154
+    },
+    {
+     "sprite": "bunk",
+     "x": 191,
+     "y": 152
+    },
+    {
+     "sprite": "barrel",
+     "x": 264,
+     "y": 160
+    },
+    {
+     "sprite": "rack",
+     "x": 286,
+     "y": 152
+    },
+    {
+     "sprite": "locker",
+     "x": 164,
+     "y": 157
+    },
+    {
+     "sprite": "rack",
+     "x": 300,
+     "y": 159,
+     "phase": 500
+    },
+    {
+     "sprite": "reactor",
+     "x": 225,
+     "y": 173
+    },
+    {
+     "sprite": "desk_sw",
+     "x": 323,
+     "y": 181
+    },
+    {
+     "sprite": "plant",
+     "x": 118,
+     "y": 199
+    },
+    {
+     "sprite": "holo",
+     "x": 291,
+     "y": 192
+    },
+    {
+     "sprite": "pod_cyan",
+     "x": 360,
+     "y": 189
+    },
+    {
+     "sprite": "desk_se",
+     "x": 81,
+     "y": 198,
+     "phase": 400
+    },
+    {
+     "sprite": "chair",
+     "x": 137,
+     "y": 214
+    },
+    {
+     "sprite": "pod_green",
+     "x": 377,
+     "y": 197,
+     "phase": 700
+    },
+    {
+     "sprite": "table",
+     "x": 117,
+     "y": 225
+    },
+    {
+     "sprite": "pod_violet",
+     "x": 393,
+     "y": 205,
+     "phase": 1300
+    },
+    {
+     "sprite": "barrel",
+     "x": 99,
+     "y": 234
+    },
+    {
+     "sprite": "large",
+     "x": 47,
+     "y": 229
+    },
+    {
+     "sprite": "crate_metal",
+     "x": 124,
+     "y": 242
+    },
+    {
+     "sprite": "toxic",
+     "x": 371,
+     "y": 242
+    },
+    {
+     "sprite": "stack",
+     "x": 299,
+     "y": 235
+    },
+    {
+     "sprite": "crate_orange",
+     "x": 102,
+     "y": 247
+    },
+    {
+     "sprite": "rack",
+     "x": 434,
+     "y": 226,
+     "phase": 900
+    },
+    {
+     "sprite": "large_blue",
+     "x": 323,
+     "y": 237
+    },
+    {
+     "sprite": "crate_green",
+     "x": 68,
+     "y": 254
+    },
+    {
+     "sprite": "crate_orange",
+     "x": 353,
+     "y": 263
+    },
+    {
+     "sprite": "drone",
+     "x": 193,
+     "y": 206
+    }
+   ]
+  },
+  {
+   "id": "alarm",
+   "label": "Lueur des gyrophares",
+   "factor": 0,
+   "y": -90,
+   "images": {
+    "alert": {
+     "w": 480,
+     "h": 270,
+     "ms": [
+      200,
+      200,
+      200,
+      200
+     ],
+     "png": "alert/alarm.png"
+    }
+   }
+  }
+ ],
+ "sprites": {
+  "twinkle": {
+   "*": {
+    "w": 5,
+    "h": 5,
+    "ms": [
+     400,
+     100,
+     100,
+     200,
+     100,
+     100
+    ],
+    "png": "sprites/twinkle.png"
+   }
+  },
+  "pulse": {
+   "day": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_day.png"
+   },
+   "alert": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_alert.png"
+   },
+   "night": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_night.png"
+   }
+  },
+  "pulse_up": {
+   "day": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_up_day.png"
+   },
+   "alert": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_up_alert.png"
+   },
+   "night": {
+    "w": 32,
+    "h": 15,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pulse_up_night.png"
+   }
+  },
+  "door": {
+   "day": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/door_day.png"
+   },
+   "alert": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/door_alert.png"
+   },
+   "night": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/door_night.png"
+   }
+  },
+  "screen": {
+   "day": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/screen_day.png"
+   },
+   "alert": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/screen_alert.png"
+   },
+   "night": {
+    "w": 32,
+    "h": 71,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/screen_night.png"
+   }
+  },
+  "alarm_l": {
+   "day": {
+    "w": 16,
+    "h": 63,
+    "png": "sprites/alarm_l_day.png"
+   },
+   "alert": {
+    "w": 16,
+    "h": 63,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/alarm_l_alert.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 63,
+    "png": "sprites/alarm_l_night.png"
+   }
+  },
+  "alarm_r": {
+   "day": {
+    "w": 16,
+    "h": 63,
+    "png": "sprites/alarm_r_day.png"
+   },
+   "alert": {
+    "w": 16,
+    "h": 63,
+    "ms": [
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/alarm_r_alert.png"
+   },
+   "night": {
+    "w": 16,
+    "h": 63,
+    "png": "sprites/alarm_r_night.png"
+   }
+  },
+  "plant_tall": {
+   "day": {
+    "w": 19,
+    "h": 40,
+    "png": "sprites/plant_tall_day.png"
+   },
+   "alert": {
+    "w": 19,
+    "h": 40,
+    "png": "sprites/plant_tall_alert.png"
+   },
+   "night": {
+    "w": 19,
+    "h": 40,
+    "png": "sprites/plant_tall_night.png"
+   }
+  },
+  "crate_blue": {
+   "day": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_blue_day.png"
+   },
+   "alert": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_blue_alert.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_blue_night.png"
+   }
+  },
+  "barrel": {
+   "day": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/barrel_day.png"
+   },
+   "alert": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/barrel_alert.png"
+   },
+   "night": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/barrel_night.png"
+   }
+  },
+  "rack": {
+   "day": {
+    "w": 28,
+    "h": 48,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/rack_day.png"
+   },
+   "alert": {
+    "w": 28,
+    "h": 48,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/rack_alert.png"
+   },
+   "night": {
+    "w": 28,
+    "h": 48,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/rack_night.png"
+   }
+  },
+  "desk_sw": {
+   "day": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_sw_day.png"
+   },
+   "alert": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_sw_alert.png"
+   },
+   "night": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_sw_night.png"
+   }
+  },
+  "pod_cyan": {
+   "day": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_cyan_day.png"
+   },
+   "alert": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_cyan_alert.png"
+   },
+   "night": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_cyan_night.png"
+   }
+  },
+  "pod_green": {
+   "day": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_green_day.png"
+   },
+   "alert": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_green_alert.png"
+   },
+   "night": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_green_night.png"
+   }
+  },
+  "pod_violet": {
+   "day": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_violet_day.png"
+   },
+   "alert": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_violet_alert.png"
+   },
+   "night": {
+    "w": 23,
+    "h": 47,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/pod_violet_night.png"
+   }
+  },
+  "bunk": {
+   "day": {
+    "w": 48,
+    "h": 37,
+    "png": "sprites/bunk_day.png"
+   },
+   "alert": {
+    "w": 48,
+    "h": 37,
+    "png": "sprites/bunk_alert.png"
+   },
+   "night": {
+    "w": 48,
+    "h": 37,
+    "png": "sprites/bunk_night.png"
+   }
+  },
+  "locker": {
+   "day": {
+    "w": 22,
+    "h": 43,
+    "png": "sprites/locker_day.png"
+   },
+   "alert": {
+    "w": 22,
+    "h": 43,
+    "png": "sprites/locker_alert.png"
+   },
+   "night": {
+    "w": 22,
+    "h": 43,
+    "png": "sprites/locker_night.png"
+   }
+  },
+  "plant": {
+   "day": {
+    "w": 17,
+    "h": 24,
+    "png": "sprites/plant_day.png"
+   },
+   "alert": {
+    "w": 17,
+    "h": 24,
+    "png": "sprites/plant_alert.png"
+   },
+   "night": {
+    "w": 17,
+    "h": 24,
+    "png": "sprites/plant_night.png"
+   }
+  },
+  "desk_se": {
+   "day": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_se_day.png"
+   },
+   "alert": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_se_alert.png"
+   },
+   "night": {
+    "w": 42,
+    "h": 46,
+    "ms": [
+     200,
+     200,
+     200,
+     200,
+     200,
+     200
+    ],
+    "png": "sprites/desk_se_night.png"
+   }
+  },
+  "chair": {
+   "day": {
+    "w": 23,
+    "h": 26,
+    "png": "sprites/chair_day.png"
+   },
+   "alert": {
+    "w": 23,
+    "h": 26,
+    "png": "sprites/chair_alert.png"
+   },
+   "night": {
+    "w": 23,
+    "h": 26,
+    "png": "sprites/chair_night.png"
+   }
+  },
+  "table": {
+   "day": {
+    "w": 25,
+    "h": 22,
+    "png": "sprites/table_day.png"
+   },
+   "alert": {
+    "w": 25,
+    "h": 22,
+    "png": "sprites/table_alert.png"
+   },
+   "night": {
+    "w": 25,
+    "h": 22,
+    "png": "sprites/table_night.png"
+   }
+  },
+  "reactor": {
+   "day": {
+    "w": 31,
+    "h": 47,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/reactor_day.png"
+   },
+   "alert": {
+    "w": 31,
+    "h": 47,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/reactor_alert.png"
+   },
+   "night": {
+    "w": 31,
+    "h": 47,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/reactor_night.png"
+   }
+  },
+  "holo": {
+   "day": {
+    "w": 27,
+    "h": 44,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/holo_day.png"
+   },
+   "alert": {
+    "w": 27,
+    "h": 44,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/holo_alert.png"
+   },
+   "night": {
+    "w": 27,
+    "h": 44,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/holo_night.png"
+   }
+  },
+  "crate_metal": {
+   "day": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_metal_day.png"
+   },
+   "alert": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_metal_alert.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_metal_night.png"
+   }
+  },
+  "crate_orange": {
+   "day": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_orange_day.png"
+   },
+   "alert": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_orange_alert.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_orange_night.png"
+   }
+  },
+  "large": {
+   "day": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_day.png"
+   },
+   "alert": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_alert.png"
+   },
+   "night": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_night.png"
+   }
+  },
+  "crate_green": {
+   "day": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_green_day.png"
+   },
+   "alert": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_green_alert.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 27,
+    "png": "sprites/crate_green_night.png"
+   }
+  },
+  "large_blue": {
+   "day": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_blue_day.png"
+   },
+   "alert": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_blue_alert.png"
+   },
+   "night": {
+    "w": 46,
+    "h": 43,
+    "png": "sprites/large_blue_night.png"
+   }
+  },
+  "stack": {
+   "day": {
+    "w": 30,
+    "h": 38,
+    "png": "sprites/stack_day.png"
+   },
+   "alert": {
+    "w": 30,
+    "h": 38,
+    "png": "sprites/stack_alert.png"
+   },
+   "night": {
+    "w": 30,
+    "h": 38,
+    "png": "sprites/stack_night.png"
+   }
+  },
+  "toxic": {
+   "day": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/toxic_day.png"
+   },
+   "alert": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/toxic_alert.png"
+   },
+   "night": {
+    "w": 17,
+    "h": 25,
+    "png": "sprites/toxic_night.png"
+   }
+  },
+  "drone": {
+   "day": {
+    "w": 87,
+    "h": 60,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/drone_day.png"
+   },
+   "alert": {
+    "w": 87,
+    "h": 60,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/drone_alert.png"
+   },
+   "night": {
+    "w": 87,
+    "h": 60,
+    "ms": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "png": "sprites/drone_night.png"
+   }
+  }
+ },
+ "effects": {
+  "day": [
+   {
+    "type": "twinkle",
+    "sprite": "twinkle",
+    "count": 12,
+    "area": [
+     0,
+     0,
+     320,
+     130
+    ],
+    "after": "stars"
+   }
+  ],
+  "alert": [
+   {
+    "type": "twinkle",
+    "sprite": "twinkle",
+    "count": 12,
+    "area": [
+     0,
+     0,
+     320,
+     130
+    ],
+    "after": "stars"
+   }
+  ],
+  "night": [
+   {
+    "type": "twinkle",
+    "sprite": "twinkle",
+    "count": 12,
+    "area": [
+     0,
+     0,
+     320,
+     130
+    ],
+    "after": "stars"
+   }
+  ]
+ },
+ "speed": {}
+}

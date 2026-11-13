@@ -4,6 +4,11 @@
     "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
     "icon": "scenes/summer_plain/day"
   },
+  "scifi": {
+    "title": "Science-fiction",
+    "description": "Station spatiale en vue isométrique 2:1 : dalles de sol et pans de mur qui se raccordent, consoles, serveurs, hologrammes, caisses, capsules de stase, réacteurs, mobilier et drones (souvent animés), pour monter des salles comme la scène « Salle de station spatiale ».",
+    "icon": "scifi/isoreactor/cyan"
+  },
   "nature": {
     "title": "Nature",
     "description": "Arbres, rochers, plantes et éléments du décor naturel.",

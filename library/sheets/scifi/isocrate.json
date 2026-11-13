@@ -1,0 +1,194 @@
+{
+ "frames": {
+  "metal": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 27
+   }
+  },
+  "blue": {
+   "frame": {
+    "x": 31,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 27
+   }
+  },
+  "orange": {
+   "frame": {
+    "x": 62,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 27
+   }
+  },
+  "green": {
+   "frame": {
+    "x": 0,
+    "y": 28,
+    "w": 30,
+    "h": 27
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 27
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 27
+   }
+  },
+  "large_48": {
+   "frame": {
+    "x": 31,
+    "y": 28,
+    "w": 46,
+    "h": 43
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 46,
+    "h": 43
+   },
+   "sourceSize": {
+    "w": 46,
+    "h": 43
+   }
+  },
+  "large_blue_48": {
+   "frame": {
+    "x": 78,
+    "y": 28,
+    "w": 46,
+    "h": 43
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 46,
+    "h": 43
+   },
+   "sourceSize": {
+    "w": 46,
+    "h": 43
+   }
+  },
+  "stack_48": {
+   "frame": {
+    "x": 0,
+    "y": 72,
+    "w": 30,
+    "h": 38
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 38
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 38
+   }
+  },
+  "barrel": {
+   "frame": {
+    "x": 31,
+    "y": 72,
+    "w": 17,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 17,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 17,
+    "h": 25
+   }
+  },
+  "barrel_toxic": {
+   "frame": {
+    "x": 49,
+    "y": 72,
+    "w": 17,
+    "h": 25
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 17,
+    "h": 25
+   },
+   "sourceSize": {
+    "w": 17,
+    "h": 25
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "isocrate.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 124,
+   "h": 110
+  },
+  "scale": "1"
+ }
+}

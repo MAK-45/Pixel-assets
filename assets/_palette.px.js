@@ -60,6 +60,8 @@ pal({
   "{": "#c8d4ff40", "}": "#c8d4ff18",
   // sable du désert (dunes fxdune), rampe riche : K ombre violacée -> ( -> ) -> - -> ! -> ? pâle (puis Y)
   K: "#3a2333", "(": "#6b3d3c", ")": "#a5643f", "-": "#d08f4f", "!": "#e9b56b", "?": "#f7d897",
+  // halo violet (énergie, hologrammes violets), translucide, posé sur le vide : fort / faible
+  "@": "#b77ee04a", "&": "#b77ee01f",
 })
 
 ramps(

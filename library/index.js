@@ -13,9 +13,9 @@ export const catalog = {
  "format": 1,
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
-  "categories": 7,
-  "assets": 38,
-  "variants": 366
+  "categories": 8,
+  "assets": 47,
+  "variants": 454
  },
  "categories": [
   {
@@ -24,8 +24,25 @@ export const catalog = {
    "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
    "icon": "scenes/summer_plain/day",
    "assets": [
+    "scenes/scifi_room",
     "scenes/summer_plain",
     "scenes/summer_plain_fx"
+   ]
+  },
+  {
+   "id": "scifi",
+   "title": "Science-fiction",
+   "description": "Station spatiale en vue isométrique 2:1 : dalles de sol et pans de mur qui se raccordent, consoles, serveurs, hologrammes, caisses, capsules de stase, réacteurs, mobilier et drones (souvent animés), pour monter des salles comme la scène « Salle de station spatiale ».",
+   "icon": "scifi/isoreactor/cyan",
+   "assets": [
+    "scifi/isoconsole",
+    "scifi/isocrate",
+    "scifi/isodrone",
+    "scifi/isofloor",
+    "scifi/isofurniture",
+    "scifi/isopod",
+    "scifi/isoreactor",
+    "scifi/isowall"
    ]
   },
   {
@@ -114,6 +131,155 @@ export const catalog = {
   }
  ],
  "assets": {
+  "scenes/scifi_room": {
+   "id": "scenes/scifi_room",
+   "slug": "scifi_room",
+   "category": "scenes",
+   "title": "Salle de station spatiale",
+   "description": "Scène statique 16:9 (base 320 × 180) en vue isométrique 2:1 : l'angle d'une grande salle de station spatiale qui remplit tout l'écran, montée avec les familles iso* de la catégorie scifi (dalles, pans de mur, consoles, caisses, capsules de stase, réacteur, mobilier, drone). Hublots vitrés par où l'on voit les étoiles scintiller, planète aux anneaux au-dessus des murs. Animations : écran mural et moniteurs, diodes des serveurs, porte coulissante qui s'ouvre, impulsions qui courent le long des rails de lumière du sol, réacteur qui pulse, hologramme qui tourne, bulles des capsules, drone qui patrouille. Trois ambiances : normal, alerte (lumières rouges, gyrophares et lueur qui clignotent, drone d'alerte) et veille (salle dans le noir, écrans et lumières seuls, clair d'étoiles par les hublots). Image de 480 × 270 centrée en bas pour couvrir les écrans plus larges ; pieds du personnage à y = 152.",
+   "tags": [
+    "scene",
+    "static",
+    "isometric",
+    "scifi",
+    "space-station",
+    "spaceship",
+    "room",
+    "interior",
+    "laboratory",
+    "control-room",
+    "animated"
+   ],
+   "order": 0,
+   "source": "assets/scenes/scifi_room.px.js",
+   "module": "library/js/scenes/scifi_room.js",
+   "sheet": {
+    "png": "library/sheets/scenes/scifi_room.png",
+    "json": "library/sheets/scenes/scifi_room.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "alert",
+     "night"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 3,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "scifi_room_day",
+     "id": "scenes/scifi_room/day",
+     "label": "Éclairage normal",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "lit"
+     ],
+     "png": "library/png/scenes/scifi_room/day.png"
+    },
+    "alert": {
+     "key": "alert",
+     "name": "scifi_room_alert",
+     "id": "scenes/scifi_room/alert",
+     "label": "Alerte rouge",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "alert"
+     },
+     "tags": [
+      "alarm",
+      "red",
+      "emergency"
+     ],
+     "png": "library/png/scenes/scifi_room/alert.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "scifi_room_night",
+     "id": "scenes/scifi_room/night",
+     "label": "Veille (lumières éteintes)",
+     "kind": "static",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "dark",
+      "standby",
+      "glow"
+     ],
+     "png": "library/png/scenes/scifi_room/night.png"
+    }
+   },
+   "scene": {
+    "type": "static",
+    "dynamic": false,
+    "w": 320,
+    "h": 180,
+    "groundY": 152,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Normal"
+     },
+     {
+      "id": "alert",
+      "label": "Alerte"
+     },
+     {
+      "id": "night",
+      "label": "Veille"
+     }
+    ],
+    "planes": [
+     {
+      "id": "space",
+      "label": "Espace",
+      "factor": 0
+     },
+     {
+      "id": "stars",
+      "label": "Étoiles et planète",
+      "factor": 0
+     },
+     {
+      "id": "room",
+      "label": "Sol et murs",
+      "factor": 0
+     },
+     {
+      "id": "props",
+      "label": "Mobilier et machines",
+      "factor": 0
+     },
+     {
+      "id": "alarm",
+      "label": "Lueur des gyrophares",
+      "factor": 0
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/scifi_room/",
+    "json": "library/scenes/scifi_room/scene.json",
+    "bundle": "library/scenes/scifi_room/scifi_room.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
   "scenes/summer_plain": {
    "id": "scenes/summer_plain",
    "slug": "summer_plain",
@@ -506,6 +672,2066 @@ export const catalog = {
     "json": "library/scenes/summer_plain_fx/scene.json",
     "bundle": "library/scenes/summer_plain_fx/summer_plain_fx.js",
     "runtime": "library/scene-runtime.js"
+   }
+  },
+  "scifi/isoconsole": {
+   "id": "scifi/isoconsole",
+   "slug": "isoconsole",
+   "category": "scifi",
+   "title": "Console isométrique",
+   "description": "Postes informatiques de station spatiale en vue isométrique 2:1, tous animés : pupitre de commande avec moniteur (courbe qui défile, voyants), baie de serveurs aux diodes qui clignotent et table holographique où tourne une planète. Pupitre et baie existent tournés vers le bas à gauche (sw) ou vers le bas à droite (se) ; le pupitre a aussi un état d'alerte (écran orange). La table holographique existe éteinte.",
+   "tags": [
+    "isometric",
+    "console",
+    "computer",
+    "terminal",
+    "server",
+    "hologram",
+    "scifi",
+    "space-station",
+    "animated",
+    "furniture"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isoconsole.px.js",
+   "module": "library/js/scifi/isoconsole.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isoconsole.png",
+    "json": "library/sheets/scifi/isoconsole.json"
+   },
+   "axes": {
+    "shape": [
+     "desk",
+     "rack",
+     "holo"
+    ],
+    "facing": [
+     "sw",
+     "se"
+    ],
+    "state": [
+     "on",
+     "alert",
+     "off"
+    ]
+   },
+   "sizes": [
+    32,
+    48
+   ],
+   "variantCount": 8,
+   "variants": {
+    "desk_sw": {
+     "key": "desk_sw",
+     "name": "isoconsole_desk_sw",
+     "id": "scifi/isoconsole/desk_sw",
+     "label": "Pupitre – tourné vers le bas à gauche",
+     "kind": "anim",
+     "w": 42,
+     "h": 46,
+     "size": 48,
+     "props": {
+      "shape": "desk",
+      "facing": "sw",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoconsole/desk_sw.png",
+     "gif": "library/png/scifi/isoconsole/desk_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "desk_se": {
+     "key": "desk_se",
+     "name": "isoconsole_desk_se",
+     "id": "scifi/isoconsole/desk_se",
+     "label": "Pupitre – tourné vers le bas à droite",
+     "kind": "anim",
+     "w": 42,
+     "h": 46,
+     "size": 48,
+     "props": {
+      "shape": "desk",
+      "facing": "se",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoconsole/desk_se.png",
+     "gif": "library/png/scifi/isoconsole/desk_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "desk_alert_sw": {
+     "key": "desk_alert_sw",
+     "name": "isoconsole_desk_alert_sw",
+     "id": "scifi/isoconsole/desk_alert_sw",
+     "label": "Pupitre en alerte – vers le bas à gauche",
+     "kind": "anim",
+     "w": 42,
+     "h": 46,
+     "size": 48,
+     "props": {
+      "shape": "desk",
+      "facing": "sw",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isoconsole/desk_alert_sw.png",
+     "gif": "library/png/scifi/isoconsole/desk_alert_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "desk_alert_se": {
+     "key": "desk_alert_se",
+     "name": "isoconsole_desk_alert_se",
+     "id": "scifi/isoconsole/desk_alert_se",
+     "label": "Pupitre en alerte – vers le bas à droite",
+     "kind": "anim",
+     "w": 42,
+     "h": 46,
+     "size": 48,
+     "props": {
+      "shape": "desk",
+      "facing": "se",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isoconsole/desk_alert_se.png",
+     "gif": "library/png/scifi/isoconsole/desk_alert_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "rack_sw": {
+     "key": "rack_sw",
+     "name": "isoconsole_rack_sw",
+     "id": "scifi/isoconsole/rack_sw",
+     "label": "Baie de serveurs – vers le bas à gauche",
+     "kind": "anim",
+     "w": 28,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "rack",
+      "facing": "sw",
+      "state": "on"
+     },
+     "tags": [
+      "server",
+      "leds"
+     ],
+     "png": "library/png/scifi/isoconsole/rack_sw.png",
+     "gif": "library/png/scifi/isoconsole/rack_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "rack_se": {
+     "key": "rack_se",
+     "name": "isoconsole_rack_se",
+     "id": "scifi/isoconsole/rack_se",
+     "label": "Baie de serveurs – vers le bas à droite",
+     "kind": "anim",
+     "w": 28,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "shape": "rack",
+      "facing": "se",
+      "state": "on"
+     },
+     "tags": [
+      "server",
+      "leds"
+     ],
+     "png": "library/png/scifi/isoconsole/rack_se.png",
+     "gif": "library/png/scifi/isoconsole/rack_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "holo_off": {
+     "key": "holo_off",
+     "name": "isoconsole_holo_off",
+     "id": "scifi/isoconsole/holo_off",
+     "label": "Table holographique éteinte",
+     "kind": "sprite",
+     "w": 27,
+     "h": 21,
+     "size": 32,
+     "props": {
+      "shape": "holo",
+      "state": "off"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoconsole/holo_off.png"
+    },
+    "holo": {
+     "key": "holo",
+     "name": "isoconsole_holo",
+     "id": "scifi/isoconsole/holo",
+     "label": "Table holographique – planète qui tourne",
+     "kind": "anim",
+     "w": 27,
+     "h": 44,
+     "size": 48,
+     "props": {
+      "shape": "holo",
+      "state": "on"
+     },
+     "tags": [
+      "planet",
+      "glow"
+     ],
+     "png": "library/png/scifi/isoconsole/holo.png",
+     "gif": "library/png/scifi/isoconsole/holo.gif",
+     "frameCount": 12,
+     "loopMs": 1200
+    }
+   }
+  },
+  "scifi/isocrate": {
+   "id": "scifi/isocrate",
+   "slug": "isocrate",
+   "category": "scifi",
+   "title": "Caisse isométrique",
+   "description": "Caisses de fret et fûts de station spatiale en vue isométrique 2:1 : caisse renforcée (métal, bleue, orange, verte), grand conteneur de 48 px (métal ou bleu), pile de deux caisses, fût d'acier à bande de danger et fût de produit toxique au couvercle luminescent.",
+   "tags": [
+    "isometric",
+    "crate",
+    "container",
+    "cargo",
+    "barrel",
+    "box",
+    "scifi",
+    "space-station",
+    "storage",
+    "prop"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isocrate.px.js",
+   "module": "library/js/scifi/isocrate.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isocrate.png",
+    "json": "library/sheets/scifi/isocrate.json"
+   },
+   "axes": {
+    "shape": [
+     "crate",
+     "container",
+     "stack",
+     "barrel"
+    ],
+    "color": [
+     "gray",
+     "blue",
+     "orange",
+     "green",
+     "mixed"
+    ]
+   },
+   "sizes": [
+    32,
+    48
+   ],
+   "variantCount": 9,
+   "variants": {
+    "metal": {
+     "key": "metal",
+     "name": "isocrate_metal",
+     "id": "scifi/isocrate/metal",
+     "label": "Caisse en métal",
+     "kind": "sprite",
+     "w": 30,
+     "h": 27,
+     "size": 32,
+     "props": {
+      "shape": "crate",
+      "color": "gray"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/metal.png"
+    },
+    "blue": {
+     "key": "blue",
+     "name": "isocrate_blue",
+     "id": "scifi/isocrate/blue",
+     "label": "Caisse bleue",
+     "kind": "sprite",
+     "w": 30,
+     "h": 27,
+     "size": 32,
+     "props": {
+      "shape": "crate",
+      "color": "blue"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/blue.png"
+    },
+    "orange": {
+     "key": "orange",
+     "name": "isocrate_orange",
+     "id": "scifi/isocrate/orange",
+     "label": "Caisse orange",
+     "kind": "sprite",
+     "w": 30,
+     "h": 27,
+     "size": 32,
+     "props": {
+      "shape": "crate",
+      "color": "orange"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/orange.png"
+    },
+    "green": {
+     "key": "green",
+     "name": "isocrate_green",
+     "id": "scifi/isocrate/green",
+     "label": "Caisse verte",
+     "kind": "sprite",
+     "w": 30,
+     "h": 27,
+     "size": 32,
+     "props": {
+      "shape": "crate",
+      "color": "green"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/green.png"
+    },
+    "large_48": {
+     "key": "large_48",
+     "name": "isocrate_large_48",
+     "id": "scifi/isocrate/large_48",
+     "label": "Grand conteneur en métal (48 px)",
+     "kind": "sprite",
+     "w": 46,
+     "h": 43,
+     "size": 48,
+     "props": {
+      "shape": "container",
+      "color": "gray"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/large_48.png"
+    },
+    "large_blue_48": {
+     "key": "large_blue_48",
+     "name": "isocrate_large_blue_48",
+     "id": "scifi/isocrate/large_blue_48",
+     "label": "Grand conteneur bleu (48 px)",
+     "kind": "sprite",
+     "w": 46,
+     "h": 43,
+     "size": 48,
+     "props": {
+      "shape": "container",
+      "color": "blue"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/large_blue_48.png"
+    },
+    "stack_48": {
+     "key": "stack_48",
+     "name": "isocrate_stack_48",
+     "id": "scifi/isocrate/stack_48",
+     "label": "Pile de deux caisses (48 px)",
+     "kind": "sprite",
+     "w": 30,
+     "h": 38,
+     "size": 48,
+     "props": {
+      "shape": "stack",
+      "color": "mixed"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isocrate/stack_48.png"
+    },
+    "barrel": {
+     "key": "barrel",
+     "name": "isocrate_barrel",
+     "id": "scifi/isocrate/barrel",
+     "label": "Fût d'acier",
+     "kind": "sprite",
+     "w": 17,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "shape": "barrel",
+      "color": "gray"
+     },
+     "tags": [
+      "drum"
+     ],
+     "png": "library/png/scifi/isocrate/barrel.png"
+    },
+    "barrel_toxic": {
+     "key": "barrel_toxic",
+     "name": "isocrate_barrel_toxic",
+     "id": "scifi/isocrate/barrel_toxic",
+     "label": "Fût toxique luminescent",
+     "kind": "sprite",
+     "w": 17,
+     "h": 25,
+     "size": 32,
+     "props": {
+      "shape": "barrel",
+      "color": "green"
+     },
+     "tags": [
+      "drum",
+      "glow",
+      "hazard"
+     ],
+     "png": "library/png/scifi/isocrate/barrel_toxic.png"
+    }
+   }
+  },
+  "scifi/isodrone": {
+   "id": "scifi/isodrone",
+   "slug": "isodrone",
+   "category": "scifi",
+   "title": "Drone isométrique",
+   "description": "Petit robot sphérique de station spatiale en vue isométrique 2:1 (16 × 24 px), animé : il flotte en montant et descendant (6 images de 200 ms), son réacteur vacille et son ombre au sol se resserre quand il monte (ombre translucide, sans contour). Coque blanche ou orange à l'œil turquoise, ou version d'alerte à l'œil rouge qui clignote. Chaque version existe dans les quatre directions : de face vers le bas à gauche (sw) ou à droite (se), de dos vers le haut à gauche (nw) ou à droite (ne), pour le faire patrouiller.",
+   "tags": [
+    "isometric",
+    "drone",
+    "robot",
+    "bot",
+    "hover",
+    "scifi",
+    "space-station",
+    "animated",
+    "character",
+    "npc"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isodrone.px.js",
+   "module": "library/js/scifi/isodrone.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isodrone.png",
+    "json": "library/sheets/scifi/isodrone.json"
+   },
+   "axes": {
+    "color": [
+     "white",
+     "orange"
+    ],
+    "facing": [
+     "sw",
+     "se",
+     "nw",
+     "ne"
+    ],
+    "state": [
+     "idle",
+     "alert"
+    ]
+   },
+   "sizes": [
+    24
+   ],
+   "variantCount": 12,
+   "variants": {
+    "white_sw": {
+     "key": "white_sw",
+     "name": "isodrone_white_sw",
+     "id": "scifi/isodrone/white_sw",
+     "label": "Drone blanc – de face, vers le bas à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "sw",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/white_sw.png",
+     "gif": "library/png/scifi/isodrone/white_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "orange_sw": {
+     "key": "orange_sw",
+     "name": "isodrone_orange_sw",
+     "id": "scifi/isodrone/orange_sw",
+     "label": "Drone orange – de face, vers le bas à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "orange",
+      "facing": "sw",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/orange_sw.png",
+     "gif": "library/png/scifi/isodrone/orange_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "alert_sw": {
+     "key": "alert_sw",
+     "name": "isodrone_alert_sw",
+     "id": "scifi/isodrone/alert_sw",
+     "label": "Drone en alerte – de face, vers le bas à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "sw",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isodrone/alert_sw.png",
+     "gif": "library/png/scifi/isodrone/alert_sw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "white_se": {
+     "key": "white_se",
+     "name": "isodrone_white_se",
+     "id": "scifi/isodrone/white_se",
+     "label": "Drone blanc – de face, vers le bas à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "se",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/white_se.png",
+     "gif": "library/png/scifi/isodrone/white_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "orange_se": {
+     "key": "orange_se",
+     "name": "isodrone_orange_se",
+     "id": "scifi/isodrone/orange_se",
+     "label": "Drone orange – de face, vers le bas à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "orange",
+      "facing": "se",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/orange_se.png",
+     "gif": "library/png/scifi/isodrone/orange_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "alert_se": {
+     "key": "alert_se",
+     "name": "isodrone_alert_se",
+     "id": "scifi/isodrone/alert_se",
+     "label": "Drone en alerte – de face, vers le bas à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "se",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isodrone/alert_se.png",
+     "gif": "library/png/scifi/isodrone/alert_se.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "white_nw": {
+     "key": "white_nw",
+     "name": "isodrone_white_nw",
+     "id": "scifi/isodrone/white_nw",
+     "label": "Drone blanc – de dos, vers le haut à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "nw",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/white_nw.png",
+     "gif": "library/png/scifi/isodrone/white_nw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "orange_nw": {
+     "key": "orange_nw",
+     "name": "isodrone_orange_nw",
+     "id": "scifi/isodrone/orange_nw",
+     "label": "Drone orange – de dos, vers le haut à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "orange",
+      "facing": "nw",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/orange_nw.png",
+     "gif": "library/png/scifi/isodrone/orange_nw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "alert_nw": {
+     "key": "alert_nw",
+     "name": "isodrone_alert_nw",
+     "id": "scifi/isodrone/alert_nw",
+     "label": "Drone en alerte – de dos, vers le haut à gauche",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "nw",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isodrone/alert_nw.png",
+     "gif": "library/png/scifi/isodrone/alert_nw.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "white_ne": {
+     "key": "white_ne",
+     "name": "isodrone_white_ne",
+     "id": "scifi/isodrone/white_ne",
+     "label": "Drone blanc – de dos, vers le haut à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "ne",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/white_ne.png",
+     "gif": "library/png/scifi/isodrone/white_ne.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "orange_ne": {
+     "key": "orange_ne",
+     "name": "isodrone_orange_ne",
+     "id": "scifi/isodrone/orange_ne",
+     "label": "Drone orange – de dos, vers le haut à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "orange",
+      "facing": "ne",
+      "state": "idle"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isodrone/orange_ne.png",
+     "gif": "library/png/scifi/isodrone/orange_ne.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "alert_ne": {
+     "key": "alert_ne",
+     "name": "isodrone_alert_ne",
+     "id": "scifi/isodrone/alert_ne",
+     "label": "Drone en alerte – de dos, vers le haut à droite",
+     "kind": "anim",
+     "w": 15,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "color": "white",
+      "facing": "ne",
+      "state": "alert"
+     },
+     "tags": [
+      "warning"
+     ],
+     "png": "library/png/scifi/isodrone/alert_ne.png",
+     "gif": "library/png/scifi/isodrone/alert_ne.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    }
+   }
+  },
+  "scifi/isofloor": {
+   "id": "scifi/isofloor",
+   "slug": "isofloor",
+   "category": "scifi",
+   "title": "Dalle de sol isométrique",
+   "description": "Dalles de sol de station spatiale en vue isométrique 2:1 (32 × 15 px, sans contour : elles se raccordent bord à bord avec un pas de ±16, +8 px). Plaques de métal sombre, claire et bleue, grille, bande de danger, trappe, circuit imprimé lumineux et rail de lumière turquoise dans les deux sens, avec son croisement (fixe ou animé : une impulsion à décaler de dalle en dalle pour faire courir la lumière).",
+   "tags": [
+    "isometric",
+    "floor",
+    "tile",
+    "scifi",
+    "space-station",
+    "metal",
+    "tileset",
+    "spaceship"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isofloor.px.js",
+   "module": "library/js/scifi/isofloor.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isofloor.png",
+    "json": "library/sheets/scifi/isofloor.json"
+   },
+   "axes": {
+    "shape": [
+     "plate",
+     "grate",
+     "hazard",
+     "hatch",
+     "circuit",
+     "light"
+    ],
+    "color": [
+     "dark",
+     "light",
+     "blue",
+     "yellow",
+     "cyan"
+    ],
+    "state": [
+     "on",
+     "pulse"
+    ]
+   },
+   "sizes": [
+    32
+   ],
+   "variantCount": 12,
+   "variants": {
+    "plate": {
+     "key": "plate",
+     "name": "isofloor_plate",
+     "id": "scifi/isofloor/plate",
+     "label": "Plaque de métal sombre",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "plate",
+      "color": "dark"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isofloor/plate.png"
+    },
+    "plate_light": {
+     "key": "plate_light",
+     "name": "isofloor_plate_light",
+     "id": "scifi/isofloor/plate_light",
+     "label": "Plaque de métal claire",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "plate",
+      "color": "light"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isofloor/plate_light.png"
+    },
+    "plate_blue": {
+     "key": "plate_blue",
+     "name": "isofloor_plate_blue",
+     "id": "scifi/isofloor/plate_blue",
+     "label": "Plaque d'acier bleu",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "plate",
+      "color": "blue"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isofloor/plate_blue.png"
+    },
+    "grate": {
+     "key": "grate",
+     "name": "isofloor_grate",
+     "id": "scifi/isofloor/grate",
+     "label": "Grille d'aération",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "grate",
+      "color": "dark"
+     },
+     "tags": [
+      "vent",
+      "grid"
+     ],
+     "png": "library/png/scifi/isofloor/grate.png"
+    },
+    "hazard": {
+     "key": "hazard",
+     "name": "isofloor_hazard",
+     "id": "scifi/isofloor/hazard",
+     "label": "Plaque à bande de danger",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "hazard",
+      "color": "yellow"
+     },
+     "tags": [
+      "warning",
+      "stripes"
+     ],
+     "png": "library/png/scifi/isofloor/hazard.png"
+    },
+    "hatch": {
+     "key": "hatch",
+     "name": "isofloor_hatch",
+     "id": "scifi/isofloor/hatch",
+     "label": "Trappe d'accès",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "hatch",
+      "color": "light"
+     },
+     "tags": [
+      "trapdoor"
+     ],
+     "png": "library/png/scifi/isofloor/hatch.png"
+    },
+    "circuit": {
+     "key": "circuit",
+     "name": "isofloor_circuit",
+     "id": "scifi/isofloor/circuit",
+     "label": "Plaque à circuit lumineux",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "circuit",
+      "color": "cyan"
+     },
+     "tags": [
+      "glow",
+      "tech"
+     ],
+     "png": "library/png/scifi/isofloor/circuit.png"
+    },
+    "light_node": {
+     "key": "light_node",
+     "name": "isofloor_light_node",
+     "id": "scifi/isofloor/light_node",
+     "label": "Croisement de rails de lumière",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "light",
+      "color": "cyan",
+      "state": "on"
+     },
+     "tags": [
+      "glow",
+      "strip",
+      "junction"
+     ],
+     "png": "library/png/scifi/isofloor/light_node.png"
+    },
+    "light": {
+     "key": "light",
+     "name": "isofloor_light",
+     "id": "scifi/isofloor/light",
+     "label": "Rail de lumière",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "light",
+      "color": "cyan",
+      "state": "on"
+     },
+     "tags": [
+      "glow",
+      "strip"
+     ],
+     "png": "library/png/scifi/isofloor/light.png"
+    },
+    "light_pulse": {
+     "key": "light_pulse",
+     "name": "isofloor_light_pulse",
+     "id": "scifi/isofloor/light_pulse",
+     "label": "Rail de lumière – impulsion animée",
+     "kind": "anim",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "light",
+      "color": "cyan",
+      "state": "pulse"
+     },
+     "tags": [
+      "glow",
+      "strip",
+      "animated"
+     ],
+     "png": "library/png/scifi/isofloor/light_pulse.png",
+     "gif": "library/png/scifi/isofloor/light_pulse.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    },
+    "light_cross": {
+     "key": "light_cross",
+     "name": "isofloor_light_cross",
+     "id": "scifi/isofloor/light_cross",
+     "label": "Rail de lumière (autre sens)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "light",
+      "color": "cyan",
+      "state": "on"
+     },
+     "tags": [
+      "glow",
+      "strip"
+     ],
+     "png": "library/png/scifi/isofloor/light_cross.png"
+    },
+    "light_cross_pulse": {
+     "key": "light_cross_pulse",
+     "name": "isofloor_light_cross_pulse",
+     "id": "scifi/isofloor/light_cross_pulse",
+     "label": "Rail de lumière (autre sens) – impulsion animée",
+     "kind": "anim",
+     "w": 32,
+     "h": 15,
+     "size": 32,
+     "props": {
+      "shape": "light",
+      "color": "cyan",
+      "state": "pulse"
+     },
+     "tags": [
+      "glow",
+      "strip",
+      "animated"
+     ],
+     "png": "library/png/scifi/isofloor/light_cross_pulse.png",
+     "gif": "library/png/scifi/isofloor/light_cross_pulse.gif",
+     "frameCount": 6,
+     "loopMs": 1200
+    }
+   }
+  },
+  "scifi/isofurniture": {
+   "id": "scifi/isofurniture",
+   "slug": "isofurniture",
+   "category": "scifi",
+   "title": "Mobilier isométrique",
+   "description": "Mobilier de quartier d'équipage de station spatiale en vue isométrique 2:1 : fauteuil pivotant (tourné vers le bas à gauche ou à droite), table ronde avec sa tasse, casier vestiaire (deux orientations), plante en bac hydroponique (petite ou haute) et couchette.",
+   "tags": [
+    "isometric",
+    "furniture",
+    "chair",
+    "table",
+    "locker",
+    "plant",
+    "bunk",
+    "bed",
+    "scifi",
+    "space-station",
+    "prop"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isofurniture.px.js",
+   "module": "library/js/scifi/isofurniture.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isofurniture.png",
+    "json": "library/sheets/scifi/isofurniture.json"
+   },
+   "axes": {
+    "shape": [
+     "chair",
+     "table",
+     "locker",
+     "plant",
+     "bunk"
+    ],
+    "facing": [
+     "sw",
+     "se"
+    ],
+    "size": [
+     "small",
+     "tall"
+    ]
+   },
+   "sizes": [
+    24,
+    32,
+    48
+   ],
+   "variantCount": 9,
+   "variants": {
+    "chair_sw": {
+     "key": "chair_sw",
+     "name": "isofurniture_chair_sw",
+     "id": "scifi/isofurniture/chair_sw",
+     "label": "Fauteuil – tourné vers le bas à gauche",
+     "kind": "sprite",
+     "w": 23,
+     "h": 26,
+     "size": 32,
+     "props": {
+      "shape": "chair",
+      "facing": "sw"
+     },
+     "tags": [
+      "seat"
+     ],
+     "png": "library/png/scifi/isofurniture/chair_sw.png"
+    },
+    "chair_se": {
+     "key": "chair_se",
+     "name": "isofurniture_chair_se",
+     "id": "scifi/isofurniture/chair_se",
+     "label": "Fauteuil – tourné vers le bas à droite",
+     "kind": "sprite",
+     "w": 23,
+     "h": 26,
+     "size": 32,
+     "props": {
+      "shape": "chair",
+      "facing": "se"
+     },
+     "tags": [
+      "seat"
+     ],
+     "png": "library/png/scifi/isofurniture/chair_se.png"
+    },
+    "table": {
+     "key": "table",
+     "name": "isofurniture_table",
+     "id": "scifi/isofurniture/table",
+     "label": "Table ronde et tasse",
+     "kind": "sprite",
+     "w": 25,
+     "h": 22,
+     "size": 32,
+     "props": {
+      "shape": "table"
+     },
+     "tags": [
+      "mug"
+     ],
+     "png": "library/png/scifi/isofurniture/table.png"
+    },
+    "locker_sw": {
+     "key": "locker_sw",
+     "name": "isofurniture_locker_sw",
+     "id": "scifi/isofurniture/locker_sw",
+     "label": "Casier – tourné vers le bas à gauche",
+     "kind": "sprite",
+     "w": 22,
+     "h": 43,
+     "size": 48,
+     "props": {
+      "shape": "locker",
+      "facing": "sw"
+     },
+     "tags": [
+      "storage"
+     ],
+     "png": "library/png/scifi/isofurniture/locker_sw.png"
+    },
+    "locker_se": {
+     "key": "locker_se",
+     "name": "isofurniture_locker_se",
+     "id": "scifi/isofurniture/locker_se",
+     "label": "Casier – tourné vers le bas à droite",
+     "kind": "sprite",
+     "w": 22,
+     "h": 43,
+     "size": 48,
+     "props": {
+      "shape": "locker",
+      "facing": "se"
+     },
+     "tags": [
+      "storage"
+     ],
+     "png": "library/png/scifi/isofurniture/locker_se.png"
+    },
+    "plant": {
+     "key": "plant",
+     "name": "isofurniture_plant",
+     "id": "scifi/isofurniture/plant",
+     "label": "Plante en bac hydroponique",
+     "kind": "sprite",
+     "w": 17,
+     "h": 24,
+     "size": 24,
+     "props": {
+      "shape": "plant",
+      "size": "small"
+     },
+     "tags": [
+      "hydroponic",
+      "leaves"
+     ],
+     "png": "library/png/scifi/isofurniture/plant.png"
+    },
+    "plant_tall": {
+     "key": "plant_tall",
+     "name": "isofurniture_plant_tall",
+     "id": "scifi/isofurniture/plant_tall",
+     "label": "Grande plante en bac hydroponique",
+     "kind": "sprite",
+     "w": 19,
+     "h": 40,
+     "size": 48,
+     "props": {
+      "shape": "plant",
+      "size": "tall"
+     },
+     "tags": [
+      "hydroponic",
+      "leaves"
+     ],
+     "png": "library/png/scifi/isofurniture/plant_tall.png"
+    },
+    "bunk_sw": {
+     "key": "bunk_sw",
+     "name": "isofurniture_bunk_sw",
+     "id": "scifi/isofurniture/bunk_sw",
+     "label": "Couchette – tête en haut à gauche",
+     "kind": "sprite",
+     "w": 48,
+     "h": 37,
+     "size": 48,
+     "props": {
+      "shape": "bunk",
+      "facing": "sw"
+     },
+     "tags": [
+      "bed"
+     ],
+     "png": "library/png/scifi/isofurniture/bunk_sw.png"
+    },
+    "bunk_se": {
+     "key": "bunk_se",
+     "name": "isofurniture_bunk_se",
+     "id": "scifi/isofurniture/bunk_se",
+     "label": "Couchette – tête en haut à droite",
+     "kind": "sprite",
+     "w": 48,
+     "h": 37,
+     "size": 48,
+     "props": {
+      "shape": "bunk",
+      "facing": "se"
+     },
+     "tags": [
+      "bed"
+     ],
+     "png": "library/png/scifi/isofurniture/bunk_se.png"
+    }
+   }
+  },
+  "scifi/isopod": {
+   "id": "scifi/isopod",
+   "slug": "isopod",
+   "category": "scifi",
+   "title": "Capsule de stase isométrique",
+   "description": "Capsules de stase de laboratoire spatial en vue isométrique 2:1 (24 × 48 px) : tube de verre rempli d'un liquide luminescent entre un socle et un chapeau de métal. Versions animées (bulles qui montent, 10 images de 200 ms) en turquoise, vert et violet, vides ou avec un spécimen qui flotte, plus une capsule éteinte et vide.",
+   "tags": [
+    "isometric",
+    "pod",
+    "stasis",
+    "cryo",
+    "tube",
+    "tank",
+    "laboratory",
+    "scifi",
+    "space-station",
+    "animated",
+    "glow"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isopod.px.js",
+   "module": "library/js/scifi/isopod.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isopod.png",
+    "json": "library/sheets/scifi/isopod.json"
+   },
+   "axes": {
+    "color": [
+     "cyan",
+     "green",
+     "violet",
+     "gray"
+    ],
+    "content": [
+     "empty",
+     "specimen"
+    ],
+    "state": [
+     "on",
+     "off"
+    ]
+   },
+   "sizes": [
+    48
+   ],
+   "variantCount": 7,
+   "variants": {
+    "cyan": {
+     "key": "cyan",
+     "name": "isopod_cyan",
+     "id": "scifi/isopod/cyan",
+     "label": "Capsule turquoise – bulles animées",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "cyan",
+      "content": "empty",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isopod/cyan.png",
+     "gif": "library/png/scifi/isopod/cyan.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "specimen_cyan": {
+     "key": "specimen_cyan",
+     "name": "isopod_specimen_cyan",
+     "id": "scifi/isopod/specimen_cyan",
+     "label": "Capsule turquoise avec spécimen",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "cyan",
+      "content": "specimen",
+      "state": "on"
+     },
+     "tags": [
+      "alien",
+      "creature"
+     ],
+     "png": "library/png/scifi/isopod/specimen_cyan.png",
+     "gif": "library/png/scifi/isopod/specimen_cyan.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "green": {
+     "key": "green",
+     "name": "isopod_green",
+     "id": "scifi/isopod/green",
+     "label": "Capsule verte – bulles animées",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "green",
+      "content": "empty",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isopod/green.png",
+     "gif": "library/png/scifi/isopod/green.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "specimen_green": {
+     "key": "specimen_green",
+     "name": "isopod_specimen_green",
+     "id": "scifi/isopod/specimen_green",
+     "label": "Capsule verte avec spécimen",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "green",
+      "content": "specimen",
+      "state": "on"
+     },
+     "tags": [
+      "alien",
+      "creature"
+     ],
+     "png": "library/png/scifi/isopod/specimen_green.png",
+     "gif": "library/png/scifi/isopod/specimen_green.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "violet": {
+     "key": "violet",
+     "name": "isopod_violet",
+     "id": "scifi/isopod/violet",
+     "label": "Capsule violette – bulles animées",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "violet",
+      "content": "empty",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isopod/violet.png",
+     "gif": "library/png/scifi/isopod/violet.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "specimen_violet": {
+     "key": "specimen_violet",
+     "name": "isopod_specimen_violet",
+     "id": "scifi/isopod/specimen_violet",
+     "label": "Capsule violette avec spécimen",
+     "kind": "anim",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "violet",
+      "content": "specimen",
+      "state": "on"
+     },
+     "tags": [
+      "alien",
+      "creature"
+     ],
+     "png": "library/png/scifi/isopod/specimen_violet.png",
+     "gif": "library/png/scifi/isopod/specimen_violet.gif",
+     "frameCount": 10,
+     "loopMs": 2000
+    },
+    "off": {
+     "key": "off",
+     "name": "isopod_off",
+     "id": "scifi/isopod/off",
+     "label": "Capsule éteinte et vide",
+     "kind": "sprite",
+     "w": 23,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "color": "gray",
+      "content": "empty",
+      "state": "off"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isopod/off.png"
+    }
+   }
+  },
+  "scifi/isoreactor": {
+   "id": "scifi/isoreactor",
+   "slug": "isoreactor",
+   "category": "scifi",
+   "title": "Réacteur isométrique",
+   "description": "Cœur d'énergie de station spatiale en vue isométrique 2:1 (32 × 48 px), animé en 8 images de 100 ms : une sphère de plasma (ou un cristal) flotte et pulse entre deux pylônes, des arcs électriques la relient aux pointes et deux particules tournent autour. Halo translucide sans contour (il se fond dans le décor). Sphère turquoise, violette ou orange, cristal turquoise ou violet, et réacteur éteint.",
+   "tags": [
+    "isometric",
+    "reactor",
+    "core",
+    "energy",
+    "plasma",
+    "crystal",
+    "generator",
+    "scifi",
+    "space-station",
+    "animated",
+    "glow"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isoreactor.px.js",
+   "module": "library/js/scifi/isoreactor.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isoreactor.png",
+    "json": "library/sheets/scifi/isoreactor.json"
+   },
+   "axes": {
+    "shape": [
+     "orb",
+     "crystal"
+    ],
+    "color": [
+     "gray",
+     "cyan",
+     "violet",
+     "orange"
+    ],
+    "state": [
+     "off",
+     "on"
+    ]
+   },
+   "sizes": [
+    48
+   ],
+   "variantCount": 6,
+   "variants": {
+    "off": {
+     "key": "off",
+     "name": "isoreactor_off",
+     "id": "scifi/isoreactor/off",
+     "label": "Réacteur éteint",
+     "kind": "sprite",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "orb",
+      "color": "gray",
+      "state": "off"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoreactor/off.png"
+    },
+    "cyan": {
+     "key": "cyan",
+     "name": "isoreactor_cyan",
+     "id": "scifi/isoreactor/cyan",
+     "label": "Réacteur turquoise – sphère de plasma",
+     "kind": "anim",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "orb",
+      "color": "cyan",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoreactor/cyan.png",
+     "gif": "library/png/scifi/isoreactor/cyan.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    },
+    "violet": {
+     "key": "violet",
+     "name": "isoreactor_violet",
+     "id": "scifi/isoreactor/violet",
+     "label": "Réacteur violet – sphère de plasma",
+     "kind": "anim",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "orb",
+      "color": "violet",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoreactor/violet.png",
+     "gif": "library/png/scifi/isoreactor/violet.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    },
+    "orange": {
+     "key": "orange",
+     "name": "isoreactor_orange",
+     "id": "scifi/isoreactor/orange",
+     "label": "Réacteur orange – sphère de plasma (surchauffe)",
+     "kind": "anim",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "orb",
+      "color": "orange",
+      "state": "on"
+     },
+     "tags": [
+      "alert"
+     ],
+     "png": "library/png/scifi/isoreactor/orange.png",
+     "gif": "library/png/scifi/isoreactor/orange.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    },
+    "crystal_cyan": {
+     "key": "crystal_cyan",
+     "name": "isoreactor_crystal_cyan",
+     "id": "scifi/isoreactor/crystal_cyan",
+     "label": "Réacteur turquoise – cristal",
+     "kind": "anim",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "crystal",
+      "color": "cyan",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoreactor/crystal_cyan.png",
+     "gif": "library/png/scifi/isoreactor/crystal_cyan.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    },
+    "crystal_violet": {
+     "key": "crystal_violet",
+     "name": "isoreactor_crystal_violet",
+     "id": "scifi/isoreactor/crystal_violet",
+     "label": "Réacteur violet – cristal",
+     "kind": "anim",
+     "w": 31,
+     "h": 47,
+     "size": 48,
+     "props": {
+      "shape": "crystal",
+      "color": "violet",
+      "state": "on"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isoreactor/crystal_violet.png",
+     "gif": "library/png/scifi/isoreactor/crystal_violet.gif",
+     "frameCount": 8,
+     "loopMs": 800
+    }
+   }
+  },
+  "scifi/isowall": {
+   "id": "scifi/isowall",
+   "slug": "isowall",
+   "category": "scifi",
+   "title": "Pan de mur isométrique",
+   "description": "Pans de mur de station spatiale en vue isométrique 2:1, hauts de 56 px, sans contour : ils se raccordent bord à bord et se posent sur l'arête arrière des dalles isofloor (un pan de 16 px par dalle). Chaque modèle existe pour le mur de gauche (à l'ombre) et le mur de droite (éclairé) : panneau, panneau à colonne lumineuse, grille d'aération, tuyaux, hublot panoramique vitré (3 dalles, vitre transparente : le fond se voit à travers), porte coulissante (2 dalles : fermée, ouverte, ou cycle animé d'ouverture), écran mural animé (2 dalles) et gyrophare d'alerte (éteint ou clignotant).",
+   "tags": [
+    "isometric",
+    "wall",
+    "scifi",
+    "space-station",
+    "spaceship",
+    "panel",
+    "door",
+    "window",
+    "screen",
+    "tileset"
+   ],
+   "order": 0,
+   "source": "assets/scifi/isowall.px.js",
+   "module": "library/js/scifi/isowall.js",
+   "sheet": {
+    "png": "library/sheets/scifi/isowall.png",
+    "json": "library/sheets/scifi/isowall.json"
+   },
+   "axes": {
+    "side": [
+     "left",
+     "right"
+    ],
+    "shape": [
+     "panel",
+     "light",
+     "vent",
+     "pipes",
+     "window",
+     "door",
+     "alarm",
+     "screen"
+    ],
+    "state": [
+     "closed",
+     "open",
+     "cycle",
+     "off",
+     "on"
+    ]
+   },
+   "sizes": [
+    64,
+    96
+   ],
+   "variantCount": 22,
+   "variants": {
+    "panel_left": {
+     "key": "panel_left",
+     "name": "isowall_panel_left",
+     "id": "scifi/isowall/panel_left",
+     "label": "Panneau – mur de gauche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "panel"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/panel_left.png"
+    },
+    "light_left": {
+     "key": "light_left",
+     "name": "isowall_light_left",
+     "id": "scifi/isowall/light_left",
+     "label": "Panneau à colonne lumineuse – mur de gauche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "light"
+     },
+     "tags": [
+      "glow",
+      "lamp"
+     ],
+     "png": "library/png/scifi/isowall/light_left.png"
+    },
+    "vent_left": {
+     "key": "vent_left",
+     "name": "isowall_vent_left",
+     "id": "scifi/isowall/vent_left",
+     "label": "Grille d'aération – mur de gauche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "vent"
+     },
+     "tags": [
+      "grille"
+     ],
+     "png": "library/png/scifi/isowall/vent_left.png"
+    },
+    "pipes_left": {
+     "key": "pipes_left",
+     "name": "isowall_pipes_left",
+     "id": "scifi/isowall/pipes_left",
+     "label": "Tuyaux – mur de gauche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "pipes"
+     },
+     "tags": [
+      "pipe",
+      "valve"
+     ],
+     "png": "library/png/scifi/isowall/pipes_left.png"
+    },
+    "window_left": {
+     "key": "window_left",
+     "name": "isowall_window_left",
+     "id": "scifi/isowall/window_left",
+     "label": "Hublot panoramique – mur de gauche",
+     "kind": "sprite",
+     "w": 48,
+     "h": 79,
+     "size": 96,
+     "props": {
+      "side": "left",
+      "shape": "window"
+     },
+     "tags": [
+      "glass",
+      "porthole",
+      "space-view"
+     ],
+     "png": "library/png/scifi/isowall/window_left.png"
+    },
+    "door_left": {
+     "key": "door_left",
+     "name": "isowall_door_left",
+     "id": "scifi/isowall/door_left",
+     "label": "Porte coulissante fermée – mur de gauche",
+     "kind": "sprite",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "left",
+      "shape": "door",
+      "state": "closed"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/door_left.png"
+    },
+    "door_open_left": {
+     "key": "door_open_left",
+     "name": "isowall_door_open_left",
+     "id": "scifi/isowall/door_open_left",
+     "label": "Porte coulissante ouverte – mur de gauche",
+     "kind": "sprite",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "left",
+      "shape": "door",
+      "state": "open"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/door_open_left.png"
+    },
+    "door_cycle_left": {
+     "key": "door_cycle_left",
+     "name": "isowall_door_cycle_left",
+     "id": "scifi/isowall/door_cycle_left",
+     "label": "Porte coulissante – cycle animé – mur de gauche",
+     "kind": "anim",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "left",
+      "shape": "door",
+      "state": "cycle"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/scifi/isowall/door_cycle_left.png",
+     "gif": "library/png/scifi/isowall/door_cycle_left.gif",
+     "frameCount": 6,
+     "loopMs": 6900
+    },
+    "alarm_off_left": {
+     "key": "alarm_off_left",
+     "name": "isowall_alarm_off_left",
+     "id": "scifi/isowall/alarm_off_left",
+     "label": "Gyrophare d'alerte éteint – mur de gauche",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "alarm",
+      "state": "off"
+     },
+     "tags": [
+      "beacon",
+      "siren"
+     ],
+     "png": "library/png/scifi/isowall/alarm_off_left.png"
+    },
+    "alarm_left": {
+     "key": "alarm_left",
+     "name": "isowall_alarm_left",
+     "id": "scifi/isowall/alarm_left",
+     "label": "Gyrophare d'alerte – clignotement animé – mur de gauche",
+     "kind": "anim",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "left",
+      "shape": "alarm",
+      "state": "on"
+     },
+     "tags": [
+      "beacon",
+      "siren",
+      "animated",
+      "warning"
+     ],
+     "png": "library/png/scifi/isowall/alarm_left.png",
+     "gif": "library/png/scifi/isowall/alarm_left.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "screen_left": {
+     "key": "screen_left",
+     "name": "isowall_screen_left",
+     "id": "scifi/isowall/screen_left",
+     "label": "Écran mural animé – mur de gauche",
+     "kind": "anim",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "left",
+      "shape": "screen"
+     },
+     "tags": [
+      "animated",
+      "monitor",
+      "glow"
+     ],
+     "png": "library/png/scifi/isowall/screen_left.png",
+     "gif": "library/png/scifi/isowall/screen_left.gif",
+     "frameCount": 8,
+     "loopMs": 1600
+    },
+    "panel_right": {
+     "key": "panel_right",
+     "name": "isowall_panel_right",
+     "id": "scifi/isowall/panel_right",
+     "label": "Panneau – mur de droite",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "panel"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/panel_right.png"
+    },
+    "light_right": {
+     "key": "light_right",
+     "name": "isowall_light_right",
+     "id": "scifi/isowall/light_right",
+     "label": "Panneau à colonne lumineuse – mur de droite",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "light"
+     },
+     "tags": [
+      "glow",
+      "lamp"
+     ],
+     "png": "library/png/scifi/isowall/light_right.png"
+    },
+    "vent_right": {
+     "key": "vent_right",
+     "name": "isowall_vent_right",
+     "id": "scifi/isowall/vent_right",
+     "label": "Grille d'aération – mur de droite",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "vent"
+     },
+     "tags": [
+      "grille"
+     ],
+     "png": "library/png/scifi/isowall/vent_right.png"
+    },
+    "pipes_right": {
+     "key": "pipes_right",
+     "name": "isowall_pipes_right",
+     "id": "scifi/isowall/pipes_right",
+     "label": "Tuyaux – mur de droite",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "pipes"
+     },
+     "tags": [
+      "pipe",
+      "valve"
+     ],
+     "png": "library/png/scifi/isowall/pipes_right.png"
+    },
+    "window_right": {
+     "key": "window_right",
+     "name": "isowall_window_right",
+     "id": "scifi/isowall/window_right",
+     "label": "Hublot panoramique – mur de droite",
+     "kind": "sprite",
+     "w": 48,
+     "h": 79,
+     "size": 96,
+     "props": {
+      "side": "right",
+      "shape": "window"
+     },
+     "tags": [
+      "glass",
+      "porthole",
+      "space-view"
+     ],
+     "png": "library/png/scifi/isowall/window_right.png"
+    },
+    "door_right": {
+     "key": "door_right",
+     "name": "isowall_door_right",
+     "id": "scifi/isowall/door_right",
+     "label": "Porte coulissante fermée – mur de droite",
+     "kind": "sprite",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "right",
+      "shape": "door",
+      "state": "closed"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/door_right.png"
+    },
+    "door_open_right": {
+     "key": "door_open_right",
+     "name": "isowall_door_open_right",
+     "id": "scifi/isowall/door_open_right",
+     "label": "Porte coulissante ouverte – mur de droite",
+     "kind": "sprite",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "right",
+      "shape": "door",
+      "state": "open"
+     },
+     "tags": [],
+     "png": "library/png/scifi/isowall/door_open_right.png"
+    },
+    "door_cycle_right": {
+     "key": "door_cycle_right",
+     "name": "isowall_door_cycle_right",
+     "id": "scifi/isowall/door_cycle_right",
+     "label": "Porte coulissante – cycle animé – mur de droite",
+     "kind": "anim",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "right",
+      "shape": "door",
+      "state": "cycle"
+     },
+     "tags": [
+      "animated"
+     ],
+     "png": "library/png/scifi/isowall/door_cycle_right.png",
+     "gif": "library/png/scifi/isowall/door_cycle_right.gif",
+     "frameCount": 6,
+     "loopMs": 6900
+    },
+    "alarm_off_right": {
+     "key": "alarm_off_right",
+     "name": "isowall_alarm_off_right",
+     "id": "scifi/isowall/alarm_off_right",
+     "label": "Gyrophare d'alerte éteint – mur de droite",
+     "kind": "sprite",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "alarm",
+      "state": "off"
+     },
+     "tags": [
+      "beacon",
+      "siren"
+     ],
+     "png": "library/png/scifi/isowall/alarm_off_right.png"
+    },
+    "alarm_right": {
+     "key": "alarm_right",
+     "name": "isowall_alarm_right",
+     "id": "scifi/isowall/alarm_right",
+     "label": "Gyrophare d'alerte – clignotement animé – mur de droite",
+     "kind": "anim",
+     "w": 16,
+     "h": 63,
+     "size": 64,
+     "props": {
+      "side": "right",
+      "shape": "alarm",
+      "state": "on"
+     },
+     "tags": [
+      "beacon",
+      "siren",
+      "animated",
+      "warning"
+     ],
+     "png": "library/png/scifi/isowall/alarm_right.png",
+     "gif": "library/png/scifi/isowall/alarm_right.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "screen_right": {
+     "key": "screen_right",
+     "name": "isowall_screen_right",
+     "id": "scifi/isowall/screen_right",
+     "label": "Écran mural animé – mur de droite",
+     "kind": "anim",
+     "w": 32,
+     "h": 71,
+     "size": 96,
+     "props": {
+      "side": "right",
+      "shape": "screen"
+     },
+     "tags": [
+      "animated",
+      "monitor",
+      "glow"
+     ],
+     "png": "library/png/scifi/isowall/screen_right.png",
+     "gif": "library/png/scifi/isowall/screen_right.gif",
+     "frameCount": 8,
+     "loopMs": 1600
+    }
    }
   },
   "nature/bones": {
@@ -9019,8 +11245,17 @@ export const catalog = {
 };
 
 const loaders = {
+  "scenes/scifi_room": () => import("./js/scenes/scifi_room.js"),
   "scenes/summer_plain": () => import("./js/scenes/summer_plain.js"),
   "scenes/summer_plain_fx": () => import("./js/scenes/summer_plain_fx.js"),
+  "scifi/isoconsole": () => import("./js/scifi/isoconsole.js"),
+  "scifi/isocrate": () => import("./js/scifi/isocrate.js"),
+  "scifi/isodrone": () => import("./js/scifi/isodrone.js"),
+  "scifi/isofloor": () => import("./js/scifi/isofloor.js"),
+  "scifi/isofurniture": () => import("./js/scifi/isofurniture.js"),
+  "scifi/isopod": () => import("./js/scifi/isopod.js"),
+  "scifi/isoreactor": () => import("./js/scifi/isoreactor.js"),
+  "scifi/isowall": () => import("./js/scifi/isowall.js"),
   "nature/bones": () => import("./js/nature/bones.js"),
   "nature/bush": () => import("./js/nature/bush.js"),
   "nature/cactus": () => import("./js/nature/cactus.js"),

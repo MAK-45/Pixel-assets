@@ -191,14 +191,17 @@ export function renderScene({ info, project }) {
         if (p.body && (p.body.periods ?? planePeriods(sc, p)).includes(per)) blit(img, imageOf(resolveName(p.body.image, per)).frames[0], p.body.x, p.body.y);
         continue;
       }
-      if (p.loop === false || sc.type === "static") { blit(img, im, Math.round((sc.w - im.w) / 2), y); continue; }
-      for (let x = 0; x < sc.w; x += im.w) blit(img, im, x, y);
+      // plan fixe : image centrée, acteurs posés dessus ; bande : image répétée, acteurs qui bouclent
+      const fixed = p.loop === false || sc.type === "static";
+      const x0 = fixed ? Math.round((sc.w - im.w) / 2) : 0;
+      if (fixed) blit(img, im, x0, y);
+      else for (let x = 0; x < sc.w; x += im.w) blit(img, im, x, y);
       for (const a of p.actors ?? []) {
         const tpl = sc.sprites[a.sprite];
         const fr = imageOf(resolveName(tpl, per));
         const f = fr.frames[frameIndex(fr.rec.ms, a.phase ?? 0)];
-        let ax = mod(a.x, im.w);
-        if (ax > sc.w + f.w) ax -= im.w;
+        let ax = fixed ? x0 + a.x : mod(a.x, im.w);
+        if (!fixed && ax > sc.w + f.w) ax -= im.w;
         if (a.flip) {
           const flipped = new Img(f.w, f.h);
           for (let yy = 0; yy < f.h; yy++) for (let xx = 0; xx < f.w; xx++) flipped.data[yy * f.w + xx] = f.data[yy * f.w + f.w - 1 - xx];

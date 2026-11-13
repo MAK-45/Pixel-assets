@@ -292,8 +292,21 @@ export async function createSceneFrom(data, opts = {}) {
       return;
     }
     const y = p.y + v.dy;
+    const actorImage = (a) => {
+      const s = sprites[a.sprite];
+      return s && (s[st.id] ?? s["*"]);
+    };
     if (!p.loop) {
-      blit(ctx, img, frameAt(img, time), Math.round((v.width - img.w) / 2), y);
+      // plan fixe (scène statique) : image centrée, acteurs animés posés dessus dans l'ordre de la liste
+      const x0 = Math.round((v.width - img.w) / 2);
+      blit(ctx, img, frameAt(img, time), x0, y);
+      const t = time * speedOf(st.id);
+      for (const a of p.actors ?? []) {
+        const ai = actorImage(a);
+        if (!ai) continue;
+        const ax = x0 + a.x;
+        if (ax > -ai.w && ax < v.width) blit(ctx, ai, frameAt(ai, t + (a.phase ?? 0)), ax, y + a.y, !!a.flip);
+      }
       return;
     }
     const off = Math.round(camX * p.factor + (time / 1000) * (p.driftBy?.[st.id] ?? p.drift ?? 0));
@@ -303,8 +316,7 @@ export async function createSceneFrom(data, opts = {}) {
     if (p.actors) {
       const t = time * speedOf(st.id);
       for (const a of p.actors) {
-        const s = sprites[a.sprite];
-        const ai = s && (s[st.id] ?? s["*"]);
+        const ai = actorImage(a);
         if (!ai) continue;
         const ax = wrapX(a.x, off, img.w, v.width, ai.w);
         if (ax > -ai.w && ax < v.width) blit(ctx, ai, frameAt(ai, t + (a.phase ?? 0)), ax, y + a.y, !!a.flip);

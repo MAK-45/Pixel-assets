@@ -71,6 +71,7 @@ et renvoie les erreurs : corrige-les immédiatement.
 assets/_palette.px.js        palette commune (clés mnémotechniques + rampes) — incluse partout
 assets/categories.json       catégories : titre, description, icône (id d'une variante), ordre
 assets/nature/_fx.px.js      outils communs des familles fx* (style pixelfx) ; fichiers « _ » ignorés par le build
+assets/scifi/_iso.px.js      outils communs des familles iso* (vue isométrique 2:1 : dalle, pan de mur, boîte, cylindre)
 assets/<cat>/<asset>.px.js   SOURCE : une famille d'assets = un fichier, chaque sprite exporté = une variante
 assets/scenes/<asset>.px.js  SOURCE d'une scène : parties privées + meta.scene (variantes = périodes)
 assets/scenes/_kit.px.js     outils communs des scènes (placement en boucle, couleurs des périodes, ciel, nuages)
@@ -112,13 +113,18 @@ scripts/                     build.js, check.js, dev.js, new-asset.js, scene-pre
 - Ombrages par formes (grappes, croissants, faces) plutôt que par seuil linéaire.
 - Silhouette lisible à 1×. Vérifie chaque taille à son échelle réelle, pas seulement agrandie.
 - Vue de face (décors 2D) sauf demande contraire ; sol en bas du canevas pour les objets posés.
+- Vue isométrique (catégorie `scifi`, familles `iso*`) : projection 2:1, dalle de 32 × 15 px au pas de (±16, +8),
+  dalles et murs sans contour (ils se raccordent), objets avec contour ; orientations `sw` / `se` (miroir + faces
+  claire et sombre interverties, la lumière reste à gauche). Outils dans `assets/scifi/_iso.px.js`.
 
 ## Scènes (décors de jeu 16:9)
 
 **Scène dynamique** (décor qui défile en parallaxe, fond ou niveau de platformer/runner) : workflow complet dans le
 skill **`/scene-dynamique`** (`.claude/skills/scene-dynamique/SKILL.md`). Référence validée par l'utilisateur :
 `assets/scenes/summer_plain.px.js`. **Scène statique** (écran fixe) : un skill dédié est prévu, pas encore écrit ;
-en attendant, demander à l'utilisateur comment procéder.
+en attendant, demander à l'utilisateur comment procéder. Exemple existant : `assets/scenes/scifi_room.px.js` (salle de
+station spatiale isométrique montée avec les familles `scifi/iso*`, image de 480 × 270 centrée en bas, éléments animés
+en `actors` triés du fond vers l'avant, ambiances `day` / `alert` / `night`).
 
 Une scène = `assets/scenes/<asset>.px.js` (inclut `../_palette.px.js` puis `_kit.px.js`). Elle ne définit que des **parties privées** (`_nom`) et se décrit dans
 `meta.scene` ; ses **variantes sont ses périodes** (`day`, `dusk`, `night`, `overcast`…). Toujours dire si elle est :
@@ -139,6 +145,7 @@ La galerie affiche le badge ⇄ Dynamique ou ▣ Statique d'après ce type. Conv
 - `meta.scene` : `planes` (`image: "_plan_{period}"`, `y`, `factor`, `front`, `optional`, `drift`, `actors` animés),
   `sprites` (acteurs et effets), `effects` par période (`twinkle`, `shooting`, `birds`, `butterflies`, `fireflies`),
   `speed`. Le moteur (`scripts/templates/scene-runtime.js`) est le même dans la galerie et dans l'export.
+  Dans une scène statique, les `actors` d'un plan se dessinent par-dessus son image, dans l'ordre de la liste.
 - Regarder `assets/scenes/out/_preview/<asset>_<période>.png` (et `__<plan>.png` avec `--planes`) après chaque essai.
 - Le build écrit `library/scenes/<asset>/` : module autonome `<asset>.js` (bouton « Exporter le code » de la galerie),
   `scene.json` + PNG des plans, README.

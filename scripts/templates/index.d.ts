@@ -112,6 +112,7 @@ export interface SceneData {
     drift?: number; driftBy?: Record<string, number>; loop?: boolean;
     images: Record<string, SceneImage>;
     body?: { x: number; y: number; images: Record<string, SceneImage> };
+    /** Éléments animés posés sur le plan (x, y dans son image), dessinés dans l'ordre ; bande qui boucle ou plan fixe. */
     actors?: { sprite: string; x: number; y: number; phase?: number; flip?: boolean }[];
   }[];
   /** Sprites des acteurs et des effets, par période ("*" = toutes). */

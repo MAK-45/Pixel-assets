@@ -120,6 +120,10 @@ porte un résumé `scene` :
 - `groundY` : ligne de sol (y des pieds du personnage) ; `planes` : plans du fond vers l'avant, `front: true` =
   dessiné devant le personnage.
 - Les variantes n'ont pas de `rows` (images trop grandes) : `src` est l'aperçu de la période (caméra à 0).
+- Les périodes d'une scène d'intérieur sont des ambiances d'éclairage (ex. `scenes/scifi_room` : `day` normal, `alert`,
+  `night` veille). Dans une scène statique, chaque plan est une image centrée en bas de la vue ; ses `actors`
+  (`{ sprite, x, y, phase }`, positions dans l'image du plan) sont des éléments animés dessinés par-dessus, dans
+  l'ordre de la liste (du fond vers l'avant) : pour glisser un personnage entre eux, les trier avec lui par `y`.
 
 Dans un jeu, le plus simple est le module autonome `scenes/<asset>/<asset>.js` (aucune dépendance) :
 

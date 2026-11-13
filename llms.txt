@@ -21,7 +21,8 @@ https://raw.githubusercontent.com/mak-45/pixel-assets/main/<chemin> (remplacer `
 
 ## Scènes
 
-Catégorie `scenes` : décors 16:9 (base 320 × 180) dont les variantes sont des périodes (jour, crépuscule, nuit, sombre).
+Catégorie `scenes` : décors 16:9 (base 320 × 180) dont les variantes sont des périodes (jour, crépuscule, nuit, sombre ;
+pour un intérieur comme `scenes/scifi_room`, salle de station spatiale isométrique : normal, alerte, veille).
 `catalog.assets[id].scene.type` vaut `parallax` (dynamique : plans qui défilent à l'infini) ou `static` (écran fixe) ;
 `groundY` = ligne de sol. Voir la section « Scènes » de library/README.md.
 

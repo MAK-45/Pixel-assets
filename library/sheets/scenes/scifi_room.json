@@ -1,0 +1,74 @@
+{
+ "frames": {
+  "day": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 180
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 180
+   },
+   "sourceSize": {
+    "w": 320,
+    "h": 180
+   }
+  },
+  "alert": {
+   "frame": {
+    "x": 321,
+    "y": 0,
+    "w": 320,
+    "h": 180
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 180
+   },
+   "sourceSize": {
+    "w": 320,
+    "h": 180
+   }
+  },
+  "night": {
+   "frame": {
+    "x": 0,
+    "y": 181,
+    "w": 320,
+    "h": 180
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 180
+   },
+   "sourceSize": {
+    "w": 320,
+    "h": 180
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "scifi_room.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 641,
+   "h": 361
+  },
+  "scale": "1"
+ }
+}

@@ -7,7 +7,8 @@ pour être réutilisée par des humains comme par d'autres agents IA.
 
 | Catégorie | Familles | Variantes |
 |---|---|---|
-| Scènes | Plaine d'été : panorama **dynamique** 16:9 (base 320 × 180) en 8 plans de parallaxe qui bouclent à l'infini, 4 périodes (jour, crépuscule, nuit, sombre) avec animations d'ambiance | 4 |
+| Scènes | Plaine d'été : panorama **dynamique** 16:9 (base 320 × 180) en 8 plans de parallaxe qui bouclent à l'infini, 4 périodes (jour, crépuscule, nuit, sombre) avec animations d'ambiance ; Salle de station spatiale : scène **statique** en vue isométrique, animée, 3 ambiances (normal, alerte, veille) | 11 |
+| Science-fiction | Station spatiale en vue isométrique 2:1 : Dalle de sol, Pan de mur (hublot, porte animée, écran, gyrophare), Console (pupitre, serveurs, hologramme), Caisse, Capsule de stase, Réacteur, Mobilier, Drone | 85 |
 | Nature | Arbre (chêne, sapin, bouleau, pommier × saisons × 16/32/48 px), Rocher (caillou, rocher, cairn, aiguille, escarpement, arche), Buisson, Herbe, Fleur, Fougère, Champignon | 80 |
 | Paysage | Montagne (pics 16/32/64 px et 128 px de fond de scène, chaîne pour parallaxe, volcan animé, mesa), Colline (ronde, vallonnement, dunes × saisons) | 31 |
 | Ciel | Nuage (beau temps, orage, pluie animée, coucher, nuit), Soleil, Lune, Étoile (dont petites étoiles et étoile filante de scène) | 44 |
