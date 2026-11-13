@@ -4,7 +4,7 @@ include("../nature/_fx.px.js")
 
 const meta = {
   title: "Plaine d'été (style pixelfx)",
-  description: "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers à demi enterrés dans l'herbe), sol tout en gazon jusqu'au bas de l'écran où marche le personnage (pâquerettes, tulipes, cailloux à demi enterrés, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
+  description: "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d’une grande montagne enneigée (montagnes au style maison de la Plaine d’été), en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers à demi enterrés dans l'herbe), sol tout en gazon jusqu'au bas de l'écran où marche le personnage (pâquerettes, tulipes, cailloux à demi enterrés, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
   tags: ["scene", "parallax", "panorama", "background", "plain", "meadow", "mountain", "summer", "day-night", "endless", "platformer", "runner", "realistic", "pixelfx"],
   variants: {
     day: { label: "Jour", props: { period: "day" }, tags: ["sun", "clouds", "butterflies", "birds"] },
@@ -58,7 +58,7 @@ const meta = {
 }
 
 // ================================================================ sélection d'assets (importés)
-// Tout le décor vient des familles fx* ; seuls les tout petits sprites animés (oiseaux lointains,
+// Tout le décor vient des familles fx* (sauf les montagnes, version standard) ; seuls les tout petits sprites animés (oiseaux lointains,
 // papillons, lucioles, scintillements, étoile filante) sont ceux de la maison (papillons sans contour noir).
 
 imp("nature/fxtree", ["oak_summer_16", "pine_16", "oak_summer_48", "birch_48", "pine_48", "oak_summer_32", "birch_32", "pine_32"])
@@ -67,7 +67,9 @@ imp("nature/fxrock", ["buried_moss_48", "buried_32", "buried_flat_48", "buried_1
 imp("nature/fxgrass", ["tuft_wind_16", "tall_wind_32", "tuft_16"])
 imp("nature/fxflower", ["daisy_16", "tulip_red_16"])
 imp("landscape/fxhill", ["rolling_64", "round_32"])
-imp("landscape/fxmountain", ["peak_snow_128", "peak_snow_64", "range_snow_64"])
+// montagnes au style maison (version standard), demandées par l'utilisateur à la place des fxmountain
+imp("landscape/mountain", ["peak_snow_128", "peak_snow_64", "range_snow_64"])
+imp("sky/cloud", ["storm_32"])
 imp("sky/fxcloud", ["cumulus_48", "puff_32", "puff_16", "stratus_64", "sunset_48", "night_48", "storm_64"])
 imp("sky/fxsun", ["rays_32", "sunset_48"])
 imp("sky/fxmoon", ["full_32"])
@@ -133,20 +135,20 @@ sprite("_clouds_overcast", { w: CW, h: 64, swap: STORM_FX }, (c) => {
     cput(c, CW, i % 2 ? "_fxcloud_stratus_64" : "_fxcloud_storm_64", Math.floor(r() * CW), 18 + Math.floor(r() * 14), flipIf(r() < 0.5))
 })
 
-// ================================================================ 3. montagnes (bande de 640 px)
+// ================================================================ 3. montagnes (bande de 640 px, version standard)
 
 const MW = 640
 const mountains = (P) => [
   // chaînes lointaines, presque couleur du ciel
-  ...[[0, 72], [54, 76], [112, 70], [300, 74], [356, 68], [470, 76], [528, 72], [584, 75]].flatMap(([x, y], i) =>
-    put(MW, "_fxmountain_range_snow_64", x, y, { swap: FX_FAR2[P], ...flipIf(i % 2) })),
+  ...[[0, 70], [54, 74], [112, 68], [300, 72], [356, 66], [470, 74], [528, 70], [584, 73]].flatMap(([x, y], i) =>
+    put(MW, "_mountain_range_snow_64", x, y, { swap: FAR2[P], ...flipIf(i % 2) })),
   // un second pic, plus loin
-  ...put(MW, "_fxmountain_peak_snow_64", 412, 42, { swap: FX_FAR2[P] }),
-  // le très grand pic, héros du premier écran
-  ...put(MW, "_fxmountain_peak_snow_128", 150, -2, { swap: FX_FAR[P] }),
-  // par temps sombre, des nuages bas s'accrochent au sommet
-  ...(P === "overcast" ? [[168, 0], [214, 4], [186, 24], [228, 30]].flatMap(([x, y], i) =>
-    put(MW, i < 2 ? "_fxcloud_storm_64" : "_fxcloud_stratus_64", x, y, { swap: { C: "c", c: ">" }, ...flipIf(i % 2) })) : []),
+  ...put(MW, "_mountain_peak_snow_64", 412, 56, { swap: FAR2[P] }),
+  // la grande montagne
+  ...put(MW, "_mountain_peak_snow_128", 150, 10, { swap: FAR[P] }),
+  // par temps de pluie, des nuages bas s'accrochent au sommet
+  ...(P === "overcast" ? [[168, 0], [196, -6], [222, 2], [248, -4], [206, 14], [236, 18]].flatMap(([x, y], i) =>
+    put(MW, "_cloud_storm_32", x, y, { swap: STORM, ...flipIf(i % 2) })) : []),
 ]
 for (const P of PERIODS) sprite(`_mountains_${P}`, { w: MW, h: 104 }, ...mountains(P))
 
