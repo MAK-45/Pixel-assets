@@ -5,7 +5,7 @@
  "stats": {
   "categories": 7,
   "assets": 38,
-  "variants": 364
+  "variants": 366
  },
  "categories": [
   {
@@ -4531,7 +4531,7 @@
    "slug": "fxdesertground",
    "category": "landscape",
    "title": "Sol du désert (style pixelfx)",
-   "description": "Bandes de sol désertique vues de face au rendu riche inspiré de pixelfx (même rendu texturé que les dunes fxdune) : pas de contour noir, surface éclairée par le haut avec un liseré clair, matière qui s'assombrit en profondeur par paliers francs, taches de grain en bruit lissé et rares paillettes. Chaque bande se raccorde sans couture à gauche et à droite (à répéter en boucle sous le personnage) ; le bloc de remplissage se raccorde aussi en haut et en bas, pour prolonger le sol vers le bas de l'écran. Variantes : sable lisse (32, 64 px), sable ridé par le vent, reg caillouteux (galets à demi enterrés), argile craquelée, grès stratifié sous le sable, et bloc de remplissage 32 × 32.",
+   "description": "Bandes de sol désertique vues de face au rendu riche inspiré de pixelfx (même rendu texturé que les dunes fxdune) : pas de contour noir, surface éclairée par le haut avec un liseré clair, matière qui s'assombrit en profondeur par paliers francs, taches de grain en bruit lissé et rares paillettes. Sol continu : chaque bande se répète sans couture à gauche et à droite ; toutes les bandes de même hauteur s'enchaînent entre elles (surface à la même hauteur aux bords, même grain) ; sous chaque bande se raccorde son bloc de remplissage 32 × 32, qui se répète dans les deux sens pour prolonger le sol vers le bas (sable sous le sable lisse, ridé et caillouteux, argile sous l'argile, grès sous le grès). Variantes : sable lisse (32, 64 px), sable ridé, reg caillouteux, argile craquelée, grès stratifié, et trois blocs de remplissage.",
    "tags": [
     "ground",
     "floor",
@@ -4570,7 +4570,7 @@
     32,
     64
    ],
-   "variantCount": 7,
+   "variantCount": 9,
    "variants": {
     "sand_64": {
      "key": "sand_64",
@@ -4702,6 +4702,46 @@
       "underground"
      ],
      "png": "library/png/landscape/fxdesertground/fill_32.png"
+    },
+    "fill_cracked_32": {
+     "key": "fill_cracked_32",
+     "name": "fxdesertground_fill_cracked_32",
+     "id": "landscape/fxdesertground/fill_cracked_32",
+     "label": "Remplissage argile (32 × 32)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "surface": "fill",
+      "tiling": "both"
+     },
+     "tags": [
+      "fill",
+      "underground",
+      "clay"
+     ],
+     "png": "library/png/landscape/fxdesertground/fill_cracked_32.png"
+    },
+    "fill_strata_32": {
+     "key": "fill_strata_32",
+     "name": "fxdesertground_fill_strata_32",
+     "id": "landscape/fxdesertground/fill_strata_32",
+     "label": "Remplissage grès (32 × 32)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "surface": "fill",
+      "tiling": "both"
+     },
+     "tags": [
+      "fill",
+      "underground",
+      "sandstone"
+     ],
+     "png": "library/png/landscape/fxdesertground/fill_strata_32.png"
     }
    }
   },
