@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 37,
-  "variants": 356
+  "assets": 38,
+  "variants": 364
  },
  "categories": [
   {
@@ -48,6 +48,7 @@
    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
    "icon": "landscape/mountain/peak_snow_16",
    "assets": [
+    "landscape/fxdesertground",
     "landscape/fxdune",
     "landscape/fxhill",
     "landscape/fxmountain",
@@ -4525,12 +4526,191 @@
     }
    }
   },
+  "landscape/fxdesertground": {
+   "id": "landscape/fxdesertground",
+   "slug": "fxdesertground",
+   "category": "landscape",
+   "title": "Sol du désert (style pixelfx)",
+   "description": "Bandes de sol désertique vues de face au rendu riche inspiré de pixelfx (même rendu texturé que les dunes fxdune) : pas de contour noir, surface éclairée par le haut avec un liseré clair, matière qui s'assombrit en profondeur par paliers francs, taches de grain en bruit lissé et rares paillettes. Chaque bande se raccorde sans couture à gauche et à droite (à répéter en boucle sous le personnage) ; le bloc de remplissage se raccorde aussi en haut et en bas, pour prolonger le sol vers le bas de l'écran. Variantes : sable lisse (32, 64 px), sable ridé par le vent, reg caillouteux (galets à demi enterrés), argile craquelée, grès stratifié sous le sable, et bloc de remplissage 32 × 32.",
+   "tags": [
+    "ground",
+    "floor",
+    "terrain",
+    "tile",
+    "tileable",
+    "seamless",
+    "desert",
+    "sand",
+    "platformer",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/landscape/fxdesertground.px.js",
+   "module": "library/js/landscape/fxdesertground.js",
+   "sheet": {
+    "png": "library/sheets/landscape/fxdesertground.png",
+    "json": "library/sheets/landscape/fxdesertground.json"
+   },
+   "axes": {
+    "surface": [
+     "sand",
+     "ripples",
+     "pebbles",
+     "cracked",
+     "strata",
+     "fill"
+    ],
+    "tiling": [
+     "horizontal",
+     "both"
+    ]
+   },
+   "sizes": [
+    32,
+    64
+   ],
+   "variantCount": 7,
+   "variants": {
+    "sand_64": {
+     "key": "sand_64",
+     "name": "fxdesertground_sand_64",
+     "id": "landscape/fxdesertground/sand_64",
+     "label": "Sable lisse (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "surface": "sand",
+      "tiling": "horizontal"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdesertground/sand_64.png"
+    },
+    "sand_32": {
+     "key": "sand_32",
+     "name": "fxdesertground_sand_32",
+     "id": "landscape/fxdesertground/sand_32",
+     "label": "Sable lisse (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "surface": "sand",
+      "tiling": "horizontal"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdesertground/sand_32.png"
+    },
+    "ripples_64": {
+     "key": "ripples_64",
+     "name": "fxdesertground_ripples_64",
+     "id": "landscape/fxdesertground/ripples_64",
+     "label": "Sable ridé (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "surface": "ripples",
+      "tiling": "horizontal"
+     },
+     "tags": [
+      "ripples",
+      "wind"
+     ],
+     "png": "library/png/landscape/fxdesertground/ripples_64.png"
+    },
+    "pebbles_64": {
+     "key": "pebbles_64",
+     "name": "fxdesertground_pebbles_64",
+     "id": "landscape/fxdesertground/pebbles_64",
+     "label": "Reg caillouteux (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "surface": "pebbles",
+      "tiling": "horizontal"
+     },
+     "tags": [
+      "pebble",
+      "stone",
+      "gravel"
+     ],
+     "png": "library/png/landscape/fxdesertground/pebbles_64.png"
+    },
+    "cracked_64": {
+     "key": "cracked_64",
+     "name": "fxdesertground_cracked_64",
+     "id": "landscape/fxdesertground/cracked_64",
+     "label": "Argile craquelée (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "surface": "cracked",
+      "tiling": "horizontal"
+     },
+     "tags": [
+      "clay",
+      "dry",
+      "crack",
+      "badlands"
+     ],
+     "png": "library/png/landscape/fxdesertground/cracked_64.png"
+    },
+    "strata_64": {
+     "key": "strata_64",
+     "name": "fxdesertground_strata_64",
+     "id": "landscape/fxdesertground/strata_64",
+     "label": "Grès stratifié (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "surface": "strata",
+      "tiling": "horizontal"
+     },
+     "tags": [
+      "sandstone",
+      "rock",
+      "cliff"
+     ],
+     "png": "library/png/landscape/fxdesertground/strata_64.png"
+    },
+    "fill_32": {
+     "key": "fill_32",
+     "name": "fxdesertground_fill_32",
+     "id": "landscape/fxdesertground/fill_32",
+     "label": "Remplissage sable (32 × 32)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "surface": "fill",
+      "tiling": "both"
+     },
+     "tags": [
+      "fill",
+      "underground"
+     ],
+     "png": "library/png/landscape/fxdesertground/fill_32.png"
+    }
+   }
+  },
   "landscape/fxdune": {
    "id": "landscape/fxdune",
    "slug": "fxdune",
    "category": "landscape",
    "title": "Dune de sable (style pixelfx)",
-   "description": "Dune de sable du désert vue de face au rendu riche inspiré de pixelfx, sans contour noir : longue face au vent éclairée à gauche, crête vive, versant d'éboulement à l'ombre à droite. Même forme, six propositions de rendu : classique (6 paliers francs), rides de vent, graphique (aplats), golden hour contrasté (ombres violettes), plein midi doux (peu de contraste), texturé (taches de grain et rares paillettes).",
+   "description": "Dunes de sable du désert vues de face au rendu riche inspiré de pixelfx, sans contour noir : longue face au vent éclairée à gauche, crête vive soulignée d'un filet clair, versant d'éboulement à l'ombre violacée à droite, sable texturé de taches de grain (bruit lissé) et de rares paillettes de quartz au soleil. Variantes : dune à crête (16, 32, 48, 64 px), dune haute, dune basse et allongée, double dune (la dune de devant cache le pied de celle du fond). Posées au sol, pensées pour les plans intermédiaires des scènes de désert ; à associer au sol fxdesertground.",
    "tags": [
     "dune",
     "sand",
@@ -4550,124 +4730,127 @@
     "json": "library/sheets/landscape/fxdune.json"
    },
    "axes": {
-    "style": [
-     "classic",
-     "ripples",
-     "flat",
-     "golden",
-     "noon",
-     "grainy"
+    "shape": [
+     "crest",
+     "tall",
+     "low",
+     "double"
     ]
    },
    "sizes": [
+    16,
+    32,
+    48,
     64
    ],
-   "variantCount": 6,
+   "variantCount": 7,
    "variants": {
-    "classic_64": {
-     "key": "classic_64",
-     "name": "fxdune_classic_64",
-     "id": "landscape/fxdune/classic_64",
-     "label": "Classique – 6 paliers (64 × 32)",
+    "crest_64": {
+     "key": "crest_64",
+     "name": "fxdune_crest_64",
+     "id": "landscape/fxdune/crest_64",
+     "label": "Dune à crête (64 × 32)",
      "kind": "sprite",
      "w": 64,
      "h": 32,
      "size": 64,
      "props": {
-      "style": "classic"
+      "shape": "crest"
      },
      "tags": [],
-     "png": "library/png/landscape/fxdune/classic_64.png"
+     "png": "library/png/landscape/fxdune/crest_64.png"
     },
-    "ripples_64": {
-     "key": "ripples_64",
-     "name": "fxdune_ripples_64",
-     "id": "landscape/fxdune/ripples_64",
-     "label": "Rides de vent (64 × 32)",
+    "crest_48": {
+     "key": "crest_48",
+     "name": "fxdune_crest_48",
+     "id": "landscape/fxdune/crest_48",
+     "label": "Dune à crête (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "crest"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdune/crest_48.png"
+    },
+    "crest_32": {
+     "key": "crest_32",
+     "name": "fxdune_crest_32",
+     "id": "landscape/fxdune/crest_32",
+     "label": "Dune à crête (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "shape": "crest"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdune/crest_32.png"
+    },
+    "crest_16": {
+     "key": "crest_16",
+     "name": "fxdune_crest_16",
+     "id": "landscape/fxdune/crest_16",
+     "label": "Petite dune (16 × 8)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 8,
+     "size": 16,
+     "props": {
+      "shape": "crest"
+     },
+     "tags": [
+      "distant"
+     ],
+     "png": "library/png/landscape/fxdune/crest_16.png"
+    },
+    "tall_48": {
+     "key": "tall_48",
+     "name": "fxdune_tall_48",
+     "id": "landscape/fxdune/tall_48",
+     "label": "Dune haute (48 × 32)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 32,
+     "size": 48,
+     "props": {
+      "shape": "tall"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdune/tall_48.png"
+    },
+    "low_64": {
+     "key": "low_64",
+     "name": "fxdune_low_64",
+     "id": "landscape/fxdune/low_64",
+     "label": "Dune basse allongée (64 × 16)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 16,
+     "size": 64,
+     "props": {
+      "shape": "low"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdune/low_64.png"
+    },
+    "double_64": {
+     "key": "double_64",
+     "name": "fxdune_double_64",
+     "id": "landscape/fxdune/double_64",
+     "label": "Double dune (64 × 32)",
      "kind": "sprite",
      "w": 64,
      "h": 32,
      "size": 64,
      "props": {
-      "style": "ripples"
+      "shape": "double"
      },
-     "tags": [
-      "ripples",
-      "wind"
-     ],
-     "png": "library/png/landscape/fxdune/ripples_64.png"
-    },
-    "flat_64": {
-     "key": "flat_64",
-     "name": "fxdune_flat_64",
-     "id": "landscape/fxdune/flat_64",
-     "label": "Graphique – aplats (64 × 32)",
-     "kind": "sprite",
-     "w": 64,
-     "h": 32,
-     "size": 64,
-     "props": {
-      "style": "flat"
-     },
-     "tags": [
-      "flat",
-      "graphic"
-     ],
-     "png": "library/png/landscape/fxdune/flat_64.png"
-    },
-    "golden_64": {
-     "key": "golden_64",
-     "name": "fxdune_golden_64",
-     "id": "landscape/fxdune/golden_64",
-     "label": "Golden hour contrasté (64 × 32)",
-     "kind": "sprite",
-     "w": 64,
-     "h": 32,
-     "size": 64,
-     "props": {
-      "style": "golden"
-     },
-     "tags": [
-      "sunset",
-      "dramatic"
-     ],
-     "png": "library/png/landscape/fxdune/golden_64.png"
-    },
-    "noon_64": {
-     "key": "noon_64",
-     "name": "fxdune_noon_64",
-     "id": "landscape/fxdune/noon_64",
-     "label": "Plein midi doux (64 × 32)",
-     "kind": "sprite",
-     "w": 64,
-     "h": 32,
-     "size": 64,
-     "props": {
-      "style": "noon"
-     },
-     "tags": [
-      "soft",
-      "pastel"
-     ],
-     "png": "library/png/landscape/fxdune/noon_64.png"
-    },
-    "grainy_64": {
-     "key": "grainy_64",
-     "name": "fxdune_grainy_64",
-     "id": "landscape/fxdune/grainy_64",
-     "label": "Texturé – grain et paillettes (64 × 32)",
-     "kind": "sprite",
-     "w": 64,
-     "h": 32,
-     "size": 64,
-     "props": {
-      "style": "grainy"
-     },
-     "tags": [
-      "texture",
-      "sparkle"
-     ],
-     "png": "library/png/landscape/fxdune/grainy_64.png"
+     "tags": [],
+     "png": "library/png/landscape/fxdune/double_64.png"
     }
    }
   },

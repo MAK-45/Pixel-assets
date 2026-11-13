@@ -1,6 +1,6 @@
 {
  "frames": {
-  "classic_64": {
+  "crest_64": {
    "frame": {
     "x": 0,
     "y": 0,
@@ -20,51 +20,71 @@
     "h": 32
    }
   },
-  "ripples_64": {
+  "crest_48": {
    "frame": {
     "x": 65,
     "y": 0,
-    "w": 64,
-    "h": 32
+    "w": 48,
+    "h": 24
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 64,
-    "h": 32
+    "w": 48,
+    "h": 24
    },
    "sourceSize": {
-    "w": 64,
-    "h": 32
+    "w": 48,
+    "h": 24
    }
   },
-  "flat_64": {
+  "crest_32": {
    "frame": {
-    "x": 130,
+    "x": 114,
     "y": 0,
-    "w": 64,
-    "h": 32
+    "w": 32,
+    "h": 16
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 64,
-    "h": 32
+    "w": 32,
+    "h": 16
    },
    "sourceSize": {
-    "w": 64,
-    "h": 32
+    "w": 32,
+    "h": 16
    }
   },
-  "golden_64": {
+  "crest_16": {
    "frame": {
     "x": 0,
     "y": 33,
-    "w": 64,
+    "w": 16,
+    "h": 8
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 8
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 8
+   }
+  },
+  "tall_48": {
+   "frame": {
+    "x": 17,
+    "y": 33,
+    "w": 48,
     "h": 32
    },
    "rotated": false,
@@ -72,20 +92,20 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 64,
+    "w": 48,
     "h": 32
    },
    "sourceSize": {
-    "w": 64,
+    "w": 48,
     "h": 32
    }
   },
-  "noon_64": {
+  "low_64": {
    "frame": {
-    "x": 65,
+    "x": 66,
     "y": 33,
     "w": 64,
-    "h": 32
+    "h": 16
    },
    "rotated": false,
    "trimmed": false,
@@ -93,17 +113,17 @@
     "x": 0,
     "y": 0,
     "w": 64,
-    "h": 32
+    "h": 16
    },
    "sourceSize": {
     "w": 64,
-    "h": 32
+    "h": 16
    }
   },
-  "grainy_64": {
+  "double_64": {
    "frame": {
-    "x": 130,
-    "y": 33,
+    "x": 0,
+    "y": 66,
     "w": 64,
     "h": 32
    },
@@ -126,8 +146,8 @@
   "image": "fxdune.png",
   "format": "RGBA8888",
   "size": {
-   "w": 194,
-   "h": 65
+   "w": 146,
+   "h": 98
   },
   "scale": "1"
  }
