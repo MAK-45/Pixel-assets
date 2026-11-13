@@ -82,8 +82,8 @@
   },
   "pine_64": {
    "frame": {
-    "x": 0,
-    "y": 65,
+    "x": 260,
+    "y": 0,
     "w": 64,
     "h": 64
    },
@@ -102,7 +102,7 @@
   },
   "pine_snow_64": {
    "frame": {
-    "x": 65,
+    "x": 0,
     "y": 65,
     "w": 64,
     "h": 64
@@ -122,7 +122,7 @@
   },
   "spirit_64": {
    "frame": {
-    "x": 130,
+    "x": 65,
     "y": 65,
     "w": 64,
     "h": 64
@@ -142,7 +142,7 @@
   },
   "oak_summer_32": {
    "frame": {
-    "x": 195,
+    "x": 130,
     "y": 65,
     "w": 32,
     "h": 32
@@ -162,8 +162,8 @@
   },
   "oak_autumn_32": {
    "frame": {
-    "x": 0,
-    "y": 130,
+    "x": 163,
+    "y": 65,
     "w": 32,
     "h": 32
    },
@@ -182,8 +182,8 @@
   },
   "cherry_32": {
    "frame": {
-    "x": 33,
-    "y": 130,
+    "x": 196,
+    "y": 65,
     "w": 32,
     "h": 32
    },
@@ -202,7 +202,7 @@
   },
   "pine_32": {
    "frame": {
-    "x": 66,
+    "x": 0,
     "y": 130,
     "w": 32,
     "h": 32
@@ -222,7 +222,7 @@
   },
   "pine_snow_32": {
    "frame": {
-    "x": 99,
+    "x": 33,
     "y": 130,
     "w": 32,
     "h": 32
@@ -242,8 +242,8 @@
   },
   "spirit_32": {
    "frame": {
-    "x": 0,
-    "y": 163,
+    "x": 66,
+    "y": 130,
     "w": 32,
     "h": 32
    },
@@ -259,6 +259,126 @@
     "w": 32,
     "h": 32
    }
+  },
+  "oak_summer_48": {
+   "frame": {
+    "x": 99,
+    "y": 130,
+    "w": 48,
+    "h": 48
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 48
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 48
+   }
+  },
+  "pine_48": {
+   "frame": {
+    "x": 148,
+    "y": 130,
+    "w": 48,
+    "h": 48
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 48
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 48
+   }
+  },
+  "birch_48": {
+   "frame": {
+    "x": 0,
+    "y": 179,
+    "w": 48,
+    "h": 48
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 48
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 48
+   }
+  },
+  "birch_32": {
+   "frame": {
+    "x": 49,
+    "y": 179,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "oak_summer_16": {
+   "frame": {
+    "x": 82,
+    "y": 179,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   }
+  },
+  "pine_16": {
+   "frame": {
+    "x": 99,
+    "y": 179,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   }
   }
  },
  "meta": {
@@ -266,8 +386,8 @@
   "image": "fxtree.png",
   "format": "RGBA8888",
   "size": {
-   "w": 259,
-   "h": 195
+   "w": 324,
+   "h": 227
   },
   "scale": "1"
  }

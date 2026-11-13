@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 33,
-  "variants": 317
+  "assets": 36,
+  "variants": 345
  },
  "categories": [
   {
@@ -14,7 +14,8 @@
    "description": "Décors complets pour jeux 2D, au format 16:9 (base 320 × 180) : panoramas dynamiques en plans de parallaxe qui défilent à l'infini, ou écrans statiques, chacun en plusieurs périodes de la journée.",
    "icon": "scenes/summer_plain/day",
    "assets": [
-    "scenes/summer_plain"
+    "scenes/summer_plain",
+    "scenes/summer_plain_fx"
    ]
   },
   {
@@ -28,6 +29,7 @@
     "nature/cactus",
     "nature/fern",
     "nature/flower",
+    "nature/fxbush",
     "nature/fxflower",
     "nature/fxgrass",
     "nature/fxrock",
@@ -46,6 +48,7 @@
    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
    "icon": "landscape/mountain/peak_snow_16",
    "assets": [
+    "landscape/fxhill",
     "landscape/fxmountain",
     "landscape/hill",
     "landscape/mountain"
@@ -292,6 +295,204 @@
     "pack": "library/scenes/summer_plain/",
     "json": "library/scenes/summer_plain/scene.json",
     "bundle": "library/scenes/summer_plain/summer_plain.js",
+    "runtime": "library/scene-runtime.js"
+   }
+  },
+  "scenes/summer_plain_fx": {
+   "id": "scenes/summer_plain_fx",
+   "slug": "summer_plain_fx",
+   "category": "scenes",
+   "title": "Plaine d'été (style pixelfx)",
+   "description": "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers moussus), sol d'herbe et de terre où marche le personnage (pâquerettes, tulipes, cailloux, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
+   "tags": [
+    "scene",
+    "parallax",
+    "panorama",
+    "background",
+    "plain",
+    "meadow",
+    "mountain",
+    "summer",
+    "day-night",
+    "endless",
+    "platformer",
+    "runner",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/scenes/summer_plain_fx.px.js",
+   "module": "library/js/scenes/summer_plain_fx.js",
+   "sheet": {
+    "png": "library/sheets/scenes/summer_plain_fx.png",
+    "json": "library/sheets/scenes/summer_plain_fx.json"
+   },
+   "axes": {
+    "period": [
+     "day",
+     "dusk",
+     "night",
+     "overcast"
+    ]
+   },
+   "sizes": [
+    384
+   ],
+   "variantCount": 4,
+   "variants": {
+    "day": {
+     "key": "day",
+     "name": "summer_plain_fx_day",
+     "id": "scenes/summer_plain_fx/day",
+     "label": "Jour",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "day"
+     },
+     "tags": [
+      "sun",
+      "clouds",
+      "butterflies",
+      "birds"
+     ],
+     "png": "library/png/scenes/summer_plain_fx/day.png"
+    },
+    "dusk": {
+     "key": "dusk",
+     "name": "summer_plain_fx_dusk",
+     "id": "scenes/summer_plain_fx/dusk",
+     "label": "Crépuscule",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "dusk"
+     },
+     "tags": [
+      "sunset",
+      "evening",
+      "birds"
+     ],
+     "png": "library/png/scenes/summer_plain_fx/dusk.png"
+    },
+    "night": {
+     "key": "night",
+     "name": "summer_plain_fx_night",
+     "id": "scenes/summer_plain_fx/night",
+     "label": "Nuit",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "night"
+     },
+     "tags": [
+      "moon",
+      "stars",
+      "shooting-star",
+      "fireflies"
+     ],
+     "png": "library/png/scenes/summer_plain_fx/night.png"
+    },
+    "overcast": {
+     "key": "overcast",
+     "name": "summer_plain_fx_overcast",
+     "id": "scenes/summer_plain_fx/overcast",
+     "label": "Sombre",
+     "kind": "parallax",
+     "w": 320,
+     "h": 180,
+     "size": 384,
+     "props": {
+      "period": "overcast"
+     },
+     "tags": [
+      "storm",
+      "dark",
+      "wind",
+      "cloudy"
+     ],
+     "png": "library/png/scenes/summer_plain_fx/overcast.png"
+    }
+   },
+   "scene": {
+    "type": "parallax",
+    "dynamic": true,
+    "w": 320,
+    "h": 180,
+    "groundY": 150,
+    "defaultPeriod": "day",
+    "periods": [
+     {
+      "id": "day",
+      "label": "Jour"
+     },
+     {
+      "id": "dusk",
+      "label": "Crépuscule"
+     },
+     {
+      "id": "night",
+      "label": "Nuit"
+     },
+     {
+      "id": "overcast",
+      "label": "Sombre"
+     }
+    ],
+    "planes": [
+     {
+      "id": "sky",
+      "label": "Ciel",
+      "factor": 0
+     },
+     {
+      "id": "stars",
+      "label": "Étoiles",
+      "factor": 0
+     },
+     {
+      "id": "clouds",
+      "label": "Nuages",
+      "factor": 0.05
+     },
+     {
+      "id": "mountains",
+      "label": "Montagnes",
+      "factor": 0.1
+     },
+     {
+      "id": "hills",
+      "label": "Collines",
+      "factor": 0.3
+     },
+     {
+      "id": "meadow",
+      "label": "Prairie",
+      "factor": 0.6
+     },
+     {
+      "id": "ground",
+      "label": "Sol",
+      "factor": 1
+     },
+     {
+      "id": "front",
+      "label": "Premier plan",
+      "factor": 1.3,
+      "front": true,
+      "optional": true
+     }
+    ],
+    "animated": true,
+    "pack": "library/scenes/summer_plain_fx/",
+    "json": "library/scenes/summer_plain_fx/scene.json",
+    "bundle": "library/scenes/summer_plain_fx/summer_plain_fx.js",
     "runtime": "library/scene-runtime.js"
    }
   },
@@ -1375,6 +1576,187 @@
     }
    }
   },
+  "nature/fxbush": {
+   "id": "nature/fxbush",
+   "slug": "fxbush",
+   "category": "nature",
+   "title": "Buisson (style pixelfx)",
+   "description": "Buissons vus de face au rendu riche inspiré de pixelfx : pas de contour noir, feuillage en grappes modelées par la lumière en haut à gauche (même constructeur de couronne que les arbres fxtree), base sombre posée au sol, ombre translucide. Variantes : buisson rond (32 et 16 px), buisson à baies rouges, buisson en fleurs roses, haie basse (48 px), buisson d'automne, buisson de conifère. Buisson seul, sans décor autour.",
+   "tags": [
+    "bush",
+    "shrub",
+    "plant",
+    "vegetation",
+    "nature",
+    "decoration",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/nature/fxbush.px.js",
+   "module": "library/js/nature/fxbush.js",
+   "sheet": {
+    "png": "library/sheets/nature/fxbush.png",
+    "json": "library/sheets/nature/fxbush.json"
+   },
+   "axes": {
+    "shape": [
+     "round",
+     "hedge"
+    ],
+    "season": [
+     "summer",
+     "spring",
+     "autumn"
+    ],
+    "fruit": [
+     "none",
+     "berry",
+     "flower"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 7,
+   "variants": {
+    "round_32": {
+     "key": "round_32",
+     "name": "fxbush_round_32",
+     "id": "nature/fxbush/round_32",
+     "label": "Buisson rond (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "fruit": "none"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxbush/round_32.png"
+    },
+    "round_16": {
+     "key": "round_16",
+     "name": "fxbush_round_16",
+     "id": "nature/fxbush/round_16",
+     "label": "Buisson rond (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "fruit": "none"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxbush/round_16.png"
+    },
+    "berry_32": {
+     "key": "berry_32",
+     "name": "fxbush_berry_32",
+     "id": "nature/fxbush/berry_32",
+     "label": "Buisson à baies (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "fruit": "berry"
+     },
+     "tags": [
+      "berries",
+      "red"
+     ],
+     "png": "library/png/nature/fxbush/berry_32.png"
+    },
+    "flowering_32": {
+     "key": "flowering_32",
+     "name": "fxbush_flowering_32",
+     "id": "nature/fxbush/flowering_32",
+     "label": "Buisson en fleurs (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "spring",
+      "fruit": "flower"
+     },
+     "tags": [
+      "blossom",
+      "pink"
+     ],
+     "png": "library/png/nature/fxbush/flowering_32.png"
+    },
+    "hedge_48": {
+     "key": "hedge_48",
+     "name": "fxbush_hedge_48",
+     "id": "nature/fxbush/hedge_48",
+     "label": "Haie basse (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "shape": "hedge",
+      "season": "summer",
+      "fruit": "none"
+     },
+     "tags": [
+      "hedge",
+      "border"
+     ],
+     "png": "library/png/nature/fxbush/hedge_48.png"
+    },
+    "autumn_32": {
+     "key": "autumn_32",
+     "name": "fxbush_autumn_32",
+     "id": "nature/fxbush/autumn_32",
+     "label": "Buisson d'automne (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "autumn",
+      "fruit": "none"
+     },
+     "tags": [
+      "autumn"
+     ],
+     "png": "library/png/nature/fxbush/autumn_32.png"
+    },
+    "conifer_32": {
+     "key": "conifer_32",
+     "name": "fxbush_conifer_32",
+     "id": "nature/fxbush/conifer_32",
+     "label": "Buisson de conifère (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "fruit": "none"
+     },
+     "tags": [
+      "juniper",
+      "conifer"
+     ],
+     "png": "library/png/nature/fxbush/conifer_32.png"
+    }
+   }
+  },
   "nature/fxflower": {
    "id": "nature/fxflower",
    "slug": "fxflower",
@@ -1652,7 +2034,7 @@
    "slug": "fxgrass",
    "category": "nature",
    "title": "Herbe (style pixelfx)",
-   "description": "Herbes vues de face au rendu inspiré de la prairie de l'effet « lucioles » de pixelfx : brins d'un pixel de large qui se courbent vers l'extérieur, sombres et serrés à la base, pointes claires (plus claires sur les brins penchés vers la lumière, en haut à gauche), deux rangées de profondeur. Variantes : touffe (16, 32 px), hautes herbes à épis, herbe sèche d'automne, herbe givrée, roseaux à massettes, bande de pelouse (48 px). Herbe seule, sans décor autour.",
+   "description": "Herbes vues de face au rendu inspiré de la prairie de l'effet « lucioles » de pixelfx : brins d'un pixel de large qui se courbent vers l'extérieur, sombres et serrés à la base, pointes claires (plus claires sur les brins penchés vers la lumière, en haut à gauche), deux rangées de profondeur. Variantes : touffe (16, 32 px), hautes herbes à épis, herbe sèche d'automne, herbe givrée, roseaux à massettes, bande de pelouse (48 px), touffe et hautes herbes au vent (animées en boucle, pour les acteurs des scènes). Herbe seule, sans décor autour.",
    "tags": [
     "grass",
     "plant",
@@ -1688,7 +2070,7 @@
     32,
     48
    ],
-   "variantCount": 7,
+   "variantCount": 9,
    "variants": {
     "tuft_32": {
      "key": "tuft_32",
@@ -1818,6 +2200,51 @@
       "border"
      ],
      "png": "library/png/nature/fxgrass/patch_48.png"
+    },
+    "tuft_wind_16": {
+     "key": "tuft_wind_16",
+     "name": "fxgrass_tuft_wind_16",
+     "id": "nature/fxgrass/tuft_wind_16",
+     "label": "Touffe d'herbe au vent (animée, 16 px)",
+     "kind": "anim",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "shape": "tuft",
+      "season": "summer"
+     },
+     "tags": [
+      "animated",
+      "wind"
+     ],
+     "png": "library/png/nature/fxgrass/tuft_wind_16.png",
+     "gif": "library/png/nature/fxgrass/tuft_wind_16.gif",
+     "frameCount": 4,
+     "loopMs": 800
+    },
+    "tall_wind_32": {
+     "key": "tall_wind_32",
+     "name": "fxgrass_tall_wind_32",
+     "id": "nature/fxgrass/tall_wind_32",
+     "label": "Hautes herbes au vent (animées, 32 px)",
+     "kind": "anim",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "shape": "tall",
+      "season": "summer"
+     },
+     "tags": [
+      "animated",
+      "wind",
+      "seed"
+     ],
+     "png": "library/png/nature/fxgrass/tall_wind_32.png",
+     "gif": "library/png/nature/fxgrass/tall_wind_32.gif",
+     "frameCount": 6,
+     "loopMs": 1200
     }
    }
   },
@@ -2038,7 +2465,7 @@
    "slug": "fxtree",
    "category": "nature",
    "title": "Arbre (style pixelfx)",
-   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+   "description": "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, bouleau à écorce blanche, arbre-esprit luminescent, en 64, 48, 32 et 16 px (les 16 px servent aux bosquets lointains des scènes). Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
    "tags": [
     "tree",
     "plant",
@@ -2061,7 +2488,8 @@
      "oak",
      "cherry",
      "pine",
-     "spirit"
+     "spirit",
+     "birch"
     ],
     "season": [
      "summer",
@@ -2076,10 +2504,12 @@
     ]
    },
    "sizes": [
+    16,
     32,
+    48,
     64
    ],
-   "variantCount": 13,
+   "variantCount": 19,
    "variants": {
     "oak_summer_64": {
      "key": "oak_summer_64",
@@ -2331,6 +2761,121 @@
       "glow"
      ],
      "png": "library/png/nature/fxtree/spirit_32.png"
+    },
+    "oak_summer_48": {
+     "key": "oak_summer_48",
+     "name": "fxtree_oak_summer_48",
+     "id": "nature/fxtree/oak_summer_48",
+     "label": "Chêne – été (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxtree/oak_summer_48.png"
+    },
+    "pine_48": {
+     "key": "pine_48",
+     "name": "fxtree_pine_48",
+     "id": "nature/fxtree/pine_48",
+     "label": "Sapin (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "conifer",
+      "fir"
+     ],
+     "png": "library/png/nature/fxtree/pine_48.png"
+    },
+    "birch_48": {
+     "key": "birch_48",
+     "name": "fxtree_birch_48",
+     "id": "nature/fxtree/birch_48",
+     "label": "Bouleau (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "birch",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "white-bark"
+     ],
+     "png": "library/png/nature/fxtree/birch_48.png"
+    },
+    "birch_32": {
+     "key": "birch_32",
+     "name": "fxtree_birch_32",
+     "id": "nature/fxtree/birch_32",
+     "label": "Bouleau (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "birch",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "white-bark"
+     ],
+     "png": "library/png/nature/fxtree/birch_32.png"
+    },
+    "oak_summer_16": {
+     "key": "oak_summer_16",
+     "name": "fxtree_oak_summer_16",
+     "id": "nature/fxtree/oak_summer_16",
+     "label": "Chêne – été (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "oak",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "distant"
+     ],
+     "png": "library/png/nature/fxtree/oak_summer_16.png"
+    },
+    "pine_16": {
+     "key": "pine_16",
+     "name": "fxtree_pine_16",
+     "id": "nature/fxtree/pine_16",
+     "label": "Sapin (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "pine",
+      "season": "summer",
+      "effect": "none"
+     },
+     "tags": [
+      "conifer",
+      "fir",
+      "distant"
+     ],
+     "png": "library/png/nature/fxtree/pine_16.png"
     }
    }
   },
@@ -3857,12 +4402,202 @@
     }
    }
   },
+  "landscape/fxhill": {
+   "id": "landscape/fxhill",
+   "slug": "fxhill",
+   "category": "landscape",
+   "title": "Colline (style pixelfx)",
+   "description": "Collines vues de face au rendu riche inspiré de pixelfx, posées au sol : dômes en cloche sans contour noir, modelés par la lumière en haut à gauche en paliers francs (5 à 6 nuances), la colline de devant jette son ombre sur celle du fond, crête découpée en brins d'herbe et quelques touffes plus claires sur les pentes éclairées. Variantes : colline ronde (16, 32 px), vallonnement de trois collines (64 × 32) en été, fleuri, doré d'automne, sec (paille) et enneigé. Pensées pour les plans intermédiaires des scènes.",
+   "tags": [
+    "hill",
+    "landscape",
+    "terrain",
+    "background",
+    "scenery",
+    "relief",
+    "meadow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/landscape/fxhill.px.js",
+   "module": "library/js/landscape/fxhill.js",
+   "sheet": {
+    "png": "library/sheets/landscape/fxhill.png",
+    "json": "library/sheets/landscape/fxhill.json"
+   },
+   "axes": {
+    "shape": [
+     "rolling",
+     "round"
+    ],
+    "season": [
+     "summer",
+     "spring",
+     "autumn",
+     "winter"
+    ],
+    "cover": [
+     "grass",
+     "flowers",
+     "straw",
+     "snow"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    64
+   ],
+   "variantCount": 7,
+   "variants": {
+    "rolling_64": {
+     "key": "rolling_64",
+     "name": "fxhill_rolling_64",
+     "id": "landscape/fxhill/rolling_64",
+     "label": "Vallonnement – été (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "countryside"
+     ],
+     "png": "library/png/landscape/fxhill/rolling_64.png"
+    },
+    "round_32": {
+     "key": "round_32",
+     "name": "fxhill_round_32",
+     "id": "landscape/fxhill/round_32",
+     "label": "Colline ronde – été (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass"
+     ],
+     "png": "library/png/landscape/fxhill/round_32.png"
+    },
+    "round_16": {
+     "key": "round_16",
+     "name": "fxhill_round_16",
+     "id": "landscape/fxhill/round_16",
+     "label": "Petite colline (16 × 8)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 8,
+     "size": 16,
+     "props": {
+      "shape": "round",
+      "season": "summer",
+      "cover": "grass"
+     },
+     "tags": [
+      "grass",
+      "distant"
+     ],
+     "png": "library/png/landscape/fxhill/round_16.png"
+    },
+    "rolling_flowers_64": {
+     "key": "rolling_flowers_64",
+     "name": "fxhill_rolling_flowers_64",
+     "id": "landscape/fxhill/rolling_flowers_64",
+     "label": "Vallonnement fleuri (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "spring",
+      "cover": "flowers"
+     },
+     "tags": [
+      "flower",
+      "countryside"
+     ],
+     "png": "library/png/landscape/fxhill/rolling_flowers_64.png"
+    },
+    "rolling_autumn_64": {
+     "key": "rolling_autumn_64",
+     "name": "fxhill_rolling_autumn_64",
+     "id": "landscape/fxhill/rolling_autumn_64",
+     "label": "Vallonnement doré – automne (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "autumn",
+      "cover": "grass"
+     },
+     "tags": [
+      "golden",
+      "countryside"
+     ],
+     "png": "library/png/landscape/fxhill/rolling_autumn_64.png"
+    },
+    "rolling_dry_64": {
+     "key": "rolling_dry_64",
+     "name": "fxhill_rolling_dry_64",
+     "id": "landscape/fxhill/rolling_dry_64",
+     "label": "Vallonnement sec – savane (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "summer",
+      "cover": "straw"
+     },
+     "tags": [
+      "savanna",
+      "dry"
+     ],
+     "png": "library/png/landscape/fxhill/rolling_dry_64.png"
+    },
+    "rolling_snow_64": {
+     "key": "rolling_snow_64",
+     "name": "fxhill_rolling_snow_64",
+     "id": "landscape/fxhill/rolling_snow_64",
+     "label": "Vallonnement enneigé – hiver (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "shape": "rolling",
+      "season": "winter",
+      "cover": "snow"
+     },
+     "tags": [
+      "snow",
+      "countryside"
+     ],
+     "png": "library/png/landscape/fxhill/rolling_snow_64.png"
+    }
+   }
+  },
   "landscape/fxmountain": {
    "id": "landscape/fxmountain",
    "slug": "fxmountain",
    "category": "landscape",
    "title": "Montagne (style pixelfx)",
-   "description": "Montagnes vues de face au rendu riche inspiré des pierres taillées et de la neige de la bibliothèque d'effets pixelfx (pic de terre, congère) : relief découpé en grandes facettes planes par les arêtes et les contreforts, chaque face éclairée selon son orientation (versant gauche clair, versant droit à l'ombre), arête vive, neige en paliers blanc, bleu pâle et bleu-gris qui coule dans les couloirs. Sans contour noir. Variantes : pic enneigé (16, 32, 48, 64 px), pic rocheux nu, pic tout blanc en hiver, double sommet, chaîne de sommets (64 × 32) et pic de grès du désert. Montagne seule, sans décor autour.",
+   "description": "Montagnes vues de face au rendu riche inspiré des pierres taillées et de la neige de la bibliothèque d'effets pixelfx (pic de terre, congère) : relief découpé en grandes facettes planes par les arêtes et les contreforts, chaque face éclairée selon son orientation (versant gauche clair, versant droit à l'ombre), arête vive, neige en paliers blanc, bleu pâle et bleu-gris qui coule dans les couloirs. Sans contour noir. Variantes : pic enneigé (16, 32, 48, 64, 128 px ; le 128 px sert d'élément héros aux scènes), pic rocheux nu, pic tout blanc en hiver, double sommet, chaîne de sommets (64 × 32) et pic de grès du désert. Montagne seule, sans décor autour.",
    "tags": [
     "mountain",
     "peak",
@@ -3902,10 +4637,31 @@
     16,
     32,
     48,
-    64
+    64,
+    128
    ],
-   "variantCount": 9,
+   "variantCount": 10,
    "variants": {
+    "peak_snow_128": {
+     "key": "peak_snow_128",
+     "name": "fxmountain_peak_snow_128",
+     "id": "landscape/fxmountain/peak_snow_128",
+     "label": "Très grand pic enneigé (128 px)",
+     "kind": "sprite",
+     "w": 128,
+     "h": 128,
+     "size": 128,
+     "props": {
+      "shape": "peak",
+      "cover": "snowcap",
+      "material": "granite"
+     },
+     "tags": [
+      "snow",
+      "hero"
+     ],
+     "png": "library/png/landscape/fxmountain/peak_snow_128.png"
+    },
     "peak_snow_64": {
      "key": "peak_snow_64",
      "name": "fxmountain_peak_snow_64",
@@ -5716,7 +6472,7 @@
    "slug": "fxsun",
    "category": "sky",
    "title": "Soleil (style pixelfx)",
-   "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
+   "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24), disque du soleil couchant entier (32 px, à demi caché par le relief dans les scènes) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
    "tags": [
     "sun",
     "sky",
@@ -5754,7 +6510,7 @@
     48,
     64
    ],
-   "variantCount": 7,
+   "variantCount": 8,
    "variants": {
     "rays_64": {
      "key": "rays_64",
@@ -5863,6 +6619,26 @@
       "retro"
      ],
      "png": "library/png/sky/fxsun/sunset_48.png"
+    },
+    "setting_32": {
+     "key": "setting_32",
+     "name": "fxsun_setting_32",
+     "id": "sky/fxsun/setting_32",
+     "label": "Soleil couchant, disque entier (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "style": "disc",
+      "time": "sunset"
+     },
+     "tags": [
+      "sunset",
+      "dusk",
+      "evening"
+     ],
+     "png": "library/png/sky/fxsun/setting_32.png"
     },
     "eclipse_48": {
      "key": "eclipse_48",

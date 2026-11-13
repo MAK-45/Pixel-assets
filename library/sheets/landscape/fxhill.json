@@ -1,0 +1,154 @@
+{
+ "frames": {
+  "rolling_64": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   }
+  },
+  "round_32": {
+   "frame": {
+    "x": 65,
+    "y": 0,
+    "w": 32,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 16
+   }
+  },
+  "round_16": {
+   "frame": {
+    "x": 98,
+    "y": 0,
+    "w": 16,
+    "h": 8
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 8
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 8
+   }
+  },
+  "rolling_flowers_64": {
+   "frame": {
+    "x": 0,
+    "y": 33,
+    "w": 64,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   }
+  },
+  "rolling_autumn_64": {
+   "frame": {
+    "x": 65,
+    "y": 33,
+    "w": 64,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   }
+  },
+  "rolling_dry_64": {
+   "frame": {
+    "x": 130,
+    "y": 33,
+    "w": 64,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   }
+  },
+  "rolling_snow_64": {
+   "frame": {
+    "x": 0,
+    "y": 66,
+    "w": 64,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "fxhill.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 194,
+   "h": 98
+  },
+  "scale": "1"
+ }
+}

@@ -62,8 +62,8 @@
   },
   "dry_32": {
    "frame": {
-    "x": 0,
-    "y": 33,
+    "x": 83,
+    "y": 0,
     "w": 32,
     "h": 32
    },
@@ -82,8 +82,8 @@
   },
   "frost_32": {
    "frame": {
-    "x": 33,
-    "y": 33,
+    "x": 116,
+    "y": 0,
     "w": 32,
     "h": 32
    },
@@ -102,7 +102,7 @@
   },
   "reed_32": {
    "frame": {
-    "x": 66,
+    "x": 0,
     "y": 33,
     "w": 32,
     "h": 32
@@ -122,8 +122,8 @@
   },
   "patch_48": {
    "frame": {
-    "x": 0,
-    "y": 66,
+    "x": 33,
+    "y": 33,
     "w": 48,
     "h": 16
    },
@@ -139,6 +139,216 @@
     "w": 48,
     "h": 16
    }
+  },
+  "tuft_wind_16_0": {
+   "frame": {
+    "x": 82,
+    "y": 33,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   },
+   "duration": 200
+  },
+  "tuft_wind_16_1": {
+   "frame": {
+    "x": 99,
+    "y": 33,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   },
+   "duration": 200
+  },
+  "tuft_wind_16_2": {
+   "frame": {
+    "x": 116,
+    "y": 33,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   },
+   "duration": 200
+  },
+  "tuft_wind_16_3": {
+   "frame": {
+    "x": 0,
+    "y": 66,
+    "w": 16,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 16
+   },
+   "duration": 200
+  },
+  "tall_wind_32_0": {
+   "frame": {
+    "x": 17,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
+  },
+  "tall_wind_32_1": {
+   "frame": {
+    "x": 50,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
+  },
+  "tall_wind_32_2": {
+   "frame": {
+    "x": 83,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
+  },
+  "tall_wind_32_3": {
+   "frame": {
+    "x": 116,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
+  },
+  "tall_wind_32_4": {
+   "frame": {
+    "x": 0,
+    "y": 99,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
+  },
+  "tall_wind_32_5": {
+   "frame": {
+    "x": 33,
+    "y": 99,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "duration": 200
   }
  },
  "meta": {
@@ -146,9 +356,23 @@
   "image": "fxgrass.png",
   "format": "RGBA8888",
   "size": {
-   "w": 98,
-   "h": 82
+   "w": 148,
+   "h": 131
   },
-  "scale": "1"
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "tuft_wind_16",
+    "from": 7,
+    "to": 10,
+    "direction": "forward"
+   },
+   {
+    "name": "tall_wind_32",
+    "from": 11,
+    "to": 16,
+    "direction": "forward"
+   }
+  ]
  }
 }

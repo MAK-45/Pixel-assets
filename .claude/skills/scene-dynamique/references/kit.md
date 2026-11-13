@@ -83,6 +83,20 @@ Règles :
 - Une couleur vraiment absente : l'ajouter à `assets/_palette.px.js` **avec sa rampe**, puis vérifier que
   `library/png/` n'a pas bougé (`git status library/png/`).
 
+### Scènes au style pixelfx (assets fx*)
+
+Les familles fx* (`fxtree`, `fxbush`, `fxhill`, `fxmountain`…) ont des rampes riches (clés `1 2 3 4 5 6 7 8 9 0 + < > = [ ]`)
+que les cartes ci-dessus ignorent. Pour une scène faite de ces assets, utiliser leurs équivalents :
+
+| Carte | Rôle |
+|---|---|
+| `FX_NEAR`, `FX_MID`, `FX_FAR2`, `FX_FRONT` | `NEAR`, `MID`, `FAR2`, `FRONT` prolongées par `fxMap` (chaque clé riche suit la clé de la maison du même rôle : `1` suit `G`, `<` suit `d`, `[` suit `m`…) ; le liseré `k` des pierres fx suit aussi l'ambiance (il tirerait au rouge la nuit). |
+| `FX_FAR` | héros lointain fx (`fxmountain_peak_snow_128`) : pierre à 7 nuances et neige à 5 nuances recolorées palier par palier, facettes lisibles. |
+| `fxMap(carte)` | prolonge une carte maison (surcharge locale). |
+
+Exemple complet : `assets/scenes/summer_plain_fx.px.js` (ciel en bandes nettes `[clé, hauteur]` sans trame, astres
+`fxsun`/`fxmoon` posés dans `_body_<période>`, nuages `fxcloud`, plafond d'orage fait de `fxcloud_storm_64`).
+
 ## 4. Ciel, astres, étoiles, nuages
 
 | Nom | Rôle |

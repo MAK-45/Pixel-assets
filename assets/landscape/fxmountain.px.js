@@ -3,9 +3,10 @@ include("../nature/_fx.px.js")
 
 const meta = {
   title: "Montagne (style pixelfx)",
-  description: "Montagnes vues de face au rendu riche inspiré des pierres taillées et de la neige de la bibliothèque d'effets pixelfx (pic de terre, congère) : relief découpé en grandes facettes planes par les arêtes et les contreforts, chaque face éclairée selon son orientation (versant gauche clair, versant droit à l'ombre), arête vive, neige en paliers blanc, bleu pâle et bleu-gris qui coule dans les couloirs. Sans contour noir. Variantes : pic enneigé (16, 32, 48, 64 px), pic rocheux nu, pic tout blanc en hiver, double sommet, chaîne de sommets (64 × 32) et pic de grès du désert. Montagne seule, sans décor autour.",
+  description: "Montagnes vues de face au rendu riche inspiré des pierres taillées et de la neige de la bibliothèque d'effets pixelfx (pic de terre, congère) : relief découpé en grandes facettes planes par les arêtes et les contreforts, chaque face éclairée selon son orientation (versant gauche clair, versant droit à l'ombre), arête vive, neige en paliers blanc, bleu pâle et bleu-gris qui coule dans les couloirs. Sans contour noir. Variantes : pic enneigé (16, 32, 48, 64, 128 px ; le 128 px sert d'élément héros aux scènes), pic rocheux nu, pic tout blanc en hiver, double sommet, chaîne de sommets (64 × 32) et pic de grès du désert. Montagne seule, sans décor autour.",
   tags: ["mountain", "peak", "landscape", "background", "scenery", "terrain", "relief", "snow", "realistic", "pixelfx"],
   variants: {
+    peak_snow_128: { label: "Très grand pic enneigé (128 px)", props: { shape: "peak", cover: "snowcap", material: "granite" }, tags: ["snow", "hero"] },
     peak_snow_64: { label: "Grand pic enneigé (64 px)", props: { shape: "peak", cover: "snowcap", material: "granite" }, tags: ["snow"] },
     peak_snow_48: { label: "Pic enneigé (48 px)", props: { shape: "peak", cover: "snowcap", material: "granite" }, tags: ["snow"] },
     peak_snow_32: { label: "Pic enneigé (32 px)", props: { shape: "peak", cover: "snowcap", material: "granite" }, tags: ["snow"] },
@@ -166,6 +167,13 @@ const mid = (g) => [
   ...peak(21, 3, g, { sl: 2.2, sr: 2.5, spurs: [[0.35, -1, 0.7], [0.55, 1, 0.6]] }),
   ...peak(37, 21, g, { spurs: [[0.5, 1, 0.6]] }),
 ]
+// très grand pic (héros des scènes) : même relief que le grand pic, à l'échelle double, plus d'épaulements
+const huge = (g) => [
+  ...peak(64, 4, g, { sl: 2.3, sr: 2.5, spurs: [[0.34, -1, 0.45], [0.5, 1, 0.5], [0.72, -1, 0.9]] }),
+  ...peak(27, 62, g, { spurs: [[0.45, -1, 0.5]] }),
+  ...peak(100, 50, g, { spurs: [[0.45, 1, 0.5], [0.7, -1, 0.4]] }),
+]
+sprite("fxmountain_peak_snow_128", { w: 128, h: 128 }, draw((B, g) => mountain(B, huge(g), { snow: 0.4, seed: 4 })))
 sprite("fxmountain_peak_snow_64", { w: 64, h: 64 }, draw((B, g) => mountain(B, big(g), { snow: 0.42, seed: 3 })))
 sprite("fxmountain_peak_snow_48", { w: 48, h: 48 }, draw((B, g) => mountain(B, mid(g), { snow: 0.42, seed: 5 })))
 sprite("fxmountain_peak_snow_32", { w: 32, h: 32 }, draw((B, g) =>

@@ -26,6 +26,16 @@ near, ground, front).
 - Effets : jour oiseaux + papillons ; crépuscule scintillement + oiseaux ; nuit scintillement, étoiles filantes,
   lucioles (prairie et sol, une partie devant) ; sombre : plafond nuageux, nuages bas sur le sommet, vent ×2.
 
+### 1 bis. Plaine d'été au style pixelfx — `assets/scenes/summer_plain_fx.px.js`
+
+Même composition, uniquement des assets fx* : héros `fxmountain/peak_snow_128`, chaînes `range_snow_64` +
+`peak_snow_64` (`FX_FAR2`) ; collines `fxhill/rolling_64`, `round_32` + bosquets `fxtree/oak_summer_16`, `pine_16` ;
+prairie `fxtree/oak_summer_48`, `birch_48`, `pine_48`, `oak_summer_32`, `birch_32`, `pine_32`, `fxbush/round_32`,
+`berry_32`, `round_16`, `hedge_48`, `fxrock/boulder_moss_32`, `boulder_32`, `stone_16` ; sol `fxgrass/tuft_16`,
+`fxflower/daisy_16`, `tulip_red_16`, `fxrock/pebbles_16` + acteurs `fxgrass/tuft_wind_16` ; premier plan
+`fxgrass/tall_wind_32`. Ciel en bandes nettes, `fxsun/rays_32`, `setting_32`, `fxmoon/full_32`, `fxstar/sparkle4_16`,
+nuages `fxcloud`. Cartes `FX_*` du kit. Papillons de la maison recolorés sans contour.
+
 ## 2. Déclinaisons de saison de la plaine
 
 Même structure que la Plaine d'été ; on change surtout les imports (nouveau fichier, ex. `autumn_plain`).

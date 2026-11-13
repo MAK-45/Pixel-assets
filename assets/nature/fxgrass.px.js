@@ -3,7 +3,7 @@ include("_fx.px.js")
 
 const meta = {
   title: "Herbe (style pixelfx)",
-  description: "Herbes vues de face au rendu inspiré de la prairie de l'effet « lucioles » de pixelfx : brins d'un pixel de large qui se courbent vers l'extérieur, sombres et serrés à la base, pointes claires (plus claires sur les brins penchés vers la lumière, en haut à gauche), deux rangées de profondeur. Variantes : touffe (16, 32 px), hautes herbes à épis, herbe sèche d'automne, herbe givrée, roseaux à massettes, bande de pelouse (48 px). Herbe seule, sans décor autour.",
+  description: "Herbes vues de face au rendu inspiré de la prairie de l'effet « lucioles » de pixelfx : brins d'un pixel de large qui se courbent vers l'extérieur, sombres et serrés à la base, pointes claires (plus claires sur les brins penchés vers la lumière, en haut à gauche), deux rangées de profondeur. Variantes : touffe (16, 32 px), hautes herbes à épis, herbe sèche d'automne, herbe givrée, roseaux à massettes, bande de pelouse (48 px), touffe et hautes herbes au vent (animées en boucle, pour les acteurs des scènes). Herbe seule, sans décor autour.",
   tags: ["grass", "plant", "vegetation", "ground", "nature", "decoration", "realistic", "pixelfx"],
   variants: {
     tuft_32: { label: "Touffe d'herbe (32 px)", props: { shape: "tuft", season: "summer" } },
@@ -13,6 +13,8 @@ const meta = {
     frost_32: { label: "Herbe givrée (32 px)", props: { shape: "tuft", season: "winter" }, tags: ["frost", "snow"] },
     reed_32: { label: "Roseaux à massettes (32 px)", props: { shape: "reed", season: "summer" }, tags: ["cattail", "pond", "marsh"] },
     patch_48: { label: "Bande de pelouse (48 px)", props: { shape: "patch", season: "summer" }, tags: ["lawn", "meadow", "border"] },
+    tuft_wind_16: { label: "Touffe d'herbe au vent (animée, 16 px)", props: { shape: "tuft", season: "summer" }, tags: ["animated", "wind"] },
+    tall_wind_32: { label: "Hautes herbes au vent (animées, 32 px)", props: { shape: "tall", season: "summer" }, tags: ["animated", "wind", "seed"] },
   },
 }
 
@@ -42,7 +44,8 @@ function blade(B, x, base, h, bend, tone, ramp, { frost = false } = {}) {
 
 // Touffe : brins en éventail autour de cx (les extérieurs plus courts et plus couchés), rangée du fond
 // sombre puis rangée de devant ; base serrée dans le palier le plus sombre.
-function tuft(B, { cx, base, w, h, n, seed = 1, ramp = LEAF, frost = false, heads = 0, headRamp = STRAW }) {
+// `wind` : chaque brin penche en plus vers la droite, proportionnellement à sa hauteur (animations).
+function tuft(B, { cx, base, w, h, n, seed = 1, ramp = LEAF, frost = false, heads = 0, headRamp = STRAW, wind = 0 }) {
   const R = rng(seed), tips = []
   for (const row of [0, 1]) {
     const m = row ? Math.round(n * 0.45) : n
@@ -52,7 +55,7 @@ function tuft(B, { cx, base, w, h, n, seed = 1, ramp = LEAF, frost = false, head
       const hh = Math.max(2, Math.round(h * (1 - 0.55 * t * t) * (0.7 + R() * 0.3) * (row ? 0.75 : 1)))
       const bend = t * w * (0.5 + R() * 0.3) + (R() - 0.5) * 2
       const tone = row ? 2 + Math.floor(R() * 2) : 1 + Math.floor(R() * 2)
-      const tip = blade(B, x, base, hh, bend, tone, ramp, { frost })
+      const tip = blade(B, x, base, hh, bend + wind * hh / 10, tone, ramp, { frost })
       if (!row) tips.push([...tip, t])
     }
   }
@@ -94,5 +97,11 @@ sprite("fxgrass_patch_48", { w: 48, h: 16 }, draw((B, g) => {
     }
   for (let x = 0; x < 48; x++) B.set(x, g, "1")
 }))
+
+// Au vent (animées, pour les acteurs des scènes) : le pied reste fixe, les pointes balaient.
+anim("fxgrass_tuft_wind_16", { w: 16, h: 16, frames: 4, fps: 5 }, (c) =>
+  draw((B, g) => tuft(B, { cx: 7, base: g, w: 6, h: 15, n: 9, seed: 5, wind: [0, 1, 2, 1][c.frame] }))(c))
+anim("fxgrass_tall_wind_32", { w: 32, h: 32, frames: 6, fps: 5 }, (c) =>
+  draw((B, g) => tuft(B, { cx: 14, base: g, w: 10, h: 27, n: 14, seed: 8, heads: 4, wind: [0, 1, 2, 3, 2, 1][c.frame] }))(c))
 
 sheet("fxgrasss", ["fxgrass_*"], { pad: 2 })

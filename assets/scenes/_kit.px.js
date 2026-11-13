@@ -204,3 +204,22 @@ const periodActor = (name, src, maps) => {
 // Liste d'acteurs pour meta.scene : un par x, phases décalées, un sur deux retourné.
 const actorsAt = (sprite, xs, y, { phaseStep = 337, loop = 800, flip = true } = {}) =>
   xs.map((x, i) => ({ sprite, x, y, phase: (i * phaseStep) % loop, ...(flip && i % 2 ? { flip: true } : {}) }))
+
+// ================================================================ style pixelfx (scènes faites d'assets fx*)
+// Les assets fx* (fxtree, fxhill, fxmountain…) utilisent des rampes riches dont les clés (1 2 3 4 5 6 7
+// 8 9 0 + < > = [ ]) sont absentes des cartes ci-dessus. fxMap(carte) les ajoute : chaque clé riche
+// suit la clé de la maison du même rôle (1 suit G, < suit d…) ; sans entrée, elle reste elle-même.
+const FX_REF = { 1: "G", 2: "L", 3: "B", 4: "P", 5: "R", 6: "z", 7: "Z", 8: "U", 9: "u", 0: "i", "+": "I", "<": "d", ">": "c", "=": "n", "[": "m", "]": "S" }
+const fxMap = (map) => ({ ...Object.fromEntries(Object.entries(FX_REF).filter(([, r]) => r in map).map(([k, r]) => [k, map[r]])), ...map })
+// Le liseré k des pierres fx suit aussi l'ambiance (il tirerait au rouge sur la nuit bleue).
+const FX_INK = { dusk: { k: "D" }, night: { k: "q" }, overcast: { k: "h" } }
+const fxMaps = (maps) => Object.fromEntries(Object.entries(maps).map(([P, m]) => [P, { ...fxMap(m), ...(FX_INK[P] && !("k" in m) ? FX_INK[P] : {}) }]))
+const FX_NEAR = fxMaps(NEAR), FX_MID = fxMaps(MID), FX_FAR2 = fxMaps(FAR2), FX_FRONT = fxMaps(FRONT)
+// Héros lointain fx (fxmountain) : la pierre à 7 nuances et la neige à 5 nuances gardent leurs paliers
+// (facettes lisibles), éclaircies et rapprochées de la couleur du ciel de chaque période.
+const FX_FAR = {
+  day: { k: "d", d: "<", "<": "m", m: ">", ">": "c", c: "C", C: "s", "[": "]", "]": "S", S: "S", s: "s", w: "w" },
+  dusk: { k: "V", d: "V", "<": "a", m: "v", ">": "A", c: "x", C: "Z", "[": "v", "]": "x", S: "Z", s: "Z", w: "Y" },
+  night: { k: "Q", d: "O", "<": "O", m: "M", ">": "M", c: "U", C: "u", "[": "M", "]": "U", S: "u", s: "S", w: "s" },
+  overcast: { k: "d", d: "d", "<": "d", m: "<", ">": "m", c: ">", C: "c", "[": "<", "]": "m", S: ">", s: "c", w: "c" },
+}

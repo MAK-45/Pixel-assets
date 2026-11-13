@@ -101,7 +101,7 @@ include("../nature/_fx.px.js")   // "_fx.px.js" si le fichier est dans assets/na
 Le kit (`assets/nature/_fx.px.js`) fournit : `Buf(w, h)` (tampon de clés : `get`, `set`, `flush(c)`), `pick(rampe, v)`,
 `vnoise`, `hsh`, `clamp`, `selout(B, idx, rampe)` (bord sélectif), `groundShadow`, les rampes `LEAF`, `BARK` et la
 lumière `LX, LY, LZ`. On peint dans le tampon par une fonction `(c) => { const B = Buf(c.w, c.h); …; B.flush(c) }`.
-Reprends les constructeurs existants plutôt que d'en réécrire : `tree`/`crown`/`trunk`/`firCrown` (fxtree),
+Reprends les constructeurs existants plutôt que d'en réécrire : `genClumps`/`crown` (kit), `tree`/`trunk`/`firCrown` (fxtree), `bush` (fxbush), `hills` (fxhill),
 `stone`/`spire`/`moss`/`snowcap` (fxrock), `blade`/`tuft` (fxgrass). Un outil utile à plusieurs familles va dans le kit.
 
 Boucle, une variante à la fois (la plus grande d'abord) :

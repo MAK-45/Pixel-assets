@@ -3,7 +3,7 @@ include("_fx.px.js")
 
 const meta = {
   title: "Arbre (style pixelfx)",
-  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, arbre-esprit luminescent, en 64 et 32 px. Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
+  description: "Arbres vus de face au rendu riche inspiré de la bibliothèque d'effets pixelfx : pas de contour noir (bord dans la teinte la plus sombre du matériau), couronnes en grappes modelées par la lumière en haut à gauche, ombres portées entre les grappes, ombre translucide au sol, arbre seul sans décor au pied, halos et neige scintillante posés sur l'arbre. Variantes : chêne été / automne / nuit, cerisier en fleurs, sapin et sapin enneigé, bouleau à écorce blanche, arbre-esprit luminescent, en 64, 48, 32 et 16 px (les 16 px servent aux bosquets lointains des scènes). Les halos sont semi-transparents : ils rendent mieux sur fond sombre.",
   tags: ["tree", "plant", "forest", "nature", "decoration", "scenery", "realistic", "pixelfx"],
   variants: {
     oak_summer_64: { label: "Chêne – été (64 px)", props: { species: "oak", season: "summer", effect: "none" } },
@@ -19,6 +19,12 @@ const meta = {
     pine_snow_32: { label: "Sapin enneigé (32 px)", props: { species: "pine", season: "winter", effect: "snow" }, tags: ["conifer", "fir", "snow"] },
     spirit_32: { label: "Arbre-esprit luminescent (32 px)", props: { species: "spirit", season: "summer", effect: "glow" }, tags: ["magic", "fantasy", "glow"] },
     oak_night_64: { label: "Chêne – nuit d'été (64 px)", props: { species: "oak", season: "summer", effect: "none" }, tags: ["night"] },
+    oak_summer_48: { label: "Chêne – été (48 px)", props: { species: "oak", season: "summer", effect: "none" } },
+    pine_48: { label: "Sapin (48 px)", props: { species: "pine", season: "summer", effect: "none" }, tags: ["conifer", "fir"] },
+    birch_48: { label: "Bouleau (48 px)", props: { species: "birch", season: "summer", effect: "none" }, tags: ["white-bark"] },
+    birch_32: { label: "Bouleau (32 px)", props: { species: "birch", season: "summer", effect: "none" }, tags: ["white-bark"] },
+    oak_summer_16: { label: "Chêne – été (16 px)", props: { species: "oak", season: "summer", effect: "none" }, tags: ["distant"] },
+    pine_16: { label: "Sapin (16 px)", props: { species: "pine", season: "summer", effect: "none" }, tags: ["conifer", "fir", "distant"] },
   },
 }
 
@@ -63,82 +69,7 @@ function branch(B, pts, w, { ramp = BARK, only } = {}) {
   }
 }
 
-// Masses de feuillage -> grappes. masses = [[x, y, rx, ry, z]] (z : 0 fond … 2 devant).
-// Chaque masse reçoit une couronne de grappes sur son pourtour (derrière) et d'autres à l'intérieur
-// (devant). Retourne [[x, y, r, ordre, masse]].
-function genClumps(masses, { seed = 1, rmin = 3.5, rmax = 6.5, density = 1 } = {}) {
-  const R = rng(seed), out = []
-  masses.forEach(([mx, my, mrx, mry, mz], mi) => {
-    const per = Math.max(5, Math.round((Math.PI * (mrx + mry)) / 5.5 * density))
-    for (let i = 0; i < per; i++) {
-      const a = (i / per) * 2 * Math.PI + R() * 0.5, r = rmin + R() * (rmax - rmin)
-      out.push([mx + Math.cos(a) * (mrx - r * 0.75), my + Math.sin(a) * (mry - r * 0.75), r, mz + R() * 0.3, mi])
-    }
-    const inner = Math.round(((mrx * mry) / 22) * density)
-    for (let i = 0; i < inner; i++) {
-      const a = R() * 2 * Math.PI, d = Math.sqrt(R()) * 0.62, r = rmin + 0.5 + R() * (rmax - rmin)
-      out.push([mx + Math.cos(a) * mrx * d, my + Math.sin(a) * mry * d, r, mz + 0.4 + (1 - d) * 0.5 + R() * 0.1, mi])
-    }
-  })
-  return out
-}
-
-// Couronne : grappes ombrées par formes (calotte éclairée vers la lumière, reflet, croissant d'ombre),
-// modulées par la forme de leur masse et de toute la couronne, ombres portées, traits internes et
-// bord sélectif. Retourne la carte des paliers (index de rampe) pour les retouches suivantes.
-function crown(B, clumps, masses, { ramp = LEAF, seed = 1, bias = 0, leafAmp = 0.42, holes = [], byMass = false, caps = true }) {
-  const order = clumps.map((c, i) => [...c, i]).sort((a, b) => a[3] - b[3] || a[5] - b[5])
-  const own = new Int16Array(B.w * B.h).fill(-1)
-  order.forEach(([X, Y, r, , , i], oi) => {
-    const k = Math.max(4, Math.round((2 * Math.PI * r) / 4.5))
-    for (let y = Math.floor(Y - r * 1.3); y <= Y + r * 1.3; y++)
-      for (let x = Math.floor(X - r * 1.3); x <= X + r * 1.3; x++) {
-        if (x < 0 || y < 0 || x >= B.w || y >= B.h) continue
-        const dx = x + 0.5 - X, dy = y + 0.5 - Y, a = Math.atan2(dy, dx)
-        const edge = r * (1 + 0.14 * Math.sin(a * k + i * 1.7) + 0.16 * (vnoise(x, y, 2, seed + i) - 0.5))
-        if (Math.hypot(dx, dy) <= edge) own[y * B.w + x] = oi
-      }
-  })
-  for (const [hx, hy, hr] of holes) // trouées de ciel
-    for (let y = Math.floor(hy - hr); y <= hy + hr; y++)
-      for (let x = Math.floor(hx - hr); x <= hx + hr; x++)
-        if (Math.hypot(x + 0.5 - hx, y + 0.5 - hy) <= hr * (1 + 0.3 * (vnoise(x, y, 1.5, seed + 99) - 0.5)) && x >= 0 && y >= 0 && x < B.w && y < B.h) own[y * B.w + x] = -1
-  // forme de toute la couronne
-  let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9
-  for (const [mx, my, mrx, mry] of masses) { x0 = Math.min(x0, mx - mrx); x1 = Math.max(x1, mx + mrx); y0 = Math.min(y0, my - mry); y1 = Math.max(y1, my + mry) }
-  const CX = (x0 + x1) / 2, CY = (y0 + y1) / 2, RX = (x1 - x0) / 2, RY = (y1 - y0) / 2
-  const ell = (x, y, cx, cy, rx, ry) => {
-    const gx = (x + 0.5 - cx) / rx, gy = (y + 0.5 - cy) / ry
-    return gx * LX + gy * LY + Math.sqrt(Math.max(0, 1 - Math.min(1, gx * gx + gy * gy))) * LZ
-  }
-  const idx = new Int8Array(B.w * B.h).fill(-1)
-  const n = ramp.length
-  for (let y = 0; y < B.h; y++)
-    for (let x = 0; x < B.w; x++) {
-      const o = own[y * B.w + x]
-      if (o < 0) continue
-      const [X, Y, r, z, mi] = order[o]
-      const [mx, my, mrx, mry, mz] = masses[mi]
-      const leafy = 1 + leafAmp * (vnoise(x, y, 1.6, seed + o * 13) - 0.5)
-      const inDisc = (ox, oy, rr) => Math.hypot(x + 0.5 - (X + ox * r), y + 0.5 - (Y + oy * r)) <= rr * r * leafy
-      let v = 0.34 + 0.1 * ell(x, y, CX, CY, RX, RY) + 0.14 * ell(x, y, mx, my, mrx, mry) + 0.06 * (mz - 1) + 0.05 * (z - mz) + bias
-      if (caps && inDisc(-0.3, -0.34, 0.7)) v += 0.17
-      if (caps && inDisc(-0.44, -0.5, 0.36)) v += 0.17
-      if (caps && !inDisc(-0.1, -0.12, 0.98)) v -= 0.17
-      // byMass : seules les masses (étages) se font de l'ombre, pas les grappes entre elles
-      const rank = (q) => (q < 0 ? -1 : byMass ? order[q][3] : q), me = byMass ? z : o
-      const at = (dx, dy) => rank(own[clamp(y + dy, 0, B.h - 1) * B.w + clamp(x + dx, 0, B.w - 1)])
-      const front = (q) => (byMass ? q > me + 0.6 : q > me)
-      // ombre portée par une grappe de devant située vers la lumière
-      if (front(at(-1, -2)) || front(at(-2, -3)) || front(at(0, -2))) v -= 0.22
-      // bord d'une grappe de devant posée sur une grappe du fond (côté ombre) : trait sombre interne
-      if (!byMass && ((at(1, 0) >= 0 && at(1, 0) < me) || (at(0, 1) >= 0 && at(0, 1) < me))) v -= 0.17
-      // byMass : aiguilles en rangées (bandes horizontales légères, pas de grain pixel)
-      if (byMass) v += 0.12 * (vnoise(x * 0.6, y * 1.6, 1.5, seed) - 0.5) - 0.1 * ((y + 0.5 - (my - mry)) / (2 * mry))
-      idx[y * B.w + x] = clamp(Math.floor(v * n), 0, n - 1)
-    }
-  return selout(B, idx, ramp)
-}
+// Grappes et couronne (genClumps, crown) : dans _fx.px.js, partagées avec fxbush.
 
 // ================================================================ effets (statiques)
 // Chaque effet est une fonction (B, cr, R) appelée après la couronne ; R = générateur seedé.
@@ -436,5 +367,69 @@ sprite("fxtree_spirit_32", { w: 32, h: 32 }, tree({ ...OAK32, seed: 8 }, {
     aura(":", ";", 2),
   ],
 }))
+
+// ================================================================ versions 48 et 16 px, bouleau
+
+const OAK48 = {
+  masses: [[11, 21, 10, 8, 0], [36, 20, 10, 8, 0], [23, 11, 13, 10, 1], [23, 25, 10, 8, 2]],
+  trunk: { x: 24, top: 27, wTop: 4.5, wBot: 7, flare: 3, lean: -1 },
+  limbs: [[[23, 32, 18, 28, 14, 25], 1.6], [[25, 32, 29, 28, 33, 25], 1.6]],
+  peeks: [[[23, 33, 18, 28, 12, 24], 1.2], [[25, 33, 31, 28, 36, 24], 1.2], [[24, 33, 25, 23, 26, 17], 1.3]],
+  clump: { rmin: 2.8, rmax: 5 },
+  leafAmp: 0.36,
+  shadow: [27, 18],
+  seed: 6,
+}
+sprite("fxtree_oak_summer_48", { w: 48, h: 48 }, tree(OAK48))
+
+const PINE48 = pineSpec({ x: 24, top: 1, base: 40, tiers: 5, w0: 6, w1: 21, trunk: { x: 24, top: 35, wTop: 3, wBot: 4.5, flare: 1.5 } })
+sprite("fxtree_pine_48", { w: 48, h: 48 }, conifer(PINE48, { bias: 0.06, seed: 7 }))
+
+// Bouleau : couronne étroite et claire, tronc blanc (rampe de la pierre claire) marqué de lenticelles
+// sombres horizontales, plus nombreuses à la base.
+const BIRCH_BARK = ["d", "m", "c", "C", "s"]
+const lenticels = (x, top, bot, w, seed) => (B) => {
+  const R = rng(seed)
+  for (let y = top + 2; y < bot - 1; y += 2 + Math.floor(R() * 3)) {
+    const len = 1 + Math.floor(R() * Math.max(1, w - 1)), x0 = Math.round(x - w / 2 + R() * (w - len))
+    for (let k = 0; k < len; k++) if (BIRCH_BARK.includes(B.get(x0 + k, y))) B.set(x0 + k, y, R() < 0.5 ? "k" : "d")
+  }
+}
+const BIRCH48 = {
+  masses: [[18, 14, 6.5, 8, 0], [30, 15, 6.5, 8, 0], [24, 8, 8, 7.5, 1], [24, 20, 6.5, 6, 2]],
+  trunk: { x: 24, top: 22, wTop: 3, wBot: 4.5, flare: 1.5, lean: 1 },
+  limbs: [[[24, 27, 20, 22, 18, 18], 1.1], [[24, 26, 28, 22, 30, 18], 1.1]],
+  peeks: [[[24, 28, 19, 22, 17, 17], 0.9], [[24, 27, 29, 21, 31, 16], 0.9]],
+  clump: { rmin: 2.4, rmax: 4 },
+  leafAmp: 0.36,
+  shadow: [26, 12],
+  seed: 11,
+}
+sprite("fxtree_birch_48", { w: 48, h: 48 }, tree(BIRCH48, { bark: BIRCH_BARK, bias: 0.07, fx: [lenticels(24.5, 26, 47, 4, 3)] }))
+const BIRCH32 = {
+  masses: [[11, 12, 5, 6, 0], [21, 13, 5, 6, 0], [16, 7, 6, 6, 1], [16, 16, 5, 4, 2]],
+  trunk: { x: 16, top: 17, wTop: 2, wBot: 3, flare: 1, lean: 0.5 },
+  peeks: [[[16, 20, 13, 17, 11, 14], 0.7], [[16, 20, 19, 16, 21, 13], 0.7]],
+  clump: { rmin: 1.9, rmax: 3 },
+  leafAmp: 0.3,
+  shadow: [17, 8],
+  shadowRy: 1,
+  seed: 12,
+}
+sprite("fxtree_birch_32", { w: 32, h: 32 }, tree(BIRCH32, { bark: BIRCH_BARK, bias: 0.07, fx: [lenticels(16.5, 17, 31, 3, 5)] }))
+
+// 16 px : une couronne en trois masses, tronc court ; pour les bosquets lointains.
+const OAK16 = {
+  masses: [[5, 7, 4, 3, 0], [11, 7, 4, 3, 0], [8, 5, 5, 4, 1]],
+  trunk: { x: 8, top: 9, wTop: 2, wBot: 2.5, flare: 0.6 },
+  clump: { rmin: 1.5, rmax: 2.2 },
+  leafAmp: 0.2,
+  shadow: [9, 5],
+  shadowRy: 1,
+  seed: 5,
+}
+sprite("fxtree_oak_summer_16", { w: 16, h: 16 }, tree(OAK16, { bias: 0.04 }))
+const PINE16 = pineSpec({ x: 8, top: 0, base: 13, tiers: 3, w0: 2.5, w1: 6.5, trunk: { x: 8, top: 12, wTop: 1.5, wBot: 2, flare: 0.5 } })
+sprite("fxtree_pine_16", { w: 16, h: 16 }, conifer(PINE16, { bias: 0.08, seed: 9 }))
 
 sheet("fxtrees", ["fxtree_*"], { pad: 2 })

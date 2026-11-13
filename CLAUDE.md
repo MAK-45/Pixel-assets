@@ -35,7 +35,8 @@ Pour un asset **statique** au rendu riche de pixelfx (sans contour noir, volumes
 nuances franches), utilise le skill **`/draw-fx`** (`.claude/skills/draw-fx/SKILL.md`) : il dessine avec claude-pxl
 en prenant les effets pixelfx pour modèle, et compare chaque famille à sa référence avec
 `node .claude/skills/draw-fx/scripts/compare.mjs`. Familles faites ainsi : `nature/fxtree`, `nature/fxrock`,
-`nature/fxgrass` (outils communs : `assets/nature/_fx.px.js`). Règles de l'utilisateur pour ces assets : rien qui
+`nature/fxgrass`, `nature/fxbush`, `nature/fxflower`, `landscape/fxhill`, `landscape/fxmountain`, `sky/fx*` (outils communs :
+`assets/nature/_fx.px.js`). Scène au même style : `assets/scenes/summer_plain_fx.px.js` (cartes `FX_*` du kit des scènes). Règles de l'utilisateur pour ces assets : rien qui
 bouge figé dans un sprite fixe (feuilles qui tombent, lucioles…), rien autour de l'objet (herbe, feuilles au sol).
 
 ## Cuisiner une idée (`/grill-me`)
