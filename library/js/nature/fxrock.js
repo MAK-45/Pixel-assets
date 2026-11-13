@@ -1,5 +1,5 @@
 // GÉNÉRÉ par scripts/build.js — ne pas modifier. Source : assets/nature/fxrock.px.js
-// Roche (style pixelfx) — 9 variante(s). Usage :
+// Roche (style pixelfx) — 15 variante(s). Usage :
 //   import asset from "./fxrock.js"; const v = asset.variants["boulder_48"];
 //   v.src (data URL PNG), v.rows + v.palette (pixels, "." = transparent), v.w, v.h
 /** @type {import("../../index.d.ts").PixelAsset} */
@@ -8,7 +8,7 @@ export const asset = {
  "slug": "fxrock",
  "category": "nature",
  "title": "Roche (style pixelfx)",
- "description": "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px). Roche seule, sans décor autour.",
+ "description": "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px), et pierres à demi enterrées (bloc, dalle plate, moussu ; 16, 32, 48 px) dont seule la partie hors du sol est dessinée, plus sombre au ras du sol : à poser un peu enfoncées dans un terrain. Roche seule, sans décor autour.",
  "tags": [
   "rock",
   "stone",
@@ -33,7 +33,8 @@ export const asset = {
    "pile",
    "spire",
    "stone",
-   "pebbles"
+   "pebbles",
+   "buried"
   ],
   "surface": [
    "bare",
@@ -50,7 +51,7 @@ export const asset = {
   32,
   48
  ],
- "variantCount": 9,
+ "variantCount": 15,
  "variants": {
   "boulder_48": {
    "key": "boulder_48",
@@ -612,6 +613,311 @@ export const asset = {
     ".kd<<<dkkdm<<<dk",
     "..kddkk..kkddkk.",
     "................"
+   ]
+  },
+  "buried_48": {
+   "key": "buried_48",
+   "name": "fxrock_buried_48",
+   "id": "nature/fxrock/buried_48",
+   "label": "Rocher à demi enterré (48 × 24)",
+   "kind": "sprite",
+   "w": 48,
+   "h": 24,
+   "size": 48,
+   "props": {
+    "form": "buried",
+    "surface": "bare",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried"
+   ],
+   "png": "library/png/nature/fxrock/buried_48.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAMAAACLI47uAAAAGFBMVEUAAAAaFCPDwtSLiqNxcIpXVnBBP1IvLTx2K90kAAAAAXRSTlMAQObYZgAAAKVJREFUeNrtkcsSxCAIBMMwwP//8ZaPJCS6Jqc9bV/UqmlB3LY/v0RehRIQeXQECQWeHIF22Ne1I1BQFVdp4RRBT859dVYN5WTB3MxkmY+eTMjXPIAAaXdkzLP2QA13dxpZe5kb/QdIUhHu1fFyNONEkBZWllmWcBPKQtIHQ6DsKMNPYd+yvSkbdsnfsFbpIuwVItLFWahzOIzZtT6YEXFUiFfUAh9ayAjCIZkRugAAAABJRU5ErkJggg==",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "k": "#1a1423",
+    "m": "#575670"
+   },
+   "rows": [
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "........................k.......................",
+    "............kkkkkkkkkkkkCkkk....................",
+    "...........kCCCCCCCCCCCCcCCCkkk.................",
+    "..........kCcccccccc>cccccccCCCkkk..............",
+    ".........kCcC>ccCccccccc>ccccccCCCkkk...........",
+    ".........kCcCcccccccccccCcccccccccCCCkk.........",
+    "........kCcccccccccccccccccCCCCCCCm<mmmk........",
+    ".......kCcccccccccccdCCCCCCmmmmmmmmmmmmk........",
+    "......kCccccccccCCCdC>>mmmmmmmmmmmmmmmmmk.......",
+    ".....kCccc>cCCCC>cd<<<<>m>>m<mmmmmmmmmmmmk......",
+    ".....kCCCCCC>>>>cCd<<d<<<<<>>>>mm>mmmmmmmk......",
+    "....kCCC>>>c>>cccd<<<d<<<<<<d<<>>><mmmmmmmk.....",
+    "...kCc>>>>>>>>c>d<<<<d<<<<<<<<<<d<<<>>>mmmmk....",
+    "....kCm>>>>>>c>d<<<<<<<<<<<<<<<<<<<md<<>>>mk....",
+    "....kC>>>>>>>>dd<<<<<<<d<<<<<<<<<<<md<<<<<>mk...",
+    "....d<<<<<<<<<<<<<<<<<<<<<<<<<<<d<<<<<<<<<ddd...",
+    "....kddddddddddddddddddddddddddddddddddddddk...."
+   ]
+  },
+  "buried_flat_48": {
+   "key": "buried_flat_48",
+   "name": "fxrock_buried_flat_48",
+   "id": "nature/fxrock/buried_flat_48",
+   "label": "Dalle à demi enterrée (48 × 16)",
+   "kind": "sprite",
+   "w": 48,
+   "h": 16,
+   "size": 48,
+   "props": {
+    "form": "buried",
+    "surface": "bare",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried",
+    "slab"
+   ],
+   "png": "library/png/nature/fxrock/buried_flat_48.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAMAAABncAyDAAAAGFBMVEUAAAAaFCPDwtSLiqNBP1JxcIpXVnAvLTwuHq/UAAAAAXRSTlMAQObYZgAAAG1JREFUeNrtjtsOgCAMQ2037P//sQG3iHh/9ySwQE6zTtPPCvBJBkgEzy5I0ozBdS5dmlk9QebO5XS8zVJPwN2STm56Mrvnb2EfQdql6vITWjccAka/QxgCWxvFPasNDYEsobHN8JZyg96xLlgAWvsFCJm6XEAAAAAASUVORK5CYII=",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "k": "#1a1423",
+    "m": "#575670"
+   },
+   "rows": [
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "....................kk..........................",
+    "................kkkkCCkkkkkkkk..................",
+    "...........kkkkkCCCCccCCCCCCCCkkkkkkk...........",
+    ".......kkkkCCCCCcccCccccccccccCCCCCCCk..........",
+    "...kkkkCCCCccccccCC<ccccc>ccc>>>>>>>>Ckk........",
+    "..kCCCCccccccccCC<<<<<<<<<m<<cccccccc>CCkk......",
+    "..kCccccccc>cCC<d<<<<<<<<<<<<<<<<<<<<ccCCCk.....",
+    "..kCccccccccC<<<<<<<<<<<<<<<<<<<<<<<<<<<<<dk....",
+    "..kCccccccCC<<<<<<<<d<<<<<d<md<<<d<d<<<<<<dk....",
+    "..d<<<<<<<dd<<<<<<<<<<<<<<<d<<<<<<<<<<<<<<dd....",
+    "..kdddddddddddddddddddddddddddddddddddddddk....."
+   ]
+  },
+  "buried_32": {
+   "key": "buried_32",
+   "name": "fxrock_buried_32",
+   "id": "nature/fxrock/buried_32",
+   "label": "Rocher à demi enterré (32 × 16)",
+   "kind": "sprite",
+   "w": 32,
+   "h": 16,
+   "size": 32,
+   "props": {
+    "form": "buried",
+    "surface": "bare",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried"
+   ],
+   "png": "library/png/nature/fxrock/buried_32.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAMAAABA3o1rAAAAGFBMVEUAAAAaFCPDwtRXVnCLiqNBP1JxcIovLTxqnEupAAAAAXRSTlMAQObYZgAAAF5JREFUeNrVjskNADEIA8Nl+u84CmhzkDSw80LyAG7tR1DhynlHROgWNIlYrBjEUMWMAzqFXHYMxKoxcmaGug0E6dFRUQGVFD6mQRwbagWfAp6Crxfb5X301cGfxIUOFKMD7IIGERcAAAAASUVORK5CYII=",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "k": "#1a1423",
+    "m": "#575670"
+   },
+   "rows": [
+    "................................",
+    "................................",
+    "................................",
+    "................................",
+    "................................",
+    ".......kkkkkkkkkkkkkkkk.........",
+    "......kCCCCCCCCCCCCCmmmk........",
+    "......kCCcccccccCCmmmm<mk.......",
+    ".....kC>cc>cccCCmmmmmmmmmk......",
+    ".....kCccccCCd>>>>>m<mmmmmk.....",
+    "....kCccCCC>cd<<<<<m>>>>>>mk....",
+    "....kCCCc>>cmd<<<<<<<<<<<<<mk...",
+    "...kC>>>>>c<<<<<<<<<<<<<<<<dk...",
+    "...k>>>>>>c<<<<<<<<<<<<<<<dk....",
+    "....d<<<<<<<<<<d<<<<<<<<<<dd....",
+    "....kddddddddddddddddddddddk...."
+   ]
+  },
+  "buried_moss_32": {
+   "key": "buried_moss_32",
+   "name": "fxrock_buried_moss_32",
+   "id": "nature/fxrock/buried_moss_32",
+   "label": "Rocher moussu à demi enterré (32 × 16)",
+   "kind": "sprite",
+   "w": 32,
+   "h": 16,
+   "size": 32,
+   "props": {
+    "form": "buried",
+    "surface": "mossy",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried"
+   ],
+   "png": "library/png/nature/fxrock/buried_moss_32.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAMAAABA3o1rAAAAJFBMVEUAAAAaFCOl11parkXDwtQuejofSixXVnCLiqNxcIovLTxBP1IGEP/0AAAAAXRSTlMAQObYZgAAAHNJREFUeNrVjkEOwyAMBGPqXa+d//+3glSF0Hygc0BIHsYcxx9hGz/zNnh1vB+7YQAHoEcA2AxroJISyYggGGH3ACW5V3ZiWGvDGuTuqTo7MbRcDANdmYpL+MDvFmvoL3TeYdkMPAk1Vyzl9VrzD/XIKLwBkVcG4PJp1NwAAAAASUVORK5CYII=",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "G": "#1f4a2c",
+    "L": "#a5d75a",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "g": "#2e7a3a",
+    "k": "#1a1423",
+    "l": "#5aae45",
+    "m": "#575670"
+   },
+   "rows": [
+    "................................",
+    "................................",
+    "................................",
+    "................................",
+    "................................",
+    ".......kkkkkkkkkkkkkkkk.........",
+    "......kLLLLLLlllllCllllk........",
+    "......kggGGGGGGgGCmmggglk.......",
+    ".....kLgGc>GccGGGmmmGgGmmk......",
+    ".....kgGcccCCd>>>>>mGGmmmlk.....",
+    "....kLgcCCC>cd<<<<<m>>>>>>lk....",
+    "....kgGCc>>cmd<<<<<<<<<<<<Gmk...",
+    "...kLg>>>>c<<<<<<<<<<<<<<<Gdk...",
+    "...kgG>>>>c<<<<<<<<<<<<<<<dk....",
+    "....d<<<<<<<<<<d<<<<<<<<<<dd....",
+    "....kddddddddddddddddddddddk...."
+   ]
+  },
+  "buried_moss_48": {
+   "key": "buried_moss_48",
+   "name": "fxrock_buried_moss_48",
+   "id": "nature/fxrock/buried_moss_48",
+   "label": "Grand rocher moussu à demi enterré (48 × 24)",
+   "kind": "sprite",
+   "w": 48,
+   "h": 24,
+   "size": 48,
+   "props": {
+    "form": "buried",
+    "surface": "mossy",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried"
+   ],
+   "png": "library/png/nature/fxrock/buried_moss_48.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAMAAACLI47uAAAAJFBMVEUAAAAaFCPDwtSl11parkWLiqMfSiwuejpxcIpXVnBBP1IvLTx2m2o/AAAAAXRSTlMAQObYZgAAAL9JREFUeNrtkEEOwjAMBLETb9bO//+LnKgholA4cWJUqZE6Y7e93f78EvlK2lCRj42UidZa1WqtHxophtYazGhJa9eNFFMi/QENmV80AlPD4efZgBxQVV8lUpa7GigA9XCvcu3rwN0dPpGzj80l/Rl58huMNl2LiKCT+S5vCmmYMmkaET1GxNzEF4EUpGx5jfkzyBvJOBVSGhd7cBw5v2kr4CuIMz437YGu+X0bvAfjP6yix3sez3rva0P/irHgDubiDsc+xbbEAAAAAElFTkSuQmCC",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "G": "#1f4a2c",
+    "L": "#a5d75a",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "g": "#2e7a3a",
+    "k": "#1a1423",
+    "l": "#5aae45",
+    "m": "#575670"
+   },
+   "rows": [
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "................................................",
+    "........................k.......................",
+    "............kkkkkkkkkkkkCkkk....................",
+    "...........kLLLLLLLClllCclllkkk.................",
+    "..........kLcGgggGcc>cccccgglllkkk..............",
+    ".........kLcC>GgGccccccc>cGGggglllkkk...........",
+    ".........kGcCcGGccccccccCcGcGGGgGclCCkk.........",
+    "........kLGccccccccccccccccCGCGGGCm<mmlk........",
+    ".......kLGcccccccccccCCCCCCmmmmGmmmmmmmk........",
+    "......kLGGccccccCCCCC>>mmmmmmmmmmmmmmmmmk.......",
+    ".....kLgGc>cCCCC>>c<<<<>m>>m<mmmmmmmmmmmmk......",
+    ".....kgGCCCC>>>>cC<<<d<<<<<>>>>mm>mmmmmmmk......",
+    "....kLGC>>>c>>c>c<<<<d<<<<<<d<<>>><mmmmmmmk.....",
+    "...kLg>>>>>>>>>>c<<<<d<<<<<<<<<<d<<<>>>mmmmk....",
+    "....kGm>>>>>>>>><<<<<<<<<<<<<<<<<<<md<<>>>mk....",
+    "....kC>>>>>>>>cd<<<<<<<d<<<<<<<<<<<md<<<<<>mk...",
+    "....d<<<<<<<<<<<<<<<<<<<<<<<<<<<d<<<<<<<<<ddd...",
+    "....kddddddddddddddddddddddddddddddddddddddk...."
+   ]
+  },
+  "buried_16": {
+   "key": "buried_16",
+   "name": "fxrock_buried_16",
+   "id": "nature/fxrock/buried_16",
+   "label": "Caillou à demi enterré (16 × 8)",
+   "kind": "sprite",
+   "w": 16,
+   "h": 8,
+   "size": 16,
+   "props": {
+    "form": "buried",
+    "surface": "bare",
+    "material": "granite"
+   },
+   "tags": [
+    "embedded",
+    "half-buried"
+   ],
+   "png": "library/png/nature/fxrock/buried_16.png",
+   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAMAAADHqI+lAAAAGFBMVEUAAAAaFCPDwtRXVnCLiqNBP1JxcIovLTxqnEupAAAAAXRSTlMAQObYZgAAADpJREFUeNptyUkSwDAMAkFAC///cUq2sxwyJ9QCfuPuPTVFHKGUUlQcoTJV1d0PzNs1tmTmnW2A/kRcMl0BSBQEL4wAAAAASUVORK5CYII=",
+   "palette": {
+    "<": "#413f52",
+    ">": "#71708a",
+    "C": "#c3c2d4",
+    "c": "#8b8aa3",
+    "d": "#2f2d3c",
+    "k": "#1a1423",
+    "m": "#575670"
+   },
+   "rows": [
+    "................",
+    ".....kkkkkkk....",
+    "...kkCCCCCmmk...",
+    "..kCCcCCm<mmmk..",
+    ".kCccC<<>>>mmk..",
+    ".kCCCm<d<<<>>mk.",
+    ".d<<<<<<<<<<<ddd",
+    ".kddddddddddddk."
    ]
   }
  }

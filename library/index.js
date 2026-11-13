@@ -15,7 +15,7 @@ export const catalog = {
  "stats": {
   "categories": 7,
   "assets": 36,
-  "variants": 344
+  "variants": 350
  },
  "categories": [
   {
@@ -313,7 +313,7 @@ export const catalog = {
    "slug": "summer_plain_fx",
    "category": "scenes",
    "title": "Plaine d'été (style pixelfx)",
-   "description": "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers moussus), sol d'herbe et de terre où marche le personnage (pâquerettes, tulipes, cailloux, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
+   "description": "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers à demi enterrés dans l'herbe), sol tout en gazon jusqu'au bas de l'écran où marche le personnage (pâquerettes, tulipes, cailloux à demi enterrés, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
    "tags": [
     "scene",
     "parallax",
@@ -2263,7 +2263,7 @@ export const catalog = {
    "slug": "fxrock",
    "category": "nature",
    "title": "Roche (style pixelfx)",
-   "description": "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px). Roche seule, sans décor autour.",
+   "description": "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px), et pierres à demi enterrées (bloc, dalle plate, moussu ; 16, 32, 48 px) dont seule la partie hors du sol est dessinée, plus sombre au ras du sol : à poser un peu enfoncées dans un terrain. Roche seule, sans décor autour.",
    "tags": [
     "rock",
     "stone",
@@ -2288,7 +2288,8 @@ export const catalog = {
      "pile",
      "spire",
      "stone",
-     "pebbles"
+     "pebbles",
+     "buried"
     ],
     "surface": [
      "bare",
@@ -2305,7 +2306,7 @@ export const catalog = {
     32,
     48
    ],
-   "variantCount": 9,
+   "variantCount": 15,
    "variants": {
     "boulder_48": {
      "key": "boulder_48",
@@ -2467,6 +2468,127 @@ export const catalog = {
      },
      "tags": [],
      "png": "library/png/nature/fxrock/pebbles_16.png"
+    },
+    "buried_48": {
+     "key": "buried_48",
+     "name": "fxrock_buried_48",
+     "id": "nature/fxrock/buried_48",
+     "label": "Rocher à demi enterré (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "form": "buried",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried"
+     ],
+     "png": "library/png/nature/fxrock/buried_48.png"
+    },
+    "buried_flat_48": {
+     "key": "buried_flat_48",
+     "name": "fxrock_buried_flat_48",
+     "id": "nature/fxrock/buried_flat_48",
+     "label": "Dalle à demi enterrée (48 × 16)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 16,
+     "size": 48,
+     "props": {
+      "form": "buried",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried",
+      "slab"
+     ],
+     "png": "library/png/nature/fxrock/buried_flat_48.png"
+    },
+    "buried_32": {
+     "key": "buried_32",
+     "name": "fxrock_buried_32",
+     "id": "nature/fxrock/buried_32",
+     "label": "Rocher à demi enterré (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "form": "buried",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried"
+     ],
+     "png": "library/png/nature/fxrock/buried_32.png"
+    },
+    "buried_moss_32": {
+     "key": "buried_moss_32",
+     "name": "fxrock_buried_moss_32",
+     "id": "nature/fxrock/buried_moss_32",
+     "label": "Rocher moussu à demi enterré (32 × 16)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 16,
+     "size": 32,
+     "props": {
+      "form": "buried",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried"
+     ],
+     "png": "library/png/nature/fxrock/buried_moss_32.png"
+    },
+    "buried_moss_48": {
+     "key": "buried_moss_48",
+     "name": "fxrock_buried_moss_48",
+     "id": "nature/fxrock/buried_moss_48",
+     "label": "Grand rocher moussu à demi enterré (48 × 24)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 24,
+     "size": 48,
+     "props": {
+      "form": "buried",
+      "surface": "mossy",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried"
+     ],
+     "png": "library/png/nature/fxrock/buried_moss_48.png"
+    },
+    "buried_16": {
+     "key": "buried_16",
+     "name": "fxrock_buried_16",
+     "id": "nature/fxrock/buried_16",
+     "label": "Caillou à demi enterré (16 × 8)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 8,
+     "size": 16,
+     "props": {
+      "form": "buried",
+      "surface": "bare",
+      "material": "granite"
+     },
+     "tags": [
+      "embedded",
+      "half-buried"
+     ],
+     "png": "library/png/nature/fxrock/buried_16.png"
     }
    }
   },

@@ -3,7 +3,7 @@ include("_fx.px.js")
 
 const meta = {
   title: "Roche (style pixelfx)",
-  description: "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px). Roche seule, sans décor autour.",
+  description: "Roches vues de face au rendu riche inspiré des pierres de la bibliothèque d'effets pixelfx (rocher qui roule, pic de terre) : pierres taillées en facettes planes, chacune éclairée selon son orientation (haut-gauche clair, bas-droite sombre), rebord vif côté lumière, bord sombre dans la teinte la plus foncée de la pierre, fissures à lèvre claire. Variantes : rocher (32, 48 px) nu, moussu ou enneigé, rocher de grès, tas de pierres, aiguille rocheuse à strates (48 px), caillou et galets (16 px), et pierres à demi enterrées (bloc, dalle plate, moussu ; 16, 32, 48 px) dont seule la partie hors du sol est dessinée, plus sombre au ras du sol : à poser un peu enfoncées dans un terrain. Roche seule, sans décor autour.",
   tags: ["rock", "stone", "boulder", "nature", "decoration", "obstacle", "terrain", "realistic", "pixelfx"],
   variants: {
     boulder_48: { label: "Grand rocher (48 px)", props: { form: "boulder", surface: "bare", material: "granite" } },
@@ -15,6 +15,12 @@ const meta = {
     spire_48: { label: "Aiguille rocheuse à strates (48 px)", props: { form: "spire", surface: "bare", material: "sandstone" }, tags: ["cliff", "desert"] },
     stone_16: { label: "Caillou (16 px)", props: { form: "stone", surface: "bare", material: "granite" } },
     pebbles_16: { label: "Galets (16 px)", props: { form: "pebbles", surface: "bare", material: "granite" } },
+    buried_48: { label: "Rocher à demi enterré (48 × 24)", props: { form: "buried", surface: "bare", material: "granite" }, tags: ["embedded", "half-buried"] },
+    buried_flat_48: { label: "Dalle à demi enterrée (48 × 16)", props: { form: "buried", surface: "bare", material: "granite" }, tags: ["embedded", "half-buried", "slab"] },
+    buried_32: { label: "Rocher à demi enterré (32 × 16)", props: { form: "buried", surface: "bare", material: "granite" }, tags: ["embedded", "half-buried"] },
+    buried_moss_32: { label: "Rocher moussu à demi enterré (32 × 16)", props: { form: "buried", surface: "mossy", material: "granite" }, tags: ["embedded", "half-buried"] },
+    buried_moss_48: { label: "Grand rocher moussu à demi enterré (48 × 24)", props: { form: "buried", surface: "mossy", material: "granite" }, tags: ["embedded", "half-buried"] },
+    buried_16: { label: "Caillou à demi enterré (16 × 8)", props: { form: "buried", surface: "bare", material: "granite" }, tags: ["embedded", "half-buried"] },
   },
 }
 
@@ -205,5 +211,26 @@ sprite("fxrock_pebbles_16", { w: 16, h: 16 }, draw((B, g) => {
   stone(B, { cx: 4.5, base: g, rx: 4, ry: 3.4, n: 6, seed: 41, cracks: 0 })
   stone(B, { cx: 11.5, base: g, rx: 3.8, ry: 3.2, n: 6, seed: 42, cracks: 0 })
 }))
+
+// ================================================================ pierres à demi enterrées
+// La pierre entière est construite sous la ligne du bas du canevas (centre enfoui) : seul le dessus sort de
+// terre, sans ombre portée ; les deux rangées au ras du sol foncent (la terre mange la base).
+const buried = ({ rx, ry, sink = 0.5, n = 7, seed = 1, cracks = 1, mossy = false, squashTop = 1 }) => (c) => {
+  const B = Buf(c.w, c.h), g = c.h - 1
+  const st = stone(B, { cx: c.w / 2, base: g + Math.round(ry * 2 * sink), rx, ry, n, seed, cracks, squashTop })
+  if (mossy) moss(B, st, { seed: seed + 1, depth: 4, x0: 0, x1: Math.round(c.w * 0.8) })
+  for (let x = 0; x < c.w; x++) {
+    const i0 = GRANITE.indexOf(B.get(x, g)), i1 = GRANITE.indexOf(B.get(x, g - 1))
+    if (i0 >= 0) B.set(x, g, GRANITE[Math.min(i0, 1)])
+    if (i1 >= 0) B.set(x, g - 1, GRANITE[Math.max(1, Math.min(i1, 2))])
+  }
+  B.flush(c)
+}
+sprite("fxrock_buried_48", { w: 48, h: 24 }, buried({ rx: 21, ry: 15, sink: 0.42, n: 8, seed: 11, cracks: 2 }))
+sprite("fxrock_buried_flat_48", { w: 48, h: 16 }, buried({ rx: 22, ry: 11, sink: 0.4, n: 7, seed: 5, squashTop: 0.75 }))
+sprite("fxrock_buried_32", { w: 32, h: 16 }, buried({ rx: 14, ry: 10, sink: 0.38, n: 7, seed: 4 }))
+sprite("fxrock_buried_moss_32", { w: 32, h: 16 }, buried({ rx: 14, ry: 10, sink: 0.38, n: 7, seed: 4, mossy: true }))
+sprite("fxrock_buried_moss_48", { w: 48, h: 24 }, buried({ rx: 21, ry: 15, sink: 0.42, n: 8, seed: 11, cracks: 1, mossy: true }))
+sprite("fxrock_buried_16", { w: 16, h: 8 }, buried({ rx: 7, ry: 5.5, sink: 0.36, n: 8, seed: 7, cracks: 0 }))
 
 sheet("fxrocks", ["fxrock_*"], { pad: 2 })

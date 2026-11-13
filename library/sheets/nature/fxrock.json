@@ -62,8 +62,8 @@
   },
   "boulder_snow_32": {
    "frame": {
-    "x": 0,
-    "y": 49,
+    "x": 115,
+    "y": 0,
     "w": 32,
     "h": 32
    },
@@ -82,7 +82,7 @@
   },
   "sandstone_32": {
    "frame": {
-    "x": 33,
+    "x": 0,
     "y": 49,
     "w": 32,
     "h": 32
@@ -102,7 +102,7 @@
   },
   "pile_32": {
    "frame": {
-    "x": 66,
+    "x": 33,
     "y": 49,
     "w": 32,
     "h": 32
@@ -122,8 +122,8 @@
   },
   "spire_48": {
    "frame": {
-    "x": 0,
-    "y": 82,
+    "x": 66,
+    "y": 49,
     "w": 48,
     "h": 48
    },
@@ -142,8 +142,8 @@
   },
   "stone_16": {
    "frame": {
-    "x": 49,
-    "y": 82,
+    "x": 115,
+    "y": 49,
     "w": 16,
     "h": 16
    },
@@ -162,8 +162,8 @@
   },
   "pebbles_16": {
    "frame": {
-    "x": 66,
-    "y": 82,
+    "x": 0,
+    "y": 98,
     "w": 16,
     "h": 16
    },
@@ -179,6 +179,126 @@
     "w": 16,
     "h": 16
    }
+  },
+  "buried_48": {
+   "frame": {
+    "x": 17,
+    "y": 98,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  },
+  "buried_flat_48": {
+   "frame": {
+    "x": 66,
+    "y": 98,
+    "w": 48,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 16
+   }
+  },
+  "buried_32": {
+   "frame": {
+    "x": 115,
+    "y": 98,
+    "w": 32,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 16
+   }
+  },
+  "buried_moss_32": {
+   "frame": {
+    "x": 0,
+    "y": 123,
+    "w": 32,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 16
+   }
+  },
+  "buried_moss_48": {
+   "frame": {
+    "x": 33,
+    "y": 123,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  },
+  "buried_16": {
+   "frame": {
+    "x": 82,
+    "y": 123,
+    "w": 16,
+    "h": 8
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 8
+   },
+   "sourceSize": {
+    "w": 16,
+    "h": 8
+   }
   }
  },
  "meta": {
@@ -186,8 +306,8 @@
   "image": "fxrock.png",
   "format": "RGBA8888",
   "size": {
-   "w": 114,
-   "h": 130
+   "w": 147,
+   "h": 147
   },
   "scale": "1"
  }

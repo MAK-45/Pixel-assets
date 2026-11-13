@@ -31,8 +31,10 @@ near, ground, front).
 Même composition, uniquement des assets fx* : héros `fxmountain/peak_snow_128`, chaînes `range_snow_64` +
 `peak_snow_64` (`FX_FAR2`) ; collines `fxhill/rolling_64`, `round_32` + bosquets `fxtree/oak_summer_16`, `pine_16` ;
 prairie `fxtree/oak_summer_48`, `birch_48`, `pine_48`, `oak_summer_32`, `birch_32`, `pine_32`, `fxbush/round_32`,
-`berry_32`, `round_16`, `hedge_48`, `fxrock/boulder_moss_32`, `boulder_32`, `stone_16` ; sol `fxgrass/tuft_16`,
-`fxflower/daisy_16`, `tulip_red_16`, `fxrock/pebbles_16` + acteurs `fxgrass/tuft_wind_16` ; premier plan
+`berry_32`, `round_16`, `hedge_48`, pierres **à demi enterrées** `fxrock/buried_moss_48`, `buried_32`, `buried_flat_48`,
+`buried_16` (enfoncées dans le terrain, brins d'herbe repeints sur leur base : jamais de rocher « posé ») ; sol = **gazon
+seul jusqu'au bas de l'écran** (pas de terre visible, l'utilisateur n'en veut pas), `fxgrass/tuft_16`,
+`fxflower/daisy_16`, `tulip_red_16`, `fxrock/buried_16` + acteurs `fxgrass/tuft_wind_16` ; premier plan
 `fxgrass/tall_wind_32`. Ciel en bandes nettes, `fxsun/rays_32`, `setting_32`, `fxmoon/full_32`, `fxstar/sparkle4_16`,
 nuages `fxcloud`. Cartes `FX_*` du kit. Papillons de la maison recolorés sans contour.
 

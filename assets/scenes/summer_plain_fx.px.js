@@ -4,7 +4,7 @@ include("../nature/_fx.px.js")
 
 const meta = {
   title: "Plaine d'été (style pixelfx)",
-  description: "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers moussus), sol d'herbe et de terre où marche le personnage (pâquerettes, tulipes, cailloux, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
+  description: "Panorama dynamique 16:9 (base 320 × 180) pour jeu de plateforme ou runner, version au rendu riche « style pixelfx » de la Plaine d'été : pas de contour noir, volumes modelés par la lumière en haut à gauche, paliers francs, ciel en bandes nettes sans trame. Une plaine d'été au pied d'un très grand pic enneigé à facettes, en 8 plans de parallaxe qui bouclent sans couture : ciel, étoiles, nuages fx, montagnes (pic héros et chaînes lointaines), collines fx semées de bosquets, prairie (chênes, bouleaux, sapins, buissons, rochers à demi enterrés dans l'herbe), sol tout en gazon jusqu'au bas de l'écran où marche le personnage (pâquerettes, tulipes, cailloux à demi enterrés, touffes au vent) et hautes herbes au vent au premier plan. Quatre périodes : jour (soleil à rayons, nuages qui dérivent, herbe au vent, oiseaux, papillons), crépuscule (disque couchant à demi caché derrière les collines, nuages dorés, premières étoiles qui scintillent, oiseaux), nuit (pleine lune à halo, champ d'étoiles, scintillements, étoiles filantes, lucioles dans la prairie et sur le sol) et sombre (plafond d'orage, nuages bas accrochés au sommet, vent fort, sans pluie : à ajouter par le jeu). Ligne de sol à y = 150.",
   tags: ["scene", "parallax", "panorama", "background", "plain", "meadow", "mountain", "summer", "day-night", "endless", "platformer", "runner", "realistic", "pixelfx"],
   variants: {
     day: { label: "Jour", props: { period: "day" }, tags: ["sun", "clouds", "butterflies", "birds"] },
@@ -63,7 +63,7 @@ const meta = {
 
 imp("nature/fxtree", ["oak_summer_16", "pine_16", "oak_summer_48", "birch_48", "pine_48", "oak_summer_32", "birch_32", "pine_32"])
 imp("nature/fxbush", ["round_32", "berry_32", "round_16", "hedge_48"])
-imp("nature/fxrock", ["boulder_moss_32", "boulder_32", "stone_16", "pebbles_16"])
+imp("nature/fxrock", ["buried_moss_48", "buried_32", "buried_flat_48", "buried_16"])
 imp("nature/fxgrass", ["tuft_wind_16", "tall_wind_32", "tuft_16"])
 imp("nature/fxflower", ["daisy_16", "tulip_red_16"])
 imp("landscape/fxhill", ["rolling_64", "round_32"])
@@ -183,63 +183,80 @@ const fxField = (W, top, h, ramp = ["1", "G", "g", "l", "L"], seed = 1) => (c) =
     for (let y = t; y < h; y++) c.px(x, y, y === t ? ramp[4] : y < t + 3 ? ramp[3] : y < t + 8 ? ramp[2] : y < t + 13 ? ramp[1] : ramp[0])
   }
 }
+// Brins d'herbe peints par-dessus la base d'un objet (x0..x1), du bas `base` vers le haut, hauteur 1 à `h`.
+// Couleurs du terrain : base sombre, pointe claire ; motif reproductible et sans régularité visible.
+const grassOver = (W, x0, x1, base, h, seed = 3) => (c) => {
+  for (let x = x0; x <= x1; x++) {
+    const X = ((x % W) + W) % W, r = hsh(X, 1, seed), hh = 1 + Math.floor(r * h + (hsh(X, 2, seed) < 0.3 ? 1 : 0))
+    for (let k = 0; k < hh; k++) c.px(X, base - k, k === hh - 1 ? (r > 0.55 ? "L" : "l") : k === 0 ? "g" : "l")
+    if (base + 1 < c.h) c.px(X, base + 1, "g")
+  }
+}
 const PW = 1280
 const fieldTop = wave(PW, 47, [[2, 3, 0.5], [1.4, 7, 2], [0.8, 13, 4]])
 // [partie, x] : bosquets et clairières en alternance, quatre écrans sans répétition visible.
 const MEADOW = [
-  ["_fxtree_oak_summer_48", 14], ["_fxbush_round_32", 58], ["_fxtree_birch_48", 206], ["_fxrock_stone_16", 250],
-  ["_fxtree_oak_summer_32", 336], ["_fxbush_berry_32", 364], ["_fxtree_pine_48", 462], ["_fxtree_pine_32", 498], ["_fxrock_boulder_moss_32", 560],
+  ["_fxtree_oak_summer_48", 14], ["_fxbush_round_32", 58], ["_fxtree_birch_48", 206], ["_fxrock_buried_16", 250],
+  ["_fxtree_oak_summer_32", 336], ["_fxbush_berry_32", 364], ["_fxtree_pine_48", 462], ["_fxtree_pine_32", 498], ["_fxrock_buried_moss_48", 556],
   ["_fxtree_birch_32", 690], ["_fxtree_oak_summer_48", 736], ["_fxbush_round_16", 786], ["_fxbush_hedge_48", 880],
-  ["_fxtree_pine_48", 990], ["_fxbush_round_32", 1042], ["_fxtree_oak_summer_32", 1146], ["_fxbush_berry_32", 1176], ["_fxrock_boulder_32", 1228],
+  ["_fxtree_pine_48", 990], ["_fxbush_round_32", 1042], ["_fxrock_buried_flat_48", 1088], ["_fxtree_oak_summer_32", 1146], ["_fxbush_berry_32", 1176], ["_fxrock_buried_32", 1230],
 ]
+// Pierres à demi enterrées : enfoncées un peu plus que le reste, et l'herbe repousse devant leur base.
+const isRock = (name) => name.includes("_fxrock_")
+const sinkOf = (name) => (isRock(name) ? 7 : 5)
 const meadow = () => [
   fxField(PW, fieldTop, 60),
-  ...MEADOW.flatMap(([name, x], i) => plant(PW, name, x, fieldTop(x + SIZE[name].w / 2) + 5, flipIf(i % 3 === 1 && !name.includes("birch")))),
+  ...MEADOW.flatMap(([name, x], i) => plant(PW, name, x, fieldTop(x + SIZE[name].w / 2) + sinkOf(name), flipIf(i % 3 === 1 && !name.includes("birch")))),
+  ...MEADOW.filter(([name]) => isRock(name)).map(([name, x]) => grassOver(PW, x - 1, x + SIZE[name].w + 1, fieldTop(x + SIZE[name].w / 2) + sinkOf(name), 4)),
 ]
 for (const P of PERIODS) sprite(`_meadow_${P}`, { w: PW, h: 60, swap: FX_NEAR[P] }, ...meadow())
 
 // ================================================================ 6. sol (bande de 640 px, ligne de sol à y = 150)
 
 const GW = 640, TOP = 18 // bord du sol dans la bande (132 + 18 = 150)
+// Bruit périodique sur la bande (raccord parfait) : somme de sinus à nombres de périodes entiers.
+const pnoise = (x, s, W = GW) => 0.5 + 0.3 * Math.sin((2 * Math.PI * 37 * x) / W + s) + 0.2 * Math.sin((2 * Math.PI * 101 * x) / W + 2.3 * s)
+// Sol : uniquement du gazon jusqu'au bas de l'écran (pas de terre). Liseré clair plat sur la ligne des pieds,
+// puis l'herbe fonce vers le bas en paliers dont les limites ondulent (aucune ligne droite) ; des brins
+// dispersés (pointe plus claire que l'herbe autour) font la texture, plus serrés près du haut.
+const LAWN_DARK = { g: "l", G: "g", 1: "G" }
 const soil = (c) => {
+  const cut1 = (x) => TOP + 11 + Math.round(3 * (pnoise(x, 0.7) - 0.5) * 2)
+  const cut2 = (x) => TOP + 22 + Math.round(3 * (pnoise(x, 2.2) - 0.5) * 2)
+  const at = (x, y) => (y < TOP + 1 ? "2" : y < TOP + 2 ? "L" : y < TOP + 4 ? "l" : y < cut1(x) ? "g" : y < cut2(x) ? "G" : "1")
   for (let x = 0; x < GW; x++) {
-    // gazon : brins courts au-dessus de la ligne des pieds, liseré clair, paliers vers l'ombre des racines
-    const n = vnoise(x, 0, 1.8, 4)
-    if (n > 0.55) c.px(x, TOP - 1, n > 0.7 ? "L" : "l")
-    if (n > 0.8) c.px(x, TOP - 2, "l")
-    c.px(x, TOP, "2")
-    c.px(x, TOP + 1, "L")
-    for (let y = TOP + 2; y < TOP + 4; y++) c.px(x, y, "l")
-    for (let y = TOP + 4; y < TOP + 6; y++) c.px(x, y, "g")
-    c.px(x, TOP + 6, "G")
-    c.px(x, TOP + 7, "1")
-    // terre : bois-terre en paliers, plus sombre en profondeur
-    for (let y = TOP + 8; y < 48; y++) c.px(x, y, y < TOP + 10 ? "B" : y < TOP + 28 ? "b" : "B")
+    for (let y = TOP; y < 48; y++) c.px(x, y, at(x, y))
+    // brins courts au-dessus de la ligne des pieds
+    const n = pnoise(x, 0.4)
+    if (n > 0.62) c.px(x, TOP - 1, n > 0.82 ? "L" : "l")
+    if (n > 0.82) c.px(x, TOP - 2, "l")
   }
-  // racines qui pendent sous le gazon (en grappes, pas en grain)
-  for (let x = 0; x < GW; x++) {
-    const v = vnoise(x, 3, 2.5, 9)
-    if (v > 0.62) c.px(x, TOP + 8, "1")
-    if (v > 0.74) c.px(x, TOP + 9, "G")
+  // brins dispersés : tige et pointe d'un cran plus clair que l'herbe à leur pied
+  for (let k = 0; k < 2600; k++) {
+    const x = Math.floor(hsh(k, 1, 17) * GW), t = hsh(k, 2, 17) ** 1.4, y = TOP + 6 + Math.floor(t * (48 - TOP - 6))
+    const base = at(x, y), tip = LAWN_DARK[base]
+    if (!tip) continue
+    const len = 2 + Math.floor(hsh(k, 3, 17) * 3)
+    for (let j = 1; j < len; j++) c.px(x, y - j, j === len - 1 ? tip : at(x, y - j) === base ? tip : base)
   }
-  // couches de terre : veine claire (n) au-dessus d'une ombre (3), bords ondulés qui bouclent
-  const strata = [wave(GW, TOP + 16, [[2, 3, 0], [1, 8, 1]]), wave(GW, TOP + 25, [[2, 2, 2], [1, 5, 3]])]
-  for (let x = 0; x < GW; x++) for (const s of strata) { c.px(x, s(x), "="); c.px(x, s(x) + 1, "n"); c.px(x, s(x) + 2, "3") }
-  // pierres enfouies : facettes de la pierre riche, claire en haut à gauche
-  for (const [x, y, r] of [[40, 33, 3], [150, 41, 2], [262, 31, 3], [380, 39, 2], [470, 32, 3], [575, 43, 2]]) {
-    c.ellipse(x, y, r + 1, r, "<")
-    c.ellipse(x - 1, y - 1, r, r - 1, "m")
-    c.px(x - 1, y - 1, ">"); c.px(x - 2, y - 1, "c"); c.hline(x - r, y + r, 2 * r + 1, "3")
+  // fleurettes d'un pixel, rares
+  for (let x = 3; x < GW; x += 11) {
+    const v = pnoise(x, 5.1)
+    if (v > 0.7) c.px(x, TOP + 9 + (Math.floor(v * 97) % 12), v > 0.85 ? "y" : "w")
   }
 }
 // Décor posé sur le bord du sol (fleurs, touffes, cailloux).
 const GROUND_DECOR = [
-  ["_fxgrass_tuft_16", 24], ["_fxflower_daisy_16", 70], ["_fxrock_pebbles_16", 118], ["_fxflower_tulip_red_16", 168],
-  ["_fxflower_daisy_16", 184], ["_fxrock_stone_16", 236], ["_fxgrass_tuft_16", 300], ["_fxflower_tulip_red_16", 352],
-  ["_fxflower_daisy_16", 404], ["_fxflower_daisy_16", 446], ["_fxrock_pebbles_16", 498], ["_fxflower_daisy_16", 548],
+  ["_fxgrass_tuft_16", 24], ["_fxflower_daisy_16", 70], ["_fxrock_buried_16", 118], ["_fxflower_tulip_red_16", 168],
+  ["_fxflower_daisy_16", 184], ["_fxrock_buried_16", 236], ["_fxgrass_tuft_16", 300], ["_fxflower_tulip_red_16", 352],
+  ["_fxflower_daisy_16", 404], ["_fxflower_daisy_16", 446], ["_fxrock_buried_16", 498], ["_fxflower_daisy_16", 548],
   ["_fxflower_tulip_red_16", 562], ["_fxgrass_tuft_16", 604],
 ]
-const ground = () => [soil, ...GROUND_DECOR.flatMap(([name, x]) => plant(GW, name, x, TOP + 2))]
+const ground = () => [
+  soil,
+  ...GROUND_DECOR.flatMap(([name, x]) => plant(GW, name, x, TOP + (isRock(name) && name.includes("buried") ? 4 : 2))),
+  ...GROUND_DECOR.filter(([n]) => n.includes("buried")).map(([name, x]) => grassOver(GW, x - 1, x + SIZE[name].w + 1, TOP + 4, 3)),
+]
 for (const P of PERIODS) sprite(`_ground_${P}`, { w: GW, h: 48, swap: FX_NEAR[P] }, ...ground())
 
 // Herbe au vent posée sur le sol (acteurs animés par le moteur, désynchronisés).
