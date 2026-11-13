@@ -14,8 +14,8 @@ export const catalog = {
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 32,
-  "variants": 304
+  "assets": 33,
+  "variants": 317
  },
  "categories": [
   {
@@ -38,6 +38,7 @@ export const catalog = {
     "nature/cactus",
     "nature/fern",
     "nature/flower",
+    "nature/fxflower",
     "nature/fxgrass",
     "nature/fxrock",
     "nature/fxtree",
@@ -1381,6 +1382,278 @@ export const catalog = {
       "garden"
      ],
      "png": "library/png/nature/flower/bed_32.png"
+    }
+   }
+  },
+  "nature/fxflower": {
+   "id": "nature/fxflower",
+   "slug": "fxflower",
+   "category": "nature",
+   "title": "Fleurs (style pixelfx)",
+   "description": "Fleurs de prairie et de jardin vues de face au rendu inspiré de la fleur de l'effet « healing bloom » de pixelfx : tige de 2 px éclairée à gauche, feuilles et pétales en amande bordés de leur teinte la plus sombre avec nervure, moitié claire côté lumière (haut gauche), cœurs bombés en paliers francs, sans contour noir. Variantes : marguerite (16, 32 px), tulipes rouge, jaune, rose, violette (32 px) et rouge (16 px), coquelicot, rose, lavande, jacinthe des bois, bleuet (32 px), tournesol (48 px). Fleur seule, ombre portée translucide au sol.",
+   "tags": [
+    "flower",
+    "plant",
+    "vegetation",
+    "nature",
+    "decoration",
+    "garden",
+    "meadow",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/nature/fxflower.px.js",
+   "module": "library/js/nature/fxflower.js",
+   "sheet": {
+    "png": "library/sheets/nature/fxflower.png",
+    "json": "library/sheets/nature/fxflower.json"
+   },
+   "axes": {
+    "species": [
+     "daisy",
+     "tulip",
+     "poppy",
+     "rose",
+     "lavender",
+     "bluebell",
+     "cornflower",
+     "sunflower"
+    ],
+    "color": [
+     "white",
+     "red",
+     "yellow",
+     "pink",
+     "purple",
+     "blue"
+    ]
+   },
+   "sizes": [
+    16,
+    32,
+    48
+   ],
+   "variantCount": 13,
+   "variants": {
+    "daisy_32": {
+     "key": "daisy_32",
+     "name": "fxflower_daisy_32",
+     "id": "nature/fxflower/daisy_32",
+     "label": "Marguerite (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "daisy",
+      "color": "white"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/daisy_32.png"
+    },
+    "daisy_16": {
+     "key": "daisy_16",
+     "name": "fxflower_daisy_16",
+     "id": "nature/fxflower/daisy_16",
+     "label": "Marguerite (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "daisy",
+      "color": "white"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/daisy_16.png"
+    },
+    "tulip_red_32": {
+     "key": "tulip_red_32",
+     "name": "fxflower_tulip_red_32",
+     "id": "nature/fxflower/tulip_red_32",
+     "label": "Tulipe rouge (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "tulip",
+      "color": "red"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/tulip_red_32.png"
+    },
+    "tulip_yellow_32": {
+     "key": "tulip_yellow_32",
+     "name": "fxflower_tulip_yellow_32",
+     "id": "nature/fxflower/tulip_yellow_32",
+     "label": "Tulipe jaune (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "tulip",
+      "color": "yellow"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/tulip_yellow_32.png"
+    },
+    "tulip_pink_32": {
+     "key": "tulip_pink_32",
+     "name": "fxflower_tulip_pink_32",
+     "id": "nature/fxflower/tulip_pink_32",
+     "label": "Tulipe rose (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "tulip",
+      "color": "pink"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/tulip_pink_32.png"
+    },
+    "tulip_purple_32": {
+     "key": "tulip_purple_32",
+     "name": "fxflower_tulip_purple_32",
+     "id": "nature/fxflower/tulip_purple_32",
+     "label": "Tulipe violette (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "tulip",
+      "color": "purple"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/tulip_purple_32.png"
+    },
+    "tulip_red_16": {
+     "key": "tulip_red_16",
+     "name": "fxflower_tulip_red_16",
+     "id": "nature/fxflower/tulip_red_16",
+     "label": "Tulipe rouge (16 px)",
+     "kind": "sprite",
+     "w": 16,
+     "h": 16,
+     "size": 16,
+     "props": {
+      "species": "tulip",
+      "color": "red"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/tulip_red_16.png"
+    },
+    "poppy_32": {
+     "key": "poppy_32",
+     "name": "fxflower_poppy_32",
+     "id": "nature/fxflower/poppy_32",
+     "label": "Coquelicot (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "poppy",
+      "color": "red"
+     },
+     "tags": [
+      "wildflower"
+     ],
+     "png": "library/png/nature/fxflower/poppy_32.png"
+    },
+    "rose_32": {
+     "key": "rose_32",
+     "name": "fxflower_rose_32",
+     "id": "nature/fxflower/rose_32",
+     "label": "Rose (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "rose",
+      "color": "pink"
+     },
+     "tags": [
+      "romantic"
+     ],
+     "png": "library/png/nature/fxflower/rose_32.png"
+    },
+    "lavender_32": {
+     "key": "lavender_32",
+     "name": "fxflower_lavender_32",
+     "id": "nature/fxflower/lavender_32",
+     "label": "Lavande (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "lavender",
+      "color": "purple"
+     },
+     "tags": [
+      "herb"
+     ],
+     "png": "library/png/nature/fxflower/lavender_32.png"
+    },
+    "bluebell_32": {
+     "key": "bluebell_32",
+     "name": "fxflower_bluebell_32",
+     "id": "nature/fxflower/bluebell_32",
+     "label": "Jacinthe des bois (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "bluebell",
+      "color": "blue"
+     },
+     "tags": [
+      "wildflower",
+      "forest"
+     ],
+     "png": "library/png/nature/fxflower/bluebell_32.png"
+    },
+    "cornflower_32": {
+     "key": "cornflower_32",
+     "name": "fxflower_cornflower_32",
+     "id": "nature/fxflower/cornflower_32",
+     "label": "Bleuet (32 px)",
+     "kind": "sprite",
+     "w": 32,
+     "h": 32,
+     "size": 32,
+     "props": {
+      "species": "cornflower",
+      "color": "blue"
+     },
+     "tags": [
+      "wildflower"
+     ],
+     "png": "library/png/nature/fxflower/cornflower_32.png"
+    },
+    "sunflower_48": {
+     "key": "sunflower_48",
+     "name": "fxflower_sunflower_48",
+     "id": "nature/fxflower/sunflower_48",
+     "label": "Tournesol (48 px)",
+     "kind": "sprite",
+     "w": 48,
+     "h": 48,
+     "size": 48,
+     "props": {
+      "species": "sunflower",
+      "color": "yellow"
+     },
+     "tags": [],
+     "png": "library/png/nature/fxflower/sunflower_48.png"
     }
    }
   },
@@ -7504,6 +7777,7 @@ const loaders = {
   "nature/cactus": () => import("./js/nature/cactus.js"),
   "nature/fern": () => import("./js/nature/fern.js"),
   "nature/flower": () => import("./js/nature/flower.js"),
+  "nature/fxflower": () => import("./js/nature/fxflower.js"),
   "nature/fxgrass": () => import("./js/nature/fxgrass.js"),
   "nature/fxrock": () => import("./js/nature/fxrock.js"),
   "nature/fxtree": () => import("./js/nature/fxtree.js"),
