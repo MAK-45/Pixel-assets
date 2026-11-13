@@ -1,5 +1,5 @@
 // GÉNÉRÉ par scripts/build.js — ne pas modifier. Source : assets/sky/fxsun.px.js
-// Soleil (style pixelfx) — 8 variante(s). Usage :
+// Soleil (style pixelfx) — 7 variante(s). Usage :
 //   import asset from "./fxsun.js"; const v = asset.variants["rays_64"];
 //   v.src (data URL PNG), v.rows + v.palette (pixels, "." = transparent), v.w, v.h
 /** @type {import("../../index.d.ts").PixelAsset} */
@@ -8,7 +8,7 @@ export const asset = {
  "slug": "fxsun",
  "category": "sky",
  "title": "Soleil (style pixelfx)",
- "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24), disque du soleil couchant entier (32 px, à demi caché par le relief dans les scènes) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
+ "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
  "tags": [
   "sun",
   "sky",
@@ -46,7 +46,7 @@ export const asset = {
   48,
   64
  ],
- "variantCount": 8,
+ "variantCount": 7,
  "variants": {
   "rays_64": {
    "key": "rays_64",
@@ -421,71 +421,6 @@ export const asset = {
     ".......rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrR.......",
     "................................................",
     "................................................"
-   ]
-  },
-  "setting_32": {
-   "key": "setting_32",
-   "name": "fxsun_setting_32",
-   "id": "sky/fxsun/setting_32",
-   "label": "Soleil couchant, disque entier (32 px)",
-   "kind": "sprite",
-   "w": 32,
-   "h": 32,
-   "size": 32,
-   "props": {
-    "style": "disc",
-    "time": "sunset"
-   },
-   "tags": [
-    "sunset",
-    "dusk",
-    "evening"
-   ],
-   "png": "library/png/sky/fxsun/setting_32.png",
-   "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAG1BMVEUAAAD/4Hr/4Hr/8Kjzw0rgeCr7+/+yOixuHyR45VQGAAAAA3RSTlMAH0qhJWLOAAAAoElEQVR42r3TwQ7EIAgEUBUo/P8XbwquGbCpl83OsfOCaaWt/TAdcqifSO/vwh+NlU3MmoiImXmS2lPkFuJi668LRAHRh3CgcIYPiN5FABAwYI0Q0ZEA1QnihyRAR5DeogKmFZ7AMuDab4BLvwPI3esL8L6Akes0ID61CNaiZvWyBIMHrOtWhdryRsUSTqF7/xXDZh62up+2/vzfoGh/zgfDmgdBNgyciwAAAABJRU5ErkJggg==",
-   "palette": {
-    "R": "#6e1f24",
-    "Y": "#fff0a8",
-    "^": "#ffe07a4a",
-    "o": "#e0782a",
-    "r": "#b23a2c",
-    "w": "#fbfbff",
-    "y": "#f3c34a",
-    "~": "#ffe07a1f"
-   },
-   "rows": [
-    "................................",
-    "................................",
-    "..........~~~~~~~~~~~~..........",
-    "........~~~~~~~~~~~~~~~~........",
-    ".......~~~~~~~~~~~~~~~~~~.......",
-    "......~~~~~^^^^^^^^^^~~~~~......",
-    ".....~~~~^^^YYYYyyyy^^^~~~~.....",
-    "....~~~~^^YYYYYYYyyyyo^^~~~.....",
-    "...~~~~^^YYwwYYYYYyyyyo^~~~.....",
-    "...~~~^^YYwwwwYYYYyyyyor~~~~....",
-    "..~~~~^YYwwwwwwYYYyyyyorr~~~~...",
-    "..~~~^^YYwwwwwwYYYYyyyoor^~~~...",
-    "..~~~^YYYwwwwwwYYYyyyyooor~~~...",
-    "..~~~^YYYYwwwwwYYYyyyyooor~~~...",
-    "..~~~^YYYYYwwYYYYYyyyyooor~~~...",
-    "..~~~^yYYYYYYYYYYyyyyyoooR~~~...",
-    "..~~~^yyYYYYYYYYyyyyyooooR~~~...",
-    "..~~~^yyyYYYYYYyyyyyoooooR~~~...",
-    "..~~~^yyyyyyyyyyyyyyoooorR~~~...",
-    "..~~~^yyyyyyyyyyyyyoooorrR~~~...",
-    "..~~~^^yyyyyyyyyyoooooorR~~~....",
-    "..~~~~^ooyyyyyyooooooorRR~~.....",
-    "...~~~^^ooooooooooooorrR~~~.....",
-    "...~~~~^^rroooooooorrRR~~~......",
-    "....~~~~~~rrooooorrrRR~~~.......",
-    ".....~~~~~~^RRRRRRRR~~~~........",
-    "......~~~~~~~~~~~~~~~~~.........",
-    ".........~~~~~~~~~~~~...........",
-    "..........~~~~~~~~~.............",
-    "................................",
-    "................................",
-    "................................"
    ]
   },
   "eclipse_48": {

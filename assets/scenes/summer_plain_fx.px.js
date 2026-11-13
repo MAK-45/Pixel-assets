@@ -69,7 +69,7 @@ imp("nature/fxflower", ["daisy_16", "tulip_red_16"])
 imp("landscape/fxhill", ["rolling_64", "round_32"])
 imp("landscape/fxmountain", ["peak_snow_128", "peak_snow_64", "range_snow_64"])
 imp("sky/fxcloud", ["cumulus_48", "puff_32", "puff_16", "stratus_64", "sunset_48", "night_48", "storm_64"])
-imp("sky/fxsun", ["rays_32", "setting_32"])
+imp("sky/fxsun", ["rays_32", "sunset_48"])
 imp("sky/fxmoon", ["full_32"])
 imp("sky/fxstar", ["sparkle4_16"])
 imp("sky/star", ["tiny_plus_8", "tiny_twinkle_8", "streak_24"])
@@ -84,19 +84,28 @@ for (const [n, k] of [["white", "S"], ["yellow", "o"], ["blue", "u"]])
 // ================================================================ 0. ciel et astres
 // Bandes nettes, sans trame (paliers francs du style pixelfx).
 
-// [clé, hauteur] du zénith vers l'horizon ; la dernière clé remplit le reste de la tuile.
+// [clé, hauteur] du zénith vers l'horizon ; la dernière clé remplit le reste de la tuile. Chaque
+// raccord entre deux bandes est tramé (pointillés) sur 12 px, comme le ciel de la Plaine d'été.
 const SKY_FX = {
-  day: [["u", 10], ["i", 46], ["I", 50], ["s", 0]],
-  dusk: [["V", 22], ["A", 22], ["f", 22], ["F", 18], ["o", 16], ["y", 0]],
+  day: [["u", 12], ["i", 46], ["I", 50], ["s", 0]],
+  dusk: [["V", 22], ["A", 24], ["f", 26], ["F", 24], ["o", 0]],
   night: [["Q", 30], ["O", 38], ["M", 42], ["U", 0]],
   overcast: [["d", 18], ["<", 32], ["m", 42], [">", 0]],
 }
+const SEAM = 12
 for (const [P, bands] of Object.entries(SKY_FX)) {
+  const fills = [], seams = []
   let y = 0
-  sprite(`_sky_${P}`, { w: 8, h: 180 }, ...bands.map(([k, h]) => { const r = rect(0, y, 8, h || 180 - y, k); y += h; return r }))
+  bands.forEach(([k, h], i) => {
+    fills.push(rect(0, y, 8, h || 180 - y, k))
+    if (i > 0) seams.push(grad(0, y - SEAM / 2, 8, SEAM, bands[i - 1][0] + k, "v", 1))
+    y += h
+  })
+  sprite(`_sky_${P}`, { w: 8, h: 180 }, ...fills, ...seams) // trames par-dessus les aplats
 }
 sprite("_body_day", BODY, stamp("_fxsun_rays_32", 0, 0))
-sprite("_body_dusk", BODY, stamp("_fxsun_setting_32", 70, 80))
+// soleil couchant rayé, posé sur l'horizon : les collines en cachent le bas
+sprite("_body_dusk", BODY, stamp("_fxsun_sunset_48", 62, 77))
 sprite("_body_night", BODY, stamp("_fxmoon_full_32", 2, 0))
 
 // ================================================================ 1. étoiles (fixes, hors de la lune)

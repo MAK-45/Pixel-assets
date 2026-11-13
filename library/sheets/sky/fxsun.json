@@ -120,29 +120,9 @@
     "h": 24
    }
   },
-  "setting_32": {
-   "frame": {
-    "x": 0,
-    "y": 98,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
   "eclipse_48": {
    "frame": {
-    "x": 33,
+    "x": 0,
     "y": 98,
     "w": 48,
     "h": 48

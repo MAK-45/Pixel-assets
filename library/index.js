@@ -15,7 +15,7 @@ export const catalog = {
  "stats": {
   "categories": 7,
   "assets": 36,
-  "variants": 345
+  "variants": 344
  },
  "categories": [
   {
@@ -6482,7 +6482,7 @@ export const catalog = {
    "slug": "fxsun",
    "category": "sky",
    "title": "Soleil (style pixelfx)",
-   "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24), disque du soleil couchant entier (32 px, à demi caché par le relief dans les scènes) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
+   "description": "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
    "tags": [
     "sun",
     "sky",
@@ -6520,7 +6520,7 @@ export const catalog = {
     48,
     64
    ],
-   "variantCount": 8,
+   "variantCount": 7,
    "variants": {
     "rays_64": {
      "key": "rays_64",
@@ -6629,26 +6629,6 @@ export const catalog = {
       "retro"
      ],
      "png": "library/png/sky/fxsun/sunset_48.png"
-    },
-    "setting_32": {
-     "key": "setting_32",
-     "name": "fxsun_setting_32",
-     "id": "sky/fxsun/setting_32",
-     "label": "Soleil couchant, disque entier (32 px)",
-     "kind": "sprite",
-     "w": 32,
-     "h": 32,
-     "size": 32,
-     "props": {
-      "style": "disc",
-      "time": "sunset"
-     },
-     "tags": [
-      "sunset",
-      "dusk",
-      "evening"
-     ],
-     "png": "library/png/sky/fxsun/setting_32.png"
     },
     "eclipse_48": {
      "key": "eclipse_48",

@@ -3,7 +3,7 @@ include("../nature/_fx.px.js")
 
 const meta = {
   title: "Soleil (style pixelfx)",
-  description: "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24), disque du soleil couchant entier (32 px, à demi caché par le relief dans les scènes) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
+  description: "Soleils au rendu riche inspiré de l'effet sunburst et de l'éclipse de la bibliothèque pixelfx : cœur blanc chauffé, disque doré en paliers francs, rayons effilés longs et courts qui s'éclaircissent vers le centre, halo doré translucide. Sans contour noir. Variantes : soleil à rayons (16, 32, 64 px), soleil pâle d'hiver, soleil doux à couronne ondulée, soleil couchant rayé sur l'horizon (48 × 24) et éclipse totale à couronne nacrée avec son « diamant ». Les halos sont semi-transparents : ils rendent mieux sur fond sombre ou ciel.",
   tags: ["sun", "sky", "day", "light", "sunny", "weather", "glow", "realistic", "pixelfx"],
   variants: {
     rays_64: { label: "Soleil à rayons (64 px)", props: { style: "rays", time: "day" } },
@@ -12,7 +12,6 @@ const meta = {
     pale_32: { label: "Soleil pâle d'hiver (32 px)", props: { style: "rays", time: "winter" }, tags: ["winter", "cold"] },
     glow_32: { label: "Soleil doux à couronne (32 px)", props: { style: "corona", time: "day" }, tags: ["warm"] },
     sunset_48: { label: "Soleil couchant sur l'horizon (48 × 24)", props: { style: "disc", time: "sunset" }, tags: ["sunset", "dusk", "horizon", "retro"] },
-    setting_32: { label: "Soleil couchant, disque entier (32 px)", props: { style: "disc", time: "sunset" }, tags: ["sunset", "dusk", "evening"] },
     eclipse_48: { label: "Éclipse totale (48 px)", props: { style: "corona", time: "eclipse" }, tags: ["eclipse", "dark", "night"] },
   },
 }
@@ -114,22 +113,6 @@ sprite("fxsun_sunset_48", { w: 48, h: 24 }, draw((B) => {
       B.set(x, y, k)
     }
   halo(B, "wYy", 1.2, 3.5, "^", "~")
-}))
-
-// soleil couchant entier : disque du jaune pâle (haut à gauche) au rouge (bas), paliers en croissants
-// décalés vers le bas à droite, halo chaud ; le relief des scènes en cache le bas.
-sprite("fxsun_setting_32", { w: 32, h: 32 }, draw((B) => {
-  const cx = 16, cy = 16, R = 10.5
-  for (let y = 0; y < 32; y++)
-    for (let x = 0; x < 32; x++) {
-      const dx = x + 0.5 - cx, dy = y + 0.5 - cy, d = Math.hypot(dx, dy) / R
-      if (d > 1) continue
-      const hot = Math.hypot(dx + R * 0.38, dy + R * 0.42) / R
-      let k = hot < 0.3 ? "w" : hot < 0.62 ? "Y" : hot < 0.98 ? "y" : hot < 1.32 ? "o" : "r"
-      if (d > 0.88 && dx + dy > 0) k = { w: "Y", Y: "y", y: "o", o: "r", r: "R" }[k]
-      B.set(x, y, k)
-    }
-  halo(B, "wYyo", 1.5, 4.5, "^", "~")
 }))
 
 // éclipse : disque noir, liseré blanc, couronne nacrée en filaments, perle (diamant) en haut à droite
