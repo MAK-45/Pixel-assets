@@ -58,6 +58,8 @@ pal({
   "[": "#3e4b72", "]": "#62759f",
   // halo froid du clair de lune (fxmoon, fxstar), translucide, posé sur le vide : fort / faible
   "{": "#c8d4ff40", "}": "#c8d4ff18",
+  // sable du désert (dunes fxdune), rampe riche : K ombre violacée -> ( -> ) -> - -> ! -> ? pâle (puis Y)
+  K: "#3a2333", "(": "#6b3d3c", ")": "#a5643f", "-": "#d08f4f", "!": "#e9b56b", "?": "#f7d897",
 })
 
 ramps(
@@ -82,4 +84,5 @@ ramps(
   "kd<m>cC", // pierre, rampe riche
   "3Bb=nN",  // grès, rampe riche
   "[]Ssw",   // neige, rampe riche
+  "K()-!?Y", // sable du désert, rampe riche
 )

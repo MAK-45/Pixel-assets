@@ -4,8 +4,8 @@
  "description": "Bibliothèque de pixel art. Chemins relatifs à la racine du dépôt. Données de pixels complètes dans `module` (ES module).",
  "stats": {
   "categories": 7,
-  "assets": 36,
-  "variants": 350
+  "assets": 37,
+  "variants": 356
  },
  "categories": [
   {
@@ -48,6 +48,7 @@
    "description": "Grands reliefs pour décors et arrière-plans : montagnes, volcans, mesas, collines et dunes.",
    "icon": "landscape/mountain/peak_snow_16",
    "assets": [
+    "landscape/fxdune",
     "landscape/fxhill",
     "landscape/fxmountain",
     "landscape/hill",
@@ -4521,6 +4522,152 @@
      "gif": "library/png/nature/tumbleweed/roll_32.gif",
      "frameCount": 4,
      "loopMs": 400
+    }
+   }
+  },
+  "landscape/fxdune": {
+   "id": "landscape/fxdune",
+   "slug": "fxdune",
+   "category": "landscape",
+   "title": "Dune de sable (style pixelfx)",
+   "description": "Dune de sable du désert vue de face au rendu riche inspiré de pixelfx, sans contour noir : longue face au vent éclairée à gauche, crête vive, versant d'éboulement à l'ombre à droite. Même forme, six propositions de rendu : classique (6 paliers francs), rides de vent, graphique (aplats), golden hour contrasté (ombres violettes), plein midi doux (peu de contraste), texturé (taches de grain et rares paillettes).",
+   "tags": [
+    "dune",
+    "sand",
+    "desert",
+    "landscape",
+    "terrain",
+    "background",
+    "scenery",
+    "realistic",
+    "pixelfx"
+   ],
+   "order": 0,
+   "source": "assets/landscape/fxdune.px.js",
+   "module": "library/js/landscape/fxdune.js",
+   "sheet": {
+    "png": "library/sheets/landscape/fxdune.png",
+    "json": "library/sheets/landscape/fxdune.json"
+   },
+   "axes": {
+    "style": [
+     "classic",
+     "ripples",
+     "flat",
+     "golden",
+     "noon",
+     "grainy"
+    ]
+   },
+   "sizes": [
+    64
+   ],
+   "variantCount": 6,
+   "variants": {
+    "classic_64": {
+     "key": "classic_64",
+     "name": "fxdune_classic_64",
+     "id": "landscape/fxdune/classic_64",
+     "label": "Classique – 6 paliers (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "classic"
+     },
+     "tags": [],
+     "png": "library/png/landscape/fxdune/classic_64.png"
+    },
+    "ripples_64": {
+     "key": "ripples_64",
+     "name": "fxdune_ripples_64",
+     "id": "landscape/fxdune/ripples_64",
+     "label": "Rides de vent (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "ripples"
+     },
+     "tags": [
+      "ripples",
+      "wind"
+     ],
+     "png": "library/png/landscape/fxdune/ripples_64.png"
+    },
+    "flat_64": {
+     "key": "flat_64",
+     "name": "fxdune_flat_64",
+     "id": "landscape/fxdune/flat_64",
+     "label": "Graphique – aplats (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "flat"
+     },
+     "tags": [
+      "flat",
+      "graphic"
+     ],
+     "png": "library/png/landscape/fxdune/flat_64.png"
+    },
+    "golden_64": {
+     "key": "golden_64",
+     "name": "fxdune_golden_64",
+     "id": "landscape/fxdune/golden_64",
+     "label": "Golden hour contrasté (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "golden"
+     },
+     "tags": [
+      "sunset",
+      "dramatic"
+     ],
+     "png": "library/png/landscape/fxdune/golden_64.png"
+    },
+    "noon_64": {
+     "key": "noon_64",
+     "name": "fxdune_noon_64",
+     "id": "landscape/fxdune/noon_64",
+     "label": "Plein midi doux (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "noon"
+     },
+     "tags": [
+      "soft",
+      "pastel"
+     ],
+     "png": "library/png/landscape/fxdune/noon_64.png"
+    },
+    "grainy_64": {
+     "key": "grainy_64",
+     "name": "fxdune_grainy_64",
+     "id": "landscape/fxdune/grainy_64",
+     "label": "Texturé – grain et paillettes (64 × 32)",
+     "kind": "sprite",
+     "w": 64,
+     "h": 32,
+     "size": 64,
+     "props": {
+      "style": "grainy"
+     },
+     "tags": [
+      "texture",
+      "sparkle"
+     ],
+     "png": "library/png/landscape/fxdune/grainy_64.png"
     }
    }
   },
